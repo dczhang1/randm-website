@@ -111,3 +111,46 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+
+// Hamburger menu functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.querySelector('.hamburger-icon');
+    const navLinks = document.querySelector('.nav-links');
+    const body = document.body;
+    
+    // Create overlay element
+    const overlay = document.createElement('div');
+    overlay.classList.add('menu-overlay');
+    body.appendChild(overlay);
+    
+    function toggleMenu() {
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('active');
+        overlay.classList.toggle('active');
+        body.classList.toggle('menu-open');
+    }
+    
+    // Toggle menu when hamburger is clicked
+    hamburger.addEventListener('click', toggleMenu);
+    
+    // Close menu when clicking on overlay
+    overlay.addEventListener('click', toggleMenu);
+    
+    // Close menu when clicking a nav link
+    const links = document.querySelectorAll('.nav-links a');
+    links.forEach(link => {
+        link.addEventListener('click', () => {
+            if (navLinks.classList.contains('active')) {
+                toggleMenu();
+            }
+        });
+    });
+    
+    // Close menu when window is resized to desktop
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768 && navLinks.classList.contains('active')) {
+            toggleMenu();
+        }
+    });
+});
