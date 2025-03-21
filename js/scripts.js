@@ -47,3 +47,67 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
+// Add this to your existing scripts.js file
+
+// Side navigation highlighting for Get Involved page
+document.addEventListener('DOMContentLoaded', () => {
+    const currentPage = window.location.pathname.split('/').pop();
+    
+    // Check if we're on the Get Involved page
+    if (currentPage === 'get-involved.html') {
+        const sections = document.querySelectorAll('.opportunity, .contact-info');
+        const navLinks = document.querySelectorAll('.side-nav a');
+        
+        // Function to set active menu item
+        const setActiveNavItem = () => {
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                
+                // 150px offset accounts for the header and some buffer
+                if (window.scrollY >= (sectionTop - 150)) {
+                    currentSection = '#' + section.getAttribute('id');
+                }
+            });
+            
+            // Remove active class from all links
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                
+                // Add active class to current section link
+                if (link.getAttribute('href') === currentSection) {
+                    link.classList.add('active');
+                }
+            });
+        };
+        
+        // Set active menu item on scroll
+        window.addEventListener('scroll', setActiveNavItem);
+        
+        // Set active menu item on page load
+        setActiveNavItem();
+        
+        // Smooth scroll to sections when clicking on side nav links
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                if (targetSection) {
+                    // Offset for fixed header
+                    const offsetTop = targetSection.offsetTop - 100;
+                    
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    }
+});
