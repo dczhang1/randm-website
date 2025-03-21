@@ -8,25 +8,42 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Immediately show all content and remove fade-in delays
+// Fade-in animations
 document.addEventListener('DOMContentLoaded', () => {
-    // Make all fade-in elements immediately visible
-    document.querySelectorAll('.fade-in').forEach(el => {
-        el.classList.add('visible');
-    });
+    // Initialize fade-in elements
+    const fadeIns = document.querySelectorAll('.fade-in');
     
-    // Make scroll arrow functional
-    const scrollArrow = document.querySelector('.scroll-arrow');
-    if (scrollArrow) {
-        scrollArrow.addEventListener('click', () => {
-            // Get the height of the navbar
-            const navHeight = document.querySelector('nav').offsetHeight;
-            
-            // Scroll to just below the hero section
-            window.scrollTo({
-                top: window.innerHeight - navHeight,
-                behavior: 'smooth'
-            });
+    // Create IntersectionObserver
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
         });
+    }, { threshold: 0.3 });
+
+    // Observe all fade-in elements
+    fadeIns.forEach(element => observer.observe(element));
+
+    // Handle page-specific initializations
+    const currentPage = window.location.pathname.split('/').pop();
+    
+    // Home page specific setup
+    if (currentPage === 'index.html' || currentPage === '') {
+        // Initial fade-in for hero elements
+        document.querySelector('.hero h1').classList.add('fade-in', 'visible');
+        document.querySelector('.hero p').classList.add('fade-in', 'visible');
+        
+        // Make scroll arrow functional
+        const scrollArrow = document.querySelector('.scroll-arrow');
+        if (scrollArrow) {
+            scrollArrow.addEventListener('click', () => {
+                // Scroll to just below the hero section (where content begins)
+                const contentStart = document.querySelector('.content-wrapper');
+                if (contentStart) {
+                    contentStart.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        }
     }
 });
