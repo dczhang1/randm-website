@@ -546,3 +546,61 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
+/*Social Buttons */
+.about p {
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto 1.5rem;
+}
+
+/* Social Media Links */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.social-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-link i {
+    font-size: 1.5rem;
+}
+
+.social-link:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-3px);
+}
+
+/* Individual social icon colors on hover */
+.social-link:nth-child(1):hover {
+    background-color: #0077B5; /* LinkedIn blue */
+}
+
+.social-link:nth-child(2):hover {
+    background-color: #00CCBB; /* ResearchGate teal */
+}
+
+.social-link:nth-child(3):hover {
+    background-color: #4285F4; /* Google Scholar blue */
+}
+
+.social-link:nth-child(4):hover {
+    background-color: #D44638; /* Email red */
+}
+
+.social-link:nth-child(5):hover {
+    background-color: #8A2BE2; /* University purple */
+}
