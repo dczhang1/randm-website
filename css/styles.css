@@ -401,6 +401,114 @@ main {
     }
 }
 
+/* Side Navigation and Content Layout */
+.content-wrapper {
+    display: flex;
+    gap: 2.5rem;
+    position: relative;
+}
+
+.side-navigation {
+    position: sticky;
+    top: 100px; /* Adjust based on your header height plus some padding */
+    height: fit-content;
+    width: 220px;
+    min-width: 220px;
+    background-color: var(--neutral-off-white);
+    border-radius: 0;
+    padding: 1.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    border-top: 3px solid var(--primary-color);
+    align-self: flex-start;
+}
+
+.side-navigation h3 {
+    color: var(--primary-color);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.side-navigation ul {
+    list-style: none;
+}
+
+.side-navigation li {
+    margin-bottom: 0.8rem;
+}
+
+.side-navigation a {
+    display: block;
+    padding: 0.5rem 0.8rem;
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500;
+    border-left: 3px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.side-navigation a:hover,
+.side-navigation a.active {
+    color: var(--secondary-color);
+    background-color: rgba(148, 137, 121, 0.1);
+    border-left-color: var(--secondary-color);
+    transform: translateX(5px);
+}
+
+.main-content {
+    flex: 1;
+    min-width: 0; /* Allows content to shrink below its minimum content size */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 992px) {
+    .content-wrapper {
+        flex-direction: column;
+    }
+    
+    .side-navigation {
+        position: relative;
+        top: 0;
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+    
+    .side-navigation ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    .side-navigation li {
+        margin-bottom: 0;
+    }
+    
+    .side-navigation a {
+        padding: 0.5rem 1rem;
+        border-left: none;
+        border-bottom: 3px solid transparent;
+    }
+    
+    .side-navigation a:hover,
+    .side-navigation a.active {
+        border-left-color: transparent;
+        border-bottom-color: var(--secondary-color);
+        transform: translateY(-3px);
+    }
+}
+
+@media (max-width: 576px) {
+    .side-navigation ul {
+        flex-direction: column;
+    }
+    
+    .side-navigation a {
+        padding: 0.8rem 1rem;
+    }
+}
+
 /* Teams Areas */
 
 /* Page Header for Interior Pages */
