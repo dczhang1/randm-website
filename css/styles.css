@@ -339,96 +339,175 @@ section {
     color: var(--secondary-color);
 }
 
-/* Principal Investigator Banner Styles */
+/* Team Page Specific Styles - Add to styles.css */
+
+/* Principal Investigator Banner */
 .pi-banner {
-    width: 100%;
+    margin-bottom: 3rem;
     background-color: #f8f8f8;
     border-radius: 10px;
     padding: 2rem;
-    margin-bottom: 3rem;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    border-left: 5px solid var(--secondary-color);
 }
 
 .pi-content {
     display: flex;
-    gap: 2.5rem;
+    gap: 2rem;
     align-items: flex-start;
 }
 
 .pi-photo {
     width: 200px;
     height: 200px;
-    border-radius: 50%;
-    background-color: var(--primary-color);
-    flex-shrink: 0;
-}
-
-.pi-details {
-    flex: 1;
+    border-radius: 10px;
+    object-fit: cover;
 }
 
 .pi-details h2 {
     color: var(--accent-color);
+    margin-bottom: 0.25rem;
     font-family: 'Lora', serif;
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
 }
 
 .pi-details h3 {
     color: var(--secondary-color);
-    font-size: 1.2rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
 }
 
 .pi-details p {
     margin-bottom: 1rem;
-    line-height: 1.7;
 }
 
 .cv-button {
     display: inline-block;
-    margin-top: 1rem;
-    padding: 0.8rem 1.5rem;
+    padding: 0.5rem 1rem;
     background-color: var(--primary-color);
     color: var(--text-light);
-    border-radius: 5px;
     text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
+    border-radius: 5px;
+    margin-top: 0.5rem;
+    transition: background-color 0.3s ease;
 }
 
 .cv-button:hover {
     background-color: var(--secondary-color);
-    transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .cv-button i {
     margin-left: 0.5rem;
 }
 
+/* Team Section Headers */
 .team-section-header {
     width: 100%;
-    font-family: 'Lora', serif;
+    margin: 2.5rem 0 1.5rem;
     color: var(--accent-color);
-    margin-bottom: 2rem;
+    font-family: 'Lora', serif;
     font-size: 1.8rem;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 0.5rem;
+}
+
+/* Lab Mascot Section */
+.mascot-section {
+    margin: 2rem 0 3rem;
+    padding: 2rem;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.mascot-content {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.mascot-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    flex-shrink: 0;
+}
+
+.mascot-details h3 {
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.mascot-details p {
+    margin-bottom: 1rem;
+}
+
+/* Alumni Section (former Collaborators) */
+.alumni-section {
+    width: 100%;
+    margin: 3rem 0;
+    padding: 2rem;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+}
+
+.alumni-section h2 {
+    color: var(--accent-color);
+    margin-bottom: 1.5rem;
+    font-family: 'Lora', serif;
     text-align: center;
 }
 
-/* Responsive adjustments for the PI banner */
+.alumni-section h3 {
+    color: var(--secondary-color);
+    margin: 1.5rem 0 1rem;
+    font-size: 1.2rem;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 0.5rem;
+}
+
+.alumni-list {
+    list-style-type: none;
+}
+
+.alumni-list li {
+    margin-bottom: 0.75rem;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.alumni-list li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--secondary-color);
+}
+
+.alumni-name {
+    font-weight: 600;
+}
+
+/* Responsive Adjustments */
 @media (max-width: 768px) {
     .pi-content {
         flex-direction: column;
         align-items: center;
-        text-align: center;
     }
     
     .pi-photo {
         margin-bottom: 1.5rem;
     }
+    
+    .mascot-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .mascot-photo {
+        margin: 0 auto 1.5rem;
+    }
 }
+
 /* Get Involved Page Styles */
 .opportunities {
     width: 100%;
