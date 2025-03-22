@@ -193,5 +193,31 @@
     <script src="js/utils.js" defer></script>
     <script src="js/main.js" defer></script>
     <script src="js/news.js" defer></script>
+    
+<!-- Add this at the bottom of your news.html file, right before the closing </body> tag -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Direct fix for read more buttons - extremely simple
+      document.querySelectorAll('.read-more-btn').forEach(function(button) {
+        button.addEventListener('click', function() {
+          // Find the parent news item
+          const newsItem = this.closest('.news-item');
+          // Find the details section within this news item
+          const details = newsItem.querySelector('.news-details');
+          
+          if (details) {
+            // Check if it's currently visible
+            const isVisible = window.getComputedStyle(details).display !== 'none';
+            
+            // Toggle visibility
+            details.style.display = isVisible ? 'none' : 'block';
+            // Update button text
+            this.textContent = isVisible ? 'Read more' : 'Read less';
+          }
+        });
+      });
+    });
+  </script>
+
 </body>
 </html>

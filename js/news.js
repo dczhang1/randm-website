@@ -11,6 +11,9 @@ function initNewsPage() {
     const noResultsMessage = document.querySelector('.no-results-message');
     const readMoreButtons = document.querySelectorAll('.read-more-btn');
     
+    console.log('News page initialization started');
+    console.log('Read more buttons found:', readMoreButtons.length);
+    
     // Filter function with error handling
     function filterNewsItems() {
         try {
@@ -78,27 +81,67 @@ function initNewsPage() {
         monthFilter.addEventListener('change', filterNewsItems);
     }
     
-    // Set up read more/less functionality with error handling
+    // ===== READ MORE/LESS FUNCTIONALITY =====
     if (readMoreButtons.length) {
         readMoreButtons.forEach(button => {
-            button.addEventListener('click', function() {
+            // Log the button for debugging
+            console.log('Setting up button:', button);
+            
+            // Force initialize the display style
+            const newsItem = button.closest('.news-item');
+            if (newsItem) {
+                const details = newsItem.querySelector('.news-details');
+                if (details) {
+                    // Ensure it starts hidden
+                    details.style.display = 'none';
+                }
+            }
+            
+            button.addEventListener('click', function(e) {
+                e.preventDefault(); // Prevent default button behavior
+                
                 try {
+                    console.log('Button clicked:', this);
+                    
                     const newsItem = this.closest('.news-item');
-                    if (!newsItem) return;
+                    if (!newsItem) {
+                        console.error('No parent news-item found');
+                        return;
+                    }
                     
                     const details = newsItem.querySelector('.news-details');
-                    if (!details) return;
+                    if (!details) {
+                        console.error('No news-details element found');
+                        return;
+                    }
                     
+                    console.log('Current display state:', details.style.display);
+                    
+                    // Check current state (default to not expanded if style is not set)
                     const isExpanded = details.style.display === 'block';
                     
-                    details.style.display = isExpanded ? 'none' : 'block';
-                    this.textContent = isExpanded ? 'Read more' : 'Read less';
+                    // Toggle display and button text
+                    if (isExpanded) {
+                        details.style.display = 'none';
+                        this.textContent = 'Read more';
+                    } else {
+                        details.style.display = 'block';
+                        this.textContent = 'Read less';
+                    }
                     
-                    // Smoothly scroll to show content if expanding
+                    console.log('New display state:', details.style.display);
+                    
+                    // Smooth scroll functionality using a simple implementation
+                    // in case LabUtils is not available
                     if (!isExpanded) {
                         const detailsTop = details.getBoundingClientRect().top;
                         if (detailsTop < 0) {
-                            LabUtils.smoothScrollTo(details, 150);
+                            if (typeof LabUtils !== 'undefined' && LabUtils.smoothScrollTo) {
+                                LabUtils.smoothScrollTo(details, 150);
+                            } else {
+                                // Fallback smooth scroll
+                                newsItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                            }
                         }
                     }
                 } catch (error) {
@@ -111,8 +154,12 @@ function initNewsPage() {
     // Initial filtering
     filterNewsItems();
     
-    // Set up fade animations
-    LabUtils.setupFadeAnimations('.news-item');
+    // Set up fade animations if LabUtils is available
+    if (typeof LabUtils !== 'undefined' && LabUtils.setupFadeAnimations) {
+        LabUtils.setupFadeAnimations('.news-item');
+    } else {
+        console.warn('LabUtils.setupFadeAnimations not available');
+    }
     
     console.log('News page initialized');
 }
@@ -123,7 +170,11 @@ window.initPage.news = initNewsPage;
 
 // Auto-initialize if the correct page is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    if (document.body.getAttribute('data-page') === 'news') {
+    const body = document.body;
+    if (body && body.getAttribute('data-page') === 'news') {
+        console.log('News page detected, initializing...');
         initNewsPage();
+    } else {
+        console.log('Not on news page, data-page:', body ? body.getAttribute('data-page') : 'body not found');
     }
 });
