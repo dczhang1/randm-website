@@ -84,6 +84,22 @@ main {
     color: var(--text-light);
 }
 
+/* Hero Logo Styles */
+.hero-logo {
+    margin-bottom: 2rem;
+}
+
+.hero-logo-image {
+    width: 120px;
+    height: auto;
+    animation: fadeIn 2.2s ease-out;
+}
+
+@media (max-width: 768px) {
+    .hero-logo-image {
+        width: 100px;
+    }
+}
 
 /* Section Styles - Default for subpages */
 section {
