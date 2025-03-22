@@ -10,10 +10,7 @@
 </head>
 <body>
     <nav>
-        <div class="logo">
-            <img src="assets/logo.svg" alt="RANDM Lab Logo" class="logo-image">
-            <span>RANDM</span>
-        </div>
+        <div class="logo">RANDM</div>
         <div class="hamburger-icon">
             <span></span>
             <span></span>
@@ -38,27 +35,29 @@
                     <h3>Filter By</h3>
                     <div class="filter-options">
                         <button class="filter-btn active" data-filter="all">All News</button>
-                        <button class="filter-btn" data-filter="grants">Grants & Funding</button>
+                        <button class="filter-btn" data-filter="news">News</button>
                         <button class="filter-btn" data-filter="publications">Publications</button>
-                        <button class="filter-btn" data-filter="media">Media Coverage</button>
-                        <button class="filter-btn" data-filter="openings">Job Openings</button>
+                        <button class="filter-btn" data-filter="media">Media</button>
                         <button class="filter-btn" data-filter="conferences">Conferences</button>
+                        <button class="filter-btn" data-filter="fun">Fun</button>
                     </div>
                     
                     <div class="archive-dropdown">
                         <label for="month-filter">Archive:</label>
                         <select id="month-filter">
                             <option value="all">All Dates</option>
-                            <option value="2025-03">March 2025</option>
-                            <option value="2025-02">February 2025</option>
-                            <option value="2025-01">January 2025</option>
-                            <option value="2024-12">December 2024</option>
-                            <option value="2024-11">November 2024</option>
-                            <option value="2024-10">October 2024</option>
-                            <option value="2024-09">September 2024</option>
-                            <option value="2024-08">August 2024</option>
-                            <option value="2024-07">July 2024</option>
-                            <option value="2024-06">June 2024</option>
+                            <option value="2024-04">April 2024</option>
+                            <option value="2024-03">March 2024</option>
+                            <option value="2024-01">January 2024</option>
+                            <option value="2023-11">November 2023</option>
+                            <option value="2023-07">July 2023</option>
+                            <option value="2023-05">May 2023</option>
+                            <option value="2023-01">January 2023</option>
+                            <option value="2022-11">November 2022</option>
+                            <option value="2022-07">July 2022</option>
+                            <option value="2022-03">March 2022</option>
+                            <option value="2021-03">March 2021</option>
+                            <option value="2020-12">December 2020</option>
                         </select>
                     </div>
                 </div>
@@ -66,95 +65,209 @@
                 <!-- News content -->
                 <div class="news-content">
                     <div class="news-items">
-                        <article class="news-item fade-in" data-category="grants" data-date="2025-03">
-                            <div class="news-date">March 15, 2025</div>
-                            <h2>New Grant Awarded for Environmental Decision-Making Research</h2>
-                            <div class="news-summary">
-                                <p>We're excited to announce that the Risk and Decision Making Lab has received a $1.2 million grant from the National Science Foundation to study how communities make decisions about environmental risks and sustainability practices.</p>
-                            </div>
-                            <div class="news-details">
-                                <p>This three-year project will involve collaborations with local communities, policy makers, and environmental scientists to understand how group-level decisions are made regarding climate adaptation strategies.</p>
-                                <p>The project will be led by Dr. Jane Smith in collaboration with Dr. Michael Johnson, and will include opportunities for graduate and undergraduate students to participate in community-based research.</p>
-                                <p>"We're thrilled to have the support of the NSF for this critical research," said Dr. Smith. "As communities face increasing environmental challenges, understanding the decision-making processes that lead to effective adaptation strategies is more important than ever."</p>
-                                <p>The research will begin in June 2025 with community workshops and preliminary data collection.</p>
-                            </div>
-                            <button class="read-more-btn">Read more</button>
-                        </article>
-                        
-                        <article class="news-item fade-in" data-category="media" data-date="2025-02">
-                            <div class="news-date">February 28, 2025</div>
-                            <h2>Dr. Johnson's Research Featured in Scientific American</h2>
-                            <div class="news-summary">
-                                <p>Lab member Dr. Michael Johnson's groundbreaking work on the neural basis of risk perception was featured in the latest issue of Scientific American.</p>
-                            </div>
-                            <div class="news-details">
-                                <p>The article, titled "How Your Brain Calculates Risk," highlights Dr. Johnson's recent fMRI studies that identify specific neural circuits involved in processing financial risk information.</p>
-                                <p>The feature explains how these neural mechanisms influence our willingness to take financial risks and how this research might inform financial education programs. Dr. Johnson's work suggests that specific interventions could help individuals make more consistent risk assessments across different contexts.</p>
-                                <p>Scientific American highlighted the practical applications of this research: "Understanding the neuroscience behind financial decision-making could lead to better tools to help people avoid common pitfalls in investment and retirement planning."</p>
-                                <p>The full article is available in the March 2025 issue of Scientific American or <a href="#" target="_blank">online</a> for subscribers.</p>
+                        <!-- April 2024 Entries -->
+                        <article class="news-item fade-in" data-category="conferences" data-date="2024-04">
+                            <div class="news-date">April 27, 2024</div>
+                            <h2>Presentations at SIOP Conference, Chicago 2024</h2>
+                            <div class="news-content-wrapper">
+                                <div class="news-image">
+                                    <img src="assets/news/siop-2024.jpg" alt="Presentation at SIOP 2024" />
+                                </div>
+                                <div class="news-text-content">
+                                    <div class="news-summary">
+                                        <p>Graduate students Katelyn Reeves and Tyler Cowley presenting our research on risk taking at the SIOP 2024 conference.</p>
+                                    </div>
+                                    <div class="news-details">
+                                        <p>Our team shared findings on risk taking in workplace contexts, highlighting the latest research from the RANDM Lab at the Society for Industrial and Organizational Psychology conference in Chicago.</p>
+                                    </div>
+                                </div>
                             </div>
                             <button class="read-more-btn">Read more</button>
                         </article>
                         
-                        <article class="news-item fade-in" data-category="publications" data-date="2025-01">
-                            <div class="news-date">January 20, 2025</div>
-                            <h2>New Study Reveals Gender Differences in Financial Risk-Taking</h2>
+                        <article class="news-item fade-in" data-category="conferences" data-date="2024-04">
+                            <div class="news-date">April 26, 2024</div>
+                            <h2>Colette and Gabrielle presenting at the LSU Discover Day</h2>
                             <div class="news-summary">
-                                <p>Our recent publication in the Journal of Economic Psychology demonstrates significant differences in how men and women evaluate financial risks.</p>
+                                <p>RANDM Lab member Colette Mouton and Gabrielle Mellor presents our meta-analysis on risk propensity and happiness at the LSU Discover Day.</p>
                             </div>
                             <div class="news-details">
-                                <p>The study, led by Dr. Sophia Chen, analyzed data from over 3,000 participants across multiple experimental conditions to identify patterns in risk assessment and decision-making.</p>
-                                <p>Key findings suggest that differences in financial risk-taking are largely driven by socialization and experience rather than innate preferences. When controlling for financial knowledge and prior investment experience, gender differences were substantially reduced.</p>
-                                <p>"These results challenge common assumptions about gender and risk tolerance," said Dr. Chen. "They suggest that providing equal access to financial education and experience could help close gender gaps in investment outcomes."</p>
-                                <p>The paper, "Socialization vs. Predisposition: Examining Gender Differences in Financial Risk Assessment," is available through open access at the <a href="#" target="_blank">Journal of Economic Psychology</a>.</p>
+                                <p>RANDM Lab member Colette Mouton and Gabrielle Mellor presents our meta-analysis on risk propensity and happiness at the LSU Discover Day. Way to geaux!</p>
                             </div>
                             <button class="read-more-btn">Read more</button>
                         </article>
                         
-                        <article class="news-item fade-in" data-category="conferences" data-date="2024-12">
-                            <div class="news-date">December 5, 2024</div>
-                            <h2>Lab Members Present at International Conference on Decision Sciences</h2>
-                            <div class="news-summary">
-                                <p>Six members of our lab presented their research at the International Conference on Decision Sciences in Singapore last week.</p>
-                            </div>
-                            <div class="news-details">
-                                <p>Our team shared findings on a wide range of topics, including:</p>
-                                <ul>
-                                    <li>Group decision-making in emergency situations (Alex Rodriguez)</li>
-                                    <li>The impact of social media on risk perception (Dr. Michael Johnson)</li>
-                                    <li>Neural predictors of financial risk-taking (Dr. Jane Smith)</li>
-                                    <li>Cross-cultural differences in ambiguity aversion (Dr. Sophia Chen)</li>
-                                    <li>Framing effects in healthcare decisions (Taylor Williams)</li>
-                                    <li>Computational models of decision dynamics (Sam Parker)</li>
-                                </ul>
-                                <p>Graduate student Taylor Williams received the Best Student Presentation award for her work on framing effects in healthcare decisions, which combined behavioral experiments with policy analysis.</p>
-                                <p>The conference provided valuable opportunities for international collaboration, with new partnerships formed with research teams from Singapore, Germany, and Australia.</p>
+                        <!-- March 2024 Entries -->
+                        <article class="news-item fade-in" data-category="fun" data-date="2024-03">
+                            <div class="news-date">March 27, 2024</div>
+                            <h2>Don Zhang receives the LSU Rainmaker Award</h2>
+                            <div class="news-content-wrapper">
+                                <div class="news-image">
+                                    <img src="assets/news/rainmaker-award.jpg" alt="Dr. Zhang receiving the LSU Rainmaker Award" />
+                                </div>
+                                <div class="news-text-content">
+                                    <div class="news-summary">
+                                        <p>Lab director Don Zhang receives the LSU Rainmaker Award, recognizing outstanding research, scholarship, and creative activity.</p>
+                                    </div>
+                                    <div class="news-details">
+                                        <p>Lab director Don Zhang receives the LSU Rainmaker Award, which is given each year to faculty who show outstanding research, scholarship, and creative activity for their respective ranks and discipline.</p>
+                                        <p>The award ceremony was held at the LSU Faculty Club, where Dr. Zhang was recognized among other distinguished faculty members for his contributions to the field of risk and decision-making research.</p>
+                                    </div>
+                                </div>
                             </div>
                             <button class="read-more-btn">Read more</button>
                         </article>
                         
-                        <article class="news-item fade-in" data-category="openings" data-date="2024-11">
-                            <div class="news-date">November 10, 2024</div>
-                            <h2>Open Positions: Two Postdoctoral Fellowships Available</h2>
+                        <!-- January 2024 Entries -->
+                        <article class="news-item fade-in" data-category="publications" data-date="2024-01">
+                            <div class="news-date">January 27, 2024</div>
+                            <h2>Editor's Commendation in the Journal of Business and Psychology</h2>
                             <div class="news-summary">
-                                <p>The Risk and Decision Making Lab is seeking two postdoctoral researchers to join our team in Spring 2025.</p>
+                                <p>RANDM Lab's 2023 publication received the Editor Commendation in the Journal of Business and Psychology.</p>
                             </div>
                             <div class="news-details">
-                                <p>We are recruiting for two distinct positions:</p>
-                                <ol>
-                                    <li>
-                                        <strong>Computational Modeling Postdoc:</strong> This position will focus on developing and testing computational models of decision processes, with an emphasis on Bayesian approaches to understanding how prior beliefs influence risk perception. The ideal candidate will have strong programming skills and experience with computational modeling of cognitive processes.
-                                    </li>
-                                    <li>
-                                        <strong>Neuroimaging Postdoc:</strong> This position will concentrate on using fMRI and other neuroimaging techniques to study the neural underpinnings of risk perception and decision-making under uncertainty. Experience with fMRI data collection and analysis is required.
-                                    </li>
-                                </ol>
-                                <p>Both positions offer competitive salaries, benefits, and research support. Postdocs will have opportunities to develop independent research lines while collaborating with our interdisciplinary team.</p>
-                                <p>Application deadline: January 15, 2025. Start date: April-June 2025 (flexible).</p>
-                                <a href="get-involved.html" class="button">View Job Details</a>
+                                <p>RANDM Lab's 2023 publication (Zhang, Barratt, & Smith, 2023) in the Journal of Business and Psychology received the Editor Commendation! It is one of 12 articles with this honor.</p>
                             </div>
                             <button class="read-more-btn">Read more</button>
                         </article>
+                        
+                        <article class="news-item fade-in" data-category="fun" data-date="2024-01">
+                            <div class="news-date">January 12, 2024</div>
+                            <h2>Congratulations, Dr. Gino Howard</h2>
+                            <div class="news-summary">
+                                <p>Congratulations to Lab Alum Dr. Gino Howard who is now an Assistant Professor at CSU San Bernadino.</p>
+                            </div>
+                            <div class="news-details">
+                                <p>Congratulations to Lab Alum Dr. Gino Howard! Gino graduated with his PhD in December 2023, and is now an Assistant Professor of Industrial and Organizational Psychology at CSU San Bernadino.</p>
+                            </div>
+                            <button class="read-more-btn">Read more</button>
+                        </article>
+                        
+                        <article class="news-item fade-in" data-category="publications" data-date="2024-01">
+                            <div class="news-date">January 8, 2024</div>
+                            <h2>New publication in Journal of Risk Research</h2>
+                            <div class="news-summary">
+                                <p>Our team examines the psychometric qualities of the General Risk Question in a new publication.</p>
+                            </div>
+                            <div class="news-details">
+                                <p>In a new paper with graduate students/alum: Gino Howard & Tyler Cowley, we examine the psychometric qualities of the General Risk Question, a single item measure of stated risk preference. We find that a single item measure is comparable to longer, multi-item counterparts in terms of convergent and divergent validity. However, there is a small drop off in predictive validity.</p>
+                            </div>
+                            <button class="read-more-btn">Read more</button>
+                        </article>
+                        
+                        <!-- November 2023 Entries -->
+                        <article class="news-item fade-in" data-category="conferences" data-date="2023-11">
+                            <div class="news-date">November 27, 2023</div>
+                            <h2>Graduate Student Katelyn Reeves Presenting at SJDM Conference</h2>
+                            <div class="news-summary">
+                                <p>Katelyn Reeves presents research on risk takers at work at the Society for Judgment and Decision-Making Conference.</p>
+                            </div>
+                            <div class="news-details">
+                                <p>Graduate student Katelyn Reeves presented our research on risk takers at work at the Society for Judgment and Decision-Making Annual Conference in San Francisco.</p>
+                            </div>
+                            <button class="read-more-btn">Read more</button>
+                        </article>
+                        
+                        <!-- July 2023 Entries -->
+                        <article class="news-item fade-in" data-category="conferences" data-date="2023-07">
+                            <div class="news-date">July 28, 2023</div>
+                            <h2>ASPIRE Scholars Gabriel and Colette presenting their research at the Annual SURF Conference</h2>
+                            <div class="news-summary">
+                                <p>Undergraduate students present their research on risk takers and happiness at LSU's Summer Undergraduate Research Fair.</p>
+                            </div>
+                            <div class="news-details">
+                                <p>ASPIRE Scholars Gabrielle MELLOR and Colette Mouton presents their poster at the LSU Summer Undergraduate Research Fair (SURF). They spent the Summer researching whether risk takers are happy and present their findings from a survey study of over 400 undergraduate students.</p>
+                            </div>
+                            <button class="read-more-btn">Read more</button>
+                        </article>
+                        
+                        <!-- May 2023 Entries -->
+                        <article class="news-item fade-in" data-category="publications" data-date="2023-05">
+                            <div class="news-date">May 22, 2023</div>
+                            <h2>New Publication on Unveiling the Impact of Oddball Interview Questions on Organizational Personality Perceptions</h2>
+                            <div class="news-summary">
+                                <p>Our study examines how unconventional interview techniques affect job seekers' perceptions of organizations.</p>
+                            </div>
+                            <div class="news-details">
+                                <p>In a new publication by Don Zhang and RANDM Lab alum John-Luke McCord, we examine oddball interview questions and their influence on organizational personality perceptions. This study sheds light on the impact of unconventional interview techniques on job seekers' perceptions of an organization's personality traits, such as innovativeness and stylistic qualities. The findings offer significant insights for HR professionals, recruiters, and organizational decision-makers aiming to optimize their recruitment processes and create a strong organizational fit.</p>
+                                <h3>Key Findings</h3>
+                                <p>The study finds that organizations that incorporate oddball interview questions are perceived as more innovative and stylistic by job seekers. This indicates that these unique interview queries have the power to shape the perception of an organization's personality. However, despite positively impacting organizational personality perceptions, oddball interview questions did not significantly enhance job seekers' overall attraction to the organization.</p>
+                                <h3>Implications for Recruitment Strategies</h3>
+                                <p>The research highlights the need for a balanced approach to interviews, combining both traditional and unconventional questions. While oddball interview questions can contribute to perceptions of an organization's innovativeness and stylistic qualities, they should not be solely relied upon to improve recruitment success.</p>
+                                <p>To optimize recruitment strategies, practitioners should consider incorporating a mix of traditional and oddball questions. This approach allows for the assessment of candidates' adaptability, creativity, and cultural fit while taking into account their overall attraction to the organization.</p>
+                            </div>
+                            <button class="read-more-btn">Read more</button>
+                        </article>
+                        
+                        <!-- More articles continue... -->
+                        
+                        <!-- January 2023 Entry -->
+                        <article class="news-item fade-in" data-category="publications" data-date="2023-01">
+                            <div class="news-date">January 25, 2023</div>
+                            <h2>New publication in the Journal of Business and Psychology</h2>
+                            <div class="news-summary">
+                                <p>Study reveals risk takers may be both assets and liabilities for organizations depending on context.</p>
+                            </div>
+                            <div class="news-details">
+                                <p>In this new paper entitled: "The Bright, Dark, and Grey Sides of Risk Takers at Work: Criterion Validity of Risk Propensity for Contextual Work Performance" - Don Zhang teamed up with Clare Barratt and Rachel Smith to investigate the role of risk propensity on work performance. Although risk takers are typically seen as liabilities, the paper shows that risk takers may be an asset for organization due to their willingness to take risks, which could result in pro-social behaviors that help the organization and its members. However, risk takers were also found to be more deviant in anti-social ways. Thus, risk takers are double-edged swords for organization.</p>
+                            </div>
+                            <button class="read-more-btn">Read more</button>
+                        </article>
+                        
+                        <!-- November 2022 Entries -->
+                        <article class="news-item fade-in" data-category="publications" data-date="2022-11">
+                            <div class="news-date">November 18, 2022</div>
+                            <h2>New publication on interviewer overconfidence in the European Journal of Work and Organizational Psychology</h2>
+                            <div class="news-summary">
+                                <p>Research examines interviewer overconfidence and recommends using pre-written interview questions.</p>
+                            </div>
+                            <div class="news-details">
+                                <p>In this paper with Edgar Kausel, we conducted three lab studies to examine mechanisms and interventions of interviewer overconfidence. We found that interviewers judged their own interview questions as more valid when the same questions were rated by someone else. We also found that putting in more effort increased the perceived validity of the questions but not the question quality.</p>
+                                <p>Our findings suggest that letting interviewers write their own questions is not a good idea. They often write poor questions, but also overestimate their validity. Instead, it is best to provide interviewers with high-quality, pre-written questions that they can choose.</p>
+                            </div>
+                            <button class="read-more-btn">Read more</button>
+                        </article>
+                        
+                        <article class="news-item fade-in" data-category="conferences" data-date="2022-11">
+                            <div class="news-date">November 14, 2022</div>
+                            <h2>Congratulations to Hannah Stark for coming in 2nd at the SJDM conference student poster competition!</h2>
+                            <div class="news-summary">
+                                <p>Graduate student Hannah Stark receives recognition for her research on risk-taking profiles.</p>
+                            </div>
+                            <div class="news-details">
+                                <p>RANDM LAB graduate student Hannah Stark came in 2nd place at the student poster competition at the annual conference for the Society for Judgment and Decision Making. Her research examines the predictive efficacy of risk-taking profiles on work and life outcomes such as life satisfaction and career success. Congratulations!</p>
+                            </div>
+                            <button class="read-more-btn">Read more</button>
+                        </article>
+                        
+                        <!-- More entries continue... -->
+                        
+                        <!-- Old entries preserved for reference -->
+                        <article class="news-item fade-in" data-category="publications" data-date="2022-07">
+                            <div class="news-date">July 22, 2022</div>
+                            <h2>Dr. Zhang was awarded the prestigious NSF CAREER Award</h2>
+                            <div class="news-summary">
+                                <p>Dr. Don Zhang receives the National Science Foundation Early Career Development Award to support his research on risk taking in the workplace.</p>
+                            </div>
+                            <div class="news-details">
+                                <p>Dr. Don Zhang receives the National Science Foundation Early Career Development Award (CAREER Award), the most prestigious grant awarded to early career researchers. He is one of four recipients of this award from LSU this year. This $430,000 grant will support his research on risk taking in the workplace.</p>
+                            </div>
+                            <button class="read-more-btn">Read more</button>
+                        </article>
+                        
+                        <article class="news-item fade-in" data-category="fun" data-date="2022-07">
+                            <div class="news-date">July 15, 2022</div>
+                            <h2>Congratulations, Dr. McCord!</h2>
+                            <div class="news-summary">
+                                <p>Lab alumni Dr. John-Luke McCord successfully defended his dissertation on risk propensity and career achievement.</p>
+                            </div>
+                            <div class="news-details">
+                                <p>Lab alumni Dr. John-Luke McCord defended his dissertation, which examined the role of risk propensity on career achievement over the life span. Congratulations, Dr. McCord. He is currently a consultant at Xecutive Metrix.</p>
+                            </div>
+                            <button class="read-more-btn">Read more</button>
+                        </article>
+                        
+                        <!-- Additional entries from previous years -->
                     </div>
                     
                     <div class="no-results-message" style="display: none;">
