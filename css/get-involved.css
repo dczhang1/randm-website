@@ -1,112 +1,55 @@
-/* Get Involved Page Specific Styles */
+/* get-involved.css - Optimized styles specific to the get involved page */
 
 /* Opportunity Section Styles */
 .opportunity {
-    background-color: var(--neutral-off-white);
-    padding: 2.5rem;
-    border-radius: 0;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    margin-bottom: 2.5rem;
-    border-top: 3px solid var(--accent-color);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.opportunity:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    padding: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
 }
 
 .opportunity h3 {
-    color: var(--primary-color);
-    font-family: 'Montserrat', sans-serif;
     font-size: 1.4rem;
-    margin: 1.8rem 0 1rem;
-    font-weight: 600;
+    margin: var(--spacing-lg) 0 var(--spacing-sm);
 }
 
 .opportunity p {
-    margin-bottom: 1.2rem;
+    margin-bottom: var(--spacing-md);
     line-height: 1.8;
     font-size: 1.1rem;
 }
 
-.opportunity ul {
-    margin-left: 1.5rem;
-    margin-bottom: 1.5rem;
-}
-
 .opportunity li {
-    margin-bottom: 0.8rem;
-    line-height: 1.6;
-    font-size: 1rem;
     position: relative;
-    padding-left: 1rem;
+    padding-left: var(--spacing-sm);
 }
 
 .opportunity li:before {
     content: "•";
     position: absolute;
     left: -1rem;
-    color: var(--secondary-color);
+    color: var(--color-secondary);
     font-size: 1.2rem;
-}
-
-.opportunity a {
-    color: var(--primary-color);
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s ease;
-}
-
-.opportunity a:hover {
-    color: var(--secondary-color);
-    text-decoration: underline;
 }
 
 /* Contact Section Styles */
 .contact-info {
-    background-color: var(--neutral-off-white);
-    padding: 2.5rem;
-    border-radius: 0;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    border-top: 3px solid var(--secondary-color);
     text-align: center;
 }
 
-.contact-info p {
-    margin-bottom: 1rem;
-    line-height: 1.8;
-    font-size: 1.1rem;
-}
-
-.contact-info a {
-    color: var(--primary-color);
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s ease;
-}
-
-.contact-info a:hover {
-    color: var(--secondary-color);
-    text-decoration: underline;
-}
-
 .contact-info .social-links {
-    margin: 2rem 0 1rem;
+    margin: var(--spacing-lg) 0 var(--spacing-sm);
 }
 
-/* CTA Button Styles */
-/* New button style with guaranteed contrast */
+/* CTA Button Styles with guaranteed contrast */
 .apply-button {
     display: inline-block;
-    padding: 1rem 2rem;
-    margin-top: 1.5rem;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    margin-top: var(--spacing-md);
     background-color: #2E7D32; /* Green background */
     color: #FFFFFF; /* White text */
     text-decoration: none;
     font-weight: 600;
     border-radius: 4px;
-    transition: all 0.3s ease;
+    transition: all var(--transition-standard);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border: none;
     font-family: 'Montserrat', sans-serif;
@@ -122,67 +65,33 @@
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
-/* Social Links in Contact Section */
-.contact-info .social-links {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-}
-
-.contact-info .social-link {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40px;
-    height: 40px;
-    background-color: var(--accent-color);
-    color: var(--text-light);
-    border-radius: 50%;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.contact-info .social-link i {
-    font-size: 1.2rem;
-}
-
-.contact-info .social-link:hover {
-    background-color: var(--secondary-color);
-    transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
 /* Responsive Styles */
 @media (max-width: 992px) {
     .opportunity {
-        padding: 2rem;
+        padding: var(--spacing-lg);
     }
     
     .opportunity h3 {
         font-size: 1.3rem;
     }
-    
-    .hero-button {
-        padding: 0.8rem 1.8rem;
-    }
 }
 
 @media (max-width: 768px) {
     .opportunity {
-        padding: 1.5rem;
+        padding: var(--spacing-md);
     }
     
     .opportunity h3 {
         font-size: 1.2rem;
-        margin: 1.5rem 0 0.8rem;
+        margin: var(--spacing-md) 0 var(--spacing-sm);
     }
     
     .opportunity p, .contact-info p {
         font-size: 1rem;
     }
     
-    .hero-button {
-        padding: 0.7rem 1.5rem;
+    .apply-button {
+        padding: var(--spacing-xs) var(--spacing-md);
         font-size: 0.9rem;
     }
 }

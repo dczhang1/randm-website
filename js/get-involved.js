@@ -1,143 +1,113 @@
-// Get Involved page functionality
-document.addEventListener('DOMContentLoaded', () => {
-    // Get all section elements and navigation links
-    const sections = document.querySelectorAll('.page-section');
-    const navLinks = document.querySelectorAll('.side-navigation a');
+/**
+ * get-involved.js - Get Involved page specific functionality
+ */
+
+// Initialize the get involved page functionality
+function initGetInvolvedPage() {
+    // Set up scroll spy for navigation
+    const scrollSpy = LabUtils.setupScrollSpy(
+        '.page-section',
+        '.side-navigation a',
+        150
+    );
     
-    // Function to update active navigation link based on scroll position
-    function updateActiveNavItem() {
-        // Get current scroll position with some offset for the header
-        const scrollPosition = window.scrollY + 150;
-        
-        // Find the current section
-        let currentSectionId = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-            
-            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                currentSectionId = section.getAttribute('id');
-            }
-        });
-        
-        // Update active class on nav items
-        navLinks.forEach(link => {
-            // Remove active class from all
-            link.classList.remove('active');
-            
-            // Add active class to current section link
-            const href = link.getAttribute('href');
-            if (href === `#${currentSectionId}`) {
-                link.classList.add('active');
-            }
-        });
-    }
-    
-    // Smooth scroll to section when clicking nav links
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            
-            if (targetSection) {
-                // Offset for fixed header
-                const offsetTop = targetSection.offsetTop - 100;
-                
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
-                
-                // Update URL hash without jumping
-                history.pushState(null, null, targetId);
-            }
-        });
-    });
-    
-    // Handle "Apply" and other internal links
+    // Handle "Apply" and other internal links specifically for this page
     const internalLinks = document.querySelectorAll('.opportunity a[href^="#"]');
-    internalLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            
-            if (targetSection) {
-                // Offset for fixed header
-                const offsetTop = targetSection.offsetTop - 100;
+    if (internalLinks.length) {
+        internalLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
                 
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
+                const targetId = this.getAttribute('href');
+                if (!targetId) return;
                 
-                // Update URL hash without jumping
-                history.pushState(null, null, targetId);
-                
-                // Update active nav item
-                navLinks.forEach(navLink => {
-                    navLink.classList.remove('active');
-                    if (navLink.getAttribute('href') === targetId) {
-                        navLink.classList.add('active');
-                    }
-                });
-            }
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    LabUtils.smoothScrollTo(targetSection, 100);
+                    
+                    // Update active nav item
+                    const navLinks = document.querySelectorAll('.side-navigation a');
+                    navLinks.forEach(navLink => {
+                        navLink.classList.remove('active');
+                        if (navLink.getAttribute('href') === targetId) {
+                            navLink.classList.add('active');
+                        }
+                    });
+                }
+            });
         });
-    });
-    
-    // Update active nav item on page load
-    updateActiveNavItem();
-    
-    // Update active nav item on scroll
-    window.addEventListener('scroll', updateActiveNavItem);
-    
-    // Handle hash in URL on page load
-    if (window.location.hash) {
-        const targetSection = document.querySelector(window.location.hash);
-        if (targetSection) {
-            // Wait for page to fully load
-            setTimeout(() => {
-                // Offset for fixed header
-                const offsetTop = targetSection.offsetTop - 100;
-                
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
-                
-                // Update active nav item
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === window.location.hash) {
-                        link.classList.add('active');
-                    }
-                });
-            }, 300);
-        }
     }
     
-    // Add fade-in animations using Intersection Observer
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.2
-    };
+    // Set up hover effects for opportunities
+    LabUtils.setupHoverEffects(
+        '.opportunity',
+        {
+            transform: 'translateY(-8px)',
+            boxShadow: '0 10px 25px rgba(0, 0, 0, 0.13)'
+        },
+        {
+            transform: 'translateY(-5px)',
+            boxShadow: '0 8px 20px rgba(0, 0, 0, 0.1)'
+        }
+    );
     
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
+    // Set up fade animations for specific elements
+    LabUtils.setupFadeAnimations('.opportunity, .contact-info, .apply-button');
+    
+    // Add form validation if contact form exists
+    const contactForm = document.querySelector('.contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            let isValid = true;
+            const requiredFields = contactForm.querySelectorAll('[required]');
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    isValid = false;
+                    
+                    // Add error class
+                    field.classList.add('error');
+                    
+                    // Create error message if it doesn't exist
+                    let errorMsg = field.nextElementSibling;
+                    if (!errorMsg || !errorMsg.classList.contains('error-message')) {
+                        errorMsg = document.createElement('div');
+                        errorMsg.classList.add('error-message');
+                        errorMsg.textContent = 'This field is required';
+                        field.parentNode.insertBefore(errorMsg, field.nextSibling);
+                    }
+                } else {
+                    // Remove error class and message
+                    field.classList.remove('error');
+                    const errorMsg = field.nextElementSibling;
+                    if (errorMsg && errorMsg.classList.contains('error-message')) {
+                        errorMsg.remove();
+                    }
+                }
+            });
+            
+            if (!isValid) {
+                e.preventDefault();
+                
+                // Scroll to first error
+                const firstError = contactForm.querySelector('.error');
+                if (firstError) {
+                    LabUtils.smoothScrollTo(firstError, 150);
+                }
             }
         });
-    }, observerOptions);
+    }
     
-    // Observe all fade elements
-    const fadeElements = document.querySelectorAll('.fade-element');
-    fadeElements.forEach(element => {
-        observer.observe(element);
-    });
+    console.log('Get Involved page initialized');
+}
+
+// Add to global initialization object
+window.initPage = window.initPage || {};
+window.initPage.getInvolved = initGetInvolvedPage;
+
+// Auto-initialize if the correct page is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    if (document.body.getAttribute('data-page') === 'get-involved') {
+        initGetInvolvedPage();
+    }
 });
