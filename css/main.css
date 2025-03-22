@@ -1,0 +1,15 @@
+/* main.css - Main stylesheet that imports all other CSS files */
+
+/* Import font styles - add your preferred CDN links here */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&family=Roboto:wght@400;500;700&family=Lora:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+/* Import CSS files in order of specificity */
+@import 'base.css';
+@import 'components.css';
+@import 'layout.css';
+
+/* Page-specific styles - Only import what you need */
+@import 'research.css';
+@import 'news.css';
+@import 'get-involved.css';
+@import 'detailed-content.css';

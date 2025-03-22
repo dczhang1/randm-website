@@ -1,0 +1,310 @@
+/* base.css - Core variables, resets, and base styles */
+
+/* 
+ * RANDM Lab Website 
+ * Color palette and typography based on design guide
+ */
+
+:root {
+    /* Base color palette */
+    --color-navy: #153448;
+    --color-brown: #948979;
+    --color-blue: #3C5B6F;
+    --color-beige: #DFD0B8;
+    --color-white: #FFFFFF;
+    --color-off-white: #F5F5F5;
+    --color-dark-gray: #333333;
+    --color-black: #000000;
+    
+    /* Semantic color variables */
+    --color-primary: var(--color-navy);
+    --color-secondary: var(--color-brown);
+    --color-accent: var(--color-blue);
+    --color-background: var(--color-white);
+    --color-background-alt: var(--color-off-white);
+    --color-background-accent: var(--color-beige);
+    --color-text: var(--color-dark-gray);
+    --color-text-light: var(--color-white);
+    
+    /* System variables */
+    --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 15px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 8px 20px rgba(0, 0, 0, 0.1);
+    --border-radius: 0;
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 2.5rem;
+    --spacing-xxl: 3rem;
+    --transition-fast: 0.2s ease;
+    --transition-standard: 0.3s ease;
+    
+    /* Layout variables */
+    --container-max-width: 1400px;
+    --content-max-width: 1000px;
+}
+
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+}
+
+/* Typography */
+body {
+    font-family: 'Poppins', 'Arial', 'Helvetica', sans-serif;
+    color: var(--color-text);
+    line-height: 1.6;
+    background-color: var(--color-background);
+    font-size: 14px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Lora', 'Georgia', 'Times New Roman', serif;
+    color: var(--color-primary);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: var(--spacing-md);
+}
+
+h1 {
+    font-size: 28px;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+h3 {
+    font-size: 20px;
+}
+
+h4 {
+    font-size: 18px;
+}
+
+h5 {
+    font-size: 16px;
+    font-family: 'Poppins', 'Arial', 'Helvetica', sans-serif;
+    font-weight: 600;
+}
+
+h6 {
+    font-size: 14px;
+    font-family: 'Poppins', 'Arial', 'Helvetica', sans-serif;
+    font-weight: 600;
+}
+
+p {
+    margin-bottom: var(--spacing-md);
+    line-height: 1.8;
+    font-size: 14px;
+}
+
+/* Add a new class for captions/citations */
+.caption, figcaption, .citation {
+    font-size: 12px;
+    color: var(--color-dark-gray);
+    line-height: 1.5;
+}
+
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color var(--transition-standard);
+}
+
+a:hover {
+    color: var(--color-secondary);
+}
+
+ul, ol {
+    margin-left: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+li {
+    margin-bottom: var(--spacing-xs);
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Container for main content */
+.container {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+}
+
+.content-container {
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+}
+
+/* Text utilities */
+.text-primary {
+    color: var(--color-primary);
+}
+
+.text-secondary {
+    color: var(--color-secondary);
+}
+
+.text-accent {
+    color: var(--color-accent);
+}
+
+.text-light {
+    color: var(--color-text-light);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-lg {
+    font-size: 16px;
+}
+
+.text-sm {
+    font-size: 12px;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.font-medium {
+    font-weight: 600;
+}
+
+/* Spacing utilities */
+.mb-xs {
+    margin-bottom: var(--spacing-xs);
+}
+
+.mb-sm {
+    margin-bottom: var(--spacing-sm);
+}
+
+.mb-md {
+    margin-bottom: var(--spacing-md);
+}
+
+.mb-lg {
+    margin-bottom: var(--spacing-lg);
+}
+
+.mb-xl {
+    margin-bottom: var(--spacing-xl);
+}
+
+.mb-xxl {
+    margin-bottom: var(--spacing-xxl);
+}
+
+.mt-xs {
+    margin-top: var(--spacing-xs);
+}
+
+.mt-sm {
+    margin-top: var(--spacing-sm);
+}
+
+.mt-md {
+    margin-top: var(--spacing-md);
+}
+
+.mt-lg {
+    margin-top: var(--spacing-lg);
+}
+
+.mt-xl {
+    margin-top: var(--spacing-xl);
+}
+
+.mt-xxl {
+    margin-top: var(--spacing-xxl);
+}
+
+/* Basic animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+
+/* Hero section */
+.hero__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-primary); /* Fallback */
+    background-image: url('../assets/hero-background.jpg');
+    background-position: center;
+    background-size: cover;
+    z-index: -1;
+}
+
+/* Hero animations - only for home page */
+.home-page .hero__title,
+.home-page .hero__subtitle,
+.home-page .hero .btn {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.home-page .hero__title.animate-in,
+.home-page .hero__subtitle.animate-in,
+.home-page .hero .btn.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Specific animation variations */
+.home-page .hero__title {
+  transform: translateY(-20px);
+}
+
+.home-page .hero .btn {
+  transition-delay: 0.2s;
+}
+
+/* Media query variables - Just a reference, actual media queries in components */
+/* 
+--mobile: 576px
+--tablet: 768px
+--desktop: 992px
+--large-desktop: 1200px
+*/

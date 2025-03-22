@@ -5,41 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Team | Risk and Decision Making Lab</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Single CSS file that imports all other CSS files -->
+    <link rel="stylesheet" href="css/main.css">
 </head>
-<body>
-    <nav>
-        <div class="logo">
-            <img src="assets/logo.svg" alt="RANDM Lab Logo" class="logo-image">
+<body data-page="team">
+    <!-- Navigation using the new component classes -->
+    <nav class="navbar">
+        <div class="navbar__logo">
+            <img src="assets/logo.svg" alt="RANDM Lab Logo" class="navbar__logo-img">
         </div>
-        <div class="hamburger-icon">
-            <span></span>
-            <span></span>
-            <span></span>
+        <div class="hamburger">
+            <span class="hamburger__line"></span>
+            <span class="hamburger__line"></span>
+            <span class="hamburger__line"></span>
         </div>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="team.html">Team</a>
-            <a href="research.html">Research</a>
-            <a href="news.html">News</a>
-            <a href="get-involved.html">Get Involved</a>
+        <div class="navbar__links">
+            <a href="index.html" class="navbar__link">Home</a>
+            <a href="team.html" class="navbar__link">Team</a>
+            <a href="research.html" class="navbar__link">Research</a>
+            <a href="news.html" class="navbar__link">News</a>
+            <a href="get-involved.html" class="navbar__link">Get Involved</a>
         </div>
     </nav>
     
-    <div class="page-header">
-        <div class="page-header-content">
-            <h1>Our Team</h1>
-            <p>Meet the interdisciplinary researchers driving our work in decision science and risk analysis.</p>
+    <!-- Page header using new component classes -->
+    <div class="hero hero--sm">
+        <div class="hero__bg"></div>
+        <div class="hero__overlay"></div>
+        <div class="hero__content">
+            <h1 class="hero__title">Our Team</h1>
+            <p class="hero__subtitle">Meet the interdisciplinary researchers driving our work in decision science and risk analysis.</p>
         </div>
     </div>
     
     <main>
-        <div class="content-wrapper">
-            <section class="team">
+        <div class="container">
+            <section class="section team">
                 <!-- Principal Investigator Banner Section -->
-                <div class="pi-banner fade-element">
-                    <div class="pi-content">
+                <div class="card card--lg pi-banner fade-element">
+                    <div class="pi-content flex gap-xl">
                         <img src="assets/headshot_donzhang.jpg" alt="Dr. Don Zhang" class="pi-photo">
                         <div class="pi-details">
                             <h2>Don C. Zhang, PhD</h2>
@@ -54,7 +59,7 @@
                                 Assessment, and Journal of Business and Psychology. He has received over $2.9 million in federal funding from 
                                 the National Science Foundation, and is the recipient of the CAREER Award. During his free time, Don enjoys tennis, 
                                 chess, traveling, cooking, gaming, his dog, and photography.</p>
-                            <a href="https://drive.google.com/file/d/1VsTzM6DWIMvqMVMwf9taIJ7zK1_-MTOF/view?usp=sharing" class="cv-button" download>Download CV <i class="fas fa-file-download"></i></a>
+                            <a href="https://drive.google.com/file/d/1VsTzM6DWIMvqMVMwf9taIJ7zK1_-MTOF/view?usp=sharing" class="btn" download>Download CV <i class="fas fa-file-download"></i></a>
                         </div>
                     </div>
                 </div>
@@ -62,23 +67,23 @@
                 <!-- Graduate Students Section -->
                 <div class="team-section fade-element">
                     <h2 class="section-title">Graduate Students</h2>
-                    <div class="team-grid">                
+                    <div class="grid grid-3">                
                         <!-- Graduate Students -->
-                        <div class="team-member">
+                        <div class="card card--border-top team-member">
                             <img src="assets/headshot_reeves.jpg" alt="Katelyn Reeves" class="member-photo">
                             <h3>Katelyn Reeves</h3>
                             <h4>Ph.D. Student (Third Year)</h4>
                             <p>California State University - Fresno graduate researching employee interviews, selection tests, work-life balance, and mental health at work.</p>
                         </div>
                         
-                        <div class="team-member">
+                        <div class="card card--border-top team-member">
                             <img src="assets/headshot_Cowley.jpg" alt="Cowley" class="member-photo">
                             <h3>Tyler Cowley</h3>
                             <h4>Ph.D. Student (Fifth Year)</h4>
                             <p>Brigham Young University graduate studying loss aversion/risk-taking at work, mental health in work/burnout, and employment interviews.</p>
                         </div>
                         
-                        <div class="team-member">
+                        <div class="card card--border-top team-member">
                             <img src="assets/headshot_dodangeh.jpg" alt="Dodangeh" class="member-photo">
                             <h3>Niloufar (Nilou) Dodangeh</h3>
                             <h4>Ph.D. Student (First Year)</h4>
@@ -90,8 +95,8 @@
                 <!-- Lab Staff Section -->
                 <div class="team-section fade-element">
                     <h2 class="section-title">Lab Staff</h2>
-                    <div class="team-grid">
-                        <div class="team-member">
+                    <div class="grid">
+                        <div class="card card--border-top team-member">
                             <img src="assets/headshot_mellor.jpg" alt="Mellor" class="member-photo">
                             <h3>Gabrielle Mellor</h3>
                             <h4>Lab Manager</h4>
@@ -103,29 +108,29 @@
                 <!-- Undergraduate Research Assistants Section -->
                 <div class="team-section fade-element">
                     <h2 class="section-title">Undergraduate Research Assistants</h2>
-                    <div class="team-grid">
-                        <div class="team-member">
+                    <div class="grid grid-4">
+                        <div class="card card--border-top team-member">
                             <img src="assets/headshot_cannon.jpg" alt="Cannon" class="member-photo">
                             <h3>David Cannon</h3>
                             <h4>Undergraduate Research Assistant</h4>
                             <p>Senior psychology major interested in gamification in employee selection, stress and mental health, and the effects of emotion on decision making.</p>
                         </div>
                         
-                        <div class="team-member">
+                        <div class="card card--border-top team-member">
                             <img src="assets/headshot_filler.jpg" alt="Nguyen" class="member-photo">
                             <h3>Madison Nguyen</h3>
                             <h4>Undergraduate Research Assistant</h4>
                             <p>Psychology undergraduate student focusing on decision-making processes.</p>
                         </div>
                         
-                        <div class="team-member">
+                        <div class="card card--border-top team-member">
                             <img src="assets/headshot_filler.jpg" alt="Martin" class="member-photo">
                             <h3>Abby Martin</h3>
                             <h4>Undergraduate Research Assistant</h4>
                             <p>Undergraduate researcher contributing to the lab's work on risk assessment and decision-making.</p>
                         </div>
                         
-                        <div class="team-member">
+                        <div class="card card--border-top team-member">
                             <img src="assets/headshot_filler.jpg" alt="Guillory" class="member-photo">
                             <h3>Maya Guillory</h3>
                             <h4>Undergraduate Research Assistant</h4>
@@ -137,20 +142,19 @@
                 <!-- Lab Mascot Section -->
                 <div class="team-section fade-element">
                     <h2 class="section-title">Lab Mascot</h2>
-                    <div class="mascot-section">
-                        <div class="mascot-content">
+                    <div class="card card--border-top mascot-section">
+                        <div class="mascot-content flex gap-lg">
                             <img src="assets/headshot_agnes.jpg" alt="Agnes" class="mascot-photo">
                             <div class="mascot-details">
                                 <h3>Agnes</h3>
-                                <p>Agnes serves as the official mascot of the Risk and Decision Making Lab. She brings joy to the lab environment and offers emotional support during high-stress research periods. Agnes reminds us to take breaks and maintain perspective during intense problem-solving sessions.</p>
-                                <p>Her research interests include treat optimization, nap efficiency, and the effects of positive reinforcement on human productivity.</p>
+                                <p>Agnes is a the lab mascot of the RANDM Lab. She is a super mutt with a blend of beagle, basset hound, and a dozen other breeds. Her research interests are in the eco-system of Don's backyard, the location of her treats, and the durability of chewtoys. In her testing, most toys can withold between 5 to 15 minutes of vigorous chewing. Her favorite pasttimes are napping, chomping, and burrowing.</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Alumni Section -->
-                <div class="alumni-section fade-element">
+                <div class="card card--border-top alumni-section fade-element">
                     <h2 class="section-title">Alumni</h2>
                     
                     <h3>Graduate Alumni</h3>
@@ -203,13 +207,20 @@
                             <span class="alumni-name">Brynne Babin, B.A. (2020-2021)</span> – 
                             <span class="alumni-position">Masters student in Social Work at Louisiana State University</span>
                         </li>
+                        <li>
+                            <span class="alumni-name">Coulette Mouton, B.A. (2022-2024)</span> 
+                        </li>
+                        <li>
+                            <span class="alumni-name">Maria Gordon, B.A. (2023-2024)</span> 
+                        </li>
                     </ul>
                 </div>
             </section>
         </div>
     </main>
     
-    <footer>
+    <!-- Footer using the new component classes -->
+    <footer class="footer">
         <!-- Social Media Links -->
         <div class="social-links">
             <a href="#" class="social-link" title="LinkedIn">
@@ -228,8 +239,11 @@
                 <i class="fas fa-university"></i>
             </a>
         </div>
-        <p>© 2025 Risk and Decision Making Lab. All rights reserved.</p>
+        <p class="footer__text">© 2025 Risk and Decision Making Lab. All rights reserved.</p>
     </footer>
-    <script src="js/scripts.js" defer></script>
+    
+    <!-- Include the new JavaScript files -->
+    <script src="js/utils.js" defer></script>
+    <script src="js/main.js" defer></script>
 </body>
 </html>

@@ -4,31 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>General Risk Propensity Scale (GRiPS) | Risk and Decision Making Lab</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Lora:ital@0;1&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/detailed-content.css">
+    <!-- Font Awesome for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
-<body>
-    <nav>
-        <div class="logo">RANDM</div>
-        <div class="hamburger-icon">
-            <span></span>
-            <span></span>
-            <span></span>
+<body data-page="detailed-content">
+    <nav class="navbar">
+        <div class="navbar__logo">
+            <img src="assets/logo.svg" alt="RANDM Lab Logo" class="navbar__logo-img">
         </div>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="team.html">Team</a>
-            <a href="research.html">Research</a>
-            <a href="news.html">News</a>
-            <a href="get-involved.html">Get Involved</a>
+        <div class="hamburger">
+            <span class="hamburger__line"></span>
+            <span class="hamburger__line"></span>
+            <span class="hamburger__line"></span>
+        </div>
+        <div class="navbar__links">
+            <a href="index.html" class="navbar__link">Home</a>
+            <a href="team.html" class="navbar__link">Team</a>
+            <a href="research.html" class="navbar__link">Research</a>
+            <a href="news.html" class="navbar__link">News</a>
+            <a href="get-involved.html" class="navbar__link">Get Involved</a>
         </div>
     </nav>
     
     <main>
         <section class="detailed-content">
             <!-- Breadcrumb navigation -->
-            <div class="breadcrumb">
+            <div class="breadcrumbs">
                 <a href="index.html">Home</a> &gt; 
                 <a href="research.html">Research</a> &gt; 
                 <span>General Risk Propensity Scale (GRiPS)</span>
@@ -189,12 +191,12 @@
             </div>
             
             <!-- Back button or related links -->
-            <div class="content-navigation fade-in">
-                <a href="research.html" class="back-button">&larr; Back to Research</a>
+            <div class="content-nav fade-in">
+                <a href="research.html" class="content-nav__back">&larr; Back to Research</a>
                 
-                <div class="related-links">
-                    <h3>Related Content:</h3>
-                    <ul>
+                <div class="content-nav__related">
+                    <h3 class="content-nav__related-title">Related Content:</h3>
+                    <ul class="content-nav__related-list">
                         <li><a href="research.html#risk-perception">Risk Perception Research</a></li>
                         <li><a href="news.html">Recent Publications</a></li>
                     </ul>
@@ -203,10 +205,12 @@
         </section>
     </main>
     
-    <footer>
-        <p>© 2025 Risk and Decision Making Lab. All rights reserved.</p>
+    <footer class="footer">
+        <p class="footer__text">© 2025 Risk and Decision Making Lab. All rights reserved.</p>
     </footer>
     
-    <script src="js/scripts.js" defer></script>
+    <script src="js/utils.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/detailed-content.js"></script>
 </body>
 </html>

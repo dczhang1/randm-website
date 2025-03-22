@@ -1,51 +1,35 @@
-/* News Page Specific Styles */
+/* news.css - Optimized styles specific to the news page */
 
 .news-section {
-    margin-bottom: 4rem;
+    margin-bottom: var(--spacing-xxl);
     width: 100%;
 }
 
 .news-items {
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
+    gap: var(--spacing-xl);
     width: 100%;
 }
 
-.news-item {
-    background-color: var(--neutral-off-white);
-    border-radius: 0;
-    padding: 2rem;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    border-top: 3px solid var(--accent-color);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.news-item:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-}
-
 .news-date {
-    color: var(--secondary-color);
+    color: var(--color-secondary);
     font-weight: 600;
-    margin-bottom: 0.5rem;
-    font-size: 0.9rem;
-    font-family: 'Montserrat', sans-serif;
+    margin-bottom: var(--spacing-xs);
+    font-size: 12px;
+    font-family: 'Poppins', 'Arial', 'Helvetica', sans-serif;
 }
 
 .news-item h2 {
-    color: var(--primary-color);
-    margin-bottom: 1.5rem;
-    font-size: 1.6rem;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
+    margin-bottom: var(--spacing-md);
+    font-size: 24px;
+    font-family: 'Lora', 'Georgia', 'Times New Roman', serif;
 }
 
 .news-content-wrapper {
     display: flex;
-    gap: 2rem;
-    margin-bottom: 1.5rem;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
 }
 
 .news-image {
@@ -53,84 +37,54 @@
     max-width: 35%;
 }
 
-.news-image img {
-    width: 100%;
-    height: auto;
-    border-radius: 0;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
 .news-text-content {
     flex: 1;
 }
 
 .news-summary p {
-    font-size: 1.1rem;
+    font-size: 14px;
     line-height: 1.7;
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--spacing-md);
 }
 
 .news-details {
     display: none;
-    margin-top: 1rem;
-}
-
-.news-details p {
-    margin-bottom: 1rem;
-    line-height: 1.7;
+    margin-top: var(--spacing-sm);
 }
 
 .read-more-btn {
-    display: inline-block;
-    padding: 0.6rem 1.2rem;
-    background-color: var(--primary-color);
-    color: var(--text-light);
-    border: none;
-    border-radius: 0;
-    cursor: pointer;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.9rem;
-}
-
-.read-more-btn:hover {
-    background-color: var(--secondary-color);
-    transform: translateY(-2px);
+    padding: var(--spacing-xs) var(--spacing-md);
+    font-size: 12px;
+    font-family: 'Poppins', 'Arial', 'Helvetica', sans-serif;
 }
 
 .no-results-message {
-    background-color: var(--neutral-off-white);
-    padding: 2rem;
     text-align: center;
-    border-radius: 0;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    border-top: 3px solid var(--accent-color);
-    margin-top: 2rem;
+    margin-top: var(--spacing-lg);
 }
 
 .no-results-message p {
-    font-size: 1.1rem;
-    color: var(--primary-color);
+    font-size: 14px;
     font-weight: 600;
 }
 
 /* Archive Dropdown Styles */
 .archive-dropdown {
-    margin-top: 2rem;
-    padding: 1.5rem 0;
+    margin-top: var(--spacing-lg);
+    padding: var(--spacing-md) 0;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 #month-filter {
     width: 100%;
-    padding: 0.8rem;
-    margin-top: 0.8rem;
+    padding: var(--spacing-sm);
+    margin-top: var(--spacing-sm);
     border: 1px solid #ddd;
-    border-radius: 0;
-    background-color: var(--neutral-light);
-    font-family: 'Open Sans', sans-serif;
-    color: var(--text-dark);
+    border-radius: var(--border-radius);
+    background-color: var(--color-background);
+    font-family: 'Poppins', 'Arial', 'Helvetica', sans-serif;
+    color: var(--color-text);
+    font-size: 14px;
 }
 
 /* Media Queries */
@@ -142,20 +96,16 @@
     .news-image {
         flex: 0 0 100%;
         max-width: 100%;
-        margin-bottom: 1.5rem;
+        margin-bottom: var(--spacing-md);
     }
 }
 
 @media (max-width: 768px) {
-    .news-item {
-        padding: 1.5rem;
-    }
-    
     .news-item h2 {
-        font-size: 1.4rem;
+        font-size: 22px;
     }
     
     .news-summary p {
-        font-size: 1rem;
+        font-size: 14px;
     }
 }

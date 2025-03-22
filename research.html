@@ -6,144 +6,153 @@
     <title>Research | Risk and Decision Making Lab</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/research.css">
+    <!-- Single CSS file that imports all other CSS files -->
+    <link rel="stylesheet" href="css/main.css">
 </head>
-<body class="research-page">
-    <nav>
-        <div class="logo">
-            <img src="assets/logo.svg" alt="RANDM Lab Logo" class="logo-image">
+<body data-page="research" class="research-page">
+    <!-- Navigation using the new component classes -->
+    <nav class="navbar">
+        <div class="navbar__logo">
+            <img src="assets/logo.svg" alt="RANDM Lab Logo" class="navbar__logo-img">
         </div>
-        <div class="hamburger-icon">
-            <span></span>
-            <span></span>
-            <span></span>
+        <div class="hamburger">
+            <span class="hamburger__line"></span>
+            <span class="hamburger__line"></span>
+            <span class="hamburger__line"></span>
         </div>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="team.html">Team</a>
-            <a href="research.html">Research</a>
-            <a href="news.html">News</a>
-            <a href="get-involved.html">Get Involved</a>
+        <div class="navbar__links">
+            <a href="index.html" class="navbar__link">Home</a>
+            <a href="team.html" class="navbar__link">Team</a>
+            <a href="research.html" class="navbar__link">Research</a>
+            <a href="news.html" class="navbar__link">News</a>
+            <a href="get-involved.html" class="navbar__link">Get Involved</a>
         </div>
     </nav>
     
-    <div class="page-header">
-        <div class="page-header-content">
-            <h1>Our Research</h1>
-            <p>The Risk and Decision Making Lab conducts innovative research on how people make decisions under uncertainty in workplace contexts.</p>
+    <!-- Page header using new component classes -->
+    <div class="hero hero--sm">
+        <div class="hero__bg"></div>
+        <div class="hero__overlay"></div>
+        <div class="hero__content">
+            <h1 class="hero__title">Our Research</h1>
+            <p class="hero__subtitle">The Risk and Decision Making Lab conducts innovative research on how people make decisions under uncertainty in workplace contexts.</p>
         </div>
     </div>
     
     <main>
-        <div class="content-wrapper">
-            <!-- Floating Side Navigation -->
-            <div class="side-navigation">
-                <h3>On This Page</h3>
-                <ul>
-                    <li><a href="#research-programs" class="active">Research Programs</a></li>
-                    <li><a href="#resources">Resources</a></li>
-                    <li><a href="#publications">Publications</a></li>
-                </ul>
-            </div>
-            
-            <div class="main-content">
-                <!-- Research Overview -->
-                <section id="research-programs" class="page-section">
-                    <h2 class="section-title">Research Programs</h2>
-                    
-                    <div class="research-programs">
-                        <div class="research-program fade-element">
-                            <h3>Risk Taking Research</h3>
-                            <p>Our risk taking research examines how individuals perceive and respond to risks across various contexts, with a focus on workplace applications. We investigate both the fundamental science of risk-taking dispositions and how these manifest in organizational settings.</p>
-                            <ul>
-                                <li>Individual differences in risk perception and tolerance</li>
-                                <li>Workplace risk behaviors and their consequences</li>
-                                <li>Contextual factors that influence risk decisions</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="research-program fade-element">
-                            <h3>Employee Selection Research</h3>
-                            <p>This research stream investigates how organizations make personnel decisions and the factors that influence these processes. We examine cognitive biases in hiring, methods to improve selection outcomes, and bridging the gap between research and practice.</p>
-                            <ul>
-                                <li>Decision-making processes in recruitment and selection</li>
-                                <li>Improving interview and assessment methods</li>
-                                <li>Communicating evidence-based practices to practitioners</li>
-                            </ul>
-                        </div>
+        <div class="container">
+            <div class="layout-2-col">
+                <!-- Floating Side Navigation -->
+                <div class="col-sidebar">
+                    <div class="sidebar">
+                        <h3 class="sidebar__title">On This Page</h3>
+                        <ul class="sidebar__list">
+                            <li class="sidebar__item"><a href="#research-programs" class="sidebar__link active">Research Programs</a></li>
+                            <li class="sidebar__item"><a href="#resources" class="sidebar__link">Resources</a></li>
+                            <li class="sidebar__item"><a href="#publications" class="sidebar__link">Publications</a></li>
+                        </ul>
                     </div>
-                </section>
+                </div>
                 
-                <!-- Resources Section -->
-                <section id="resources" class="page-section">
-                    <h2 class="section-title">Resources</h2>
+                <div class="col-main">
+                    <!-- Research Overview -->
+                    <section id="research-programs" class="section page-section">
+                        <h2 class="section-title">Research Programs</h2>
+                        
+                        <div class="grid grid-2">
+                            <div class="card card--border-top research-program fade-element">
+                                <h3>Risk Taking Research</h3>
+                                <p>Our risk taking research examines how individuals perceive and respond to risks across various contexts, with a focus on workplace applications. We investigate both the fundamental science of risk-taking dispositions and how these manifest in organizational settings.</p>
+                                <ul>
+                                    <li>Individual differences in risk perception and tolerance</li>
+                                    <li>Workplace risk behaviors and their consequences</li>
+                                    <li>Contextual factors that influence risk decisions</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="card card--border-top research-program fade-element">
+                                <h3>Employee Selection Research</h3>
+                                <p>This research stream investigates how organizations make personnel decisions and the factors that influence these processes. We examine cognitive biases in hiring, methods to improve selection outcomes, and bridging the gap between research and practice.</p>
+                                <ul>
+                                    <li>Decision-making processes in recruitment and selection</li>
+                                    <li>Improving interview and assessment methods</li>
+                                    <li>Communicating evidence-based practices to practitioners</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
                     
-                    <div class="resources-section">
-                        <div class="resource-item fade-element">
-                            <h3>General Risk Propensity Scale (GRiPS)</h3>
-                            <p>A 8-item domain-general risk propensity measure aimed at measuring individual differences in risk taking across situations</p>
-                            <p><em>Status: Published in the Journal of Behavioral Decision Making</em></p>
-                            <a href="grips.html" class="button resource-button">View Scale Details</a>
-                        </div>
+                    <!-- Resources Section -->
+                    <section id="resources" class="section page-section">
+                        <h2 class="section-title">Resources</h2>
                         
-                        <div class="resource-item fade-element">
-                            <h3>Calculated and Spontaneous Risk Taking Scale (CASPRT)</h3>
-                            <p>A 12-item measure of risk taking styles. This scale measured domain-general preferences for risk taking based on calculation vs. spontaneity</p>
-                            <p><em>Status: In revision at Journal of Behavioral Decision Making</em></p>
+                        <div class="resources-section">
+                            <div class="card card--border-left card--slide-right resource-item fade-element">
+                                <h3>General Risk Propensity Scale (GRiPS)</h3>
+                                <p>A 8-item domain-general risk propensity measure aimed at measuring individual differences in risk taking across situations</p>
+                                <p><em>Status: Published in the Journal of Behavioral Decision Making</em></p>
+                                <a href="grips.html" class="btn btn--sm">View Scale Details</a>
+                            </div>
+                            
+                            <div class="card card--border-left card--slide-right resource-item fade-element">
+                                <h3>Calculated and Spontaneous Risk Taking Scale (CASPRT)</h3>
+                                <p>A 12-item measure of risk taking styles. This scale measured domain-general preferences for risk taking based on calculation vs. spontaneity</p>
+                                <p><em>Status: In revision at Journal of Behavioral Decision Making</em></p>
+                            </div>
+                            
+                            <div class="card card--border-left resource-note fade-element">
+                                <p>To request access to any of these resources for research purposes, please <a href="mailto:zhang1@lsu.edu">contact us</a> with details about your intended use.</p>
+                            </div>
                         </div>
-                        
-                        <div class="resource-note fade-element">
-                            <p>To request access to any of these resources for research purposes, please <a href="mailto:zhang1@lsu.edu">contact us</a> with details about your intended use.</p>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- Publications Section -->
-                <section id="publications" class="page-section">
-                    <h2 class="section-title">Selected Publications</h2>
+                    </section>
                     
-                    <div class="publications-section">
-                        <div class="publication-category fade-element">
-                            <h3>Risk Taking Research</h3>
-                            <ul class="publication-list">
-                                <li>Zhang, D.C., Barratt, C.L. & Smith, R.W. (2024). The Bright, Dark, and Grey Sides of Risk Takers at
-                                    Work: Criterion Validity of Risk Propensity for Contextual Performance at Work. <em>Journal of Business and
-                                    Psychology (Editor's Commendation)</em></li>
-                                <li>Highhouse, S., Wang, Y. & Zhang, D.C. (2022). Is Risk Propensity Unique from the Big Five Factors of
-                                    Personality? A Meta-Analytic Investigation. <em>Journal of Research in Personality</em></li>
-                                <li>Zhang, D.C., Highhouse, S., & Nye. (2019), Development and validation of the general risk propensity
-                                    scale (GRiPS). <em>Journal of Behavioral Decision Making</em>. 32(2), 152-167.</li>
-                                <li>Highhouse, S., Nye, C.D., & Zhang, D.C., Rada, T.B. (2017), Structure of the DOSPERT: Is there evidence
-                                    for a general risk factor, <em>Journal of Behavioral Decision Making</em>. 30(2), 400-407.</li>
-                            </ul>
-                        </div>
+                    <!-- Publications Section -->
+                    <section id="publications" class="section page-section">
+                        <h2 class="section-title">Selected Publications</h2>
                         
-                        <div class="publication-category fade-element">
-                            <h3>Employee Selection Research</h3>
-                            <ul class="publication-list">
-                                <li>Zhang, D.C. & Kausel, E.E., (2023). The illusion of validity: How effort inflates the perceived validity of
-                                    interview questions. <em>European Journal of Work and Organizational Psychology</em>.</li>
-                                <li>Zhang, D.C. (2022). Duck-sized horses or horse-sized ducks? Oddall Personality Questions are likable
-                                    (but useless) for organizational recruitment, <em>Journal of Business and Psychology</em>.</li>
-                                <li>Zhang, D.C. & Wang, Y. (2021) An empirical approach of identifying subject matter experts (SMEs) for
-                                    the development of situational judgment tests. <em>Journal of Personnel Psychology</em>.</li>
-                                <li>Zhang, D.C., Highhouse, S., Brooks, M.E. & Zhang, Y. (2018), Communicating the validity of structured
-                                    interviews with graphical visual aids. <em>International Journal of Selection and Assessment</em>. 26(2-4), 93-108.
-                                    (Top 10 downloaded paper of 2018).</li>
-                            </ul>
+                        <div class="publications-section">
+                            <div class="publication-category fade-element">
+                                <h3>Risk Taking Research</h3>
+                                <ul class="publication-list">
+                                    <li>Zhang, D.C., Barratt, C.L. & Smith, R.W. (2024). The Bright, Dark, and Grey Sides of Risk Takers at
+                                        Work: Criterion Validity of Risk Propensity for Contextual Performance at Work. <em>Journal of Business and
+                                        Psychology (Editor's Commendation)</em></li>
+                                    <li>Highhouse, S., Wang, Y. & Zhang, D.C. (2022). Is Risk Propensity Unique from the Big Five Factors of
+                                        Personality? A Meta-Analytic Investigation. <em>Journal of Research in Personality</em></li>
+                                    <li>Zhang, D.C., Highhouse, S., & Nye. (2019), Development and validation of the general risk propensity
+                                        scale (GRiPS). <em>Journal of Behavioral Decision Making</em>. 32(2), 152-167.</li>
+                                    <li>Highhouse, S., Nye, C.D., & Zhang, D.C., Rada, T.B. (2017), Structure of the DOSPERT: Is there evidence
+                                        for a general risk factor, <em>Journal of Behavioral Decision Making</em>. 30(2), 400-407.</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="publication-category fade-element">
+                                <h3>Employee Selection Research</h3>
+                                <ul class="publication-list">
+                                    <li>Zhang, D.C. & Kausel, E.E., (2023). The illusion of validity: How effort inflates the perceived validity of
+                                        interview questions. <em>European Journal of Work and Organizational Psychology</em>.</li>
+                                    <li>Zhang, D.C. (2022). Duck-sized horses or horse-sized ducks? Oddall Personality Questions are likable
+                                        (but useless) for organizational recruitment, <em>Journal of Business and Psychology</em>.</li>
+                                    <li>Zhang, D.C. & Wang, Y. (2021) An empirical approach of identifying subject matter experts (SMEs) for
+                                        the development of situational judgment tests. <em>Journal of Personnel Psychology</em>.</li>
+                                    <li>Zhang, D.C., Highhouse, S., Brooks, M.E. & Zhang, Y. (2018), Communicating the validity of structured
+                                        interviews with graphical visual aids. <em>International Journal of Selection and Assessment</em>. 26(2-4), 93-108.
+                                        (Top 10 downloaded paper of 2018).</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="card more-publications fade-element">
+                                <p>For a complete list of our publications, please see our <a href="#">Google Scholar profile</a> or <a href="#">download our publication list</a>.</p>
+                            </div>
                         </div>
-                        
-                        <div class="more-publications fade-element">
-                            <p>For a complete list of our publications, please see our <a href="#">Google Scholar profile</a> or <a href="#">download our publication list</a>.</p>
-                        </div>
-                    </div>
-                </section>
+                    </section>
+                </div>
             </div>
         </div>
     </main>
     
-    <footer>
+    <!-- Footer using the new component classes -->
+    <footer class="footer">
         <!-- Social Media Links -->
         <div class="social-links">
             <a href="#" class="social-link" title="LinkedIn">
@@ -162,9 +171,12 @@
                 <i class="fas fa-university"></i>
             </a>
         </div>
-        <p>© 2025 Risk and Decision Making Lab. All rights reserved.</p>
+        <p class="footer__text">© 2025 Risk and Decision Making Lab. All rights reserved.</p>
     </footer>
-    <script src="js/scripts.js" defer></script>
+    
+    <!-- Include the new JavaScript files -->
+    <script src="js/utils.js" defer></script>
+    <script src="js/main.js" defer></script>
     <script src="js/research.js" defer></script>
 </body>
 </html>
