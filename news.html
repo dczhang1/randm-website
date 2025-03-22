@@ -6,15 +6,11 @@
     <title>News | Risk and Decision Making Lab</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Lora:ital@0;1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/news.css">
 </head>
 <body>
     <nav>
         <div class="logo">RANDM</div>
-        <div class="hamburger-icon">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
         <div class="nav-links">
             <a href="index.html">Home</a>
             <a href="team.html">Team</a>
@@ -28,53 +24,135 @@
             <h1>News & Updates</h1>
             <p class="news-intro fade-in">Stay current with the latest developments, achievements, and opportunities from the Risk and Decision Making Lab.</p>
             
-            <div class="news-items">
-                <article class="news-item fade-in">
-                    <div class="news-date">March 15, 2025</div>
-                    <h2>New Grant Awarded for Environmental Decision-Making Research</h2>
-                    <p>We're excited to announce that the Risk and Decision Making Lab has received a $1.2 million grant from the National Science Foundation to study how communities make decisions about environmental risks and sustainability practices. This three-year project will involve collaborations with local communities, policy makers, and environmental scientists.</p>
-                    <a href="#" class="read-more">Read more</a>
-                </article>
+            <div class="news-container">
+                <!-- News filters -->
+                <div class="news-filters fade-in">
+                    <h3>Filter By</h3>
+                    <div class="filter-options">
+                        <button class="filter-btn active" data-filter="all">All News</button>
+                        <button class="filter-btn" data-filter="grants">Grants & Funding</button>
+                        <button class="filter-btn" data-filter="publications">Publications</button>
+                        <button class="filter-btn" data-filter="media">Media Coverage</button>
+                        <button class="filter-btn" data-filter="openings">Job Openings</button>
+                        <button class="filter-btn" data-filter="conferences">Conferences</button>
+                    </div>
+                    
+                    <div class="archive-dropdown">
+                        <label for="month-filter">Archive:</label>
+                        <select id="month-filter">
+                            <option value="all">All Dates</option>
+                            <option value="2025-03">March 2025</option>
+                            <option value="2025-02">February 2025</option>
+                            <option value="2025-01">January 2025</option>
+                            <option value="2024-12">December 2024</option>
+                            <option value="2024-11">November 2024</option>
+                            <option value="2024-10">October 2024</option>
+                            <option value="2024-09">September 2024</option>
+                            <option value="2024-08">August 2024</option>
+                            <option value="2024-07">July 2024</option>
+                            <option value="2024-06">June 2024</option>
+                        </select>
+                    </div>
+                </div>
                 
-                <article class="news-item fade-in">
-                    <div class="news-date">February 28, 2025</div>
-                    <h2>Dr. Johnson's Research Featured in Scientific American</h2>
-                    <p>Lab member Dr. Michael Johnson's groundbreaking work on the neural basis of risk perception was featured in the latest issue of Scientific American. The article highlights how our brain's reward systems influence our willingness to take financial risks and how these insights might inform financial education programs.</p>
-                    <a href="#" class="read-more">Read more</a>
-                </article>
-                
-                <article class="news-item fade-in">
-                    <div class="news-date">January 20, 2025</div>
-                    <h2>New Study Reveals Gender Differences in Financial Risk-Taking</h2>
-                    <p>Our recent publication in the Journal of Economic Psychology demonstrates significant differences in how men and women evaluate financial risks. The study, led by Dr. Sophia Chen, suggests that these differences are largely driven by socialization and experience rather than innate preferences.</p>
-                    <a href="#" class="read-more">Read more</a>
-                </article>
-                
-                <article class="news-item fade-in">
-                    <div class="news-date">December 5, 2024</div>
-                    <h2>Lab Members Present at International Conference on Decision Sciences</h2>
-                    <p>Six members of our lab presented their research at the International Conference on Decision Sciences in Singapore last week. Topics ranged from group decision-making in emergency situations to the impact of social media on risk perception. Graduate student Taylor Williams received the Best Student Presentation award.</p>
-                    <a href="#" class="read-more">Read more</a>
-                </article>
-                
-                <article class="news-item fade-in">
-                    <div class="news-date">November 10, 2024</div>
-                    <h2>Open Positions: Two Postdoctoral Fellowships Available</h2>
-                    <p>The Risk and Decision Making Lab is seeking two postdoctoral researchers to join our team in Spring 2025. One position will focus on computational modeling of decision processes, while the other will concentrate on neuroimaging approaches to studying risk perception. See our "Get Involved" page for details.</p>
-                    <a href="get-involved.html" class="read-more">Learn more</a>
-                </article>
-            </div>
-            
-            <div class="news-archive fade-in">
-                <h2>News Archive</h2>
-                <ul>
-                    <li><a href="#">October 2024 (3)</a></li>
-                    <li><a href="#">September 2024 (2)</a></li>
-                    <li><a href="#">August 2024 (4)</a></li>
-                    <li><a href="#">July 2024 (1)</a></li>
-                    <li><a href="#">June 2024 (3)</a></li>
-                    <li><a href="#">View all archives</a></li>
-                </ul>
+                <!-- News content -->
+                <div class="news-content">
+                    <div class="news-items">
+                        <article class="news-item fade-in" data-category="grants" data-date="2025-03">
+                            <div class="news-date">March 15, 2025</div>
+                            <h2>New Grant Awarded for Environmental Decision-Making Research</h2>
+                            <div class="news-summary">
+                                <p>We're excited to announce that the Risk and Decision Making Lab has received a $1.2 million grant from the National Science Foundation to study how communities make decisions about environmental risks and sustainability practices.</p>
+                            </div>
+                            <div class="news-details">
+                                <p>This three-year project will involve collaborations with local communities, policy makers, and environmental scientists to understand how group-level decisions are made regarding climate adaptation strategies.</p>
+                                <p>The project will be led by Dr. Jane Smith in collaboration with Dr. Michael Johnson, and will include opportunities for graduate and undergraduate students to participate in community-based research.</p>
+                                <p>"We're thrilled to have the support of the NSF for this critical research," said Dr. Smith. "As communities face increasing environmental challenges, understanding the decision-making processes that lead to effective adaptation strategies is more important than ever."</p>
+                                <p>The research will begin in June 2025 with community workshops and preliminary data collection.</p>
+                            </div>
+                            <button class="read-more-btn">Read more</button>
+                        </article>
+                        
+                        <article class="news-item fade-in" data-category="media" data-date="2025-02">
+                            <div class="news-date">February 28, 2025</div>
+                            <h2>Dr. Johnson's Research Featured in Scientific American</h2>
+                            <div class="news-summary">
+                                <p>Lab member Dr. Michael Johnson's groundbreaking work on the neural basis of risk perception was featured in the latest issue of Scientific American.</p>
+                            </div>
+                            <div class="news-details">
+                                <p>The article, titled "How Your Brain Calculates Risk," highlights Dr. Johnson's recent fMRI studies that identify specific neural circuits involved in processing financial risk information.</p>
+                                <p>The feature explains how these neural mechanisms influence our willingness to take financial risks and how this research might inform financial education programs. Dr. Johnson's work suggests that specific interventions could help individuals make more consistent risk assessments across different contexts.</p>
+                                <p>Scientific American highlighted the practical applications of this research: "Understanding the neuroscience behind financial decision-making could lead to better tools to help people avoid common pitfalls in investment and retirement planning."</p>
+                                <p>The full article is available in the March 2025 issue of Scientific American or <a href="#" target="_blank">online</a> for subscribers.</p>
+                            </div>
+                            <button class="read-more-btn">Read more</button>
+                        </article>
+                        
+                        <article class="news-item fade-in" data-category="publications" data-date="2025-01">
+                            <div class="news-date">January 20, 2025</div>
+                            <h2>New Study Reveals Gender Differences in Financial Risk-Taking</h2>
+                            <div class="news-summary">
+                                <p>Our recent publication in the Journal of Economic Psychology demonstrates significant differences in how men and women evaluate financial risks.</p>
+                            </div>
+                            <div class="news-details">
+                                <p>The study, led by Dr. Sophia Chen, analyzed data from over 3,000 participants across multiple experimental conditions to identify patterns in risk assessment and decision-making.</p>
+                                <p>Key findings suggest that differences in financial risk-taking are largely driven by socialization and experience rather than innate preferences. When controlling for financial knowledge and prior investment experience, gender differences were substantially reduced.</p>
+                                <p>"These results challenge common assumptions about gender and risk tolerance," said Dr. Chen. "They suggest that providing equal access to financial education and experience could help close gender gaps in investment outcomes."</p>
+                                <p>The paper, "Socialization vs. Predisposition: Examining Gender Differences in Financial Risk Assessment," is available through open access at the <a href="#" target="_blank">Journal of Economic Psychology</a>.</p>
+                            </div>
+                            <button class="read-more-btn">Read more</button>
+                        </article>
+                        
+                        <article class="news-item fade-in" data-category="conferences" data-date="2024-12">
+                            <div class="news-date">December 5, 2024</div>
+                            <h2>Lab Members Present at International Conference on Decision Sciences</h2>
+                            <div class="news-summary">
+                                <p>Six members of our lab presented their research at the International Conference on Decision Sciences in Singapore last week.</p>
+                            </div>
+                            <div class="news-details">
+                                <p>Our team shared findings on a wide range of topics, including:</p>
+                                <ul>
+                                    <li>Group decision-making in emergency situations (Alex Rodriguez)</li>
+                                    <li>The impact of social media on risk perception (Dr. Michael Johnson)</li>
+                                    <li>Neural predictors of financial risk-taking (Dr. Jane Smith)</li>
+                                    <li>Cross-cultural differences in ambiguity aversion (Dr. Sophia Chen)</li>
+                                    <li>Framing effects in healthcare decisions (Taylor Williams)</li>
+                                    <li>Computational models of decision dynamics (Sam Parker)</li>
+                                </ul>
+                                <p>Graduate student Taylor Williams received the Best Student Presentation award for her work on framing effects in healthcare decisions, which combined behavioral experiments with policy analysis.</p>
+                                <p>The conference provided valuable opportunities for international collaboration, with new partnerships formed with research teams from Singapore, Germany, and Australia.</p>
+                            </div>
+                            <button class="read-more-btn">Read more</button>
+                        </article>
+                        
+                        <article class="news-item fade-in" data-category="openings" data-date="2024-11">
+                            <div class="news-date">November 10, 2024</div>
+                            <h2>Open Positions: Two Postdoctoral Fellowships Available</h2>
+                            <div class="news-summary">
+                                <p>The Risk and Decision Making Lab is seeking two postdoctoral researchers to join our team in Spring 2025.</p>
+                            </div>
+                            <div class="news-details">
+                                <p>We are recruiting for two distinct positions:</p>
+                                <ol>
+                                    <li>
+                                        <strong>Computational Modeling Postdoc:</strong> This position will focus on developing and testing computational models of decision processes, with an emphasis on Bayesian approaches to understanding how prior beliefs influence risk perception. The ideal candidate will have strong programming skills and experience with computational modeling of cognitive processes.
+                                    </li>
+                                    <li>
+                                        <strong>Neuroimaging Postdoc:</strong> This position will concentrate on using fMRI and other neuroimaging techniques to study the neural underpinnings of risk perception and decision-making under uncertainty. Experience with fMRI data collection and analysis is required.
+                                    </li>
+                                </ol>
+                                <p>Both positions offer competitive salaries, benefits, and research support. Postdocs will have opportunities to develop independent research lines while collaborating with our interdisciplinary team.</p>
+                                <p>Application deadline: January 15, 2025. Start date: April-June 2025 (flexible).</p>
+                                <a href="get-involved.html" class="button">View Job Details</a>
+                            </div>
+                            <button class="read-more-btn">Read more</button>
+                        </article>
+                    </div>
+                    
+                    <div class="no-results-message" style="display: none;">
+                        <p>No news items match your current filters. Please try different filter options.</p>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -82,5 +160,6 @@
         <p>© 2025 Risk and Decision Making Lab. All rights reserved.</p>
     </footer>
     <script src="js/scripts.js" defer></script>
+    <script src="js/news.js" defer></script>
 </body>
 </html>
