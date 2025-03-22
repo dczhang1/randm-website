@@ -1,136 +1,143 @@
-// Enhanced functionality for the Get Involved page
+// Get Involved page functionality
 document.addEventListener('DOMContentLoaded', () => {
-    // Check if we're on the Get Involved page
-    const currentPage = window.location.pathname.split('/').pop();
+    // Get all section elements and navigation links
+    const sections = document.querySelectorAll('.page-section');
+    const navLinks = document.querySelectorAll('.side-navigation a');
     
-    if (currentPage === 'get-involved.html') {
-        // Improved section highlighting with better scroll behavior
-        const sections = document.querySelectorAll('.opportunity, .contact-info');
-        const navLinks = document.querySelectorAll('.side-nav a');
+    // Function to update active navigation link based on scroll position
+    function updateActiveNavItem() {
+        // Get current scroll position with some offset for the header
+        const scrollPosition = window.scrollY + 150;
         
-        // Function to set active menu item with more precise calculations
-        const setActiveNavItem = () => {
-            // Get current scroll position with some offset for the header
-            const scrollPosition = window.scrollY + 100;
+        // Find the current section
+        let currentSectionId = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
             
-            // Find which section is currently in view
-            let currentSection = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.offsetHeight;
-                
-                if (scrollPosition >= sectionTop && 
-                    scrollPosition < sectionTop + sectionHeight) {
-                    currentSection = '#' + section.getAttribute('id');
-                }
-            });
-            
-            // If no section is active (e.g., at the very top), highlight the first link
-            if (currentSection === '' && sections.length > 0) {
-                currentSection = '#' + sections[0].getAttribute('id');
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                currentSectionId = section.getAttribute('id');
             }
-            
-            // Remove active class from all links
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                
-                // Add active class to current section link
-                if (link.getAttribute('href') === currentSection) {
-                    link.classList.add('active');
-                    
-                    // Optional: scroll the active link into view within the side nav
-                    if (window.innerWidth > 1024) { // Only on desktop
-                        link.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                    }
-                }
-            });
-        };
+        });
         
-        // Enhanced smooth scrolling for section navigation
+        // Update active class on nav items
         navLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
-                
-                if (targetSection) {
-                    // Offset for fixed header
-                    const offsetTop = targetSection.offsetTop - 80;
-                    
-                    // Smooth scroll with improved behavior
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Update URL hash without jumping (modern browsers)
-                    history.pushState(null, null, targetId);
-                    
-                    // Set active immediately for better UX
-                    navLinks.forEach(navLink => navLink.classList.remove('active'));
-                    this.classList.add('active');
-                }
-            });
-        });
-        
-        // Set active menu item on scroll with throttling for performance
-        let scrollTimeout;
-        window.addEventListener('scroll', () => {
-            if (!scrollTimeout) {
-                scrollTimeout = setTimeout(() => {
-                    setActiveNavItem();
-                    scrollTimeout = null;
-                }, 100);
-            }
-        });
-        
-        // Set active menu item on page load
-        setActiveNavItem();
-        
-        // Handle hash links when page loads
-        if (window.location.hash) {
-            const targetSection = document.querySelector(window.location.hash);
-            if (targetSection) {
-                // Small delay to ensure page is fully loaded
-                setTimeout(() => {
-                    const offsetTop = targetSection.offsetTop - 80;
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                    });
-                }, 300);
-            }
-        }
-        
-        // Add animation to sections as they scroll into view
-        const animateSections = () => {
-            const allSections = document.querySelectorAll('.opportunity, .contact-info');
+            // Remove active class from all
+            link.classList.remove('active');
             
-            allSections.forEach(section => {
-                const sectionTop = section.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                // When section is 60% into the viewport
-                if (sectionTop < windowHeight * 0.6) {
-                    section.classList.add('visible');
-                    
-                    // Add a slight delay to child elements for cascade effect
-                    const childElements = section.querySelectorAll('h2, h3, p, ul, .button');
-                    childElements.forEach((el, index) => {
-                        setTimeout(() => {
-                            el.classList.add('visible');
-                        }, 100 * index);
-                    });
-                }
-            });
-        };
-        
-        // Initial animation check
-        animateSections();
-        
-        // Animate sections on scroll
-        window.addEventListener('scroll', animateSections);
+            // Add active class to current section link
+            const href = link.getAttribute('href');
+            if (href === `#${currentSectionId}`) {
+                link.classList.add('active');
+            }
+        });
     }
+    
+    // Smooth scroll to section when clicking nav links
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                // Offset for fixed header
+                const offsetTop = targetSection.offsetTop - 100;
+                
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+                
+                // Update URL hash without jumping
+                history.pushState(null, null, targetId);
+            }
+        });
+    });
+    
+    // Handle "Apply" and other internal links
+    const internalLinks = document.querySelectorAll('.opportunity a[href^="#"]');
+    internalLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                // Offset for fixed header
+                const offsetTop = targetSection.offsetTop - 100;
+                
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+                
+                // Update URL hash without jumping
+                history.pushState(null, null, targetId);
+                
+                // Update active nav item
+                navLinks.forEach(navLink => {
+                    navLink.classList.remove('active');
+                    if (navLink.getAttribute('href') === targetId) {
+                        navLink.classList.add('active');
+                    }
+                });
+            }
+        });
+    });
+    
+    // Update active nav item on page load
+    updateActiveNavItem();
+    
+    // Update active nav item on scroll
+    window.addEventListener('scroll', updateActiveNavItem);
+    
+    // Handle hash in URL on page load
+    if (window.location.hash) {
+        const targetSection = document.querySelector(window.location.hash);
+        if (targetSection) {
+            // Wait for page to fully load
+            setTimeout(() => {
+                // Offset for fixed header
+                const offsetTop = targetSection.offsetTop - 100;
+                
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+                
+                // Update active nav item
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === window.location.hash) {
+                        link.classList.add('active');
+                    }
+                });
+            }, 300);
+        }
+    }
+    
+    // Add fade-in animations using Intersection Observer
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.2
+    };
+    
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+    
+    // Observe all fade elements
+    const fadeElements = document.querySelectorAll('.fade-element');
+    fadeElements.forEach(element => {
+        observer.observe(element);
+    });
 });
