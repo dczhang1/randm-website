@@ -8,6 +8,35 @@ document.addEventListener('DOMContentLoaded', () => {
     const body = document.body;
     
     // ==============================
+    // Hero Text Animation
+    // ==============================
+    const setupHeroAnimation = () => {
+        const heroTitle = document.querySelector('.hero__title');
+        const heroSubtitle = document.querySelector('.hero__subtitle');
+        const heroButton = document.querySelector('.hero .btn');
+        
+        if (heroTitle) {
+            setTimeout(() => {
+                heroTitle.classList.add('animate-in');
+            }, 300);
+        }
+        
+        if (heroSubtitle) {
+            setTimeout(() => {
+                heroSubtitle.classList.add('animate-in');
+            }, 600);
+        }
+        
+        if (heroButton) {
+            setTimeout(() => {
+                heroButton.classList.add('animate-in');
+            }, 900);
+        }
+    };
+    
+    setupHeroAnimation();
+    
+    // ==============================
     // Navigation scroll effect
     // ==============================
     const nav = document.querySelector('nav');

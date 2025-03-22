@@ -262,6 +262,30 @@ img {
     z-index: -1;
 }
 
+/* Hero animations - only for home page */
+.home-page .hero__title,
+.home-page .hero__subtitle,
+.home-page .hero .btn {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.home-page .hero__title.animate-in,
+.home-page .hero__subtitle.animate-in,
+.home-page .hero .btn.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Specific animation variations */
+.home-page .hero__title {
+  transform: translateY(-20px);
+}
+
+.home-page .hero .btn {
+  transition-delay: 0.2s;
+}
 
 /* Media query variables - Just a reference, actual media queries in components */
 /* 
