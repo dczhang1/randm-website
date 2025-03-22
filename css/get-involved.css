@@ -1,226 +1,188 @@
-/* Get Involved Page Enhanced Styles */
+/* Get Involved Page Specific Styles */
 
-/* Better section spacing and transitions */
+/* Opportunity Section Styles */
 .opportunity {
-    margin-bottom: 4rem;
-    padding-bottom: 3rem;
-    border-bottom: 1px solid #eee;
-    transition: all 0.3s ease;
+    background-color: var(--neutral-off-white);
+    padding: 2.5rem;
+    border-radius: 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2.5rem;
+    border-top: 3px solid var(--accent-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.opportunity:last-of-type {
-    border-bottom: none;
+.opportunity:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Enhanced section headers */
-.opportunity h2 {
-    font-size: 2rem;
-    color: var(--accent-color);
-    margin-bottom: 1.5rem;
-    font-family: 'Lora', serif;
-    position: relative;
-    padding-bottom: 0.75rem;
-}
-
-.opportunity h2:after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 80px;
-    height: 3px;
-    background-color: var(--secondary-color);
-}
-
-/* Enhanced subsection headers */
 .opportunity h3 {
     color: var(--primary-color);
-    margin: 2rem 0 1rem;
-    font-size: 1.3rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.4rem;
+    margin: 1.8rem 0 1rem;
     font-weight: 600;
 }
 
-/* Better list styling */
+.opportunity p {
+    margin-bottom: 1.2rem;
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
 .opportunity ul {
-    margin: 1.25rem 0 1.5rem 1rem;
-    list-style-type: none;
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
 .opportunity li {
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.8rem;
+    line-height: 1.6;
+    font-size: 1rem;
     position: relative;
-    padding-left: 1.5rem;
+    padding-left: 1rem;
 }
 
 .opportunity li:before {
     content: "•";
     position: absolute;
-    left: 0;
+    left: -1rem;
     color: var(--secondary-color);
     font-size: 1.2rem;
 }
 
-/* Enhanced buttons */
-.button {
-    display: inline-block;
-    margin-top: 1.5rem;
-    padding: 0.9rem 1.8rem;
-    background-color: var(--primary-color);
-    color: var(--text-light);
-    border-radius: 5px;
+.opportunity a {
+    color: var(--primary-color);
     text-decoration: none;
     font-weight: 600;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    border: none;
-    cursor: pointer;
+    transition: color 0.3s ease;
 }
 
-.button:hover {
-    background-color: var(--secondary-color);
-    transform: translateY(-3px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+.opportunity a:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
 }
 
-/* Enhanced contact section */
+/* Contact Section Styles */
 .contact-info {
-    width: 100%;
-    margin-top: 3rem;
+    background-color: var(--neutral-off-white);
     padding: 2.5rem;
-    background-color: #f8f8f8;
-    border-radius: 10px;
+    border-radius: 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border-top: 3px solid var(--secondary-color);
     text-align: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-}
-
-.contact-info h2 {
-    color: var(--accent-color);
-    margin-bottom: 1.5rem;
-    font-family: 'Lora', serif;
-    position: relative;
-    display: inline-block;
-}
-
-.contact-info h2:after {
-    content: "";
-    position: absolute;
-    bottom: -10px;
-    left: 25%;
-    width: 50%;
-    height: 2px;
-    background-color: var(--secondary-color);
 }
 
 .contact-info p {
     margin-bottom: 1rem;
+    line-height: 1.8;
     font-size: 1.1rem;
 }
 
 .contact-info a {
     color: var(--primary-color);
-    font-weight: 600;
     text-decoration: none;
+    font-weight: 600;
     transition: color 0.3s ease;
 }
 
 .contact-info a:hover {
     color: var(--secondary-color);
+    text-decoration: underline;
 }
 
-/* Adding social links to contact section */
 .contact-info .social-links {
-    margin-top: 2rem;
+    margin: 2rem 0 1rem;
 }
 
-/* Enhanced navigation */
-.side-nav {
-    top: 90px;
-    width: 240px;
-    padding: 2rem;
-    background-color: #f8f8f8;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+/* CTA Button Styles */
+/* New button style with guaranteed contrast */
+.apply-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    margin-top: 1.5rem;
+    background-color: #2E7D32; /* Green background */
+    color: #FFFFFF; /* White text */
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 4px;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    text-align: center;
 }
 
-.side-nav ul {
-    list-style-type: none;
+.apply-button:hover {
+    background-color: #1B5E20; /* Darker green on hover */
+    color: #FFFFFF;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
-.side-nav li {
-    margin-bottom: 1.25rem;
+/* Social Links in Contact Section */
+.contact-info .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
 }
 
-.side-nav a {
-    color: var(--primary-color);
+.contact-info .social-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: var(--accent-color);
+    color: var(--text-light);
+    border-radius: 50%;
     text-decoration: none;
     transition: all 0.3s ease;
-    display: block;
-    padding: 0.5rem 0.75rem;
-    border-left: 3px solid transparent;
-    border-radius: 0 5px 5px 0;
-    font-weight: 500;
 }
 
-.side-nav a:hover, .side-nav a.active {
-    color: var(--accent-color);
-    border-left: 3px solid var(--secondary-color);
-    background-color: rgba(122, 111, 93, 0.1);
-    transform: translateX(5px);
+.contact-info .social-link i {
+    font-size: 1.2rem;
 }
 
-/* Adjustments for the content */
-.content-with-sidenav {
-    display: flex;
-    flex-direction: column;
-    margin-left: 260px;
+.contact-info .social-link:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive adjustments */
-@media (max-width: 1024px) {
-    .side-nav {
-        float: none;
-        position: relative;
-        width: 100%;
-        margin-bottom: 2rem;
-        top: 0;
-        margin-right: 0;
-        padding: 1.5rem;
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .opportunity {
+        padding: 2rem;
     }
     
-    .side-nav ul {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
+    .opportunity h3 {
+        font-size: 1.3rem;
     }
     
-    .side-nav li {
-        margin-bottom: 0;
-    }
-    
-    .content-with-sidenav {
-        margin-left: 0;
-    }
-    
-    .side-nav a:hover, .side-nav a.active {
-        transform: translateY(-3px);
+    .hero-button {
+        padding: 0.8rem 1.8rem;
     }
 }
 
 @media (max-width: 768px) {
-    .side-nav ul {
-        flex-direction: column;
-    }
-    
-    .side-nav li {
-        margin-bottom: 0.75rem;
-    }
-    
-    .opportunity h2 {
-        font-size: 1.75rem;
+    .opportunity {
+        padding: 1.5rem;
     }
     
     .opportunity h3 {
         font-size: 1.2rem;
+        margin: 1.5rem 0 0.8rem;
+    }
+    
+    .opportunity p, .contact-info p {
+        font-size: 1rem;
+    }
+    
+    .hero-button {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.9rem;
     }
 }

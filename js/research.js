@@ -1,4 +1,4 @@
-// Get Involved page functionality
+// Research page specific functionality
 document.addEventListener('DOMContentLoaded', () => {
     // Get all section elements and navigation links
     const sections = document.querySelectorAll('.page-section');
@@ -56,43 +56,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    // Handle "Apply" and other internal links
-    const internalLinks = document.querySelectorAll('.opportunity a[href^="#"]');
-    internalLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            
-            if (targetSection) {
-                // Offset for fixed header
-                const offsetTop = targetSection.offsetTop - 100;
-                
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
-                
-                // Update URL hash without jumping
-                history.pushState(null, null, targetId);
-                
-                // Update active nav item
-                navLinks.forEach(navLink => {
-                    navLink.classList.remove('active');
-                    if (navLink.getAttribute('href') === targetId) {
-                        navLink.classList.add('active');
-                    }
-                });
-            }
-        });
-    });
-    
     // Update active nav item on page load
     updateActiveNavItem();
     
-    // Update active nav item on scroll
-    window.addEventListener('scroll', updateActiveNavItem);
+    // Update active nav item on scroll with throttling for better performance
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+        if (!scrollTimeout) {
+            scrollTimeout = setTimeout(() => {
+                updateActiveNavItem();
+                scrollTimeout = null;
+            }, 100);
+        }
+    });
     
     // Handle hash in URL on page load
     if (window.location.hash) {
@@ -119,25 +95,45 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    // Add fade-in animations using Intersection Observer
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.2
-    };
-    
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
+    // Add animation to research program elements
+    const researchPrograms = document.querySelectorAll('.research-program');
+    researchPrograms.forEach(program => {
+        program.addEventListener('mouseenter', () => {
+            program.style.transform = 'translateY(-10px)';
+            program.style.boxShadow = '0 12px 25px rgba(0, 0, 0, 0.15)';
         });
-    }, observerOptions);
+        
+        program.addEventListener('mouseleave', () => {
+            program.style.transform = 'translateY(-5px)';
+            program.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.1)';
+        });
+    });
     
-    // Observe all fade elements
-    const fadeElements = document.querySelectorAll('.fade-element');
-    fadeElements.forEach(element => {
-        observer.observe(element);
+    // Add animation to resource items
+    const resourceItems = document.querySelectorAll('.resource-item, .resource-note');
+    resourceItems.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            item.style.transform = 'translateX(10px)';
+            item.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.12)';
+        });
+        
+        item.addEventListener('mouseleave', () => {
+            item.style.transform = 'translateX(5px)';
+            item.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.05)';
+        });
+    });
+    
+    // Add animation to publications
+    const pubItems = document.querySelectorAll('.publication-list li');
+    pubItems.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            item.style.transform = 'translateX(10px)';
+            item.style.color = 'var(--accent-color)';
+        });
+        
+        item.addEventListener('mouseleave', () => {
+            item.style.transform = 'translateX(5px)';
+            item.style.color = '';
+        });
     });
 });

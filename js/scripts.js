@@ -8,149 +8,99 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Fade-in animations
+// Fade-in animations for elements as they come into view
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize fade-in elements
-    const fadeIns = document.querySelectorAll('.fade-in');
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.2
+    };
     
-    // Create IntersectionObserver
-    const observer = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.3 });
-
-    // Observe all fade-in elements
-    fadeIns.forEach(element => observer.observe(element));
-
-    // Handle page-specific initializations
-    const currentPage = window.location.pathname.split('/').pop();
+    }, observerOptions);
     
-    // Home page specific setup
-    if (currentPage === 'index.html' || currentPage === '') {
-        // Initial fade-in for hero elements
-        document.querySelector('.hero h1').classList.add('fade-in', 'visible');
-        document.querySelector('.hero p').classList.add('fade-in', 'visible');
-        
-        // Make scroll arrow functional
-        const scrollArrow = document.querySelector('.scroll-arrow');
-        if (scrollArrow) {
-            scrollArrow.addEventListener('click', () => {
-                // Scroll to just below the hero section (where content begins)
-                const contentStart = document.querySelector('.content-wrapper');
-                if (contentStart) {
-                    contentStart.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
+    // Find elements that already have the fade-element class
+    const existingFadeElements = document.querySelectorAll('.fade-element');
+    existingFadeElements.forEach(element => {
+        observer.observe(element);
+    });
+    
+    // Add fade-in class to additional elements you want to animate
+    const elementsToFade = document.querySelectorAll('.about, .focus-area, .research-highlights h2, .team-section, .pi-banner, .mascot-section, .alumni-section, .team-member, .research-program, .resource-item, .publication-category, .more-publications, .resource-note');
+    elementsToFade.forEach(element => {
+        // Only add the class if it doesn't already have it
+        if (!element.classList.contains('fade-element')) {
+            element.classList.add('fade-element');
         }
-    }
-});
-
-// Add this to your existing scripts.js file
-
-// Side navigation highlighting for Get Involved page
-document.addEventListener('DOMContentLoaded', () => {
-    const currentPage = window.location.pathname.split('/').pop();
+        observer.observe(element);
+    });
     
-    // Check if we're on the Get Involved page
-    if (currentPage === 'get-involved.html') {
-        const sections = document.querySelectorAll('.opportunity, .contact-info');
-        const navLinks = document.querySelectorAll('.side-nav a');
-        
-        // Function to set active menu item
-        const setActiveNavItem = () => {
-            let currentSection = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.offsetHeight;
-                
-                // 150px offset accounts for the header and some buffer
-                if (window.scrollY >= (sectionTop - 150)) {
-                    currentSection = '#' + section.getAttribute('id');
-                }
-            });
-            
-            // Remove active class from all links
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                
-                // Add active class to current section link
-                if (link.getAttribute('href') === currentSection) {
-                    link.classList.add('active');
-                }
-            });
-        };
-        
-        // Set active menu item on scroll
-        window.addEventListener('scroll', setActiveNavItem);
-        
-        // Set active menu item on page load
-        setActiveNavItem();
-        
-        // Smooth scroll to sections when clicking on side nav links
-        navLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
-                
-                if (targetSection) {
-                    // Offset for fixed header
-                    const offsetTop = targetSection.offsetTop - 100;
-                    
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    }
-});
-
-
-// Hamburger menu functionality
-document.addEventListener('DOMContentLoaded', () => {
+    // Mobile navigation menu
     const hamburger = document.querySelector('.hamburger-icon');
     const navLinks = document.querySelector('.nav-links');
     const body = document.body;
     
-    // Create overlay element
-    const overlay = document.createElement('div');
-    overlay.classList.add('menu-overlay');
-    body.appendChild(overlay);
-    
-    function toggleMenu() {
-        hamburger.classList.toggle('active');
-        navLinks.classList.toggle('active');
-        overlay.classList.toggle('active');
-        body.classList.toggle('menu-open');
-    }
-    
-    // Toggle menu when hamburger is clicked
-    hamburger.addEventListener('click', toggleMenu);
-    
-    // Close menu when clicking on overlay
-    overlay.addEventListener('click', toggleMenu);
-    
-    // Close menu when clicking a nav link
-    const links = document.querySelectorAll('.nav-links a');
-    links.forEach(link => {
-        link.addEventListener('click', () => {
+    if (hamburger && navLinks) {
+        // Create overlay element
+        const overlay = document.createElement('div');
+        overlay.classList.add('menu-overlay');
+        overlay.style.position = 'fixed';
+        overlay.style.top = '0';
+        overlay.style.left = '0';
+        overlay.style.width = '100%';
+        overlay.style.height = '100%';
+        overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+        overlay.style.zIndex = '999';
+        overlay.style.display = 'none';
+        body.appendChild(overlay);
+        
+        function toggleMenu() {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            
             if (navLinks.classList.contains('active')) {
-                toggleMenu();
+                overlay.style.display = 'block';
+                body.style.overflow = 'hidden';
+            } else {
+                overlay.style.display = 'none';
+                body.style.overflow = '';
+            }
+        }
+        
+        hamburger.addEventListener('click', toggleMenu);
+        
+        // Close menu when clicking on overlay
+        overlay.addEventListener('click', toggleMenu);
+        
+        // Close menu when clicking on links
+        const links = document.querySelectorAll('.nav-links a');
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    toggleMenu();
+                }
+            });
+        });
+        
+        // Handle hamburger animation
+        hamburger.addEventListener('click', () => {
+            const spans = hamburger.querySelectorAll('span');
+            if (hamburger.classList.contains('active')) {
+                spans[0].style.transform = 'translateY(9px) rotate(45deg)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'translateY(-9px) rotate(-45deg)';
+            } else {
+                spans[0].style.transform = '';
+                spans[1].style.opacity = '';
+                spans[2].style.transform = '';
             }
         });
-    });
-    
-    // Close menu when window is resized to desktop
-    window.addEventListener('resize', () => {
-        if (window.innerWidth > 768 && navLinks.classList.contains('active')) {
-            toggleMenu();
-        }
-    });
+    }
 });
+

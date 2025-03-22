@@ -1,76 +1,45 @@
-// Initialize news page functionality
+// News page specific functionality
 document.addEventListener('DOMContentLoaded', () => {
-    // Get elements
-    const filterButtons = document.querySelectorAll('.filter-btn');
+    // Filter functionality
+    const filterLinks = document.querySelectorAll('.filter-link');
     const monthFilter = document.getElementById('month-filter');
     const newsItems = document.querySelectorAll('.news-item');
-    const readMoreButtons = document.querySelectorAll('.read-more-btn');
     const noResultsMessage = document.querySelector('.no-results-message');
     
-    // Initialize state
-    let activeCategory = 'all';
-    let activeMonth = 'all';
+    // Read More/Less functionality
+    const readMoreButtons = document.querySelectorAll('.read-more-btn');
     
-    // Add event listeners to filter buttons
-    filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            // Update active state
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            
-            // Update active category
-            activeCategory = button.getAttribute('data-filter');
-            
-            // Apply filters
-            applyFilters();
-        });
-    });
-    
-    // Add event listener to month filter
-    monthFilter.addEventListener('change', () => {
-        activeMonth = monthFilter.value;
-        applyFilters();
-    });
-    
-    // Add event listeners to read more buttons
-    readMoreButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const newsItem = button.closest('.news-item');
-            
-            // Toggle expanded state
-            newsItem.classList.toggle('expanded');
-            
-            // Update button text
-            if (newsItem.classList.contains('expanded')) {
-                button.textContent = 'Show less';
-            } else {
-                button.textContent = 'Read more';
-            }
-        });
-    });
-    
-    // Function to apply filters
-    function applyFilters() {
+    // Filter function
+    function filterNewsItems() {
+        const selectedCategory = document.querySelector('.filter-link.active').getAttribute('data-filter');
+        const selectedMonth = monthFilter.value;
+        
         let visibleCount = 0;
         
         newsItems.forEach(item => {
             const itemCategory = item.getAttribute('data-category');
             const itemDate = item.getAttribute('data-date');
             
-            // Check if item matches both category and month filters
-            const matchesCategory = activeCategory === 'all' || itemCategory === activeCategory;
-            const matchesMonth = activeMonth === 'all' || itemDate === activeMonth;
+            const categoryMatch = selectedCategory === 'all' || itemCategory === selectedCategory;
+            const dateMatch = selectedMonth === 'all' || itemDate === selectedMonth;
             
-            // Show or hide based on filters
-            if (matchesCategory && matchesMonth) {
+            if (categoryMatch && dateMatch) {
                 item.style.display = 'block';
                 visibleCount++;
+                
+                // Add 'visible' class for animations if it's not already there
+                if (!item.classList.contains('visible')) {
+                    setTimeout(() => {
+                        item.classList.add('visible');
+                    }, 50); // Small delay to allow the display property to update
+                }
             } else {
                 item.style.display = 'none';
+                item.classList.remove('visible');
             }
         });
         
-        // Show no results message if needed
+        // Show "no results" message if no items are visible
         if (visibleCount === 0) {
             noResultsMessage.style.display = 'block';
         } else {
@@ -78,91 +47,61 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    // Add functionality to allow adding new news items easily
-    function createNewsItem(details) {
-        // Create news item elements
-        const article = document.createElement('article');
-        article.className = 'news-item fade-in';
-        article.setAttribute('data-category', details.category);
-        article.setAttribute('data-date', details.dateCode); // Format: YYYY-MM
-        
-        // Create date element
-        const dateDiv = document.createElement('div');
-        dateDiv.className = 'news-date';
-        dateDiv.textContent = details.displayDate;
-        
-        // Create title
-        const title = document.createElement('h2');
-        title.textContent = details.title;
-        
-        // Create content wrapper if image is provided
-        let contentWrapper = null;
-        let imageDiv = null;
-        let textContentDiv = null;
-        
-        if (details.imageSrc) {
-            contentWrapper = document.createElement('div');
-            contentWrapper.className = 'news-content-wrapper';
+    // Event listeners for filters
+    filterLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
             
-            imageDiv = document.createElement('div');
-            imageDiv.className = 'news-image';
+            // Update active filter
+            filterLinks.forEach(l => l.classList.remove('active'));
+            this.classList.add('active');
             
-            const image = document.createElement('img');
-            image.src = details.imageSrc;
-            image.alt = details.title;
-            imageDiv.appendChild(image);
+            // Apply filters
+            filterNewsItems();
+        });
+    });
+    
+    monthFilter.addEventListener('change', filterNewsItems);
+    
+    // Read More/Less functionality
+    readMoreButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const newsItem = this.closest('.news-item');
+            const details = newsItem.querySelector('.news-details');
             
-            textContentDiv = document.createElement('div');
-            textContentDiv.className = 'news-text-content';
-        }
-        
-        // Create summary
-        const summary = document.createElement('div');
-        summary.className = 'news-summary';
-        const summaryP = document.createElement('p');
-        summaryP.textContent = details.summary;
-        summary.appendChild(summaryP);
-        
-        // Create details
-        const detailsDiv = document.createElement('div');
-        detailsDiv.className = 'news-details';
-        detailsDiv.innerHTML = details.fullContent; // Can include HTML
-        
-        // Create read more button
-        const button = document.createElement('button');
-        button.className = 'read-more-btn';
-        button.textContent = 'Read more';
-        
-        // Add event listener to button
-        button.addEventListener('click', () => {
-            article.classList.toggle('expanded');
-            if (article.classList.contains('expanded')) {
-                button.textContent = 'Show less';
+            if (details.style.display === 'block') {
+                details.style.display = 'none';
+                this.textContent = 'Read more';
             } else {
-                button.textContent = 'Read more';
+                details.style.display = 'block';
+                this.textContent = 'Read less';
             }
         });
-        
-        // Assemble article
-        article.appendChild(dateDiv);
-        article.appendChild(title);
-        
-        if (contentWrapper) {
-            contentWrapper.appendChild(imageDiv);
-            textContentDiv.appendChild(summary);
-            textContentDiv.appendChild(detailsDiv);
-            contentWrapper.appendChild(textContentDiv);
-            article.appendChild(contentWrapper);
-        } else {
-            article.appendChild(summary);
-            article.appendChild(detailsDiv);
-        }
-        
-        article.appendChild(button);
-        
-        return article;
-    }
+    });
     
-    // Initialize filters on page load
-    applyFilters();
+    // Initial filtering
+    filterNewsItems();
+    
+    // Add observer for animation
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.2
+    };
+    
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+    
+    // Observe all news items for fade in animation
+    newsItems.forEach(item => {
+        if (!item.classList.contains('visible')) {
+            observer.observe(item);
+        }
+    });
 });
