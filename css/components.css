@@ -225,6 +225,18 @@
     color: var(--color-text-light);
 }
 
+.hero--sm {
+    height: calc(40vh + 80px);
+}
+
+.hero,
+.hero--sm,
+.page-header {
+    padding-top: 80px; /* Consistent value for all header types */
+}
+
+
+
 /* Navigation component */
 .navbar {
     position: fixed;
