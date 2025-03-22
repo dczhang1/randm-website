@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, observerOptions);
     
     // Add fade-in class to elements you want to animate
-    const fadeElements = document.querySelectorAll('.about, .focus-area, .research-highlights h2');
+    const fadeElements = document.querySelectorAll('.about, .focus-area, .research-highlights h2, .team-section, .pi-banner, .mascot-section, .alumni-section, .team-member');
     fadeElements.forEach(element => {
         element.classList.add('fade-element');
         observer.observe(element);

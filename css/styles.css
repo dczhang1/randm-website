@@ -210,6 +210,320 @@ main {
     line-height: 1.8;
 }
 
+/* Teams Areas */
+/* Add these styles to your existing styles.css file */
+
+/* Page Header for Interior Pages */
+.page-header {
+    position: relative;
+    height: 40vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-color);
+    background-image: linear-gradient(rgba(21, 52, 72, 0.85), rgba(21, 52, 72, 0.85)), url('../assets/hero-background.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.page-header-content {
+    text-align: center;
+    color: var(--text-light);
+    padding: 0 2rem;
+    max-width: 800px;
+}
+
+.page-header h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+.page-header p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+/* Team Section Styles */
+.team {
+    width: 100%;
+    padding: 2rem 0;
+}
+
+.section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    margin-bottom: 2.5rem;
+    position: relative;
+    padding-bottom: 1rem;
+    text-align: center;
+}
+
+.section-title:after {
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 3px;
+    background-color: var(--secondary-color);
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.team-section {
+    margin-bottom: 5rem;
+}
+
+/* Principal Investigator Banner */
+.pi-banner {
+    margin-bottom: 4rem;
+    background-color: var(--neutral-off-white);
+    border-radius: 0;
+    padding: 3rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.pi-content {
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
+}
+
+.pi-photo {
+    width: 250px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 0;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-top: 4px solid var(--secondary-color);
+}
+
+.pi-details h2 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.2rem;
+}
+
+.pi-details h3 {
+    color: var(--secondary-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.pi-details p {
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
+
+.cv-button {
+    display: inline-block;
+    padding: 0.7rem 1.5rem;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 0;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.cv-button:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-3px);
+}
+
+.cv-button i {
+    margin-left: 0.5rem;
+}
+
+/* Team Grid and Members */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2.5rem;
+    width: 100%;
+}
+
+.team-member {
+    background-color: var(--neutral-off-white);
+    border-radius: 0;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-top: 3px solid var(--accent-color);
+}
+
+.team-member:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.member-photo {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 1.5rem;
+    border: 3px solid var(--background-light);
+}
+
+.team-member h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3rem;
+}
+
+.team-member h4 {
+    color: var(--secondary-color);
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.team-member p {
+    color: var(--text-dark);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Lab Mascot Section */
+.mascot-section {
+    padding: 2rem;
+    background-color: var(--neutral-off-white);
+    border-radius: 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border-top: 3px solid var(--accent-color);
+}
+
+.mascot-content {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.mascot-photo {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--background-light);
+}
+
+.mascot-details h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.mascot-details p {
+    margin-bottom: 1rem;
+    line-height: 1.8;
+}
+
+/* Alumni Section */
+.alumni-section {
+    padding: 3rem;
+    background-color: var(--neutral-off-white);
+    border-radius: 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border-top: 3px solid var(--accent-color);
+}
+
+.alumni-section h3 {
+    color: var(--secondary-color);
+    margin: 2rem 0 1rem;
+    font-size: 1.5rem;
+    font-family: 'Montserrat', sans-serif;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 0.5rem;
+}
+
+.alumni-list {
+    list-style-type: none;
+}
+
+.alumni-list li {
+    margin-bottom: 1rem;
+    padding-left: 1.2rem;
+    position: relative;
+    line-height: 1.6;
+}
+
+.alumni-list li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--secondary-color);
+}
+
+.alumni-name {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.alumni-position {
+    color: var(--text-dark);
+}
+
+/* Responsive Adjustments for Team Page */
+@media (max-width: 992px) {
+    .pi-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .pi-photo {
+        margin-bottom: 2rem;
+    }
+    
+    .mascot-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .mascot-photo {
+        margin-bottom: 1.5rem;
+    }
+    
+    .page-header h1 {
+        font-size: 2.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .pi-banner, .mascot-section, .alumni-section {
+        padding: 2rem;
+    }
+    
+    .page-header h1 {
+        font-size: 2.2rem;
+    }
+    
+    .page-header p {
+        font-size: 1rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+}
+
+
 /* Research Focus Areas */
 .research-highlights {
     padding: 2rem 0;
