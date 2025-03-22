@@ -247,6 +247,22 @@ img {
     animation: fadeIn 0.5s ease forwards;
 }
 
+
+/* Hero section */
+.hero__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-primary); /* Fallback */
+    background-image: url('../assets/hero-background.jpg');
+    background-position: center;
+    background-size: cover;
+    z-index: -1;
+}
+
+
 /* Media query variables - Just a reference, actual media queries in components */
 /* 
 --mobile: 576px
