@@ -170,9 +170,13 @@ main {
 }
 
 .content-wrapper {
-    max-width: 1200px;
+    max-width: 1400px; /* Increased from 1200px */
     margin: 0 auto;
     padding: 0 2rem;
+    display: flex;
+    gap: 2.5rem;
+    position: relative;
+    justify-content: center; /* Center the content */
 }
 
 /* About Section */
@@ -230,6 +234,7 @@ main {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     border-top: 3px solid var(--primary-color);
     align-self: flex-start;
+    margin-right: 2rem; /* Added margin to offset from center */
 }
 
 .side-navigation h3 {
@@ -270,6 +275,7 @@ main {
 .main-content {
     flex: 1;
     min-width: 0; /* Allows content to shrink below its minimum content size */
+    max-width: 960px; /* Added max-width to prevent overly wide content */
 }
 
 /* Responsive adjustments for smaller screens */
@@ -810,5 +816,42 @@ footer p {
 
     .focus-areas {
         grid-template-columns: 1fr;
+    }
+}
+
+/* Override for the home page layout */
+.home-page main .content-wrapper {
+    display: flex;
+    flex-direction: column; /* Force vertical layout */
+    align-items: center;
+    max-width: 1200px; /* Maintain the original width */
+}
+
+.home-page .about,
+.home-page .research-highlights {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 3rem;
+}
+
+/* Target the focus areas specifically */
+.home-page .focus-areas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+    width: 100%;
+}
+
+/* Explicitly override any previous rules that might be causing side-by-side layout */
+@media (min-width: 992px) {
+    .home-page main .content-wrapper {
+        flex-direction: column; /* Keep it column even on larger screens */
+    }
+    
+    .home-page .about,
+    .home-page .research-highlights {
+        width: 100%;
+        max-width: 100%;
     }
 }
