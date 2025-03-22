@@ -25,10 +25,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
     
-    // Add fade-in class to elements you want to animate
-    const fadeElements = document.querySelectorAll('.about, .focus-area, .research-highlights h2, .team-section, .pi-banner, .mascot-section, .alumni-section, .team-member');
-    fadeElements.forEach(element => {
-        element.classList.add('fade-element');
+    // Find elements that already have the fade-element class
+    const existingFadeElements = document.querySelectorAll('.fade-element');
+    existingFadeElements.forEach(element => {
+        observer.observe(element);
+    });
+    
+    // Add fade-in class to additional elements you want to animate
+    const elementsToFade = document.querySelectorAll('.about, .focus-area, .research-highlights h2, .team-section, .pi-banner, .mascot-section, .alumni-section, .team-member, .research-program, .resource-item, .publication-category, .more-publications, .resource-note');
+    elementsToFade.forEach(element => {
+        // Only add the class if it doesn't already have it
+        if (!element.classList.contains('fade-element')) {
+            element.classList.add('fade-element');
+        }
         observer.observe(element);
     });
     
