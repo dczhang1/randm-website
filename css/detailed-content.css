@@ -12,7 +12,7 @@
 }
 
 .intro {
-    font-size: 1.1rem;
+    font-size: 16px;
     color: var(--color-primary);
     line-height: 1.6;
     margin-bottom: var(--spacing-lg);
@@ -22,29 +22,39 @@
 
 .detailed-content h1 {
     color: var(--color-accent);
-    font-family: 'Lora', serif;
+    font-family: 'Lora', 'Georgia', 'Times New Roman', serif;
     margin-bottom: var(--spacing-md);
-    font-size: 2.2rem;
+    font-size: 28px;
 }
 
 .detailed-content h2 {
     color: var(--color-accent);
-    font-family: 'Lora', serif;
+    font-family: 'Lora', 'Georgia', 'Times New Roman', serif;
     margin: var(--spacing-lg) 0 var(--spacing-sm);
-    font-size: 1.8rem;
+    font-size: 24px;
 }
 
 .detailed-content h3 {
     color: var(--color-primary);
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Lora', 'Georgia', 'Times New Roman', serif;
     margin: var(--spacing-md) 0 var(--spacing-sm);
-    font-size: 1.5rem;
+    font-size: 20px;
 }
 
-.detailed-content h4, .detailed-content h5 {
+.detailed-content h4 {
     color: var(--color-secondary);
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', 'Arial', 'Helvetica', sans-serif;
     margin: var(--spacing-md) 0 var(--spacing-sm);
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.detailed-content h5 {
+    color: var(--color-secondary);
+    font-family: 'Poppins', 'Arial', 'Helvetica', sans-serif;
+    margin: var(--spacing-md) 0 var(--spacing-sm);
+    font-size: 16px;
+    font-weight: 600;
 }
 
 /* Code Block Styling */
@@ -60,7 +70,7 @@
     padding: var(--spacing-md);
     margin: 0;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 0.95rem;
+    font-size: 13px;
     line-height: 1.6;
 }
 
@@ -90,7 +100,7 @@
 
 /* References Styling */
 .references {
-    font-size: 0.95rem;
+    font-size: 13px;
     line-height: 1.5;
 }
 
@@ -107,12 +117,14 @@
     padding: var(--spacing-sm);
     border-radius: 5px;
     margin: var(--spacing-md) 0;
+    font-size: 13px;
 }
 
 /* Scale items styling */
 .scale-items li, .response-anchors li {
     margin-bottom: var(--spacing-sm);
     line-height: 1.5;
+    font-size: 14px;
 }
 
 .response-anchors {
@@ -178,6 +190,8 @@
     font-weight: 600;
     margin: var(--spacing-sm) 0;
     transition: background-color var(--transition-standard);
+    font-family: 'Poppins', 'Arial', 'Helvetica', sans-serif;
+    font-size: 14px;
 }
 
 .download-button:hover {
@@ -189,7 +203,7 @@
 }
 
 .download-note {
-    font-size: 0.9rem;
+    font-size: 12px;
     color: #666;
     margin-top: var(--spacing-xs);
 }
@@ -197,15 +211,15 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .detailed-content h1 {
-        font-size: 1.8rem;
+        font-size: 24px;
     }
     
     .detailed-content h2 {
-        font-size: 1.5rem;
+        font-size: 22px;
     }
     
     .detailed-content h3 {
-        font-size: 1.3rem;
+        font-size: 18px;
     }
     
     .response-anchors {
@@ -216,13 +230,3 @@
     .response-anchors li {
         width: fit-content;
     }
-    
-    .content-navigation {
-        flex-direction: column;
-    }
-    
-    .related-links {
-        margin-left: 0;
-        margin-top: var(--spacing-md);
-    }
-}

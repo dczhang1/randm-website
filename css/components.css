@@ -67,8 +67,9 @@
     cursor: pointer;
     text-decoration: none;
     transition: background-color var(--transition-standard), transform var(--transition-standard), box-shadow var(--transition-standard);
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Poppins', 'Arial', 'Helvetica', sans-serif;
     text-align: center;
+    font-size: 14px;
 }
 
 .btn:hover {
@@ -96,12 +97,12 @@
 
 .btn--lg {
     padding: var(--spacing-md) var(--spacing-xl);
-    font-size: 1.1rem;
+    font-size: 16px;
 }
 
 .btn--sm {
     padding: var(--spacing-xs) var(--spacing-md);
-    font-size: 0.9rem;
+    font-size: 12px;
 }
 
 .btn--outline {
@@ -259,9 +260,10 @@
     font-weight: 600;
     margin-left: var(--spacing-lg);
     transition: color var(--transition-standard);
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Lora', 'Georgia', 'Times New Roman', serif;
     position: relative;
     letter-spacing: 1px;
+    font-size: 16px;
 }
 
 .navbar__link:hover {
@@ -353,7 +355,7 @@
 
     .navbar__link {
         margin: var(--spacing-sm) 0;
-        font-size: 1.2rem;
+        font-size: 16px;
     }
 }
 
@@ -368,11 +370,11 @@
 
     .btn--lg {
         padding: var(--spacing-sm) var(--spacing-lg);
-        font-size: 1rem;
+        font-size: 14px;
     }
 
     .section-title {
-        font-size: 1.8rem;
+        font-size: 22px;
     }
 }
 
@@ -423,19 +425,20 @@
 .team-member h3 {
     margin-top: 0.5rem;
     margin-bottom: 0.25rem;
-    font-size: 1.3rem;
+    font-size: 20px;
 }
 
 .team-member h4 {
     color: var(--color-secondary);
     margin-top: 0;
     margin-bottom: 0.75rem;
-    font-size: 0.9rem;
+    font-size: 16px;
     font-weight: 600;
+    font-family: 'Poppins', 'Arial', 'Helvetica', sans-serif;
 }
 
 .team-member p {
-    font-size: 0.9rem;
+    font-size: 14px;
     line-height: 1.5;
     margin-bottom: 0;
 }
@@ -458,7 +461,7 @@
 .pi-details h3 {
     color: var(--color-secondary);
     margin-bottom: var(--spacing-md);
-    font-size: 1.3rem;
+    font-size: 20px;
 }
 
 .pi-details .btn {
@@ -480,7 +483,7 @@
 .alumni-section h3 {
     margin-top: var(--spacing-lg);
     margin-bottom: var(--spacing-sm);
-    font-size: 1.3rem;
+    font-size: 20px;
 }
 
 .alumni-list {

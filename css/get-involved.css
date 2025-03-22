@@ -7,19 +7,21 @@
 }
 
 .opportunity h3 {
-    font-size: 1.4rem;
+    font-size: 20px;
     margin: var(--spacing-lg) 0 var(--spacing-sm);
+    font-family: 'Lora', 'Georgia', 'Times New Roman', serif;
 }
 
 .opportunity p {
     margin-bottom: var(--spacing-md);
     line-height: 1.8;
-    font-size: 1.1rem;
+    font-size: 14px;
 }
 
 .opportunity li {
     position: relative;
     padding-left: var(--spacing-sm);
+    font-size: 14px;
 }
 
 .opportunity li:before {
@@ -27,7 +29,7 @@
     position: absolute;
     left: -1rem;
     color: var(--color-secondary);
-    font-size: 1.2rem;
+    font-size: 14px;
 }
 
 /* Contact Section Styles */
@@ -52,8 +54,8 @@
     transition: all var(--transition-standard);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border: none;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.1rem;
+    font-family: 'Poppins', 'Arial', 'Helvetica', sans-serif;
+    font-size: 14px;
     letter-spacing: 0.5px;
     text-align: center;
 }
@@ -72,7 +74,7 @@
     }
     
     .opportunity h3 {
-        font-size: 1.3rem;
+        font-size: 18px;
     }
 }
 
@@ -82,16 +84,16 @@
     }
     
     .opportunity h3 {
-        font-size: 1.2rem;
+        font-size: 16px;
         margin: var(--spacing-md) 0 var(--spacing-sm);
     }
     
     .opportunity p, .contact-info p {
-        font-size: 1rem;
+        font-size: 14px;
     }
     
     .apply-button {
         padding: var(--spacing-xs) var(--spacing-md);
-        font-size: 0.9rem;
+        font-size: 13px;
     }
 }
