@@ -41,130 +41,222 @@
     
     <main>
         <div class="container">
-            <div class="layout-2-col">
-                <!-- Floating Side Navigation -->
-                <div class="col-sidebar">
-                    <div class="sidebar">
-                        <h3 class="sidebar__title">Filter By</h3>
-                        <ul class="sidebar__list">
-                            <li class="sidebar__item"><a href="#" class="sidebar__link active filter-link" data-filter="all">All News</a></li>
-                            <li class="sidebar__item"><a href="#" class="sidebar__link filter-link" data-filter="news">News</a></li>
-                            <li class="sidebar__item"><a href="#" class="sidebar__link filter-link" data-filter="publications">Publications</a></li>
-                            <li class="sidebar__item"><a href="#" class="sidebar__link filter-link" data-filter="media">Media</a></li>
-                            <li class="sidebar__item"><a href="#" class="sidebar__link filter-link" data-filter="conferences">Conferences</a></li>
-                            <li class="sidebar__item"><a href="#" class="sidebar__link filter-link" data-filter="fun">Fun</a></li>
-                        </ul>
-                        
-                        <div class="archive-dropdown">
-                            <h3 class="sidebar__title">Archive</h3>
-                            <select id="month-filter">
-                                <option value="all">All Dates</option>
-                                <option value="2024-04">April 2024</option>
-                                <option value="2024-03">March 2024</option>
-                                <option value="2024-01">January 2024</option>
-                                <option value="2023-11">November 2023</option>
-                                <option value="2023-07">July 2023</option>
-                                <option value="2023-05">May 2023</option>
-                                <option value="2023-01">January 2023</option>
-                                <option value="2022-11">November 2022</option>
-                                <option value="2022-07">July 2022</option>
-                                <option value="2022-03">March 2022</option>
-                                <option value="2021-03">March 2021</option>
-                                <option value="2020-12">December 2020</option>
-                            </select>
+            <!-- Top Filter Bar -->
+            <div class="news-filters">
+                <div class="filter-container">
+                    <div class="filter-group">
+                        <span class="font-bold">Filter By: </span>
+                        <div class="filter-links">
+                            <a href="#" class="filter-link active" data-filter="all">All News</a>
+                            <a href="#" class="filter-link" data-filter="news">News</a>
+                            <a href="#" class="filter-link" data-filter="publications">Publications</a>
+                            <a href="#" class="filter-link" data-filter="media">Media</a>
+                            <a href="#" class="filter-link" data-filter="conferences">Conferences</a>
+                            <a href="#" class="filter-link" data-filter="fun">Fun</a>
                         </div>
                     </div>
-                </div>
-                
-                <div class="col-main">
-                    <section class="section news-section page-section">
-                        <div class="news-items">
-                            <!-- April 2024 Entries -->
-                            <article class="card card--border-top news-item fade-element" data-category="conferences" data-date="2024-04">
-                                <div class="news-date">April 27, 2024</div>
-                                <h2>Presentations at SIOP Conference, Chicago 2024</h2>
-                                <div class="news-content-wrapper">
-                                    <div class="news-image">
-                                        <img src="assets/news/siop-2024.jpg" alt="Presentation at SIOP 2024" />
-                                    </div>
-                                    <div class="news-text-content">
-                                        <div class="news-summary">
-                                            <p>Graduate students Katelyn Reeves and Tyler Cowley presenting our research on risk taking at the SIOP 2024 conference.</p>
-                                        </div>
-                                        <div class="news-details">
-                                            <p>Our team shared findings on risk taking in workplace contexts, highlighting the latest research from the RANDM Lab at the Society for Industrial and Organizational Psychology conference in Chicago.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="btn btn--sm read-more-btn">Read more</button>
-                            </article>
-                            
-                            <article class="card card--border-top news-item fade-element" data-category="conferences" data-date="2024-04">
-                                <div class="news-date">April 26, 2024</div>
-                                <h2>Colette and Gabrielle presenting at the LSU Discover Day</h2>
-                                <div class="news-content-wrapper">
-                                    <div class="news-text-content">
-                                        <div class="news-summary">
-                                            <p>RANDM Lab member Colette Mouton and Gabrielle Mellor presents our meta-analysis on risk propensity and happiness at the LSU Discover Day.</p>
-                                        </div>
-                                        <div class="news-details">
-                                            <p>RANDM Lab member Colette Mouton and Gabrielle Mellor presents our meta-analysis on risk propensity and happiness at the LSU Discover Day. Way to geaux!</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="btn btn--sm read-more-btn">Read more</button>
-                            </article>
-                            
-                            <!-- March 2024 Entries -->
-                            <article class="card card--border-top news-item fade-element" data-category="fun" data-date="2024-03">
-                                <div class="news-date">March 27, 2024</div>
-                                <h2>Don Zhang receives the LSU Rainmaker Award</h2>
-                                <div class="news-content-wrapper">
-                                    <div class="news-image">
-                                        <img src="assets/news/rainmaker-award.jpg" alt="Dr. Zhang receiving the LSU Rainmaker Award" />
-                                    </div>
-                                    <div class="news-text-content">
-                                        <div class="news-summary">
-                                            <p>Lab director Don Zhang receives the LSU Rainmaker Award, recognizing outstanding research, scholarship, and creative activity.</p>
-                                        </div>
-                                        <div class="news-details">
-                                            <p>Lab director Don Zhang receives the LSU Rainmaker Award, which is given each year to faculty who show outstanding research, scholarship, and creative activity for their respective ranks and discipline.</p>
-                                            <p>The award ceremony was held at the LSU Faculty Club, where Dr. Zhang was recognized among other distinguished faculty members for his contributions to the field of risk and decision-making research.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="btn btn--sm read-more-btn">Read more</button>
-                            </article>
-                            
-                            <!-- January 2024 Entries -->
-                            <article class="card card--border-top news-item fade-element" data-category="publications" data-date="2024-01">
-                                <div class="news-date">January 27, 2024</div>
-                                <h2>Editor's Commendation in the Journal of Business and Psychology</h2>
-                                <div class="news-content-wrapper">
-                                    <div class="news-text-content">
-                                        <div class="news-summary">
-                                            <p>RANDM Lab's 2023 publication received the Editor Commendation in the Journal of Business and Psychology.</p>
-                                        </div>
-                                        <div class="news-details">
-                                            <p>RANDM Lab's 2023 publication (Zhang, Barratt, & Smith, 2023) in the Journal of Business and Psychology received the Editor Commendation! It is one of 12 articles with this honor.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="btn btn--sm read-more-btn">Read more</button>
-                            </article>
-                            
-                            <!-- Continue with all other news items following this pattern -->
-                            
-                        </div>
-                        
-                        <div class="card no-results-message" style="display: none;">
-                            <p>No news items match your current filters. Please try different filter options.</p>
-                        </div>
-                    </section>
+                    
+                    <div class="filter-group">
+                        <label for="month-filter" class="font-bold">Date: </label>
+                        <select id="month-filter" class="filter-select">
+                            <option value="all">All Dates</option>
+                            <option value="2024-04">April 2024</option>
+                            <option value="2024-03">March 2024</option>
+                            <option value="2024-01">January 2024</option>
+                            <option value="2023-11">November 2023</option>
+                            <option value="2023-07">July 2023</option>
+                            <option value="2023-05">May 2023</option>
+                            <option value="2023-01">January 2023</option>
+                            <option value="2022-11">November 2022</option>
+                            <option value="2022-07">July 2022</option>
+                            <option value="2022-03">March 2022</option>
+                            <option value="2021-03">March 2021</option>
+                            <option value="2020-12">December 2020</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="sort-by" class="font-bold">Sort By: </label>
+                        <select id="sort-by" class="filter-select">
+                            <option value="date-desc">Newest First</option>
+                            <option value="date-asc">Oldest First</option>
+                            <option value="title-asc">Title (A-Z)</option>
+                            <option value="title-desc">Title (Z-A)</option>
+                        </select>
+                    </div>
                 </div>
             </div>
+            
+            <section class="section news-section page-section">
+                <!-- News Grid Layout -->
+                <div class="news-grid">
+                    <!-- April 2024 Entries -->
+                    <article class="card card--border-top news-item fade-element" data-category="conferences" data-date="2024-04" data-title="Presentations at SIOP Conference, Chicago 2024">
+                        <div class="news-image">
+                            <img src="assets/news/siop-2024.jpg" alt="Presentation at SIOP 2024" />
+                        </div>
+                        <div class="news-text-content">
+                            <div class="news-date">April 27, 2024</div>
+                            <h2>Presentations at SIOP Conference, Chicago 2024</h2>
+                            <div class="news-summary">
+                                <p>Graduate students Katelyn Reeves and Tyler Cowley presenting our research on risk taking at the SIOP 2024 conference.</p>
+                            </div>
+                            <button class="btn btn--sm read-more-btn" data-id="1">Read more</button>
+                        </div>
+                    </article>
+                    
+                    <article class="card card--border-top news-item fade-element" data-category="conferences" data-date="2024-04" data-title="Colette and Gabrielle presenting at the LSU Discover Day">
+                        <div class="news-image">
+                            <img src="assets/news/default-news.jpg" alt="LSU Discover Day Presentation" />
+                        </div>
+                        <div class="news-text-content">
+                            <div class="news-date">April 26, 2024</div>
+                            <h2>Colette and Gabrielle presenting at the LSU Discover Day</h2>
+                            <div class="news-summary">
+                                <p>RANDM Lab member Colette Mouton and Gabrielle Mellor presents our meta-analysis on risk propensity and happiness at the LSU Discover Day.</p>
+                            </div>
+                            <button class="btn btn--sm read-more-btn" data-id="2">Read more</button>
+                        </div>
+                    </article>
+                    
+                    <!-- March 2024 Entries -->
+                    <article class="card card--border-top news-item fade-element" data-category="fun" data-date="2024-03" data-title="Don Zhang receives the LSU Rainmaker Award">
+                        <div class="news-image">
+                            <img src="assets/news/rainmaker-award.jpg" alt="Dr. Zhang receiving the LSU Rainmaker Award" />
+                        </div>
+                        <div class="news-text-content">
+                            <div class="news-date">March 27, 2024</div>
+                            <h2>Don Zhang receives the LSU Rainmaker Award</h2>
+                            <div class="news-summary">
+                                <p>Lab director Don Zhang receives the LSU Rainmaker Award, recognizing outstanding research, scholarship, and creative activity.</p>
+                            </div>
+                            <button class="btn btn--sm read-more-btn" data-id="3">Read more</button>
+                        </div>
+                    </article>
+                    
+                    <!-- January 2024 Entries -->
+                    <article class="card card--border-top news-item fade-element" data-category="publications" data-date="2024-01" data-title="Editor's Commendation in the Journal of Business and Psychology">
+                        <div class="news-image">
+                            <img src="assets/news/default-publication.jpg" alt="Journal publication" />
+                        </div>
+                        <div class="news-text-content">
+                            <div class="news-date">January 27, 2024</div>
+                            <h2>Editor's Commendation in the Journal of Business and Psychology</h2>
+                            <div class="news-summary">
+                                <p>RANDM Lab's 2023 publication received the Editor Commendation in the Journal of Business and Psychology.</p>
+                            </div>
+                            <button class="btn btn--sm read-more-btn" data-id="4">Read more</button>
+                        </div>
+                    </article>
+                    
+                    <!-- Add additional news items up to 9 for first page -->
+                    <article class="card card--border-top news-item fade-element" data-category="news" data-date="2023-11" data-title="New Lab Equipment Acquisition">
+                        <div class="news-image">
+                            <img src="assets/news/default-news.jpg" alt="New lab equipment" />
+                        </div>
+                        <div class="news-text-content">
+                            <div class="news-date">November 15, 2023</div>
+                            <h2>New Lab Equipment Acquisition</h2>
+                            <div class="news-summary">
+                                <p>The RANDM Lab has acquired new eye-tracking equipment to enhance our research capabilities in decision-making studies.</p>
+                            </div>
+                            <button class="btn btn--sm read-more-btn" data-id="5">Read more</button>
+                        </div>
+                    </article>
+                    
+                    <article class="card card--border-top news-item fade-element" data-category="media" data-date="2023-07" data-title="Interview on Decision Making in Crisis">
+                        <div class="news-image">
+                            <img src="assets/news/default-media.jpg" alt="Media interview" />
+                        </div>
+                        <div class="news-text-content">
+                            <div class="news-date">July 22, 2023</div>
+                            <h2>Interview on Decision Making in Crisis</h2>
+                            <div class="news-summary">
+                                <p>Dr. Zhang was interviewed by the Science Daily about the lab's research on decision-making during crisis situations.</p>
+                            </div>
+                            <button class="btn btn--sm read-more-btn" data-id="6">Read more</button>
+                        </div>
+                    </article>
+                    
+                    <article class="card card--border-top news-item fade-element" data-category="publications" data-date="2023-05" data-title="New Paper on Risk Assessment Published">
+                        <div class="news-image">
+                            <img src="assets/news/default-publication.jpg" alt="Publication image" />
+                        </div>
+                        <div class="news-text-content">
+                            <div class="news-date">May 18, 2023</div>
+                            <h2>New Paper on Risk Assessment Published</h2>
+                            <div class="news-summary">
+                                <p>Our research team has published a new paper on risk assessment methodologies in Psychological Science.</p>
+                            </div>
+                            <button class="btn btn--sm read-more-btn" data-id="7">Read more</button>
+                        </div>
+                    </article>
+                    
+                    <article class="card card--border-top news-item fade-element" data-category="conferences" data-date="2023-01" data-title="Workshop at Decision Sciences Conference">
+                        <div class="news-image">
+                            <img src="assets/news/default-conference.jpg" alt="Conference workshop" />
+                        </div>
+                        <div class="news-text-content">
+                            <div class="news-date">January 10, 2023</div>
+                            <h2>Workshop at Decision Sciences Conference</h2>
+                            <div class="news-summary">
+                                <p>The RANDM Lab hosted a workshop on integrating quantitative methods in decision research at the annual Decision Sciences conference.</p>
+                            </div>
+                            <button class="btn btn--sm read-more-btn" data-id="8">Read more</button>
+                        </div>
+                    </article>
+                    
+                    <article class="card card--border-top news-item fade-element" data-category="fun" data-date="2022-11" data-title="Lab Holiday Celebration">
+                        <div class="news-image">
+                            <img src="assets/news/default-fun.jpg" alt="Lab holiday party" />
+                        </div>
+                        <div class="news-text-content">
+                            <div class="news-date">November 30, 2022</div>
+                            <h2>Lab Holiday Celebration</h2>
+                            <div class="news-summary">
+                                <p>The RANDM Lab team celebrated the end of a productive year with our annual holiday gathering.</p>
+                            </div>
+                            <button class="btn btn--sm read-more-btn" data-id="9">Read more</button>
+                        </div>
+                    </article>
+                </div>
+                
+                <!-- Pagination -->
+                <div class="pagination">
+                    <a href="#" class="pagination-link prev" aria-label="Previous page">
+                        <i class="fas fa-chevron-left"></i> Prev
+                    </a>
+                    <a href="#" class="pagination-link active">1</a>
+                    <a href="#" class="pagination-link">2</a>
+                    <a href="#" class="pagination-link">3</a>
+                    <a href="#" class="pagination-link next" aria-label="Next page">
+                        Next <i class="fas fa-chevron-right"></i>
+                    </a>
+                </div>
+                
+                <div class="card no-results-message" style="display: none;">
+                    <p>No news items match your current filters. Please try different filter options.</p>
+                </div>
+            </section>
         </div>
     </main>
+    
+    <!-- Modal for expanded news items -->
+    <div class="news-modal" id="newsModal">
+        <div class="news-modal-content">
+            <span class="news-modal-close">&times;</span>
+            <div class="news-modal-header">
+                <div class="news-date" id="modal-date"></div>
+                <h2 id="modal-title"></h2>
+            </div>
+            <div class="news-modal-body" id="modal-content">
+                <!-- Content will be dynamically inserted here -->
+            </div>
+            <div class="news-modal-footer">
+                <button class="btn btn--sm news-modal-close-btn">Close</button>
+            </div>
+        </div>
+    </div>
     
     <!-- Footer using the new component classes -->
     <footer class="footer">
@@ -189,35 +281,9 @@
         <p class="footer__text">© 2025 Risk and Decision Making Lab. All rights reserved.</p>
     </footer>
     
-    <!-- Include the new JavaScript files -->
+    <!-- Include the JavaScript files -->
     <script src="js/utils.js" defer></script>
     <script src="js/main.js" defer></script>
     <script src="js/news.js" defer></script>
-    
-<!-- Add this at the bottom of your news.html file, right before the closing </body> tag -->
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Direct fix for read more buttons - extremely simple
-      document.querySelectorAll('.read-more-btn').forEach(function(button) {
-        button.addEventListener('click', function() {
-          // Find the parent news item
-          const newsItem = this.closest('.news-item');
-          // Find the details section within this news item
-          const details = newsItem.querySelector('.news-details');
-          
-          if (details) {
-            // Check if it's currently visible
-            const isVisible = window.getComputedStyle(details).display !== 'none';
-            
-            // Toggle visibility
-            details.style.display = isVisible ? 'none' : 'block';
-            // Update button text
-            this.textContent = isVisible ? 'Read more' : 'Read less';
-          }
-        });
-      });
-    });
-  </script>
-
 </body>
 </html>

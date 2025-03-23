@@ -1,66 +1,309 @@
 /**
  * news.js - News page specific functionality
+ * Redesigned for grid layout with pagination
  */
 
 // Initialize the news page functionality
 function initNewsPage() {
-    // Get DOM elements
+    // Cache DOM elements
     const filterLinks = document.querySelectorAll('.filter-link');
     const monthFilter = document.getElementById('month-filter');
+    const sortByFilter = document.getElementById('sort-by');
     const newsItems = document.querySelectorAll('.news-item');
     const noResultsMessage = document.querySelector('.no-results-message');
     const readMoreButtons = document.querySelectorAll('.read-more-btn');
+    const pagination = document.querySelector('.pagination');
+    const paginationLinks = document.querySelectorAll('.pagination-link');
+    const modal = document.getElementById('newsModal');
+    const modalClose = document.querySelectorAll('.news-modal-close, .news-modal-close-btn');
+    const modalDate = document.getElementById('modal-date');
+    const modalTitle = document.getElementById('modal-title');
+    const modalContent = document.getElementById('modal-content');
     
     console.log('News page initialization started');
-    console.log('Read more buttons found:', readMoreButtons.length);
     
-    // Filter function with error handling
-    function filterNewsItems() {
+    // News data store
+    const newsData = [];
+    
+    // Configuration
+    const itemsPerPage = 9;
+    let currentPage = 1;
+    let filteredItems = [];
+    
+    // Collect news data
+    newsItems.forEach(item => {
+        // Extract data that should be displayed in the modal
+        const id = item.querySelector('.read-more-btn').getAttribute('data-id');
+        const category = item.getAttribute('data-category');
+        const date = item.getAttribute('data-date');
+        const title = item.getAttribute('data-title') || item.querySelector('h2').textContent;
+        const summary = item.querySelector('.news-summary').innerHTML;
+        const image = item.querySelector('.news-image img').getAttribute('src');
+        
+        // Create details content (could be expanded in a real implementation)
+        let details = '<p>' + summary.replace(/<\/?p>/g, '') + '</p>';
+        details += '<p>This is expanded content for the news item that would be shown in the modal.</p>';
+        
+        // Push to news data array
+        newsData.push({
+            id,
+            element: item,
+            category,
+            date,
+            title,
+            summary,
+            details,
+            image
+        });
+    });
+    
+    console.log(`Collected data for ${newsData.length} news items`);
+    
+    // Filter and sort function
+    function filterAndSortItems() {
         try {
             const activeFilterLink = document.querySelector('.filter-link.active');
-            if (!activeFilterLink) {
-                console.warn('No active filter link found');
-                return;
-            }
+            if (!activeFilterLink) return;
             
             const selectedCategory = activeFilterLink.getAttribute('data-filter');
             const selectedMonth = monthFilter ? monthFilter.value : 'all';
+            const sortBy = sortByFilter ? sortByFilter.value : 'date-desc';
             
-            let visibleCount = 0;
+            // Apply filters
+            filteredItems = newsData.filter(item => {
+                const categoryMatch = selectedCategory === 'all' || item.category === selectedCategory;
+                const dateMatch = selectedMonth === 'all' || item.date === selectedMonth;
+                return categoryMatch && dateMatch;
+            });
             
-            newsItems.forEach(item => {
-                const itemCategory = item.getAttribute('data-category') || 'all';
-                const itemDate = item.getAttribute('data-date') || '';
-                
-                const categoryMatch = selectedCategory === 'all' || itemCategory === selectedCategory;
-                const dateMatch = selectedMonth === 'all' || itemDate === selectedMonth;
-                
-                if (categoryMatch && dateMatch) {
-                    item.style.display = 'block';
-                    visibleCount++;
-                    
-                    // Add 'visible' class for animations if it's not already there
-                    if (!item.classList.contains('visible')) {
-                        setTimeout(() => {
-                            item.classList.add('visible');
-                        }, 50); // Small delay to allow the display property to update
-                    }
-                } else {
-                    item.style.display = 'none';
-                    item.classList.remove('visible');
+            // Apply sorting
+            filteredItems.sort((a, b) => {
+                switch (sortBy) {
+                    case 'date-asc':
+                        return a.date.localeCompare(b.date);
+                    case 'title-asc':
+                        return a.title.localeCompare(b.title);
+                    case 'title-desc':
+                        return b.title.localeCompare(a.title);
+                    case 'date-desc':
+                    default:
+                        return b.date.localeCompare(a.date);
                 }
             });
             
-            // Show "no results" message if no items are visible
-            if (noResultsMessage) {
-                noResultsMessage.style.display = visibleCount === 0 ? 'block' : 'none';
-            }
+            // Display first page
+            currentPage = 1;
+            displayCurrentPage();
+            updatePagination();
+            
         } catch (error) {
             console.error('Error filtering news items:', error);
         }
     }
     
-    // Set up filter link event listeners
+    // Display current page function
+    function displayCurrentPage() {
+        try {
+            // Hide all news items first
+            newsData.forEach(item => {
+                item.element.style.display = 'none';
+                item.element.classList.remove('visible');
+            });
+            
+            // Calculate start and end index for current page
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = Math.min(startIndex + itemsPerPage, filteredItems.length);
+            
+            // Show items for current page
+            for (let i = startIndex; i < endIndex; i++) {
+                filteredItems[i].element.style.display = 'block';
+                
+                // Add visible class with a slight delay for animation
+                setTimeout(() => {
+                    filteredItems[i].element.classList.add('visible');
+                }, 50 * (i - startIndex));
+            }
+            
+            // Show/hide no results message
+            if (noResultsMessage) {
+                noResultsMessage.style.display = filteredItems.length === 0 ? 'block' : 'none';
+            }
+            
+            // Update pagination visibility
+            if (pagination) {
+                pagination.style.display = filteredItems.length > itemsPerPage ? 'flex' : 'none';
+            }
+            
+        } catch (error) {
+            console.error('Error displaying current page:', error);
+        }
+    }
+    
+    // Update pagination links
+    function updatePagination() {
+        if (!pagination) return;
+        
+        try {
+            // Calculate total pages
+            const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+            
+            // Clear existing pagination links (except prev/next)
+            const paginationContainer = pagination;
+            const prevLink = paginationContainer.querySelector('.prev');
+            const nextLink = paginationContainer.querySelector('.next');
+            
+            // Remove all page number links
+            Array.from(paginationContainer.children).forEach(child => {
+                if (!child.classList.contains('prev') && !child.classList.contains('next')) {
+                    paginationContainer.removeChild(child);
+                }
+            });
+            
+            // Add new page number links
+            for (let i = 1; i <= totalPages; i++) {
+                const pageLink = document.createElement('a');
+                pageLink.href = '#';
+                pageLink.classList.add('pagination-link');
+                pageLink.textContent = i;
+                
+                if (i === currentPage) {
+                    pageLink.classList.add('active');
+                }
+                
+                // Insert before next link
+                paginationContainer.insertBefore(pageLink, nextLink);
+                
+                // Add click event
+                pageLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    currentPage = i;
+                    displayCurrentPage();
+                    updateActivePaginationLink();
+                });
+            }
+            
+            // Update prev/next button states
+            prevLink.style.opacity = currentPage === 1 ? '0.5' : '1';
+            prevLink.style.pointerEvents = currentPage === 1 ? 'none' : 'auto';
+            
+            nextLink.style.opacity = currentPage === totalPages ? '0.5' : '1';
+            nextLink.style.pointerEvents = currentPage === totalPages ? 'none' : 'auto';
+            
+            // Set up prev/next button click events
+            prevLink.onclick = function(e) {
+                e.preventDefault();
+                if (currentPage > 1) {
+                    currentPage--;
+                    displayCurrentPage();
+                    updateActivePaginationLink();
+                }
+            };
+            
+            nextLink.onclick = function(e) {
+                e.preventDefault();
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    displayCurrentPage();
+                    updateActivePaginationLink();
+                }
+            };
+            
+        } catch (error) {
+            console.error('Error updating pagination:', error);
+        }
+    }
+    
+    // Update active pagination link
+    function updateActivePaginationLink() {
+        if (!pagination) return;
+        
+        try {
+            const pageLinks = pagination.querySelectorAll('.pagination-link:not(.prev):not(.next)');
+            pageLinks.forEach((link, index) => {
+                if (index + 1 === currentPage) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+            
+            // Update prev/next button states
+            const prevLink = pagination.querySelector('.prev');
+            const nextLink = pagination.querySelector('.next');
+            const totalPages = pageLinks.length;
+            
+            prevLink.style.opacity = currentPage === 1 ? '0.5' : '1';
+            prevLink.style.pointerEvents = currentPage === 1 ? 'none' : 'auto';
+            
+            nextLink.style.opacity = currentPage === totalPages ? '0.5' : '1';
+            nextLink.style.pointerEvents = currentPage === totalPages ? 'none' : 'auto';
+            
+        } catch (error) {
+            console.error('Error updating active pagination link:', error);
+        }
+    }
+    
+    // Open modal function
+    function openModal(newsItem) {
+        if (!modal || !modalTitle || !modalContent || !modalDate) return;
+        
+        try {
+            const item = newsData.find(item => item.id === newsItem.getAttribute('data-id'));
+            if (!item) return;
+            
+            // Set modal content
+            modalDate.textContent = formatNewsDate(item.date);
+            modalTitle.textContent = item.title;
+            
+            // Create content with image and text
+            let contentHtml = `<img src="${item.image}" alt="${item.title}">`;
+            contentHtml += item.details;
+            
+            modalContent.innerHTML = contentHtml;
+            
+            // Show modal
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            
+        } catch (error) {
+            console.error('Error opening modal:', error);
+        }
+    }
+    
+    // Format date for display (convert from YYYY-MM to Month DD, YYYY)
+    function formatNewsDate(dateStr) {
+        try {
+            // For detailed items with full dates stored in data attributes
+            if (dateStr.match(/\d{4}-\d{2}-\d{2}/)) {
+                const date = new Date(dateStr);
+                return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+            }
+            
+            // For month filter values (YYYY-MM)
+            if (dateStr.match(/\d{4}-\d{2}/)) {
+                const [year, month] = dateStr.split('-');
+                const date = new Date(year, parseInt(month) - 1, 1);
+                return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
+            }
+            
+            return dateStr; // Return as is if not matching expected formats
+        } catch (error) {
+            console.error('Error formatting date:', error);
+            return dateStr;
+        }
+    }
+    
+    // Close modal function
+    function closeModal() {
+        if (!modal) return;
+        
+        modal.style.display = 'none';
+        document.body.style.overflow = ''; // Restore background scrolling
+    }
+    
+    // Set up event listeners
+    
+    // Filter links
     if (filterLinks.length) {
         filterLinks.forEach(link => {
             link.addEventListener('click', function(e) {
@@ -71,88 +314,56 @@ function initNewsPage() {
                 this.classList.add('active');
                 
                 // Apply filters
-                filterNewsItems();
+                filterAndSortItems();
             });
         });
     }
     
-    // Set up month filter event listener
+    // Month filter
     if (monthFilter) {
-        monthFilter.addEventListener('change', filterNewsItems);
+        monthFilter.addEventListener('change', filterAndSortItems);
     }
     
-    // ===== READ MORE/LESS FUNCTIONALITY =====
+    // Sort by filter
+    if (sortByFilter) {
+        sortByFilter.addEventListener('change', filterAndSortItems);
+    }
+    
+    // Read more buttons
     if (readMoreButtons.length) {
         readMoreButtons.forEach(button => {
-            // Log the button for debugging
-            console.log('Setting up button:', button);
-            
-            // Force initialize the display style
-            const newsItem = button.closest('.news-item');
-            if (newsItem) {
-                const details = newsItem.querySelector('.news-details');
-                if (details) {
-                    // Ensure it starts hidden
-                    details.style.display = 'none';
-                }
-            }
-            
             button.addEventListener('click', function(e) {
-                e.preventDefault(); // Prevent default button behavior
-                
-                try {
-                    console.log('Button clicked:', this);
-                    
-                    const newsItem = this.closest('.news-item');
-                    if (!newsItem) {
-                        console.error('No parent news-item found');
-                        return;
-                    }
-                    
-                    const details = newsItem.querySelector('.news-details');
-                    if (!details) {
-                        console.error('No news-details element found');
-                        return;
-                    }
-                    
-                    console.log('Current display state:', details.style.display);
-                    
-                    // Check current state (default to not expanded if style is not set)
-                    const isExpanded = details.style.display === 'block';
-                    
-                    // Toggle display and button text
-                    if (isExpanded) {
-                        details.style.display = 'none';
-                        this.textContent = 'Read more';
-                    } else {
-                        details.style.display = 'block';
-                        this.textContent = 'Read less';
-                    }
-                    
-                    console.log('New display state:', details.style.display);
-                    
-                    // Smooth scroll functionality using a simple implementation
-                    // in case LabUtils is not available
-                    if (!isExpanded) {
-                        const detailsTop = details.getBoundingClientRect().top;
-                        if (detailsTop < 0) {
-                            if (typeof LabUtils !== 'undefined' && LabUtils.smoothScrollTo) {
-                                LabUtils.smoothScrollTo(details, 150);
-                            } else {
-                                // Fallback smooth scroll
-                                newsItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                            }
-                        }
-                    }
-                } catch (error) {
-                    console.error('Error toggling read more/less:', error);
-                }
+                e.preventDefault();
+                openModal(this);
             });
+        });
+    }
+    
+    // Modal close buttons
+    if (modalClose.length) {
+        modalClose.forEach(closeBtn => {
+            closeBtn.addEventListener('click', closeModal);
+        });
+    }
+    
+    // Close modal when clicking outside of modal content
+    if (modal) {
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.style.display === 'block') {
+                closeModal();
+            }
         });
     }
     
     // Initial filtering
-    filterNewsItems();
+    filterAndSortItems();
     
     // Set up fade animations if LabUtils is available
     if (typeof LabUtils !== 'undefined' && LabUtils.setupFadeAnimations) {
