@@ -283,7 +283,7 @@
     font-weight: 600;
     margin-left: var(--spacing-lg);
     transition: color var(--transition-standard);
-    font-family: 'Lora', 'Georgia', 'Times New Roman', serif;
+    font-family: var(--heading-font);
     position: relative;
     letter-spacing: 1px;
     font-size: 16px;

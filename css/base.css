@@ -54,6 +54,14 @@
     /* Layout variables */
     --container-max-width: 1400px;
     --content-max-width: 1000px;
+    
+    /* Typography variables */
+    --heading-font: 'Futura', 'Avenir Next', 'Arial', sans-serif;
+    --body-font: 'Proxima Nova', 'Lato', 'Arial', sans-serif;
+    --heading-weight: 800; /* Extra Bold */
+    --body-weight: 400; /* Regular */
+    --body-size: 16px; /* Minimum body text size per design guide */
+    --line-height: 1.5; /* 1.5x font size as per design guide */
 }
 
 /* Reset and base styles */
@@ -69,60 +77,57 @@ html {
 
 /* Typography */
 body {
-    font-family: 'Poppins', 'Arial', 'Helvetica', sans-serif;
+    font-family: var(--body-font);
     color: var(--color-text);
-    line-height: 1.6;
+    line-height: var(--line-height);
     background-color: var(--color-background);
-    font-size: 14px;
+    font-size: var(--body-size);
+    font-weight: var(--body-weight);
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Lora', 'Georgia', 'Times New Roman', serif;
+    font-family: var(--heading-font);
+    font-weight: var(--heading-weight);
     color: var(--color-primary);
-    font-weight: 700;
     line-height: 1.2;
     margin-bottom: var(--spacing-md);
 }
 
 h1 {
-    font-size: 28px;
+    font-size: 32px;
 }
 
 h2 {
-    font-size: 24px;
+    font-size: 28px;
 }
 
 h3 {
-    font-size: 20px;
+    font-size: 24px;
 }
 
 h4 {
-    font-size: 18px;
+    font-size: 20px;
 }
 
 h5 {
-    font-size: 16px;
-    font-family: 'Poppins', 'Arial', 'Helvetica', sans-serif;
-    font-weight: 600;
+    font-size: 18px;
 }
 
 h6 {
-    font-size: 14px;
-    font-family: 'Poppins', 'Arial', 'Helvetica', sans-serif;
-    font-weight: 600;
+    font-size: 16px;
 }
 
 p {
     margin-bottom: var(--spacing-md);
-    line-height: 1.8;
-    font-size: 14px;
+    line-height: var(--line-height);
+    font-size: var(--body-size);
 }
 
 /* Add a new class for captions/citations */
 .caption, figcaption, .citation {
-    font-size: 12px;
+    font-size: 14px;
     color: var(--color-dark-gray);
-    line-height: 1.5;
+    line-height: var(--line-height);
 }
 
 a {
@@ -142,8 +147,8 @@ ul, ol {
 
 li {
     margin-bottom: var(--spacing-xs);
-    line-height: 1.6;
-    font-size: 14px;
+    line-height: var(--line-height);
+    font-size: var(--body-size);
 }
 
 img {
@@ -194,11 +199,11 @@ img {
 }
 
 .text-lg {
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .text-sm {
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .font-bold {
