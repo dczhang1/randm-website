@@ -37,24 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
     setupHeroAnimation();
     
     // ==============================
-    // Navigation scroll effect
+    // Navigation scroll effect - transparent to beige
     // ==============================
-    const nav = document.querySelector('nav');
-    if (nav) {
-        const handleNavScroll = LabUtils.throttle(() => {
-            if (window.scrollY > 50) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
-        }, 100);
-        
-        // Initial check
-        handleNavScroll();
-        
-        // Add scroll listener
-        window.addEventListener('scroll', handleNavScroll);
-    }
+    const navbarScrollEffect = LabUtils.setupNavbarScroll(50);
     
     // ==============================
     // Mobile Navigation Menu

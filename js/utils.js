@@ -184,6 +184,30 @@ function setupHoverEffects(selector, enterStyles, leaveStyles) {
     });
 }
 
+// Setup navbar transparent to beige transition
+function setupNavbarScroll(threshold = 50) {
+    const navbar = document.querySelector('.navbar');
+    if (!navbar) return;
+    
+    const handleScroll = throttle(() => {
+        if (window.scrollY > threshold) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    }, 100);
+    
+    // Initial check
+    handleScroll();
+    
+    // Add scroll listener
+    window.addEventListener('scroll', handleScroll);
+    
+    return {
+        update: handleScroll
+    };
+}
+
 // Export functions for use in other scripts
 window.LabUtils = {
     throttle,
@@ -192,5 +216,6 @@ window.LabUtils = {
     setupSmoothScrolling,
     setupFadeAnimations,
     setupScrollSpy,
-    setupHoverEffects
+    setupHoverEffects,
+    setupNavbarScroll
 };
