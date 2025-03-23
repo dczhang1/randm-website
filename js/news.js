@@ -261,9 +261,14 @@ function initNewsPage() {
             
             modalContent.innerHTML = contentHtml;
             
-            // Show modal
+            // Show modal with animation
             modal.style.display = 'block';
             document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            
+            // Trigger animation by adding active class after a slight delay
+            setTimeout(() => {
+                modal.classList.add('active');
+            }, 10); // Small delay to ensure the display change has been applied
             
         } catch (error) {
             console.error('Error opening modal:', error);
@@ -297,8 +302,14 @@ function initNewsPage() {
     function closeModal() {
         if (!modal) return;
         
-        modal.style.display = 'none';
-        document.body.style.overflow = ''; // Restore background scrolling
+        // Remove active class first to trigger animation
+        modal.classList.remove('active');
+        
+        // Wait for animation to complete before hiding modal
+        setTimeout(() => {
+            modal.style.display = 'none';
+            document.body.style.overflow = ''; // Restore background scrolling
+        }, 300); // Match to the CSS transition time
     }
     
     // Set up event listeners
