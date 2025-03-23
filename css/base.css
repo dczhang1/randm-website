@@ -5,16 +5,23 @@
  * Color palette and typography based on design guide
  */
 
-:root {
+ :root {
     /* Base color palette */
-    --color-navy: #153448;
-    --color-brown: #948979;
-    --color-blue: #3C5B6F;
-    --color-beige: #DFD0B8;
-    --color-white: #FFFFFF;
-    --color-off-white: #F5F5F5;
-    --color-dark-gray: #333333;
-    --color-black: #000000;
+    --color-navy: #153448; /* Deep Navy Blue */
+    --color-brown: #948979; /* Muted Brown */
+    --color-blue: #3C5B6F; /* Medium Blue */
+    --color-beige: #DFD0B8; /* Light Beige */
+    --color-white: #FFFFFF; /* White */
+    --color-off-white: #F5F5F5; /* Off-White */
+    --color-dark-gray: #333333; /* Dark Gray */
+    --color-black: #000000; /* Black */
+    --color-light-gray: #f8f8f8; /* Light gray for backgrounds */
+    --color-medium-gray: #666; /* Medium gray for notes */
+    
+    /* Transparent versions */
+    --color-navy-70: rgba(21, 52, 72, 0.7);
+    --color-navy-85: rgba(21, 52, 72, 0.85);
+    --color-brown-10: rgba(148, 137, 121, 0.1);
     
     /* Semantic color variables */
     --color-primary: var(--color-navy);
@@ -23,8 +30,12 @@
     --color-background: var(--color-white);
     --color-background-alt: var(--color-off-white);
     --color-background-accent: var(--color-beige);
+    --color-background-light: var(--color-light-gray);
     --color-text: var(--color-dark-gray);
     --color-text-light: var(--color-white);
+    --color-text-muted: var(--color-medium-gray);
+    --color-success: var(--color-blue);
+    --color-success-hover: var(--color-navy);
     
     /* System variables */
     --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.05);
