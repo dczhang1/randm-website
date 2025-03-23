@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publications | Risk and Decision Making Lab</title>
+    <!-- Font Awesome for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        /* Custom compact styles for publications page */
+        .publications {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 1.5rem;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .section-heading {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            border-bottom: 2px solid var(--color-accent);
+            padding-bottom: 0.3rem;
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .count-badge {
+            font-size: 0.8rem;
+            background-color: var(--color-primary);
+            color: white;
+            padding: 0.1rem 0.35rem;
+            border-radius: 1rem;
+            margin-left: 0.5rem;
+            font-weight: 400;
+        }
+        
+        .publications-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.5rem;
+        }
+        
+        .content-section {
+            margin-bottom: 1rem;
+        }
+        
+        .news-filters {
+            margin-bottom: 1rem;
+            padding: 0.75rem 1rem;
+            background-color: #f8f8f8;
+            border-radius: 0.25rem;
+        }
+        
+        .filter-group {
+            margin-bottom: 0.5rem;
+        }
+        
+        @media (min-width: 768px) {
+            .publications-grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+            
+            .filter-container {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body data-page="publications">
+    <nav class="navbar">
+        <div class="navbar__logo">
+            <img src="assets/logo.svg" alt="RANDM Lab Logo" class="navbar__logo-img">
+        </div>
+        <div class="hamburger">
+            <span class="hamburger__line"></span>
+            <span class="hamburger__line"></span>
+            <span class="hamburger__line"></span>
+        </div>
+        <div class="navbar__links">
+            <a href="index.html" class="navbar__link">Home</a>
+            <a href="team.html" class="navbar__link">Team</a>
+            <a href="research.html" class="navbar__link">Research</a>
+            <a href="news.html" class="navbar__link">News</a>
+            <a href="publications.html" class="navbar__link active">Publications</a>
+            <a href="get-involved.html" class="navbar__link">Get Involved</a>
+        </div>
+    </nav>
+    
+    <!-- Add hero banner like in other pages -->
+    <div class="hero hero--sm">
+        <div class="hero__bg"></div>
+        <div class="hero__overlay"></div>
+        <div class="hero__content">
+            <h1 class="hero__title">Publications</h1>
+            <p class="hero__subtitle">Research contributions from our laboratory</p>
+        </div>
+    </div>
+    
+    <main>
+        <!-- Add container with max-width and light gray background -->
+        <div style="background-color: #f5f5f5; padding: 1.5rem 0;">
+            <section class="publications">
+                <!-- Breadcrumb navigation -->
+                <div class="breadcrumbs" style="margin-bottom: 0.75rem; font-size: 0.85rem;">
+                    <a href="index.html">Home</a> &gt; 
+                    <span>Publications</span>
+                </div>
+                
+                <!-- Introduction -->
+                <div class="content-section">
+                    <p class="intro" style="font-size: 0.95rem; margin-bottom: 0.75rem; padding-left: 0.75rem; border-left: 3px solid var(--color-secondary);">
+                        Complete listing of laboratory publications, including peer-reviewed articles, book chapters, and other contributions.
+                    </p>
+                    <p style="font-size: 0.8rem; font-style: italic; color: #666; margin-bottom: 0.75rem;">Note: Underline denotes graduate advisee | ** denotes undergraduate advisee</p>
+                </div>
+                
+                <!-- Compact Search and Filter Tools -->
+                <div class="news-filters">
+                    <div style="display: flex; margin-bottom: 0.75rem;">
+                        <input type="text" id="publication-search" placeholder="Search publications..." 
+                        style="flex: 1; padding: 0.5rem; border: 1px solid var(--color-accent); border-radius: 0.25rem 0 0 0.25rem; font-family: var(--font-body); font-size: 0.9rem;">
+                        <button id="search-button" class="btn btn--secondary" style="border-radius: 0 0.25rem 0.25rem 0; padding: 0.25rem 0.5rem;"><i class="fas fa-search"></i></button>
+                    </div>
+                    
+                    <div class="filter-container">
+                        <div class="filter-group">
+                            <label for="publication-type" style="font-size: 0.85rem; display: block; margin-bottom: 0.25rem;">Type:</label>
+                            <select id="publication-type" class="filter-select" style="width: 100%; padding: 0.4rem; font-size: 0.85rem;">
+                                <option value="all">All Types</option>
+                                <option value="article">Articles</option>
+                                <option value="chapter">Chapters</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="publication-year" style="font-size: 0.85rem; display: block; margin-bottom: 0.25rem;">Year:</label>
+                            <select id="publication-year" class="filter-select" style="width: 100%; padding: 0.4rem; font-size: 0.85rem;">
+                                <option value="all">All Years</option>
+                                <option value="2024">2024</option>
+                                <option value="2023">2023</option>
+                                <option value="2022">2022</option>
+                                <option value="2021">2021</option>
+                                <option value="2020">2020</option>
+                                <option value="2019">2019</option>
+                                <option value="2018">2018</option>
+                                <option value="2017">2017</option>
+                                <option value="2016">2016</option>
+                                <option value="2015">2015</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="sort-by" style="font-size: 0.85rem; display: block; margin-bottom: 0.25rem;">Sort By:</label>
+                            <select id="sort-by" class="filter-select" style="width: 100%; padding: 0.4rem; font-size: 0.85rem;">
+                                <option value="year-desc">Year (Newest First)</option>
+                                <option value="year-asc">Year (Oldest First)</option>
+                                <option value="author">First Author</option>
+                                <option value="title">Title</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Publications List with ultra-compact styling -->
+                <div class="publications-list">
+                    <h2 class="section-heading">Journal Articles <span class="count-badge" id="article-count">(24)</span></h2>
+                    <div id="articles-container" class="publications-grid"></div>
+                    
+                    <h2 class="section-heading">Book Chapters <span class="count-badge" id="chapter-count">(3)</span></h2>
+                    <div id="chapters-container" class="publications-grid"></div>
+                    
+                    <h2 class="section-heading">Other Publications <span class="count-badge" id="other-count">(3)</span></h2>
+                    <div id="other-container" class="publications-grid"></div>
+                    
+                    <div id="no-results" style="padding: 1rem; text-align: center; background-color: #f8f8f8; border-radius: 0.25rem; color: #666; display: none; font-size: 0.9rem;">
+                        <p style="margin: 0;">No publications match your search criteria. Please try different search terms or filters.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <div class="social-links">
+            <a href="#" class="social-link" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="#" class="social-link" title="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-link" title="ResearchGate">
+                <i class="fab fa-researchgate"></i>
+            </a>
+            <a href="mailto:info@rdmlab.edu" class="social-link" title="Email">
+                <i class="fas fa-envelope"></i>
+            </a>
+            <a href="#" class="social-link" title="University">
+                <i class="fas fa-university"></i>
+            </a>
+        </div>
+        <p class="footer__text">© 2025 Risk and Decision Making Lab. All rights reserved.</p>
+    </footer>
+    
+    <script src="js/utils.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/publications.js"></script>
+</body>
+</html>
