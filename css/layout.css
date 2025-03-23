@@ -107,6 +107,10 @@
     font-family: 'Poppins', 'Arial', 'Helvetica', sans-serif;
 }
 
+.social-links {
+    margin-bottom: var(--spacing-md);
+}
+
 /* Flex utilities */
 .flex {
     display: flex;
