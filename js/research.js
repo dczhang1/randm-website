@@ -7,7 +7,7 @@ function initResearchPage() {
     // Set up scroll spy for navigation
     const scrollSpy = LabUtils.setupScrollSpy(
         '.page-section',
-        '.side-navigation a',
+        '.sidebar__link',
         150
     );
     
@@ -24,16 +24,16 @@ function initResearchPage() {
         }
     );
     
-    // Set up hover effects for resource items
+    // Set up hover effects for resource cards
     LabUtils.setupHoverEffects(
-        '.resource-item, .resource-note',
+        '.resource-card',
         {
-            transform: 'translateX(10px)',
-            boxShadow: '0 8px 20px rgba(0, 0, 0, 0.12)'
+            transform: 'translateY(-10px)',
+            boxShadow: '0 12px 25px rgba(0, 0, 0, 0.15)'
         },
         {
-            transform: 'translateX(5px)',
-            boxShadow: '0 4px 15px rgba(0, 0, 0, 0.05)'
+            transform: 'translateY(-5px)',
+            boxShadow: '0 8px 20px rgba(0, 0, 0, 0.1)'
         }
     );
     
@@ -53,10 +53,9 @@ function initResearchPage() {
     // Set up fade animations for specific elements
     LabUtils.setupFadeAnimations([
         '.research-program',
-        '.resource-item',
+        '.resource-card',
         '.publication-category',
-        '.more-publications',
-        '.resource-note'
+        '.more-publications'
     ].join(', '));
     
     console.log('Research page initialized');
