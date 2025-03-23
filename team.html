@@ -35,7 +35,7 @@
         <div class="hero__overlay"></div>
         <div class="hero__content">
             <h1 class="hero__title">Our Team</h1>
-            <p class="hero__subtitle">Meet the interdisciplinary researchers driving our work in decision science and risk analysis.</p>
+            <p class="hero__subtitle">Meet the interdisciplinary researchers driving our work in decision science and organizational psychology.</p>
         </div>
     </div>
     
@@ -59,7 +59,9 @@
                                 Assessment, and Journal of Business and Psychology. He has received over $2.9 million in federal funding from 
                                 the National Science Foundation, and is the recipient of the CAREER Award. During his free time, Don enjoys tennis, 
                                 chess, traveling, cooking, gaming, his dog, and photography.</p>
-                            <a href="https://drive.google.com/file/d/1VsTzM6DWIMvqMVMwf9taIJ7zK1_-MTOF/view?usp=sharing" class="btn" download>Download CV <i class="fas fa-file-download"></i></a>
+                            <div class="pi-actions">
+                                <button class="btn btn--secondary read-more-btn pi-read-more" data-id="pi-don-zhang">Read More</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -220,6 +222,96 @@
         </div>
     </main>
     
+    <!-- PI Modal for expanded info -->
+    <div class="team-modal" id="piModal">
+        <div class="team-modal-content">
+            <span class="team-modal-close">&times;</span>
+            <div class="team-modal-header">
+                <h2 id="modal-name">Don C. Zhang, PhD</h2>
+                <h3 id="modal-title">Principal Investigator</h3>
+            </div>
+            <div class="team-modal-body" id="modal-content">
+                <!-- Content will be dynamically inserted here -->
+                <div class="pi-modal-content">
+                    <div class="pi-modal-image">
+                        <img src="assets/headshot_donzhang.jpg" alt="Dr. Don Zhang" class="pi-photo-lg">
+                    </div>
+                    <div class="pi-modal-info">
+
+                        <section class="pi-section">
+                            <h3>Professional Appointments</h3>
+                            <ul>
+                                <li>Associate Professor, Louisiana State University (2022-Present)</li>
+                                <li>Incoming Chair of Scientific Affairs Committee, SIOP, (2025-present)</li>
+                                <li>I-O Psychology Program Director, Louisiana State University (2021-Present)</li>
+                                <li>Assistant Professor, Louisiana State University (2016-2022)</li>
+                                
+                            </ul>
+                        </section>
+
+                        <section class="pi-section">
+                            <h3>Education</h3>
+                            <ul>
+                                <li>PhD in Industrial and Organizational Psychology, Bowling Green State University</li>
+                                <li>MS in Industrial and Organizational Psychology, Bowling Green State University</li>
+                                <li>BA in Psychology, Michigan State University</li>
+                            </ul>
+                        </section>
+                        
+                        <section class="pi-section">
+                            <h3>Awards and Honors</h3>
+                            <ul>
+                                
+                                <li>LSU Rainmaker Award (2024)</li>
+                                <li>Editor's Commendation, Journal of Business and Psychology (2024)</li>
+                                <li>National Science Foundation CAREER Award (2022)</li>
+                                <li>Journal of Business and Psychology <em>Reviewer of the Year</em>(2021)</li>
+                                <li>Manship Summer Research Fellowship (2017)</li>
+                                <li>Bonnie Sandman Award for I-O Psychology (2014), Bowling Green State University</li>
+                                <li> Schipper Memorial Award, Bowling Green State University</li>
+                            </ul>
+                        </section>
+
+                        <section class="pi-section">
+                            <h3>Editorial Appointments</h3>
+                            <ul>
+                                <li>Associate Editor, Applied Psychology: An International Review (2024-Present)</li>
+                                <li>Board Member, International Journal of Selection and Assessment (2021-Present)</li>
+                                <li>Board Member, Journal of Business and Psychology (2020-Present)</li>
+                                <li>Board Member, Journal of Behavioral Decision Making (2019-Present)</li>
+                                <li>Ad-hoc Reviewer,
+
+                                    <em>Journal of Applied Psychology, Journal of Business and Psychology, Journal of Occupational and Organi-
+                                    zational Psychology, Nature Human Behavior, Journal of Behavioral Decision Making, International Jour-
+                                    nal of Selection and Assessment, Journal of Economic Psychology, Personnel Assessment Decisions,
+                                    
+                                    Journal of Business Research, Journal of Research in Personality, Journal of Happiness Studies, Col-
+                                    labra: Psychology, Psychologist-Manager Journal, Journal of Neuroscience, Psychology, and Economics,
+                                    
+                                    Cognitive Processing, PLOS ONE, Evolutionary Psychology, Personality and Individual Differences, Anal-
+                                    yses of Social Issues and Public Policy, Risk Analysis, Journal of Psychoeducational Assessment, Per-
+                                    sonality Science</em></li>
+                        </section>
+                        
+                        <section class="pi-section">
+                            <h3>Contact Information</h3>
+                            <p>Department of Psychology<br>
+                            Louisiana State University<br>
+                            236 Audubon Hall<br>
+                            Baton Rouge, LA 70803</p>
+                            <p>Email: zhang@lsu.edu<br>
+                            Phone: (225) 578-4093</p>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <div class="team-modal-footer">
+                <a href="https://drive.google.com/file/d/1VsTzM6DWIMvqMVMwf9taIJ7zK1_-MTOF/view?usp=sharing" class="btn" download>Download CV <i class="fas fa-file-download"></i></a>
+                <button class="btn btn--secondary team-modal-close-btn">Close</button>
+            </div>
+        </div>
+    </div>
+    
     <!-- Footer using the new component classes -->
     <footer class="footer">
         <!-- Social Media Links -->
@@ -243,8 +335,9 @@
         <p class="footer__text">© 2025 Risk and Decision Making Lab. All rights reserved.</p>
     </footer>
     
-    <!-- Include the new JavaScript files -->
+    <!-- Include the JavaScript files -->
     <script src="js/utils.js" defer></script>
     <script src="js/main.js" defer></script>
+    <script src="js/team.js" defer></script>
 </body>
 </html>

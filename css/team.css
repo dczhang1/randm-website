@@ -1,0 +1,162 @@
+/* team.css - Team page specific styles */
+
+/* PI Card hover styles */
+.pi-actions {
+    display: flex;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: var(--spacing-md);
+}
+
+.pi-read-more {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity var(--transition-standard), transform var(--transition-standard);
+}
+
+.pi-banner:hover .pi-read-more {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Modal styles for expanded PI info */
+.team-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0);
+    z-index: 1050;
+    overflow-y: auto;
+    padding: var(--spacing-lg);
+    transition: background-color 0.3s ease;
+}
+
+.team-modal.active {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.team-modal-content {
+    background-color: var(--color-background);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+    max-width: 900px;
+    width: 100%;
+    margin: 50px auto;
+    position: relative;
+    padding: var(--spacing-xl);
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.team-modal.active .team-modal-content {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.team-modal-close {
+    position: absolute;
+    top: var(--spacing-md);
+    right: var(--spacing-md);
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--color-primary);
+}
+
+.team-modal-header {
+    margin-bottom: var(--spacing-lg);
+    border-bottom: 1px solid var(--color-background-accent);
+    padding-bottom: var(--spacing-md);
+}
+
+.team-modal-header h2 {
+    margin-bottom: var(--spacing-xs);
+    font-size: 24px;
+}
+
+.team-modal-header h3 {
+    color: var(--color-secondary);
+    font-size: 18px;
+    margin-bottom: 0;
+}
+
+.team-modal-body {
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.team-modal-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--color-background-accent);
+}
+
+/* PI modal content layout */
+.pi-modal-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: var(--spacing-xl);
+}
+
+.pi-modal-image {
+    position: sticky;
+    top: var(--spacing-md);
+}
+
+.pi-photo-lg {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 3px solid var(--color-primary);
+    box-shadow: var(--shadow-md);
+}
+
+.pi-section {
+    margin-bottom: var(--spacing-lg);
+}
+
+.pi-section h3 {
+    color: var(--color-accent);
+    font-size: 18px;
+    margin-bottom: var(--spacing-sm);
+    padding-bottom: var(--spacing-xs);
+    border-bottom: 1px solid var(--color-background-accent);
+}
+
+.pi-section ul {
+    margin-bottom: var(--spacing-md);
+}
+
+.pi-section li {
+    margin-bottom: var(--spacing-xs);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .pi-modal-content {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    .pi-modal-image {
+        position: relative;
+        text-align: center;
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .pi-photo-lg {
+        max-width: 200px;
+    }
+    
+    .team-modal-content {
+        padding: var(--spacing-md);
+    }
+}
