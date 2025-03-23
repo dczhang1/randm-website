@@ -58,6 +58,64 @@
             margin-bottom: 0.5rem;
         }
         
+        /* Research statistics styles */
+        .research-stats-container {
+            background-color: var(--color-primary);
+            color: white;
+            padding: 1.5rem 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0.25rem;
+        }
+        
+        .research-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        
+        .stat-box {
+            text-align: center;
+            padding: 0.75rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 0.25rem;
+            transition: transform 0.2s ease;
+        }
+        
+        .stat-box:hover {
+            transform: translateY(-5px);
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .stat-label {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+        
+        .stats-footer {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+        
+        .scholar-link {
+            color: white;
+            text-decoration: underline;
+            transition: opacity 0.2s ease;
+        }
+        
+        .scholar-link:hover {
+            opacity: 0.9;
+            color: white;
+        }
+        
         @media (min-width: 768px) {
             .publications-grid {
                 grid-template-columns: repeat(1, 1fr);
@@ -67,6 +125,10 @@
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
                 gap: 0.5rem;
+            }
+            
+            .research-stats {
+                grid-template-columns: repeat(4, 1fr);
             }
         }
     </style>
@@ -111,13 +173,35 @@
                     <span>Publications</span>
                 </div>
                 
-                <!-- Introduction -->
-                <div class="content-section">
-                    <p class="intro" style="font-size: 0.95rem; margin-bottom: 0.75rem; padding-left: 0.75rem; border-left: 3px solid var(--color-secondary);">
-                        Complete listing of laboratory publications, including peer-reviewed articles, book chapters, and other contributions.
-                    </p>
-                    <p style="font-size: 0.8rem; font-style: italic; color: #666; margin-bottom: 0.75rem;">Note: Underline denotes graduate advisee | ** denotes undergraduate advisee</p>
+                <!-- Research Statistics Summary -->
+                <div class="research-stats-container fade-in">
+                    <div class="research-stats">
+                        <div class="stat-box">
+                            <div class="stat-number">26</div>
+                            <div class="stat-label">Peer-Reviewed Articles</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">924</div>
+                            <div class="stat-label">Citations</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">14</div>
+                            <div class="stat-label">h-index</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">16</div>
+                            <div class="stat-label">i10-index</div>
+                        </div>
+                    </div>
+                    <div class="stats-footer">
+                        <a href="https://scholar.google.com/citations?user=GTukwAEAAAAJ&hl=en" class="scholar-link" target="_blank">View Google Scholar Profile <i class="fas fa-external-link-alt" style="font-size: 0.8rem;"></i></a>
+                        <span style="margin: 0 0.5rem;">|</span>
+                        <span>Last updated: March 2025</span>
+                    </div>
                 </div>
+                
+                <!-- Introduction -->
+
                 
                 <!-- Compact Search and Filter Tools -->
                 <div class="news-filters">
