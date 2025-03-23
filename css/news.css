@@ -75,11 +75,30 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+    position: relative;
 }
 
 .news-item.card {
     padding: 0;
     overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.news-item.card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(to bottom, rgba(245, 245, 245, 0), rgba(245, 245, 245, 0.9));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.news-item:hover.card::after {
+    opacity: 1;
 }
 
 .news-item .news-image {
@@ -101,6 +120,7 @@
 
 .news-text-content {
     padding: var(--spacing-md);
+    padding-bottom: calc(var(--spacing-md) * 2 + 30px); /* Add extra bottom padding for the button */
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -143,7 +163,22 @@
     margin-top: auto;
     padding: var(--spacing-xs) var(--spacing-md);
     font-size: 12px;
-    align-self: flex-start;
+    align-self: center;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    position: absolute;
+    bottom: var(--spacing-md);
+    left: 0;
+    right: 0;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.news-item:hover .read-more-btn {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Modal styles for expanded news */
