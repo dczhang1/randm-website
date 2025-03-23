@@ -40,9 +40,25 @@ function initNewsPage() {
         const summary = item.querySelector('.news-summary').innerHTML;
         const image = item.querySelector('.news-image img').getAttribute('src');
         
-        // Create details content (could be expanded in a real implementation)
+        // Get expanded content from data attribute if it exists
+        const expandedContent = item.getAttribute('data-expanded-content');
+        
+        // Create details content with expanded content if available
         let details = '<p>' + summary.replace(/<\/?p>/g, '') + '</p>';
-        details += '<p>This is expanded content for the news item that would be shown in the modal.</p>';
+        
+        // Use expanded content from data attribute if available, otherwise use default text
+        if (expandedContent) {
+            details += expandedContent;
+        } else {
+            // Check for a hidden news-details element
+            const detailsElement = item.querySelector('.news-details');
+            if (detailsElement) {
+                details += detailsElement.innerHTML;
+            } else {
+                // Default fallback text
+                details += '<p>This is expanded content for the news item that would be shown in the modal.</p>';
+            }
+        }
         
         // Push to news data array
         newsData.push({
