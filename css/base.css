@@ -58,7 +58,7 @@
     /* Typography variables */
     --heading-font: 'Futura', 'Avenir Next', 'Arial', sans-serif;
     --body-font: 'Proxima Nova', 'Lato', 'Arial', sans-serif;
-    --heading-weight: 600; /* Bold */
+    --heading-weight: 500; /* Bold */
     --body-weight: 400; /* Regular */
     --body-size: 16px; /* Minimum body text size per design guide */
     --line-height: 1.5; /* 1.5x font size as per design guide */
@@ -165,6 +165,12 @@ img {
 
 .content-container {
     max-width: var(--content-max-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+}
+
+.content-container-narrow {
+    max-width: 800px; 
     margin: 0 auto;
     padding: 0 var(--spacing-lg);
 }
