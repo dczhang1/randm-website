@@ -12,7 +12,7 @@
 .research-program h3 {
     font-size: 20px;
     margin-bottom: var(--spacing-md);
-    font-family: 'Lora', 'Georgia', 'Times New Roman', serif;
+    font-family: var(--heading-font);
 }
 
 .research-program ul li {
@@ -45,7 +45,8 @@
     padding: var(--spacing-lg);
     display: flex;
     flex-direction: column;
-    aspect-ratio: 1 / 1;
+    min-height: 300px; /* Set minimum height instead of aspect ratio */
+    height: 100%; /* Allow height to grow as needed */
     transition: transform var(--transition-standard), box-shadow var(--transition-standard);
     position: relative;
     border-top: 3px solid var(--color-accent);
@@ -61,6 +62,7 @@
     font-size: 18px;
     margin-bottom: var(--spacing-sm);
     color: var(--color-primary);
+    font-family: var(--heading-font);
 }
 
 .resource-card p {
@@ -95,6 +97,10 @@
     .resources-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+    
+    .resource-card {
+        height: 100%; /* Ensure full height in grid */
+    }
 }
 
 @media (min-width: 992px) {
@@ -114,7 +120,7 @@
     margin-bottom: var(--spacing-md);
     padding-bottom: var(--spacing-xs);
     border-bottom: 1px solid #e0e0e0;
-    font-family: 'Lora', 'Georgia', 'Times New Roman', serif;
+    font-family: var(--heading-font);
 }
 
 .publication-list {
