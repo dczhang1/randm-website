@@ -1,5 +1,14 @@
 /* team.css - Team page specific styles */
 
+/* Team grid specific styling */
+.team .grid {
+    gap: var(--spacing-sm); /* Even smaller gap for team grid */
+}
+
+.team .team-member {
+    padding: var(--spacing-xs); /* Even smaller padding for team members */
+}
+
 /* PI Card hover styles */
 .pi-actions {
     display: flex;

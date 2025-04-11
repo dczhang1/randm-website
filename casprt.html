@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculated and Spontaneous Risk Taking Scale (CASPRT) | Risk and Decision Making Lab</title>
+    <!-- Font Awesome for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        /* Main layout styles */
+        .page-container {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+        
+        /* Side navigation */
+        .side-nav {
+            position: sticky;
+            top: 100px;
+            width: 250px;
+            height: fit-content;
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-right: 30px;
+            flex-shrink: 0;
+        }
+        
+        .side-nav h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 1.2rem;
+        }
+        
+        .side-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .side-nav li {
+            margin-bottom: 10px;
+        }
+        
+        .side-nav a {
+            display: block;
+            padding: 8px 12px;
+            color: #495057;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+        
+        .side-nav a:hover, .side-nav a.active {
+            background: #e9ecef;
+            color: #007bff;
+            padding-left: 15px;
+        }
+        
+        /* Main content area */
+        .main-content {
+            flex: 1;
+            max-width: 900px;
+        }
+        
+        /* Section styling */
+        .content-section {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .section-anchor {
+            scroll-margin-top: 100px;
+        }
+        
+        /* Risk style cards */
+        .risk-style {
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .calculated {
+            background-color: #e3f2fd;
+            border-left: 4px solid #1976d2;
+        }
+        
+        .spontaneous {
+            background-color: #fce4ec;
+            border-left: 4px solid #c2185b;
+        }
+        
+        /* Chart containers */
+        .chart-container {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .chart-placeholder {
+            width: 100%;
+            height: 300px;
+            background: #e9ecef;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-style: italic;
+        }
+        
+        /* Tab styling */
+        .tab-container {
+            margin: 20px 0;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #dee2e6;
+            margin-bottom: 20px;
+        }
+        
+        .tab-btn {
+            padding: 10px 15px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .tab-btn.active {
+            border-bottom: 2px solid #007bff;
+            color: #007bff;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Application cards */
+        .application-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .application-card {
+            padding: 20px;
+            border-radius: 8px;
+            background: #f8f9fa;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        /* Download cards */
+        .downloads-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .download-card {
+            padding: 20px;
+            border-radius: 8px;
+            background: #f8f9fa;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            padding: 8px 15px;
+            background: #007bff;
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+        
+        .download-btn:hover {
+            background: #0069d9;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .page-container {
+                flex-direction: column;
+            }
+            
+            .side-nav {
+                position: relative;
+                top: 0;
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body data-page="detailed-content">
+    <nav class="navbar">
+        <div class="navbar__logo">
+            <img src="assets/logo.svg" alt="RANDM Lab Logo" class="navbar__logo-img">
+        </div>
+        <div class="hamburger">
+            <span class="hamburger__line"></span>
+            <span class="hamburger__line"></span>
+            <span class="hamburger__line"></span>
+        </div>
+        <div class="navbar__links">
+            <a href="index.html" class="navbar__link">Home</a>
+            <a href="team.html" class="navbar__link">Team</a>
+            <a href="research.html" class="navbar__link">Research</a>
+            <a href="news.html" class="navbar__link">News</a>
+            <a href="get-involved.html" class="navbar__link">Get Involved</a>
+        </div>
+    </nav>
+    
+    <main>
+        <section class="detailed-content">
+            <!-- Breadcrumb navigation -->
+            <div class="breadcrumbs">
+                <a href="index.html">Home</a> &gt; 
+                <a href="research.html">Research</a> &gt; 
+                <span>Calculated and Spontaneous Risk Taking Scale (CASPRT)</span>
+            </div>
+            
+            <h1>Calculated and Spontaneous Risk Taking Scale (CASPRT)</h1>
+            
+            <div class="page-container">
+                <!-- Side Navigation -->
+                <div class="side-nav">
+                    <h3>Page Sections</h3>
+                    <ul>
+                        <li><a href="#overview">Overview</a></li>
+                        <li><a href="#about">About the Scale</a></li>
+                        <li><a href="#findings">Research Findings</a></li>
+                        <li><a href="#applications">Applications</a></li>
+                        <li><a href="#resources">Resources</a></li>
+                        <li><a href="#take-assessment">Take Assessment</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Main Content -->
+                <div class="main-content">
+                    <!-- Overview Section -->
+                    <div id="overview" class="content-section fade-in section-anchor">
+                        <h2>Overview</h2>
+                        <p class="intro">The Calculated and Spontaneous Risk-Taking Scale (CASPRT) is a validated 12-item measure that assesses individual differences in risk-taking styles. Based on dual-process theory, the CASPRT distinguishes between two distinct approaches to risk: calculated risk-taking (taking risks after careful deliberation of potential outcomes) and spontaneous risk-taking (taking risks based on feelings or impulses, often overlooking potential consequences).</p>
+                        
+                        <div class="grid-container">
+                            <div class="risk-style calculated">
+                                <h3>Calculated Risk-Taking</h3>
+                                <p>The tendency to take risks after deliberate consideration of potential outcomes, with careful weighing of benefits against costs.</p>
+                            </div>
+                            <div class="risk-style spontaneous">
+                                <h3>Spontaneous Risk-Taking</h3>
+                                <p>The tendency to take risks based on feelings or impulses, often without fully considering potential consequences.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="chart-container">
+                            <h3>Risk-Taking Styles Conceptual Model</h3>
+                            <div class="chart-placeholder">
+                                [Dual-process model diagram showing calculated vs. spontaneous risk-taking]
+                            </div>
+                        </div>
+                        
+                        <p class="citation"><strong>Citation:</strong> Zhang, D. C., & Smith, R. W. (2025). Development and Validation of the Calculated and Spontaneous Risk-Taking Scale (CASPRT). <em>Journal of Behavioral Decision Making</em>.</p>
+                    </div>
+                    
+                    <!-- About the Scale Section -->
+                    <div id="about" class="content-section fade-in section-anchor">
+                        <h2>About the Scale</h2>
+                        <p>The CASPRT is a 12-item measure developed and validated across seven studies with over 2,100 participants.</p>
+                        
+                        <div class="chart-container">
+                            <h3>Scale Structure</h3>
+                            <div class="chart-placeholder">
+                                [Two-factor model diagram showing calculated and spontaneous risk items]
+                            </div>
+                        </div>
+                        
+                        <div class="scale-info">
+                            <h3>Response Format</h3>
+                            <p>Each item is rated on a 5-point Likert scale:</p>
+                            <ol class="response-anchors">
+                                <li>Strongly Disagree</li>
+                                <li>Disagree</li>
+                                <li>Neutral</li>
+                                <li>Agree</li>
+                                <li>Strongly Agree</li>
+                            </ol>
+                            
+                            <h3>Items</h3>
+                            <div class="scale-items">
+                                <div class="scale-column calculated">
+                                    <h4>Calculated Risk-Taking Subscale</h4>
+                                    <ol>
+                                        <li>I tend to take calculated risks in my everyday life</li>
+                                        <li>I am willing to take risks after careful consideration of the potential outcomes</li>
+                                        <li>I consider myself a calculated risk taker</li>
+                                        <li>I believe taking calculated risks is important to achieve your goals</li>
+                                        <li>I enjoy taking risks that involve calculation</li>
+                                        <li>My friends would consider me as someone that takes calculated risks</li>
+                                    </ol>
+                                </div>
+                                
+                                <div class="scale-column spontaneous">
+                                    <h4>Spontaneous Risk-Taking Subscale</h4>
+                                    <ol>
+                                        <li>I enjoy the thrill of taking risks without thinking</li>
+                                        <li>I am attracted to risky activities where I don't know what will happen</li>
+                                        <li>I don't think much about the consequences of risky decisions. I just make them</li>
+                                        <li>I find it difficult to resist the urge to take risks</li>
+                                        <li>I am a spontaneous risk taker</li>
+                                        <li>I often jump into risky situations without thinking through them</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h3>Scoring Instructions</h3>
+                        <p>Each item is rated on a 5-point Likert scale (1 = strongly disagree to 5 = strongly agree). Subscale scores are calculated by averaging responses to the six items in each dimension.</p>
+                    </div>
+                    
+                    <!-- Research Findings Section -->
+                    <div id="findings" class="content-section fade-in section-anchor">
+                        <h2>Research Findings</h2>
+                        
+                        <div class="tab-container">
+                            <div class="tabs">
+                                <button class="tab-btn active" data-tab="overview-findings">Overview</button>
+                                <button class="tab-btn" data-tab="factor-structure">Factor Structure</button>
+                                <button class="tab-btn" data-tab="nomological">Nomological Network</button>
+                                <button class="tab-btn" data-tab="demographics">Demographics</button>
+                                <button class="tab-btn" data-tab="outcomes">Outcomes</button>
+                            </div>
+                            
+                            <!-- Overview Tab Content -->
+                            <div id="overview-findings" class="tab-content active">
+                                <div class="chart-container">
+                                    <h3>Key Research Findings</h3>
+                                    <div class="chart-placeholder">
+                                        [Summary chart showing key findings across studies]
+                                    </div>
+                                </div>
+                                
+                                <div class="findings-grid">
+                                    <div class="finding-card psychometric">
+                                        <h4>Psychometric Structure</h4>
+                                        <ul>
+                                            <li>Two-factor structure confirmed with excellent fit indices</li>
+                                            <li>Moderate correlation between calculated and spontaneous risk (r = .41)</li>
+                                            <li>Strong measurement invariance across age and gender groups</li>
+                                        </ul>
+                                    </div>
+                                    <div class="finding-card nomological">
+                                        <h4>Nomological Network</h4>
+                                        <ul>
+                                            <li>Distinct relationships with Big Five personality traits</li>
+                                            <li>Calculated risk correlates with analytical thinking measures</li>
+                                            <li>Spontaneous risk correlates with intuitive processing</li>
+                                        </ul>
+                                    </div>
+                                    <div class="finding-card behavioral">
+                                        <h4>Behavioral Differences</h4>
+                                        <ul>
+                                            <li>Calculated risk-takers show greater variability across situations</li>
+                                            <li>Calculated risk predicts adaptive outcomes (creativity, entrepreneurship)</li>
+                                            <li>Spontaneous risk predicts potentially problematic behaviors</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Factor Structure Tab Content -->
+                            <div id="factor-structure" class="tab-content">
+                                <div class="chart-container">
+                                    <h3>Factor Structure</h3>
+                                    <div class="chart-placeholder">
+                                        [Path diagram showing factor structure and loadings]
+                                    </div>
+                                </div>
+                                
+                                <div class="table-container">
+                                    <h4>Model Fit Indices</h4>
+                                    <table class="findings-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Model</th>
+                                                <th>RMSEA</th>
+                                                <th>SRMR</th>
+                                                <th>CFI</th>
+                                                <th>TLI</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>One-Factor</td>
+                                                <td>0.187</td>
+                                                <td>0.147</td>
+                                                <td>0.703</td>
+                                                <td>0.637</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Two-Factor</td>
+                                                <td>0.048</td>
+                                                <td>0.049</td>
+                                                <td>0.981</td>
+                                                <td>0.976</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Bi-Factor</td>
+                                                <td>0.000</td>
+                                                <td>0.034</td>
+                                                <td>1.000</td>
+                                                <td>1.034</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            <!-- Nomological Network Tab Content -->
+                            <div id="nomological" class="tab-content">
+                                <div class="chart-container">
+                                    <h3>Nomological Network</h3>
+                                    <div class="chart-placeholder">
+                                        [Correlation matrix heatmap showing relationships with other constructs]
+                                    </div>
+                                </div>
+                                
+                                <h4>Big Five Personality Traits</h4>
+                                <p>
+                                    Both risk styles are associated with extraversion, but calculated risk-taking positively correlates with conscientiousness while spontaneous risk-taking negatively correlates with it.
+                                </p>
+                                
+                                <h4>Cognitive Traits</h4>
+                                <p>
+                                    Calculated risk-taking is associated with analytical thinking styles (need for cognition, rational decision style, numeracy), while spontaneous risk-taking is associated with intuitive processing and lower analytical thinking.
+                                </p>
+                            </div>
+                            
+                            <!-- Demographics Tab Content -->
+                            <div id="demographics" class="tab-content">
+                                <div class="chart-container">
+                                    <h3>Demographic Differences</h3>
+                                    <div class="chart-placeholder">
+                                        [Bar charts showing age and gender differences]
+                                    </div>
+                                </div>
+                                
+                                <h4>Age Differences</h4>
+                                <p>
+                                    Both risk styles decline with age (r = -.16), but calculated risk-taking shows a slight increase in early adulthood before declining.
+                                </p>
+                                
+                                <h4>Sex Differences</h4>
+                                <p>
+                                    Men score slightly higher than women on both risk styles, but the effect size is larger for calculated risk-taking (Cohen's d = 0.28 for calculated, d = 0.12 for spontaneous).
+                                </p>
+                            </div>
+                            
+                            <!-- Outcomes Tab Content -->
+                            <div id="outcomes" class="tab-content">
+                                <div class="chart-container">
+                                    <h3>Risk Styles and Outcomes</h3>
+                                    <div class="chart-placeholder">
+                                        [Path diagram showing relationships with outcomes]
+                                    </div>
+                                </div>
+                                
+                                <div class="research-findings">
+                                    <div class="finding-group">
+                                        <h4>Calculated Risk-Taking is associated with:</h4>
+                                        <ul>
+                                            <li>Higher creativity and innovation</li>
+                                            <li>Better general health</li>
+                                            <li>Greater eudaimonic well-being</li>
+                                            <li>Higher work status</li>
+                                            <li>Stronger entrepreneurial intentions</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="finding-group">
+                                        <h4>Spontaneous Risk-Taking is associated with:</h4>
+                                        <ul>
+                                            <li>Higher likelihood of safety violations</li>
+                                            <li>Increased counterproductive behaviors</li>
+                                            <li>More traffic tickets and accidents</li>
+                                            <li>Greater likelihood of problematic gambling</li>
+                                            <li>Higher rates of impulsive decisions</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Applications Section -->
+                    <div id="applications" class="content-section fade-in section-anchor">
+                        <h2>Practical Applications</h2>
+                        <p class="intro-text">
+                            Our research on calculated and spontaneous risk-taking styles has important implications for various stakeholders beyond academic research.
+                        </p>
+                        
+                        <div class="chart-container">
+                            <h3>Applications by Stakeholder Group</h3>
+                            <div class="chart-placeholder">
+                                [Diagram showing applications for different stakeholder groups]
+                            </div>
+                        </div>
+                        
+                        <section class="application-section">
+                            <h3>For Organizational Leaders & Managers</h3>
+                            <div class="application-grid">
+                                <div class="application-card">
+                                    <h4>Selection & Team Composition</h4>
+                                    <ul>
+                                        <li><strong>Talent Selection:</strong> Consider risk style profiles when hiring for positions that require different types of decision-making.</li>
+                                        <li><strong>Team Balance:</strong> Build complementary teams with both calculated and spontaneous risk-takers to balance careful consideration with innovative impulses.</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="application-card">
+                                    <h4>Leadership Development</h4>
+                                    <ul>
+                                        <li><strong>Self-Awareness:</strong> Help leaders understand their own risk style and how it influences their decision-making process.</li>
+                                        <li><strong>Adaptability Training:</strong> Develop leaders' capacity to engage in both calculated and spontaneous risk-taking as situations demand.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+                        
+                        <section class="application-section">
+                            <h3>For Educators & Academic Institutions</h3>
+                            <div class="application-grid">
+                                <div class="application-card">
+                                    <h4>Student Development</h4>
+                                    <ul>
+                                        <li><strong>Risk Education:</strong> Teach students about calculated risk-taking as a skill that can be developed, not just an innate tendency.</li>
+                                        <li><strong>Career Guidance:</strong> Help students understand how their risk style might align with different career paths.</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="application-card">
+                                    <h4>Curriculum Design</h4>
+                                    <ul>
+                                        <li><strong>Balanced Approach:</strong> Create learning activities that develop both deliberative and intuitive decision-making skills.</li>
+                                        <li><strong>Assessment Variety:</strong> Design assignments that reward both careful analysis and creative intuition.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+                        
+                        <section class="key-takeaway">
+                            <h3>Key Takeaway</h3>
+                            <p>
+                                Our research indicates that calculated risk-taking is significantly associated with positive life outcomes—including creativity, entrepreneurship, health, and wellbeing—without the negative consequences often linked to spontaneous risk-taking.
+                            </p>
+                        </section>
+                    </div>
+                    
+                    <!-- Resources Section -->
+                    <div id="resources" class="content-section fade-in section-anchor">
+                        <h2>Resources</h2>
+                        
+                        <section class="resources-section">
+                            <h3>Download Materials</h3>
+                            <div class="downloads-grid">
+                                <div class="download-card">
+                                    <h4>CASPRT Scale</h4>
+                                    <p>The complete 12-item scale with administration instructions.</p>
+                                    <a href="#" class="download-btn">Download PDF</a>
+                                </div>
+                                
+                                <div class="download-card">
+                                    <h4>Scoring Guide</h4>
+                                    <p>Detailed instructions for scoring and interpreting the CASPRT.</p>
+                                    <a href="#" class="download-btn">Download PDF</a>
+                                </div>
+                                
+                                <div class="download-card">
+                                    <h4>Research Summary</h4>
+                                    <p>A brief overview of the research findings for practitioners.</p>
+                                    <a href="#" class="download-btn">Download PDF</a>
+                                </div>
+                                
+                                <div class="download-card">
+                                    <h4>Data Analysis Code</h4>
+                                    <p>R code for analyzing CASPRT data and computing scores.</p>
+                                    <a href="#" class="download-btn">Download R Code</a>
+                                </div>
+                            </div>
+                        </section>
+                        
+                        <section class="resources-section">
+                            <h3>Data Repository</h3>
+                            <p>
+                                All study data, materials, and code are available on the Open Science Framework:
+                            </p>
+                            <div class="repository-link">
+                                <a href="https://osf.io/ade8q/?view_only=ba91e4d8ebd046b8a7a12756c082af00" target="_blank" class="osf-link">
+                                    <span>Access the OSF Repository</span>
+                                </a>
+                            </div>
+                        </section>
+                    </div>
+                    
+                    <!-- Take Assessment Section -->
+                    <div id="take-assessment" class="content-section fade-in section-anchor">
+                        <h2>Take the Assessment</h2>
+                        <p>Want to learn about your own risk-taking style? Take our assessment to discover your profile.</p>
+                        <a href="#" class="cta-button">Assess Your Risk-Taking Style</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Back button or related links -->
+            <div class="content-nav fade-in">
+                <a href="research.html" class="content-nav__back">&larr; Back to Research</a>
+                
+                <div class="content-nav__related">
+                    <h3 class="content-nav__related-title">Related Content:</h3>
+                    <ul class="content-nav__related-list">
+                        <li><a href="grips.html">General Risk Propensity Scale (GRiPS)</a></li>
+                        <li><a href="news.html">Recent Publications</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>Don C. Zhang, Ph.D.</p>
+                <p>Department of Psychology</p>
+                <p>Louisiana State University</p>
+                <p>Email: zhang1@lsu.edu</p>
+            </div>
+            <div class="footer-section">
+                <h3>Links</h3>
+                <ul>
+                    <li><a href="https://osf.io/ade8q/">OSF Repository</a></li>
+                    <li><a href="#resources">Download the Scale</a></li>
+                    <li><a href="#take-assessment">Take the Assessment</a></li>
+                </ul>
+            </div>
+        </div>
+        <p class="footer__text">© 2025 Risk and Decision Making Lab. All rights reserved.</p>
+    </footer>
+    
+    <script src="js/utils.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/detailed-content.js"></script>
+    <script>
+        // Tab functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons and contents
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Add active class to clicked button and corresponding content
+                    button.classList.add('active');
+                    const tabId = button.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Update active state in navigation
+                        document.querySelectorAll('.side-nav a').forEach(link => {
+                            link.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                    }
+                });
+            });
+            
+            // Highlight current section in navigation
+            window.addEventListener('scroll', function() {
+                const sections = document.querySelectorAll('.section-anchor');
+                let currentSection = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 150;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
+                        currentSection = '#' + section.getAttribute('id');
+                    }
+                });
+                
+                document.querySelectorAll('.side-nav a').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === currentSection) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

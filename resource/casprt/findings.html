@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Findings - CASPRT</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/findings.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>CASPRT</h1>
+            <p class="subtitle">Calculated and Spontaneous Risk-Taking Scale</p>
+        </div>
+    </header>
+    
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About the Scale</a></li>
+                <li><a href="findings.html" class="active">Research Findings</a></li>
+                <li><a href="applications.html">Practical Applications</a></li>
+                <li><a href="take-scale.html">Take the Scale</a></li>
+                <li><a href="resources.html">Resources</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <main class="container">
+        <div class="card">
+            <h2>Comprehensive Research Findings</h2>
+            
+            <div class="tab-container">
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="overview">Overview</button>
+                    <button class="tab-btn" data-tab="factor-structure">Factor Structure</button>
+                    <button class="tab-btn" data-tab="nomological">Nomological Network</button>
+                    <button class="tab-btn" data-tab="demographics">Demographics</button>
+                    <button class="tab-btn" data-tab="variability">Risk Variability</button>
+                    <button class="tab-btn" data-tab="outcomes">Outcomes</button>
+                </div>
+                
+                <!-- Overview Tab Content -->
+                <div id="overview" class="tab-content active">
+                    <h3>Overview of Findings</h3>
+                    <p class="intro-text">
+                        Our research across seven studies (N = 2,116) established the psychometric properties and predictive validity of the Calculated and Spontaneous Risk-Taking Scale (CASPRT). Here are the key findings:
+                    </p>
+                    <div class="findings-grid">
+                        <div class="finding-card psychometric">
+                            <h4>Psychometric Structure</h4>
+                            <ul>
+                                <li>Two-factor structure confirmed with excellent fit indices</li>
+                                <li>Moderate correlation between calculated and spontaneous risk (r = .41)</li>
+                                <li>Bi-factor model indicates both general risk factor and specific styles</li>
+                                <li>Strong measurement invariance across age and gender groups</li>
+                            </ul>
+                        </div>
+                        <div class="finding-card nomological">
+                            <h4>Nomological Network</h4>
+                            <ul>
+                                <li>Distinct relationships with Big Five personality traits</li>
+                                <li>Calculated risk correlates with analytical thinking measures</li>
+                                <li>Spontaneous risk correlates with intuitive processing</li>
+                                <li>Both styles correlate with established risk measures</li>
+                            </ul>
+                        </div>
+                        <div class="finding-card behavioral">
+                            <h4>Behavioral Differences</h4>
+                            <ul>
+                                <li>Calculated risk-takers show greater variability across situations</li>
+                                <li>Calculated risk predicts adaptive outcomes (creativity, entrepreneurship)</li>
+                                <li>Spontaneous risk predicts potentially problematic behaviors</li>
+                                <li>Incremental validity beyond Big Five personality traits</li>
+                            </ul>
+                        </div>
+                        <div class="finding-card demographic">
+                            <h4>Demographic Patterns</h4>
+                            <ul>
+                                <li>Men score higher than women on both risk styles</li>
+                                <li>Risk-taking decreases with age for both styles</li>
+                                <li>Calculated risk shows slight increase in early adulthood before declining</li>
+                                <li>Education and income positively relate to calculated risk</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Factor Structure Tab Content -->
+                <div id="factor-structure" class="tab-content">
+                    <h3>Factor Structure</h3>
+                    <p>
+                        Confirmatory factor analyses showed that a two-factor model with calculated and spontaneous risk-taking as separate but correlated factors provides excellent fit (RMSEA = 0.048; SRMR = 0.049; CFI = 0.981; TLI = 0.976). A bi-factor model also fit well, suggesting items reflect both a general risk factor and specific risk styles.
+                    </p>
+                    
+                    <div class="chart-container">
+                        <canvas id="factorLoadingsChart"></canvas>
+                    </div>
+                    
+                    <p>
+                        The bi-factor model showed that the general factor accounted for 51% of common variance (ECV = 0.51), demonstrating substantial shared variance between calculated and spontaneous risk-taking, yet the specific factors showed sufficient construct replicability (H = 0.69-0.82) to justify their separate interpretation.
+                    </p>
+                    
+                    <div class="table-container">
+                        <h4>Model Fit Indices</h4>
+                        <table class="findings-table">
+                            <thead>
+                                <tr>
+                                    <th>Model</th>
+                                    <th>RMSEA</th>
+                                    <th>SRMR</th>
+                                    <th>CFI</th>
+                                    <th>TLI</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>One-Factor</td>
+                                    <td>0.187</td>
+                                    <td>0.147</td>
+                                    <td>0.703</td>
+                                    <td>0.637</td>
+                                </tr>
+                                <tr>
+                                    <td>Two-Factor</td>
+                                    <td>0.048</td>
+                                    <td>0.049</td>
+                                    <td>0.981</td>
+                                    <td>0.976</td>
+                                </tr>
+                                <tr>
+                                    <td>Second-Order</td>
+                                    <td>0.118</td>
+                                    <td>0.130</td>
+                                    <td>0.925</td>
+                                    <td>0.908</td>
+                                </tr>
+                                <tr>
+                                    <td>Bi-Factor</td>
+                                    <td>0.000</td>
+                                    <td>0.034</td>
+                                    <td>1.000</td>
+                                    <td>1.034</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Nomological Network Tab Content -->
+                <div id="nomological" class="tab-content">
+                    <h3>Nomological Network</h3>
+                    <p>
+                        The CASPRT demonstrated distinct patterns of relationships with personality traits, cognitive styles, and other risk measures, establishing its place in the nomological network of psychological constructs.
+                    </p>
+                    
+                    <h4>Big Five Personality Traits</h4>
+                    <div class="chart-container">
+                        <canvas id="bigFiveChart"></canvas>
+                    </div>
+                    <p>
+                        Both risk styles are associated with extraversion, but calculated risk-taking positively correlates with conscientiousness while spontaneous risk-taking negatively correlates with it. This pattern is theoretically consistent, as conscientiousness involves careful planning and deliberation.
+                    </p>
+                    
+                    <h4>Cognitive Traits</h4>
+                    <div class="chart-container">
+                        <canvas id="cognitiveTraitsChart"></canvas>
+                    </div>
+                    <p>
+                        Calculated risk-taking is associated with analytical thinking styles (need for cognition, rational decision style, numeracy), while spontaneous risk-taking is associated with intuitive processing and lower analytical thinking. This pattern supports the theoretical foundation of the scale in dual-process theories of thinking.
+                    </p>
+                    
+                    <h4>Established Risk Measures</h4>
+                    <div class="chart-container">
+                        <canvas id="riskMeasuresChart"></canvas>
+                    </div>
+                    <p>
+                        Both calculated and spontaneous risk styles show strong positive correlations with established risk measures (DOSPERT and GRiPS), confirming that the CASPRT captures core elements of risk propensity while offering additional nuance in distinguishing between different styles of risk-taking.
+                    </p>
+                </div>
+                
+                <!-- Demographics Tab Content -->
+                <div id="demographics" class="tab-content">
+                    <h3>Demographic Differences</h3>
+                    
+                    <h4>Age Differences</h4>
+                    <p>
+                        Both risk styles decline with age (r = -.16), but calculated risk-taking shows a slight increase in early adulthood before declining.
+                    </p>
+                    <div class="chart-container">
+                        <canvas id="ageChart"></canvas>
+                    </div>
+                    
+                    <h4>Sex Differences</h4>
+                    <p>
+                        Men score slightly higher than women on both risk styles, but the effect size is larger for calculated risk-taking (Cohen's d = 0.28 for calculated, d = 0.12 for spontaneous).
+                    </p>
+                    <div class="chart-container">
+                        <canvas id="sexChart"></canvas>
+                    </div>
+                    
+                    <h4>Measurement Invariance</h4>
+                    <p>
+                        The CASPRT demonstrates strong measurement invariance across sex, age groups, and different samples. This indicates that the scale functions similarly across demographic groups, allowing for valid comparisons of scores between different populations.
+                    </p>
+                    <div class="invariance-info">
+                        <table class="findings-table">
+                            <thead>
+                                <tr>
+                                    <th>Group</th>
+                                    <th>Configural Invariance</th>
+                                    <th>Metric Invariance</th>
+                                    <th>Scalar Invariance</th>
+                                    <th>Strict Invariance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Sex</td>
+                                    <td class="check">✓</td>
+                                    <td class="check">✓</td>
+                                    <td class="check">✓</td>
+                                    <td class="check">✓</td>
+                                </tr>
+                                <tr>
+                                    <td>Age Groups</td>
+                                    <td class="check">✓</td>
+                                    <td class="check">✓</td>
+                                    <td class="check">✓</td>
+                                    <td class="check">✓</td>
+                                </tr>
+                                <tr>
+                                    <td>Sample Source</td>
+                                    <td class="check">✓</td>
+                                    <td class="check">✓</td>
+                                    <td class="check">✓</td>
+                                    <td class="check">✓</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Risk Variability Tab Content -->
+                <div id="variability" class="tab-content">
+                    <h3>Risk Attitude Variability</h3>
+                    <p>
+                        A key finding of our research is that calculated and spontaneous risk-takers differ in how consistently they approach risk across different domains and situations.
+                    </p>
+                    
+                    <div class="chart-container">
+                        <canvas id="variabilityChart"></canvas>
+                    </div>
+                    
+                    <div class="interpretation-box">
+                        <h4>Interpretation</h4>
+                        <p>
+                            Calculated risk-takers show significantly more variability in their risk attitudes across domains and situations, even after controlling for mean risk levels. This suggests they are more discriminating in their risk decisions, considering situational factors rather than applying a uniform approach to all risky situations.
+                        </p>
+                        <ul>
+                            <li>Calculated risk style <strong>positively</strong> predicts cross-domain variability (b = 0.099, p < .001)</li>
+                            <li>Spontaneous risk style <strong>negatively</strong> predicts cross-domain variability (b = -0.151, p < .001)</li>
+                        </ul>
+                    </div>
+                    
+                    <p>
+                        This pattern aligns with dual-process theories suggesting that calculated risk-takers engage more deliberate processing, allowing them to override automatic preferences based on situational considerations. In contrast, spontaneous risk-takers show more consistency across situations, suggesting their risk decisions are driven more by general tendencies than by domain-specific evaluations.
+                    </p>
+                </div>
+                
+                <!-- Outcomes Tab Content -->
+                <div id="outcomes" class="tab-content">
+                    <h3>Work & Life Outcomes</h3>
+                    
+                    <div class="outcomes-grid">
+                        <div class="outcome-column">
+                            <h4>Work Outcomes</h4>
+                            <div class="chart-container">
+                                <canvas id="workOutcomesChart"></canvas>
+                            </div>
+                        </div>
+                        
+                        <div class="outcome-column">
+                            <h4>Life Outcomes</h4>
+                            <div class="chart-container">
+                                <canvas id="lifeOutcomesChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="interpretation-box">
+                        <h4>Distinctive Prediction Patterns</h4>
+                        <p>Our findings show a clear pattern:</p>
+                        <ul>
+                            <li><strong>Calculated risk-taking</strong> uniquely predicts general health (r = .19, p < .001) and eudaimonic wellbeing (r = .28, p < .001)</li>
+                            <li><strong>Spontaneous risk-taking</strong> uniquely predicts criminal charges (r = .27, p < .001), shoplifting (r = .22, p < .001), and traffic tickets (r = .21, p < .001)</li>
+                            <li>Both styles predict entrepreneurial intent, but calculated risk-taking is a stronger predictor (r = .39 vs. r = .29)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="findings-conclusion">
+                        <p>
+                            These findings suggest that calculated risk-takers are more likely to experience the benefits of risk-taking without the costs, while spontaneous risk-takers experience both benefits and potential negative consequences.
+                        </p>
+                        <p>
+                            Overall, our research suggests that the <em>style</em> of risk-taking—not just the general propensity for risk—is crucial for understanding the relationship between risk-taking and life outcomes.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>Don C. Zhang, Ph.D.</p>
+                    <p>Department of Psychology</p>
+                    <p>Louisiana State University</p>
+                    <p>Email: zhang1@lsu.edu</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Links</h3>
+                    <ul>
+                        <li><a href="https://osf.io/ade8q/">OSF Repository
+                        <li><a href="resources.html">Download the Scale</a></li>
+                        <li><a href="take-scale.html">Take the Assessment</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Don C. Zhang & Rachel Williamson Smith. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="js/findings.js"></script>
+</body>
+</html>

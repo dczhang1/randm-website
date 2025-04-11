@@ -235,8 +235,6 @@
     padding-top: 80px; /* Consistent value for all header types */
 }
 
-
-
 /* Navigation component */
 .navbar {
     position: fixed;
@@ -417,12 +415,12 @@
 
 /* Team member photo styling */
 .member-photo {
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
     object-fit: cover;
     border-radius: 50%;
     border: 3px solid var(--color-accent);
-    margin: 0 auto 1rem;
+    margin: 0 auto 0.75rem;
     display: block;
     box-shadow: var(--shadow-sm);
 }
@@ -453,28 +451,44 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: var(--spacing-md);
+    padding: var(--spacing-sm);
     height: 100%;
 }
 
+/* Add a more compact card style for team members */
+.team .card--border-top {
+    padding: var(--spacing-sm);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Ensure consistent height for team member cards */
+.team .grid > .card--border-top {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
 .team-member h3 {
-    margin-top: 0.5rem;
-    margin-bottom: 0.25rem;
-    font-size: 20px;
+    margin-top: 0.25rem;
+    margin-bottom: 0.15rem;
+    font-size: 18px;
 }
 
 .team-member h4 {
     color: var(--color-secondary);
     margin-top: 0;
-    margin-bottom: 0.75rem;
-    font-size: 16px;
+    margin-bottom: 0.5rem;
+    font-size: 14px;
     font-weight: 600;
     font-family: 'Poppins', 'Arial', 'Helvetica', sans-serif;
 }
 
 .team-member p {
-    font-size: 14px;
-    line-height: 1.5;
+    font-size: 13px;
+    line-height: 1.4;
     margin-bottom: 0;
 }
 
