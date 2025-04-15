@@ -7,6 +7,7 @@
     <!-- Font Awesome for social icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/tabs.css">
 </head>
 <body data-page="detailed-content">
     <nav class="navbar">
@@ -51,111 +52,434 @@
             <div class="content-section fade-in">
                 <p class="intro">The General Risk Propensity Scale (GRiPS) is a validated instrument for measuring an individual's general tendency to take risks across various life domains. Developed by Dr. Don Zhang and colleagues, this concise 8-item scale provides researchers with a reliable tool for assessing risk propensity in research and applied settings.</p>
                 
-                <p class="citation"><strong>Citation:</strong> Zhang, D. C., Highhouse, S., & Nye, C. D. (2019). Development and validation of the general risk propensity scale (GRiPS). <em>Journal of Behavioral Decision Making, 32</em>(2), 152-167. <a href="https://doi.org/10.1002/bdm.2102" target="_blank">https://doi.org/10.1002/bdm.2102</a></p>
+                <div class="citation-box">
+                    <p class="citation-box__text"><strong>Citation:</strong> Zhang, D. C., Highhouse, S., & Nye, C. D. (2019). Development and validation of the general risk propensity scale (GRiPS). <em>Journal of Behavioral Decision Making, 32</em>(2), 152-167. <a href="https://doi.org/10.1002/bdm.2102" target="_blank">https://doi.org/10.1002/bdm.2102</a></p>
+                </div>
             </div>
-            
-            <!-- Scale Details -->
-            <div class="content-section fade-in">
+
+            <!-- Tabbed Navigation -->
+            <div class="tabs">
+                <ul class="tabs__list">
+                    <li><button class="tabs__button" data-tab="overview">Overview</button></li>
+                    <li><button class="tabs__button" data-tab="theoretical">Theoretical Background</button></li>
+                    <li><button class="tabs__button" data-tab="psychometric">Psychometric Properties</button></li>
+                    <li><button class="tabs__button" data-tab="validity">Validity Evidence</button></li>
+                    <li><button class="tabs__button" data-tab="usage">Scale & Administration</button></li>
+                </ul>
+            </div>
+
+            <!-- Tab Content -->
+            <div id="overview" class="tab-content">
+                <div class="stats-grid">
+                    <div class="stats-box">
+                        <h3 class="stats-box__title">Key Features</h3>
+                        <ul>
+                            <li>8-item self-report measure</li>
+                            <li>5-point Likert scale</li>
+                            <li>High internal consistency (α > .89)</li>
+                            <li>Strong test-retest reliability (r = .80)</li>
+                            <li>Brief administration time (< 5 minutes)</li>
+                        </ul>
+                    </div>
+                    <div class="stats-box">
+                        <h3 class="stats-box__title">Applications</h3>
+                        <ul>
+                            <li>Research settings</li>
+                            <li>Personnel selection</li>
+                            <li>Career counseling</li>
+                            <li>Organizational assessment</li>
+                            <li>Academic research</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="stats-box">
+                    <h3 class="stats-box__title">Implementation Examples</h3>
+                    <h4>Research Applications</h4>
+                    <p>The GRiPS has been successfully implemented in various research contexts:</p>
+                    <ul>
+                        <li>Predicting financial decision-making in experimental settings</li>
+                        <li>Understanding career choices and entrepreneurial intentions</li>
+                        <li>Examining risk-taking behaviors across different cultures</li>
+                        <li>Studying risk propensity in organizational settings</li>
+                    </ul>
+                    
+                    <h4>Online Implementation</h4>
+                    <p>The GRiPS can be easily implemented in various online survey platforms, including:</p>
+                    <ul>
+                        <li>Qualtrics</li>
+                        <li>SurveyMonkey</li>
+                        <li>REDCap</li>
+                        <li>Google Forms</li>
+                    </ul>
+                    <p>For researchers interested in implementing the GRiPS in their online studies, sample configuration files or templates may be available upon request.</p>
+                </div>
+            </div>
+
+            <div id="theoretical" class="tab-content">
+                <h2>Theoretical Foundation</h2>
+                <div class="stats-box">
+                    <h3 class="stats-box__title">Definition of Risk Taking</h3>
+                    <p>"A person's cross-situational tendency to engage in behaviors with a prospect of negative consequences such as loss, harm, or failure."</p>
+                </div>
+
+                <table class="data-table">
+                    <tr>
+                        <th>Domain-Specific Perspective</th>
+                        <th>Domain-General Evidence</th>
+                    </tr>
+                    <tr>
+                        <td>Risk preferences vary across domains (financial, recreational, health, etc.)</td>
+                        <td>Bi-factor model with domain-general factor explains more variance than five-factor model (Highhouse et al., 2017)</td>
+                    </tr>
+                    <tr>
+                        <td>Risk perception and benefit vary by domain (Weber et al., 2002)</td>
+                        <td>General risk factor found across 39 risk measures with high temporal stability (Frey et al., 2017)</td>
+                    </tr>
+                    <tr>
+                        <td>Domain-specific contexts influence behavior</td>
+                        <td>Risk preference has genetic determinants (~2/3) (Zyphur et al., 2009)</td>
+                    </tr>
+                    <tr>
+                        <td>Domain expertise impacts risk evaluation</td>
+                        <td>Neurological correlates linked to dopamine and serotonin transmission (Dreber et al., 2009)</td>
+                    </tr>
+                </table>
+
+                <div class="stats-box">
+                    <h3 class="stats-box__title">Item Selection Process</h3>
+                    <table class="data-table">
+                        <tr>
+                            <th>Selection Criteria</th>
+                            <th>Threshold</th>
+                        </tr>
+                        <tr>
+                            <td>Factor Loadings (EFA)</td>
+                            <td>> 0.70</td>
+                        </tr>
+                        <tr>
+                            <td>Item-Total Correlations</td>
+                            <td>> 0.70</td>
+                        </tr>
+                        <tr>
+                            <td>IRT Discrimination Parameters</td>
+                            <td>> 1.35 ("high" threshold)</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div id="psychometric" class="tab-content">
+                <h2>Psychometric Properties</h2>
+                
+                <div class="stats-grid">
+                    <div class="stats-box">
+                        <h3 class="stats-box__title">Reliability Coefficients</h3>
+                        <table class="data-table">
+                            <tr>
+                                <th>Reliability Type</th>
+                                <th>Coefficient</th>
+                                <th>Sample</th>
+                            </tr>
+                            <tr>
+                                <td>Internal Consistency (α)</td>
+                                <td>0.92</td>
+                                <td>Study 2 (n=295)</td>
+                            </tr>
+                            <tr>
+                                <td>Internal Consistency (α)</td>
+                                <td>0.94</td>
+                                <td>Phase 2, Study 1 (n=352)</td>
+                            </tr>
+                            <tr>
+                                <td>Internal Consistency (α)</td>
+                                <td>0.91</td>
+                                <td>Phase 2, Study 2 (n=327)</td>
+                            </tr>
+                            <tr>
+                                <td>Internal Consistency (α)</td>
+                                <td>0.89</td>
+                                <td>Phase 3 (n=181)</td>
+                            </tr>
+                            <tr>
+                                <td>Test-retest (3 months)</td>
+                                <td>0.80</td>
+                                <td>Phase 2, Study 2 (n=115)</td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="stats-box">
+                        <h3 class="stats-box__title">Factor Analysis Fit Indices</h3>
+                        <table class="data-table">
+                            <tr>
+                                <th>Fit Index</th>
+                                <th>Value</th>
+                                <th>Interpretation</th>
+                            </tr>
+                            <tr>
+                                <td>RMSEA</td>
+                                <td>0.074</td>
+                                <td>Good fit (< 0.08)</td>
+                            </tr>
+                            <tr>
+                                <td>RMSEA 90% CI</td>
+                                <td>[0.050, 0.099]</td>
+                                <td>Acceptable range</td>
+                            </tr>
+                            <tr>
+                                <td>SRMR</td>
+                                <td>0.024</td>
+                                <td>Excellent fit (< 0.05)</td>
+                            </tr>
+                            <tr>
+                                <td>CFI</td>
+                                <td>0.98</td>
+                                <td>Excellent fit (> 0.95)</td>
+                            </tr>
+                            <tr>
+                                <td>TLI</td>
+                                <td>0.98</td>
+                                <td>Excellent fit (> 0.95)</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="stats-box">
+                    <h3 class="stats-box__title">Demographic Effects</h3>
+                    <ul>
+                        <li><strong>Gender:</strong> Men (M = 2.71, SD = 0.89) scored significantly higher than women (M = 2.22, SD = 0.88), t(290) = 4.82, p < 0.001</li>
+                        <li><strong>Age:</strong> Significant negative correlation with risk taking, r = -0.27, p < 0.01</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="validity" class="tab-content">
+                <h2>Validity Evidence</h2>
+                
+                <div class="stats-grid">
+                    <div class="stats-box">
+                        <h3 class="stats-box__title">Convergent Validity</h3>
+                        <table class="data-table">
+                            <tr>
+                                <th>Measure</th>
+                                <th>Correlation with GRiPS</th>
+                                <th>Sample</th>
+                            </tr>
+                            <tr>
+                                <td>JPI-Risk subscale</td>
+                                <td>r = 0.82</td>
+                                <td>Study 2 (n=295)</td>
+                            </tr>
+                            <tr>
+                                <td>DOSPERT (summated score)</td>
+                                <td>r = 0.63</td>
+                                <td>Study 2 (n=295)</td>
+                            </tr>
+                            <tr>
+                                <td>DOSPERT - Financial</td>
+                                <td>r = 0.49</td>
+                                <td>Study 2 (n=295)</td>
+                            </tr>
+                            <tr>
+                                <td>DOSPERT - Health</td>
+                                <td>r = 0.46</td>
+                                <td>Study 2 (n=295)</td>
+                            </tr>
+                            <tr>
+                                <td>DOSPERT - Recreational</td>
+                                <td>r = 0.57</td>
+                                <td>Study 2 (n=295)</td>
+                            </tr>
+                            <tr>
+                                <td>DOSPERT - Ethical</td>
+                                <td>r = 0.35</td>
+                                <td>Study 2 (n=295)</td>
+                            </tr>
+                            <tr>
+                                <td>DOSPERT - Social</td>
+                                <td>r = 0.28</td>
+                                <td>Study 2 (n=295)</td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="stats-box">
+                        <h3 class="stats-box__title">Predictive Validity</h3>
+                        <table class="data-table">
+                            <tr>
+                                <th>Outcome</th>
+                                <th>Correlation</th>
+                                <th>Sample</th>
+                            </tr>
+                            <tr>
+                                <td>Job Satisfaction</td>
+                                <td>r = -0.20**</td>
+                                <td>Phase 2, Study 2</td>
+                            </tr>
+                            <tr>
+                                <td>Job Stress</td>
+                                <td>r = 0.23**</td>
+                                <td>Phase 2, Study 2</td>
+                            </tr>
+                            <tr>
+                                <td>Work Withdrawal</td>
+                                <td>r = 0.28**</td>
+                                <td>Phase 2, Study 2</td>
+                            </tr>
+                            <tr>
+                                <td>Safety Compliance</td>
+                                <td>r = -0.22**</td>
+                                <td>Phase 2, Study 2</td>
+                            </tr>
+                            <tr>
+                                <td>Counterproductive Work Behavior</td>
+                                <td>r = 0.21**</td>
+                                <td>Phase 2, Study 1</td>
+                            </tr>
+                            <tr>
+                                <td>College GPA</td>
+                                <td>r = -0.20**</td>
+                                <td>Phase 3</td>
+                            </tr>
+                            <tr>
+                                <td>College Subjective Well-being</td>
+                                <td>r = -0.18*</td>
+                                <td>Phase 3</td>
+                            </tr>
+                            <tr>
+                                <td>Alcohol Abuse</td>
+                                <td>r = 0.23**</td>
+                                <td>Phase 3</td>
+                            </tr>
+                        </table>
+                        <p class="note">Note: * p < 0.05, ** p < 0.01</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="usage" class="tab-content">
                 <h2>Scale Administration</h2>
                 
-                <div class="scale-info">
+                <div class="scale-display">
                     <h3>Instructions</h3>
-                    <p>Below are some general statements that may or may not describe you. Please indicate the degree to which you disagree or agree with each statement.</p>
+                    <p class="scale-display__instructions">Below are some general statements that may or may not describe you. Please indicate the degree to which you disagree or agree with each statement.</p>
                     
-                    <h3>Response Anchors</h3>
-                    <ol class="response-anchors">
-                        <li>Strongly Disagree</li>
-                        <li>Disagree</li>
-                        <li>Neutral</li>
-                        <li>Agree</li>
-                        <li>Strongly Agree</li>
-                    </ol>
-                    
-                    <h3>Items</h3>
-                    <ol class="scale-items">
-                        <li>Taking risks makes life more fun</li>
-                        <li>My friends would say that I am a risk taker</li>
-                        <li>I enjoy taking risks in most aspects of my life</li>
-                        <li>I would take a risk even if it meant I might get hurt</li>
-                        <li>Taking risks is an important part of my life</li>
-                        <li>I commonly make risky decisions</li>
-                        <li>I am a believer of taking chances</li>
-                        <li>I am attracted, rather than scared, by risk</li>
-                    </ol>
+                    <table class="scale-display__table">
+                        <tr>
+                            <th>Item</th>
+                            <th>Strongly Disagree (1)</th>
+                            <th>Disagree (2)</th>
+                            <th>Neither (3)</th>
+                            <th>Agree (4)</th>
+                            <th>Strongly Agree (5)</th>
+                        </tr>
+                        <tr>
+                            <td>1. Taking risks makes life more fun</td>
+                            <td>□</td>
+                            <td>□</td>
+                            <td>□</td>
+                            <td>□</td>
+                            <td>□</td>
+                        </tr>
+                        <tr>
+                            <td>2. My friends would say that I'm a risk taker</td>
+                            <td>□</td>
+                            <td>□</td>
+                            <td>□</td>
+                            <td>□</td>
+                            <td>□</td>
+                        </tr>
+                        <tr>
+                            <td>3. I enjoy taking risks in most aspects of my life</td>
+                            <td>□</td>
+                            <td>□</td>
+                            <td>□</td>
+                            <td>□</td>
+                            <td>□</td>
+                        </tr>
+                        <tr>
+                            <td>4. I would take a risk even if it meant I might get hurt</td>
+                            <td>□</td>
+                            <td>□</td>
+                            <td>□</td>
+                            <td>□</td>
+                            <td>□</td>
+                        </tr>
+                        <tr>
+                            <td>5. Taking risks is an important part of my life</td>
+                            <td>□</td>
+                            <td>□</td>
+                            <td>□</td>
+                            <td>□</td>
+                            <td>□</td>
+                        </tr>
+                        <tr>
+                            <td>6. I commonly make risky decisions</td>
+                            <td>□</td>
+                            <td>□</td>
+                            <td>□</td>
+                            <td>□</td>
+                            <td>□</td>
+                        </tr>
+                        <tr>
+                            <td>7. I am a believer of taking chances</td>
+                            <td>□</td>
+                            <td>□</td>
+                            <td>□</td>
+                            <td>□</td>
+                            <td>□</td>
+                        </tr>
+                        <tr>
+                            <td>8. I am attracted, rather than scared, by risk</td>
+                            <td>□</td>
+                            <td>□</td>
+                            <td>□</td>
+                            <td>□</td>
+                            <td>□</td>
+                        </tr>
+                    </table>
                 </div>
-                
-                <h3>Scoring</h3>
-                <p>The General Risk Propensity score can be calculated by taking the arithmetic mean (or sum) of the responses to all eight items.</p>
-                
-                <div class="scoring-example">
-                    <h4>Scoring Example:</h4>
-                    <p>If a participant responds with: 4, 3, 4, 2, 3, 3, 5, 4</p>
-                    <p>Mean score calculation: (4 + 3 + 4 + 2 + 3 + 3 + 5 + 4) ÷ 8 = 3.5</p>
-                    <p>Sum score calculation: 4 + 3 + 4 + 2 + 3 + 3 + 5 + 4 = 28</p>
+
+                <div class="stats-grid">
+                    <div class="stats-box">
+                        <h3 class="stats-box__title">Scoring</h3>
+                        <ol>
+                            <li>Sum responses to all 8 items</li>
+                            <li>Divide by 8 to obtain average score</li>
+                            <li>Range: 1.0 - 5.0</li>
+                            <li>Higher scores indicate greater risk propensity</li>
+                        </ol>
+                        <div class="scoring-example">
+                            <h4>Scoring Example:</h4>
+                            <p>If a participant responds with: 4, 3, 4, 2, 3, 3, 5, 4</p>
+                            <p>Mean score calculation: (4 + 3 + 4 + 2 + 3 + 3 + 5 + 4) ÷ 8 = 3.5</p>
+                            <p>Sum score calculation: 4 + 3 + 4 + 2 + 3 + 3 + 5 + 4 = 28</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stats-box">
+                        <h3 class="stats-box__title">Terms of Usage</h3>
+                        <p>The GRiPS is free to use for all research and academic purposes (e.g., thesis, dissertation, class project). In exchange, we ask researchers to share:</p>
+                        <ol>
+                            <li>Sample characteristics (size, demographics, country)</li>
+                            <li>Raw item scores or correlation matrix</li>
+                            <li>Correlations with other variables (optional)</li>
+                        </ol>
+                        <p>Translation to other languages is permitted with notification to Dr. Zhang.</p>
+                        <p class="contact-info">For questions or commercial use, contact: <a href="mailto:dc.zhang1@gmail.com">dc.zhang1@gmail.com</a></p>
+                    </div>
+                </div>
+
+                <div class="download-section">
+                    <h3>Scale Materials</h3>
+                    <p>You can download the GRiPS in PDF format for use in your research:</p>
+                    <a href="#" class="download-button">Download GRiPS (PDF) <span class="download-icon">↓</span></a>
+                    <p class="download-note">Note: By downloading this scale, you agree to the usage terms outlined above.</p>
                 </div>
             </div>
-            
-            <!-- Psychometric Properties -->
-                <div class="content-section fade-in">
-                    <h2>Psychometric Properties</h2>
-                    <p>This section is currently under construction. Please check back later for detailed information about the reliability, validity, and other psychometric properties of the GRiPS.</p>
-                </div>
-            
-            <!-- Terms of Usage -->
-            <div class="content-section fade-in">
-                <h2>Terms of Usage</h2>
-                
-                <div class="usage-terms">
-                    <p>The GRiPS is free to use for all research and academic purposes (e.g., thesis, dissertation, class project). In exchange, we ask researchers to share any results and data gathered using the GRiPS with Dr. Don Zhang (<a href="mailto:dc.zhang1@gmail.com">dc.zhang1@gmail.com</a>).</p>
-                    
-                    <h3>Sharing Results</h3>
-                    <ol>
-                        <li>Sample characteristic (sample size, demographics of sample, country)</li>
-                        <li>Raw item scores for each participant. If raw data is unavailable for sharing, a correlation matrix of all the items is sufficient.</li>
-                        <li>Correlations with other variables in the dataset (optional)</li>
-                    </ol>
-                    
-                    <h3>Translation</h3>
-                    <p>You may translate the GRiPS to a different language for your research. In such cases, please send a copy of the translated version of the scale to Dr. Zhang. Please also include any pertinent info for the translation (e.g., name of the translator or translation team).</p>
-                    
-                    <p class="contact-info">If you have any questions regarding the scale and its usage, please contact Dr. Don Zhang at <a href="mailto:dc.zhang1@gmail.com">dc.zhang1@gmail.com</a></p>
-                </div>
-            </div>
-            
-            <!-- Implementation Examples -->
-            <div class="content-section fade-in">
-                <h2>Implementation Examples</h2>
-                
-                <h3>Research Applications</h3>
-                <p>The GRiPS has been successfully implemented in various research contexts:</p>
-                <ul>
-                    <li>Predicting financial decision-making in experimental settings</li>
-                    <li>Understanding career choices and entrepreneurial intentions</li>
-                    <li>Examining risk-taking behaviors across different cultures</li>
-                    <li>Studying risk propensity in organizational settings</li>
-                </ul>
-                
-                <h3>Online Implementation</h3>
-                <p>The GRiPS can be easily implemented in various online survey platforms, including:</p>
-                <ul>
-                    <li>Qualtrics</li>
-                    <li>SurveyMonkey</li>
-                    <li>REDCap</li>
-                    <li>Google Forms</li>
-                </ul>
-                <p>For researchers interested in implementing the GRiPS in their online studies, sample configuration files or templates may be available upon request.</p>
-            </div>
-            
-            <!-- Download Section -->
-            <div class="content-section download-section fade-in">
-                <h2>Scale Materials</h2>
-                <p>You can download the GRiPS in PDF format for use in your research:</p>
-                <a href="#" class="download-button">Download GRiPS (PDF) <span class="download-icon">↓</span></a>
-                <p class="download-note">Note: By downloading this scale, you agree to the usage terms outlined above.</p>
-            </div>
-            
-            
-            
+
             <!-- Back button or related links -->
             <div class="content-nav fade-in">
                 <a href="research.html" class="content-nav__back">&larr; Back to Research</a>
@@ -170,7 +494,6 @@
         </section>
     </main>
     
-    <!-- Footer using the new component classes -->
     <footer class="footer">
         <div class="footer__container">
             <!-- Contact Information -->
@@ -231,5 +554,6 @@
     <script src="js/utils.js"></script>
     <script src="js/main.js"></script>
     <script src="js/detailed-content.js"></script>
+    <script src="js/tabs.js"></script>
 </body>
 </html>
