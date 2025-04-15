@@ -14,3 +14,93 @@
 @import 'get-involved.css';
 @import 'detailed-content.css';
 @import 'team.css';
+
+/* Single Item Carousel Styles */
+.news-carousel {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 0 40px;
+}
+
+.carousel-items-container {
+    display: flex;
+    transition: transform 0.3s ease;
+    width: 100%;
+}
+
+.carousel-item {
+    min-width: 100%;
+    padding: 20px 40px;
+    box-sizing: border-box;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+}
+
+.carousel-item.active {
+    opacity: 1;
+}
+
+/* Clean Carousel Arrows */
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    background: transparent;
+    color: #2D3748;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.carousel-arrow:hover {
+    color: #1A202C;
+    transform: translateY(-50%) scale(1.2);
+}
+
+.carousel-arrow--left {
+    left: 15px;
+}
+
+.carousel-arrow--right {
+    right: 15px;
+}
+
+.carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.carousel-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #e9ecef;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.carousel-indicator.active {
+    background: #495057;
+    transform: scale(1.2);
+}
+
+/* Hide scrollbar but keep functionality */
+.carousel-items-container::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-items-container {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
