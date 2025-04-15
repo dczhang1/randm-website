@@ -104,3 +104,55 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
+
+/* Page Transition Animations */
+.page-transition {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    background: var(--color-background);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.page-transition.active {
+    opacity: 1;
+}
+
+/* Smooth page load animation */
+body.page-load {
+    opacity: 0;
+    animation: fadeIn 0.5s ease-in-out forwards;
+    animation-delay: 0.1s;
+}
+
+/* Smooth route change animation */
+.route-change {
+    position: relative;
+}
+
+.route-change::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9998;
+    background: var(--color-background);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.route-change.active::before {
+    opacity: 1;
+}
+
+/* Add these classes to your HTML structure */
+/* <div class="page-transition"></div> */
+/* <body class="page-load"> */

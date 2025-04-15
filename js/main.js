@@ -160,4 +160,34 @@ document.addEventListener('DOMContentLoaded', () => {
     if (pageId && window.initPage && typeof window.initPage[pageId] === 'function') {
         window.initPage[pageId]();
     }
+
+    // Add smooth transition setup inside the DOMContentLoaded event
+    if (typeof LabUtils !== 'undefined') {
+        // Ensure Tailwind classes are applied; assuming Tailwind is configured
+        document.body.classList.add('transition-opacity', 'duration-500', 'ease-in-out');
+        
+        // Example: Fade in on load
+        document.body.classList.add('opacity-0');
+        setTimeout(() => {
+            document.body.classList.remove('opacity-0');
+            document.body.classList.add('opacity-100');
+        }, 100);
+        
+        // Hook into navigation links for transitions
+        const links = document.querySelectorAll('a[href^="#"]');
+        links.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                if (targetId) {
+                    document.body.classList.add('opacity-0');  // Fade out before scroll
+                    setTimeout(() => {
+                        LabUtils.smoothScrollTo(document.querySelector(targetId), 100);
+                        document.body.classList.remove('opacity-0');
+                        document.body.classList.add('opacity-100');  // Fade in after scroll
+                    }, 300);  // Match transition duration
+                }
+            });
+        });
+    }
 });
