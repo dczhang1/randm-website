@@ -11,18 +11,23 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body data-page="home" class="home-page">
+    <!-- Accessibility: Skip to content link -->
+    <a href="#main-content" class="skip-to-content">Skip to content</a>
+    
     <!-- Navigation using the new component classes -->
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="navbar__logo">
-            <img src="assets/logo.svg" alt="RANDM Lab Logo" class="navbar__logo-img">
+            <a href="index.html">
+                <img src="assets/logo.svg" alt="RANDM Lab Logo" class="navbar__logo-img">
+            </a>
         </div>
-        <div class="hamburger">
+        <div class="hamburger" aria-controls="mobile-menu" aria-expanded="false" aria-label="Toggle menu" tabindex="0">
             <span class="hamburger__line"></span>
             <span class="hamburger__line"></span>
             <span class="hamburger__line"></span>
         </div>
-        <div class="navbar__links">
-            <a href="index.html" class="navbar__link">Home</a>
+        <div class="navbar__links" id="mobile-menu" aria-hidden="true">
+            <a href="index.html" class="navbar__link active" aria-current="page">Home</a>
             <a href="team.html" class="navbar__link">Team</a>
             <a href="research.html" class="navbar__link">Research</a>
             <a href="news.html" class="navbar__link">News</a>
@@ -30,81 +35,82 @@
         </div>
     </nav>
     
-    <!-- Hero section using the new component classes -->
-    <div class="hero">
+    <!-- Hero section with enhanced animation classes -->
+    <div class="hero hardware-accelerated">
         <div class="hero__bg"></div>
         <div class="hero__overlay"></div>
-        <div class="hero__content">
+        <div class="hero__content fade-up">
             <h1 class="hero__title">Risk and Decision Making Laboratory</h1>
             <p class="hero__subtitle">The science of how people make decisions at work</p>
-            <a href="research.html" class="btn btn--lg btn--outline-light">Our Research</a>
+            <a href="research.html" class="btn btn--lg btn--outline-light hover-lift">Our Research</a>
         </div>
     </div>
     
-    <main>
+    <main id="main-content">
         <div class="content-container-narrow mt-xl">
-            <div class="card card--border-top-primary">
+            <div class="card card--border-top-primary fade-up">
                 <h2>About Our Lab</h2>
                 <p>Founded in 2016 by Dr. Don Zhang, the Risk and Decision Making Lab is housed in Louisiana State University, Department of Psychology. We conduct 
                 research on how people make decisions at work, with a focus on risk and decision making. Our mission is to understand the cognitive, personality, and organizational influences on decision making at work. 
                 We are committed to conducting rigorous, high-quality research that has practical implications for organizations and individuals.</p>
-                </p>
             </div>
         </div>
 
-        <!-- News Carousel Section -->
+        <!-- News Carousel Section with enhanced animations and accessibility -->
         <div class="content-container-narrow mt-xl">
-            <div class="card">
+            <div class="card fade-up">
                 <h2 class="section-title">Latest News</h2>
-                <div class="news-carousel">
-                    <button class="carousel-arrow carousel-arrow--left" aria-label="Previous news item">
-                        <i class="fas fa-chevron-left"></i>
+                <div class="news-carousel" data-autoplay="5000" role="region" aria-roledescription="carousel">
+                    <button class="carousel-arrow carousel-arrow--left" aria-label="Previous news item" role="button">
+                        <i class="fas fa-chevron-left" aria-hidden="true"></i>
                     </button>
-                    <div class="carousel-items-container">
-                        <div class="carousel-item">
+                    <div class="carousel-items-container transition-transform duration-normal ease-out">
+                        <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="Slide 1 of 4">
                             <div class="news-date text-sm text-gray-600">April 27, 2024</div>
                             <h3>Presentations at SIOP Conference, Chicago 2024</h3>
                             <p>Graduate students Katelyn Reeves and Tyler Cowley presenting our research on risk taking at the SIOP 2024 conference.</p>
-                            <a href="news.html" class="btn btn--primary btn--sm">Read more</a>
+                            <a href="news.html" class="btn btn--primary btn--sm hover-lift">Read more</a>
                         </div>
-                        <div class="carousel-item">
+                        <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="Slide 2 of 4">
                             <div class="news-date text-sm text-gray-600">April 26, 2024</div>
                             <h3>Colette and Gabrielle presenting at the LSU Discover Day</h3>
                             <p>RANDM Lab member Colette Mouton and Gabrielle Mellor presents our meta-analysis on risk propensity and happiness at the LSU Discover Day.</p>
-                            <a href="news.html" class="btn btn--primary btn--sm">Read more</a>
+                            <a href="news.html" class="btn btn--primary btn--sm hover-lift">Read more</a>
                         </div>
-                        <div class="carousel-item">
+                        <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="Slide 3 of 4">
                             <div class="news-date text-sm text-gray-600">March 27, 2024</div>
                             <h3>Don Zhang receives the LSU Rainmaker Award</h3>
                             <p>Lab director Don Zhang receives the LSU Rainmaker Award, recognizing outstanding research, scholarship, and creative activity.</p>
-                            <a href="news.html" class="btn btn--primary btn--sm">Read more</a>
+                            <a href="news.html" class="btn btn--primary btn--sm hover-lift">Read more</a>
                         </div>
-                        <div class="carousel-item">
+                        <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="Slide 4 of 4">
                             <div class="news-date text-sm text-gray-600">January 27, 2024</div>
                             <h3>Editor's Commendation in the Journal of Business and Psychology</h3>
                             <p>RANDM Lab's 2023 publication received the Editor Commendation in the Journal of Business and Psychology.</p>
-                            <a href="news.html" class="btn btn--primary btn--sm">Read more</a>
+                            <a href="news.html" class="btn btn--primary btn--sm hover-lift">Read more</a>
                         </div>
                     </div>
-                    <button class="carousel-arrow carousel-arrow--right" aria-label="Next news item">
-                        <i class="fas fa-chevron-right"></i>
+                    <button class="carousel-arrow carousel-arrow--right" aria-label="Next news item" role="button">
+                        <i class="fas fa-chevron-right" aria-hidden="true"></i>
                     </button>
                 </div>
                 <div class="carousel-indicators">
-                    <button class="carousel-indicator active" aria-label="Go to news item 1"></button>
+                    <button class="carousel-indicator active" aria-label="Go to news item 1" aria-current="true"></button>
                     <button class="carousel-indicator" aria-label="Go to news item 2"></button>
                     <button class="carousel-indicator" aria-label="Go to news item 3"></button>
                     <button class="carousel-indicator" aria-label="Go to news item 4"></button>
                 </div>
+                <!-- Live region for screen reader announcements -->
+                <div class="carousel-live-region" aria-live="polite" aria-atomic="true"></div>
             </div>
         </div>
     </main>
     
-    <!-- Footer using the new component classes -->
-    <footer class="footer">
+    <!-- Footer with enhanced accessibility -->
+    <footer class="footer" role="contentinfo">
         <div class="footer__container">
             <!-- Contact Information -->
-            <div class="footer__section">
+            <div class="footer__section fade-up">
                 <h3 class="footer__heading">Contact Us</h3>
                 <address class="footer__address">
                     <p>Risk and Decision Making Lab</p>
@@ -117,10 +123,10 @@
             </div>
 
             <!-- Quick Links -->
-            <div class="footer__section">
+            <div class="footer__section fade-up" style="transition-delay: 100ms;">
                 <h3 class="footer__heading">Quick Links</h3>
                 <ul class="footer__list">
-                    <li><a href="index.html" class="footer__link">Home</a></li>
+                    <li><a href="index.html" class="footer__link" aria-current="page">Home</a></li>
                     <li><a href="team.html" class="footer__link">Team</a></li>
                     <li><a href="research.html" class="footer__link">Research</a></li>
                     <li><a href="news.html" class="footer__link">News</a></li>
@@ -129,23 +135,23 @@
             </div>
 
             <!-- Social Media Links -->
-            <div class="footer__section">
+            <div class="footer__section fade-up" style="transition-delay: 200ms;">
                 <h3 class="footer__heading">Follow Us</h3>
                 <div class="social-links">
-                    <a href="https://www.linkedin.com/company/randm-lab" class="social-link" title="LinkedIn" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-linkedin"></i>
+                    <a href="https://www.linkedin.com/company/randm-lab" class="social-link hover-lift" title="LinkedIn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin" aria-hidden="true"></i>
                     </a>
-                    <a href="https://twitter.com/randmlab" class="social-link" title="Twitter" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-twitter"></i>
+                    <a href="https://twitter.com/randmlab" class="social-link hover-lift" title="Twitter" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                        <i class="fab fa-twitter" aria-hidden="true"></i>
                     </a>
-                    <a href="https://www.researchgate.net/lab/Risk-and-Decision-Making-Lab" class="social-link" title="ResearchGate" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-researchgate"></i>
+                    <a href="https://www.researchgate.net/lab/Risk-and-Decision-Making-Lab" class="social-link hover-lift" title="ResearchGate" target="_blank" rel="noopener noreferrer" aria-label="ResearchGate">
+                        <i class="fab fa-researchgate" aria-hidden="true"></i>
                     </a>
-                    <a href="mailto:info@rdmlab.edu" class="social-link" title="Email">
-                        <i class="fas fa-envelope"></i>
+                    <a href="mailto:info@rdmlab.edu" class="social-link hover-lift" title="Email" aria-label="Email">
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
                     </a>
-                    <a href="https://www.lsu.edu" class="social-link" title="University" target="_blank" rel="noopener noreferrer">
-                        <i class="fas fa-university"></i>
+                    <a href="https://www.lsu.edu" class="social-link hover-lift" title="University" target="_blank" rel="noopener noreferrer" aria-label="University website">
+                        <i class="fas fa-university" aria-hidden="true"></i>
                     </a>
                 </div>
             </div>
@@ -158,7 +164,7 @@
         </div>
     </footer>
     
-    <!-- Include the new JavaScript files -->
+    <!-- Include the JavaScript files -->
     <script src="js/utils.js" defer></script>
     <script src="js/main.js" defer></script>
     <script src="js/carousel.js" defer></script>

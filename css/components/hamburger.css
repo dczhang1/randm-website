@@ -1,0 +1,126 @@
+/* 
+ * hamburger.css - Styles for the mobile menu hamburger button
+ * Part of RANDM Lab website components
+ */
+
+/* Container for the hamburger button */
+.hamburger {
+  display: none;
+  position: relative;
+  width: 30px;
+  height: 24px;
+  cursor: pointer;
+  z-index: 101;
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+/* Hamburger lines */
+.hamburger__line {
+  display: block;
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  background-color: var(--color-primary);
+  border-radius: 2px;
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition: transform var(--duration-normal) var(--ease-out),
+              opacity var(--duration-normal) var(--ease-out);
+}
+
+/* Positioning of the three hamburger lines */
+.hamburger__line:nth-child(1) {
+  top: 0;
+}
+
+.hamburger__line:nth-child(2) {
+  top: 10px;
+}
+
+.hamburger__line:nth-child(3) {
+  top: 20px;
+}
+
+/* Active state transformations */
+.hamburger.active .hamburger__line:nth-child(1),
+.hamburger.is-active .hamburger__line:nth-child(1) {
+  transform: translateY(10px) rotate(45deg);
+}
+
+.hamburger.active .hamburger__line:nth-child(2),
+.hamburger.is-active .hamburger__line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active .hamburger__line:nth-child(3),
+.hamburger.is-active .hamburger__line:nth-child(3) {
+  transform: translateY(-10px) rotate(-45deg);
+}
+
+/* Focus styles for accessibility */
+.hamburger:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Mobile menu overlay */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+  display: none;
+}
+
+.menu-overlay.hidden {
+  display: none;
+}
+
+/* Mobile menu styles */
+.navbar__links {
+  transition: transform var(--duration-normal) var(--ease-out),
+              opacity var(--duration-normal) var(--ease-out);
+}
+
+/* Mobile menu active state */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+  
+  .navbar__links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 250px;
+    height: 100vh;
+    background-color: var(--color-background);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 80px 30px 30px;
+    transform: translateX(100%);
+    opacity: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .navbar__links.active {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  
+  .navbar__link {
+    margin: 10px 0;
+    font-size: 18px;
+  }
+  
+  /* When body has overflow hidden */
+  body.overflow-hidden {
+    overflow: hidden;
+  }
+} 

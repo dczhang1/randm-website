@@ -156,3 +156,155 @@ body.page-load {
 /* Add these classes to your HTML structure */
 /* <div class="page-transition"></div> */
 /* <body class="page-load"> */
+
+/**
+ * main.css - Main entry point for RANDM Lab website styles
+ * Imports all necessary stylesheets in the correct order
+ */
+
+/* Base styles, variables, resets */
+@import url('base.css');
+
+/* Layout and structure */
+@import url('layout.css');
+
+/* Animation system */
+@import url('animations.css');
+
+/* Component styles */
+@import url('components.css');
+@import url('components/hamburger.css');
+@import url('tabs.css');
+
+/* Page-specific styles */
+@import url('research.css');
+@import url('team.css');
+@import url('news.css');
+@import url('get-involved.css');
+@import url('detailed-content.css');
+
+/* 
+ * Additional utility classes that should override other styles
+ * These should be loaded last to ensure they take precedence
+ */
+
+/* Utility classes for responsive design */
+.hide-mobile {
+  display: none;
+}
+
+.hide-desktop {
+  display: block;
+}
+
+/* Fixed positioning utilities */
+.fixed {
+  position: fixed;
+}
+
+.inset-0 {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.z-50 {
+  z-index: 50;
+}
+
+/* Background utilities */
+.bg-black {
+  background-color: #000;
+}
+
+.bg-opacity-50 {
+  --bg-opacity: 0.5;
+  background-color: rgba(0, 0, 0, var(--bg-opacity));
+}
+
+/* Display utilities */
+.hidden {
+  display: none;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+/* Hardware acceleration utilities */
+.hardware-accelerate {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Media queries */
+@media (min-width: 768px) {
+  .hide-mobile {
+    display: block;
+  }
+  
+  .hide-desktop {
+    display: none;
+  }
+}
+
+/* Accessibility focus styles */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Skip to content link for accessibility */
+.skip-to-content {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  padding: 8px 12px;
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
+  z-index: 1000;
+  transition: top 0.3s;
+}
+
+.skip-to-content:focus {
+  top: 0;
+}
+
+/* Transition & animation utilities */
+.transition-opacity {
+  transition-property: opacity;
+}
+
+.duration-slow {
+  transition-duration: var(--duration-slow);
+}
+
+.ease-in-out {
+  transition-timing-function: var(--ease-in-out);
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    background-color: white;
+    color: black;
+    font-size: 12pt;
+  }
+  
+  a {
+    color: black;
+    text-decoration: underline;
+  }
+  
+  .container {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+}

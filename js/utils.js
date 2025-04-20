@@ -4,6 +4,9 @@
 
 // Throttle function for performance optimization
 function throttle(callback, delay = 100) {
+    // Early return if no callback provided
+    if (typeof callback !== 'function') return () => {};
+    
     let timeoutId;
     let lastExecTime = 0;
     
@@ -27,6 +30,9 @@ function throttle(callback, delay = 100) {
 
 // Debounce function for performance optimization
 function debounce(callback, delay = 100) {
+    // Early return if no callback provided
+    if (typeof callback !== 'function') return () => {};
+    
     let timeoutId;
     
     return function(...args) {
@@ -37,27 +43,34 @@ function debounce(callback, delay = 100) {
     };
 }
 
-// Smooth scroll to element
+// Smooth scroll to element with improved performance
 function smoothScrollTo(targetElement, offset = 100) {
     if (!targetElement) return;
     
     const offsetTop = targetElement.offsetTop - offset;
     
-    window.scrollTo({
-        top: offsetTop,
-        behavior: 'smooth'
-    });
+    // Use requestAnimationFrame for smoother scrolling
+    const scrollToTarget = () => {
+        window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+        });
+        
+        // Update URL hash without jumping
+        const targetId = targetElement.getAttribute('id');
+        if (targetId) {
+            history.pushState(null, null, `#${targetId}`);
+        }
+    };
     
-    // Update URL hash without jumping
-    const targetId = targetElement.getAttribute('id');
-    if (targetId) {
-        history.pushState(null, null, `#${targetId}`);
-    }
+    requestAnimationFrame(scrollToTarget);
 }
 
 // Handle nav links and internal links
 function setupSmoothScrolling(linkSelector, offset = 100) {
     const links = document.querySelectorAll(linkSelector);
+    
+    if (!links.length) return;
     
     links.forEach(link => {
         link.addEventListener('click', function(e) {
@@ -89,6 +102,9 @@ function setupFadeAnimations(elementsSelector, threshold = 0.2, rootMargin = '0p
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
+                // Add subtle transition delay based on index for staggered effect
+                const transitionDelay = Array.from(elements).indexOf(entry.target) * 100;
+                entry.target.style.transitionDelay = `${transitionDelay}ms`;
                 observer.unobserve(entry.target);
             }
         });
@@ -108,28 +124,47 @@ function setupScrollSpy(sectionSelector, navLinkSelector, offset = 150) {
     
     if (!sections.length || !navLinks.length) return;
     
+    // Cache the section positions to avoid layout calculations during scroll
+    let sectionPositions = [];
+    
+    // Function to update section positions (called on page load and resize)
+    const updateSectionPositions = () => {
+        sectionPositions = Array.from(sections).map(section => ({
+            id: section.getAttribute('id'),
+            top: section.offsetTop,
+            bottom: section.offsetTop + section.offsetHeight
+        }));
+    };
+    
+    // Initial position calculation
+    updateSectionPositions();
+    
+    // Update positions on window resize
+    window.addEventListener('resize', debounce(updateSectionPositions, 200));
+    
     const updateActiveNavItem = throttle(() => {
         // Get current scroll position with offset
         const scrollPosition = window.scrollY + offset;
         
-        // Find the current section
+        // Find the current section using cached positions
         let currentSectionId = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-            
-            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                currentSectionId = section.getAttribute('id');
+        for (const section of sectionPositions) {
+            if (scrollPosition >= section.top && scrollPosition < section.bottom) {
+                currentSectionId = section.id;
+                break;
             }
-        });
+        }
         
         // Update active class on nav items
         navLinks.forEach(link => {
-            link.classList.remove('active');
-            
             const href = link.getAttribute('href');
-            if (href === `#${currentSectionId}`) {
+            const isActive = href === `#${currentSectionId}`;
+            
+            // Only manipulate the DOM if the state changes
+            if (isActive && !link.classList.contains('active')) {
                 link.classList.add('active');
+            } else if (!isActive && link.classList.contains('active')) {
+                link.classList.remove('active');
             }
         });
     }, 100);
@@ -150,10 +185,7 @@ function setupScrollSpy(sectionSelector, navLinkSelector, offset = 150) {
                 
                 // Update active nav item
                 navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === window.location.hash) {
-                        link.classList.add('active');
-                    }
+                    link.classList.toggle('active', link.getAttribute('href') === window.location.hash);
                 });
             }, 300);
         }
@@ -170,17 +202,16 @@ function setupHoverEffects(selector, enterStyles, leaveStyles) {
     if (!elements.length) return;
     
     elements.forEach(element => {
-        element.addEventListener('mouseenter', () => {
-            Object.entries(enterStyles).forEach(([property, value]) => {
+        // Use CSS variables for transitions when possible
+        const applyStyles = (styles) => {
+            if (!styles) return;
+            Object.entries(styles).forEach(([property, value]) => {
                 element.style[property] = value;
             });
-        });
+        };
         
-        element.addEventListener('mouseleave', () => {
-            Object.entries(leaveStyles).forEach(([property, value]) => {
-                element.style[property] = value;
-            });
-        });
+        element.addEventListener('mouseenter', () => applyStyles(enterStyles));
+        element.addEventListener('mouseleave', () => applyStyles(leaveStyles));
     });
 }
 
@@ -190,11 +221,8 @@ function setupNavbarScroll(threshold = 50) {
     if (!navbar) return;
     
     const handleScroll = throttle(() => {
-        if (window.scrollY > threshold) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
+        // Use classList.toggle with conditional for better performance
+        navbar.classList.toggle('scrolled', window.scrollY > threshold);
     }, 100);
     
     // Initial check
@@ -208,6 +236,27 @@ function setupNavbarScroll(threshold = 50) {
     };
 }
 
+// Enhanced animation utility
+function animateElement(element, animationClass, delay = 0) {
+    if (!element) return;
+    
+    setTimeout(() => {
+        requestAnimationFrame(() => {
+            element.classList.add(animationClass);
+        });
+    }, delay);
+}
+
+// Animate sequential elements with staggered timing
+function animateSequential(elements, animationClass, initialDelay = 0, staggerDelay = 100) {
+    if (!elements || !elements.length) return;
+    
+    Array.from(elements).forEach((element, index) => {
+        const delay = initialDelay + (index * staggerDelay);
+        animateElement(element, animationClass, delay);
+    });
+}
+
 // Export functions for use in other scripts
 window.LabUtils = {
     throttle,
@@ -217,5 +266,7 @@ window.LabUtils = {
     setupFadeAnimations,
     setupScrollSpy,
     setupHoverEffects,
-    setupNavbarScroll
+    setupNavbarScroll,
+    animateElement,
+    animateSequential
 };

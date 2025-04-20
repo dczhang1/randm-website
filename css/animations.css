@@ -1,0 +1,327 @@
+/* animations.css - Standardized animation system for RANDM Lab website */
+
+/* 
+ * Core Animation Variables
+ * These variables provide a standardized way to create consistent animations
+ */
+
+:root {
+  /* Animation timing functions (easings) */
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  
+  /* Animation durations */
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+  --duration-slower: 700ms;
+  
+  /* Base transition properties */
+  --transition-base: var(--duration-normal) var(--ease-out);
+  --transition-smooth: var(--duration-slow) var(--ease-in-out);
+  --transition-bounce: var(--duration-slow) var(--ease-bounce);
+  
+  /* Animation distances */
+  --slide-distance-sm: 10px;
+  --slide-distance-md: 20px;
+  --slide-distance-lg: 30px;
+}
+
+/* 
+ * Base animation classes 
+ * Apply these to elements directly
+ */
+
+/* Transition utilities */
+.transition-all {
+  transition-property: all;
+  transition-timing-function: var(--ease-out);
+  transition-duration: var(--duration-normal);
+}
+
+.transition-opacity {
+  transition-property: opacity;
+  transition-timing-function: var(--ease-out);
+  transition-duration: var(--duration-normal);
+}
+
+.transition-transform {
+  transition-property: transform;
+  transition-timing-function: var(--ease-out);
+  transition-duration: var(--duration-normal);
+}
+
+.transition-colors {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: var(--ease-out);
+  transition-duration: var(--duration-normal);
+}
+
+/* Timing function modifiers */
+.ease-linear {
+  transition-timing-function: linear;
+}
+
+.ease-in {
+  transition-timing-function: var(--ease-in);
+}
+
+.ease-out {
+  transition-timing-function: var(--ease-out);
+}
+
+.ease-in-out {
+  transition-timing-function: var(--ease-in-out);
+}
+
+.ease-bounce {
+  transition-timing-function: var(--ease-bounce);
+}
+
+/* Duration modifiers */
+.duration-fast {
+  transition-duration: var(--duration-fast);
+}
+
+.duration-normal {
+  transition-duration: var(--duration-normal);
+}
+
+.duration-slow {
+  transition-duration: var(--duration-slow);
+}
+
+.duration-slower {
+  transition-duration: var(--duration-slower);
+}
+
+/* 
+ * Fade animations
+ */
+.fade-element {
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease-out);
+}
+
+.fade-element.visible {
+  opacity: 1;
+}
+
+/* Fade with slide from different directions */
+.fade-up {
+  opacity: 0;
+  transform: translateY(var(--slide-distance-md));
+  transition: opacity var(--duration-normal) var(--ease-out),
+              transform var(--duration-normal) var(--ease-out);
+}
+
+.fade-down {
+  opacity: 0;
+  transform: translateY(calc(var(--slide-distance-md) * -1));
+  transition: opacity var(--duration-normal) var(--ease-out),
+              transform var(--duration-normal) var(--ease-out);
+}
+
+.fade-left {
+  opacity: 0;
+  transform: translateX(var(--slide-distance-md));
+  transition: opacity var(--duration-normal) var(--ease-out),
+              transform var(--duration-normal) var(--ease-out);
+}
+
+.fade-right {
+  opacity: 0;
+  transform: translateX(calc(var(--slide-distance-md) * -1));
+  transition: opacity var(--duration-normal) var(--ease-out),
+              transform var(--duration-normal) var(--ease-out);
+}
+
+/* Active state for all fade animations */
+.fade-up.visible,
+.fade-down.visible,
+.fade-left.visible,
+.fade-right.visible {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* 
+ * Scale animations 
+ */
+.scale-up {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity var(--duration-normal) var(--ease-out),
+              transform var(--duration-normal) var(--ease-out);
+}
+
+.scale-down {
+  opacity: 0;
+  transform: scale(1.05);
+  transition: opacity var(--duration-normal) var(--ease-out),
+              transform var(--duration-normal) var(--ease-out);
+}
+
+.scale-up.visible,
+.scale-down.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* 
+ * Hero animations 
+ */
+.hero__title {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--duration-slow) var(--ease-out),
+              transform var(--duration-slow) var(--ease-out);
+}
+
+.hero__subtitle {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--duration-slow) var(--ease-out),
+              transform var(--duration-slow) var(--ease-out);
+  transition-delay: 100ms;
+}
+
+.hero .btn {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--duration-slow) var(--ease-out),
+              transform var(--duration-slow) var(--ease-out);
+  transition-delay: 200ms;
+}
+
+.hero__title.animate-in,
+.hero__subtitle.animate-in,
+.hero .btn.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 
+ * Staggered animations for lists and grids
+ * Usage: Add .stagger-children to parent and .stagger-item to children
+ */
+.stagger-children .stagger-item {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity var(--duration-normal) var(--ease-out),
+              transform var(--duration-normal) var(--ease-out);
+}
+
+.stagger-children .stagger-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 
+ * Animation for hover states
+ */
+.hover-lift {
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+}
+
+.hover-scale {
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+/* 
+ * Hardware acceleration for smoother animations
+ */
+.hardware-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform, opacity;
+}
+
+/* 
+ * Keyframe animations
+ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Keyframe animation classes */
+.animate-fade-in {
+  animation: fadeIn var(--duration-normal) var(--ease-out) forwards;
+}
+
+.animate-slide-up {
+  animation: slideUpFade var(--duration-normal) var(--ease-out) forwards;
+}
+
+.animate-pulse {
+  animation: pulse 2s infinite;
+}
+
+/* 
+ * Responsive adjustments for animations
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .fade-element,
+  .fade-up,
+  .fade-down,
+  .fade-left,
+  .fade-right,
+  .scale-up,
+  .scale-down,
+  .hero__title,
+  .hero__subtitle,
+  .hero .btn,
+  .stagger-children .stagger-item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+} 
