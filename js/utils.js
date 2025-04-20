@@ -208,14 +208,84 @@ function setupNavbarScroll(threshold = 50) {
     };
 }
 
-// Export functions for use in other scripts
-window.LabUtils = {
-    throttle,
-    debounce,
-    smoothScrollTo,
-    setupSmoothScrolling,
-    setupFadeAnimations,
-    setupScrollSpy,
-    setupHoverEffects,
-    setupNavbarScroll
-};
+// Lazy load images with IntersectionObserver
+function setupLazyLoading(selector = 'img[data-src]', rootMargin = '200px') {
+    const images = document.querySelectorAll(selector);
+    if (!images.length) return;
+    
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                
+                // Handle regular image
+                if (img.dataset.src) {
+                    img.src = img.dataset.src;
+                    img.removeAttribute('data-src');
+                }
+                
+                // Handle background images
+                if (img.dataset.background) {
+                    img.style.backgroundImage = `url('${img.dataset.background}')`;
+                    img.removeAttribute('data-background');
+                }
+                
+                // Handle srcset for responsive images
+                if (img.dataset.srcset) {
+                    img.srcset = img.dataset.srcset;
+                    img.removeAttribute('data-srcset');
+                }
+                
+                // Add loaded class for animations
+                img.classList.add('loaded');
+                
+                // Stop observing once loaded
+                observer.unobserve(img);
+            }
+        });
+    }, {
+        rootMargin,
+        threshold: 0.01
+    });
+    
+    images.forEach(img => {
+        // Add placeholder style
+        img.style.opacity = '0';
+        img.style.transition = 'opacity 0.3s ease-in-out';
+        
+        // Start observing
+        imageObserver.observe(img);
+    });
+    
+    // Add global CSS for loaded images
+    const style = document.createElement('style');
+    style.textContent = `
+        img.loaded {
+            opacity: 1 !important;
+        }
+    `;
+    document.head.appendChild(style);
+    
+    return imageObserver;
+}
+
+// Add this to auto-initialize in the LabUtils namespace
+if (typeof window !== 'undefined') {
+    window.LabUtils = window.LabUtils || {};
+    
+    // Add all utility functions to the namespace
+    window.LabUtils.throttle = throttle;
+    window.LabUtils.debounce = debounce;
+    window.LabUtils.smoothScrollTo = smoothScrollTo;
+    window.LabUtils.setupSmoothScrolling = setupSmoothScrolling;
+    window.LabUtils.setupFadeAnimations = setupFadeAnimations;
+    window.LabUtils.setupScrollSpy = setupScrollSpy;
+    window.LabUtils.setupHoverEffects = setupHoverEffects;
+    window.LabUtils.setupNavbarScroll = setupNavbarScroll;
+    window.LabUtils.setupLazyLoading = setupLazyLoading;
+    
+    // Auto-run these on DOM load
+    document.addEventListener('DOMContentLoaded', () => {
+        setupLazyLoading();
+    });
+}

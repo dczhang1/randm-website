@@ -1,7 +1,7 @@
 /* main.css - Main stylesheet that imports all other CSS files */
 
-/* Import font styles - add your preferred CDN links here */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&family=Roboto:wght@400;500;700&family=Lora:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+/* Import font styles */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Raleway:wght@400;500;600;700&display=swap');
 
 /* Import CSS files in order of specificity */
 @import 'base.css';
@@ -26,20 +26,50 @@
 
 .carousel-items-container {
     display: flex;
-    transition: transform 0.3s ease;
+    transition: transform 0.4s ease-in-out;
     width: 100%;
 }
 
 .carousel-item {
     min-width: 100%;
-    padding: 20px 40px;
+    padding: 1.5rem;
     box-sizing: border-box;
-    transition: opacity 0.3s ease;
-    opacity: 0;
+    transition: all 0.4s ease-in-out;
+    opacity: 0.4;
+    transform: scale(0.95);
+    background-color: var(--color-background);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .carousel-item.active {
     opacity: 1;
+    transform: scale(1);
+    box-shadow: var(--shadow-md);
+}
+
+.news-date {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    margin-bottom: 0.75rem;
+    border-radius: var(--border-radius-full);
+    background-color: var(--color-blue-10);
+    color: var(--color-accent);
+    font-weight: 500;
+    font-size: var(--text-xs);
+}
+
+.carousel-item h3 {
+    margin-bottom: 0.75rem;
+    font-size: var(--text-xl);
+    color: var(--color-text-dark);
+}
+
+.carousel-item p {
+    margin-bottom: 1.25rem;
+    line-height: 1.6;
+    color: var(--color-text);
 }
 
 /* Clean Carousel Arrows */
@@ -47,30 +77,35 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 24px;
-    height: 24px;
-    background: transparent;
-    color: #2D3748;
+    width: 44px;
+    height: 44px;
+    background: var(--color-background);
+    color: var(--color-text);
     border: none;
+    border-radius: var(--border-radius-full);
     cursor: pointer;
     z-index: 10;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.2s ease;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .carousel-arrow:hover {
-    color: #1A202C;
-    transform: translateY(-50%) scale(1.2);
+    color: var(--color-accent);
+    background-color: var(--color-blue-10);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: var(--shadow-md);
 }
 
 .carousel-arrow--left {
-    left: 15px;
+    left: 0;
 }
 
 .carousel-arrow--right {
-    right: 15px;
+    right: 0;
 }
 
 .carousel-indicators {
@@ -81,17 +116,18 @@
 }
 
 .carousel-indicator {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     background: #e9ecef;
     border: none;
     cursor: pointer;
     transition: all 0.2s ease;
+    padding: 0;
 }
 
 .carousel-indicator.active {
-    background: #495057;
+    background: var(--color-accent);
     transform: scale(1.2);
 }
 

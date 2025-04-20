@@ -2,66 +2,87 @@
 
 /* 
  * RANDM Lab Website 
- * Color palette and typography based on design guide
+ * Modern color palette and typography
  */
 
  :root {
-    /* Base color palette */
-    --color-navy: #153448; /* Deep Navy Blue */
-    --color-brown: #948979; /* Muted Brown */
-    --color-blue: #3C5B6F; /* Medium Blue */
-    --color-beige: #DFD0B8; /* Light Beige */
+    /* Base color palette - Refreshed with modern tones */
+    --color-navy: #1e3a8a; /* Deep Modern Navy Blue */
+    --color-blue: #3b82f6; /* Modern Blue */
+    --color-blue-light: #93c5fd; /* Light Blue */
+    --color-slate: #475569; /* Slate Gray */
+    --color-slate-light: #94a3b8; /* Light Slate */
+    --color-sand: #f5f5f4; /* Sand/Off-White */
+    --color-stone: #e7e5e4; /* Stone/Light Gray */
     --color-white: #FFFFFF; /* White */
-    --color-off-white: #F5F5F5; /* Off-White */
-    --color-dark-gray: #333333; /* Dark Gray */
-    --color-black: #000000; /* Black */
-    --color-light-gray: #f8f8f8; /* Light gray for backgrounds */
-    --color-medium-gray: #666; /* Medium gray for notes */
+    --color-black: #0f172a; /* Rich Black */
     
     /* Transparent versions */
-    --color-navy-70: rgba(21, 52, 72, 0.7);
-    --color-navy-85: rgba(21, 52, 72, 0.85);
-    --color-brown-10: rgba(148, 137, 121, 0.1);
+    --color-navy-80: rgba(30, 58, 138, 0.8);
+    --color-navy-10: rgba(30, 58, 138, 0.1);
+    --color-blue-10: rgba(59, 130, 246, 0.1);
+    --color-slate-10: rgba(71, 85, 105, 0.1);
     
     /* Semantic color variables */
     --color-primary: var(--color-navy);
-    --color-secondary: var(--color-brown);
+    --color-secondary: var(--color-slate);
     --color-accent: var(--color-blue);
     --color-background: var(--color-white);
-    --color-background-alt: var(--color-off-white);
-    --color-background-accent: var(--color-beige);
-    --color-background-light: var(--color-light-gray);
-    --color-text: var(--color-dark-gray);
+    --color-background-alt: var(--color-sand);
+    --color-background-accent: var(--color-stone);
+    --color-text: var(--color-slate);
+    --color-text-dark: var(--color-black);
     --color-text-light: var(--color-white);
-    --color-text-muted: var(--color-medium-gray);
+    --color-text-muted: var(--color-slate-light);
     --color-success: var(--color-blue);
     --color-success-hover: var(--color-navy);
     
-    /* System variables */
-    --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 15px rgba(0, 0, 0, 0.05);
-    --shadow-lg: 0 8px 20px rgba(0, 0, 0, 0.1);
-    --border-radius: 0;
+    /* System variables - Updated for modern aesthetics */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 4px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.03), 0 10px 15px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.06), 0 20px 48px rgba(0, 0, 0, 0.07);
+    --border-radius-sm: 4px;
+    --border-radius: 8px;
+    --border-radius-lg: 12px;
+    --border-radius-xl: 16px;
+    --border-radius-full: 9999px;
     --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
     --spacing-md: 1.5rem;
     --spacing-lg: 2rem;
-    --spacing-xl: 2.5rem;
-    --spacing-xxl: 3rem;
-    --transition-fast: 0.2s ease;
-    --transition-standard: 0.3s ease;
+    --spacing-xl: 3rem;
+    --spacing-xxl: 4rem;
+    --transition-fast: 0.15s ease;
+    --transition-standard: 0.25s ease-in-out;
+    --transition-slow: 0.4s ease-in-out;
     
     /* Layout variables */
     --container-max-width: 1400px;
     --content-max-width: 1000px;
     
-    /* Typography variables */
-    --heading-font: 'Futura', 'Avenir Next', 'Arial', sans-serif;
-    --body-font: 'Proxima Nova', 'Lato', 'Arial', sans-serif;
-    --heading-weight: 500; /* Bold */
+    /* Typography variables - Updated with modern fonts */
+    --heading-font: 'Raleway', 'Montserrat', sans-serif;
+    --body-font: 'Inter', 'Open Sans', sans-serif;
+    --heading-weight: 600; /* Semibold */
     --body-weight: 400; /* Regular */
-    --body-size: 16px; /* Minimum body text size per design guide */
-    --line-height: 1.5; /* 1.5x font size as per design guide */
+    --body-weight-medium: 500; /* Medium */
+    --heading-line-height: 1.2;
+    --body-size: 16px;
+    --body-size-sm: 14px;
+    --body-size-xs: 12px;
+    --body-size-lg: 18px;
+    --line-height: 1.6; /* Increased for better readability */
+    
+    /* Font size scale - More systematic */
+    --text-xs: 0.75rem;   /* 12px */
+    --text-sm: 0.875rem;  /* 14px */
+    --text-base: 1rem;    /* 16px */
+    --text-lg: 1.125rem;  /* 18px */
+    --text-xl: 1.25rem;   /* 20px */
+    --text-2xl: 1.5rem;   /* 24px */
+    --text-3xl: 1.875rem; /* 30px */
+    --text-4xl: 2.25rem;  /* 36px */
+    --text-5xl: 3rem;     /* 48px */
 }
 
 /* Reset and base styles */
@@ -73,6 +94,7 @@
 
 html {
     font-size: 16px;
+    scroll-behavior: smooth;
 }
 
 /* Typography */
@@ -83,38 +105,41 @@ body {
     background-color: var(--color-background);
     font-size: var(--body-size);
     font-weight: var(--body-weight);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--heading-font);
     font-weight: var(--heading-weight);
-    color: var(--color-primary);
-    line-height: 1.2;
+    color: var(--color-text-light);
+    line-height: var(--heading-line-height);
     margin-bottom: var(--spacing-md);
+    letter-spacing: -0.015em;
 }
 
 h1 {
-    font-size: 32px;
+    font-size: var(--text-4xl);
 }
 
 h2 {
-    font-size: 28px;
+    font-size: var(--text-3xl);
 }
 
 h3 {
-    font-size: 24px;
+    font-size: var(--text-2xl);
 }
 
 h4 {
-    font-size: 20px;
+    font-size: var(--text-xl);
 }
 
 h5 {
-    font-size: 18px;
+    font-size: var(--text-lg);
 }
 
 h6 {
-    font-size: 16px;
+    font-size: var(--text-base);
 }
 
 p {
@@ -125,19 +150,20 @@ p {
 
 /* Add a new class for captions/citations */
 .caption, figcaption, .citation {
-    font-size: 14px;
-    color: var(--color-dark-gray);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
     line-height: var(--line-height);
 }
 
 a {
-    color: var(--color-primary);
+    color: var(--color-accent);
     text-decoration: none;
-    transition: color var(--transition-standard);
+    transition: color var(--transition-standard), opacity var(--transition-standard);
+    font-weight: var(--body-weight-medium);
 }
 
 a:hover {
-    color: var(--color-secondary);
+    color: var(--color-primary);
 }
 
 ul, ol {
@@ -154,6 +180,7 @@ li {
 img {
     max-width: 100%;
     height: auto;
+    display: block;
 }
 
 /* Container for main content */
