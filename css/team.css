@@ -169,3 +169,32 @@
         padding: var(--spacing-md);
     }
 }
+
+.team-member .member-photo {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid var(--color-primary);
+    margin: 0 auto var(--spacing-md);
+    display: block;
+    box-shadow: var(--shadow-sm);
+}
+
+.pi-banner .pi-photo {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid var(--color-primary);
+    box-shadow: var(--shadow-md);
+}
+
+.mascot-section .mascot-photo {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid var(--color-primary);
+    box-shadow: var(--shadow-md);
+}

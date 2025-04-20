@@ -31,8 +31,10 @@
 }
 
 .navbar__logo-img {
-    height: 50px;
+    height: 28px;
     width: auto;
+    filter: brightness(0) invert(1);
+    transition: filter var(--transition-standard);
 }
 
 .navbar__links {
@@ -42,7 +44,7 @@
 
 .navbar__link {
     margin: 0 var(--spacing-sm);
-    color: var(--color-primary);
+    color: white;
     font-weight: 500;
     text-decoration: none;
     position: relative;
@@ -491,4 +493,12 @@
     .card {
         padding: var(--spacing-md);
     }
+}
+
+.navbar.scrolled .navbar__logo-img {
+    filter: none;
+}
+
+.navbar.scrolled .navbar__link {
+    color: var(--color-primary);
 }
