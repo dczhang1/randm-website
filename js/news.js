@@ -271,20 +271,23 @@ function initNewsPage() {
             modalDate.textContent = formatNewsDate(item.date);
             modalTitle.textContent = item.title;
             
-            // Create content with image and text
-            let contentHtml = `<img src="${item.image}" alt="${item.title}">`;
-            contentHtml += item.details;
+            // Get all images from the news item (including modal-only-images)
+            const newsImages = Array.from(item.element.querySelectorAll('.news-image img'))
+                .map(img => `<img src="${img.src}" alt="${img.alt}" class="modal-image" />`)
+                .join('');
+            
+            // Create content with images and text
+            let contentHtml = newsImages + item.details;
             
             modalContent.innerHTML = contentHtml;
             
             // Show modal with animation
             modal.style.display = 'block';
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            document.body.style.overflow = 'hidden';
             
-            // Trigger animation by adding active class after a slight delay
             setTimeout(() => {
                 modal.classList.add('active');
-            }, 10); // Small delay to ensure the display change has been applied
+            }, 10);
             
         } catch (error) {
             console.error('Error opening modal:', error);

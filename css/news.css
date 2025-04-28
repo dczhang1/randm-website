@@ -321,4 +321,70 @@
     .pagination {
         flex-wrap: wrap;
     }
+    
+    .news-modal-body .news-image img {
+        max-height: 200px;
+    }
+}
+
+/* Hide additional images in the card */
+.news-item .modal-only-images {
+    display: none;
+}
+
+/* Show all images in the modal */
+.news-modal-body .news-image {
+    display: block;
+    margin-bottom: var(--spacing-md);
+    max-width: 100%; /* Ensure images don't exceed modal width */
+}
+
+.news-modal-body .news-image img {
+    width: 100%;
+    max-height: 300px; /* Limit image height */
+    object-fit: contain; /* Maintain aspect ratio without cropping */
+    border-radius: var(--border-radius); /* Optional: Add rounded corners */
+    margin-bottom: var(--spacing-sm); /* Add spacing between images */
+}
+
+/* Ensure modal content has proper spacing */
+.news-modal-body {
+    padding: var(--spacing-md);
+    overflow-y: auto; /* Enable scrolling if content is too long */
+    max-height: 80vh; /* Limit modal height to prevent overflow */
+}
+
+/* Optional: Add a subtle border to images */
+.news-modal-body .news-image img {
+    border: 1px solid var(--color-background-accent);
+}
+
+.news-modal-body .news-image-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+}
+
+/* Modal image styling */
+.news-modal-body .modal-image {
+    width: 100%;
+    max-height: 250px; /* Adjust height as needed */
+    object-fit: contain;
+    margin-bottom: var(--spacing-md);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--color-background-accent);
+}
+
+.news-modal-body {
+    padding: var(--spacing-md);
+    overflow-y: auto;
+    max-height: 80vh;
+}
+
+/* Optional: Add a grid layout for multiple images */
+.news-modal-body .image-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
 }
