@@ -392,37 +392,101 @@
                 </div>
 
                 <div class="stats-box">
-                    <h3 class="stats-box__title">Sample Demographics (N = 2,116)</h3>
+                    <h3 class="stats-box__title">Sample Demographics (N = 1,860)</h3>
                     <table class="data-table">
-                        <tr><th>Variable</th><th>N (%)</th><th>Calculated M (SD)</th><th>Spontaneous M (SD)</th></tr>
-                        <tr><td>Total Sample</td><td>2,116 (100%)</td><td>3.42 (0.84)</td><td>2.18 (0.91)</td></tr>
-                        <tr><td>Female</td><td>1,184 (56%)</td><td>3.35 (0.83)</td><td>2.13 (0.88)</td></tr>
-                        <tr><td>Male</td><td>932 (44%)</td><td>3.51 (0.85)</td><td>2.24 (0.94)</td></tr>
-                        <tr><td>Age 18-29</td><td>847 (40%)</td><td>3.48 (0.82)</td><td>2.32 (0.93)</td></tr>
-                        <tr><td>Age 30-49</td><td>921 (44%)</td><td>3.41 (0.85)</td><td>2.11 (0.88)</td></tr>
-                        <tr><td>Age 50+</td><td>348 (16%)</td><td>3.29 (0.86)</td><td>1.98 (0.87)</td></tr>
+                        <tr>
+                            <th>Variable</th>
+                            <th>N</th>
+                            <th>Calculated M (SD)</th>
+                            <th>Spontaneous M (SD)</th>
+                        </tr>
+                        <tr><td>Total sample</td><td>1,860</td><td>3.34 (0.85)</td><td>1.93 (0.91)</td></tr>
+                        <tr><td>Female</td><td>1,037</td><td>3.23 (0.86)</td><td>1.88 (0.91)</td></tr>
+                        <tr><td>Male</td><td>807</td><td>3.47 (0.82)</td><td>1.99 (0.91)</td></tr>
+                        <tr><td>Age 18-29</td><td>760</td><td>3.43 (0.76)</td><td>2.10 (0.94)</td></tr>
+                        <tr><td>Age 30-49</td><td>782</td><td>3.35 (0.85)</td><td>1.90 (0.90)</td></tr>
+                        <tr><td>Age 50-69</td><td>293</td><td>3.11 (0.95)</td><td>1.63 (0.78)</td></tr>
+                        <tr><td>Age 70+</td><td>22</td><td>2.35 (1.05)</td><td>1.27 (0.53)</td></tr>
+                        <tr><td>Race: Caucasian</td><td>1,474</td><td>3.29 (0.87)</td><td>1.92 (0.92)</td></tr>
+                        <tr><td>Race: Black/African American</td><td>128</td><td>3.63 (0.69)</td><td>2.04 (0.95)</td></tr>
+                        <tr><td>Race: Asian American</td><td>150</td><td>3.55 (0.77)</td><td>1.95 (0.85)</td></tr>
+                        <tr><td>Race: Other</td><td>107</td><td>3.26 (0.76)</td><td>1.94 (0.87)</td></tr>
                     </table>
                 </div>
             </div>
 
             <div id="validity" class="tab-content">
-                <h2>Convergent & Discriminant Validity</h2>
-                
-                <div class="chart-container">
-                    <h3>Correlations with Risk Measures</h3>
-                    <canvas id="convergentChart" width="400" height="300"></canvas>
+                <h2>Validity</h2>
+                <div class="stats-box">
+                    <table class="data-table">
+                        <tr>
+                            <th>Outcome / Trait</th>
+                            <th>Calculated</th>
+                            <th>Spontaneous</th>
+                        </tr>
+                        <tr><th colspan="3">Correlations with Risk Measures</th></tr>
+                        <tr><td>Social</td><td>0.33</td><td>0.17</td></tr>
+                        <tr><td>Recreational</td><td>0.38</td><td>0.45</td></tr>
+                        <tr><td>Financial</td><td>0.45</td><td>0.45</td></tr>
+                        <tr><td>Health</td><td>0.30</td><td>0.48</td></tr>
+                        <tr><td>Ethical</td><td>0.29</td><td>0.46</td></tr>
+                        <tr><td>Gambling</td><td>0.26</td><td>0.52</td></tr>
+                        <tr><td>Investment</td><td>0.47</td><td>0.24</td></tr>
+                        <tr><td>DOSPERT Sum</td><td>0.50</td><td>0.58</td></tr>
+                        <tr><td>GRiPS</td><td>0.69</td><td>0.79</td></tr>
+                        <tr><th colspan="3">Correlations with Non-Risk Traits</th></tr>
+                        <tr><td>Neuroticism</td><td>-0.20</td><td>0.06</td></tr>
+                        <tr><td>Extraversion</td><td>0.45</td><td>0.31</td></tr>
+                        <tr><td>Openness</td><td>0.16</td><td>0.08</td></tr>
+                        <tr><td>Agreeableness</td><td>-0.16</td><td>-0.22</td></tr>
+                        <tr><td>Conscientiousness</td><td>0.12</td><td>-0.26</td></tr>
+                        <tr><td>Promotion</td><td>0.35</td><td>0.14</td></tr>
+                        <tr><td>Prevention</td><td>-0.03</td><td>0.07</td></tr>
+                        <tr><td>SNS</td><td>0.19</td><td>0.04</td></tr>
+                        <tr><td>CRT</td><td>-0.03</td><td>-0.13</td></tr>
+                        <tr><td>Berlin</td><td>-0.04</td><td>-0.09</td></tr>
+                        <tr><td>NFC</td><td>0.24</td><td>0.05</td></tr>
+                        <tr><td>Maximize</td><td>0.29</td><td>0.11</td></tr>
+                        <tr><td>Rational</td><td>0.00</td><td>-0.36</td></tr>
+                        <tr><td>Intuitive</td><td>0.15</td><td>0.40</td></tr>
+                        <tr><th colspan="3">Student Sample Correlations</th></tr>
+                        <tr><td>Dropout</td><td>-0.01</td><td>0.07</td></tr>
+                        <tr><td>Alcohol</td><td>0.19</td><td>0.21</td></tr>
+                        <tr><td>CWB</td><td>0.04</td><td>0.03</td></tr>
+                        <tr><td>Tardiness</td><td>0.00</td><td>0.18</td></tr>
+                        <tr><td>Absenteeism</td><td>0.00</td><td>0.13</td></tr>
+                        <tr><th colspan="3">Working Sample Correlations</th></tr>
+                        <tr><td>Voice Challenge</td><td>0.17</td><td>0.14</td></tr>
+                        <tr><td>Voice Prohibitive</td><td>0.23</td><td>0.15</td></tr>
+                        <tr><td>Creativity</td><td>0.28</td><td>0.20</td></tr>
+                        <tr><td>CWBC</td><td>0.04</td><td>0.12</td></tr>
+                        <tr><td>Status</td><td>0.18</td><td>0.09</td></tr>
+                        <tr><td>PSRB Total</td><td>0.11</td><td>0.09</td></tr>
+                        <tr><td>Safety Motivation</td><td>-0.07</td><td>-0.17</td></tr>
+                        <tr><td>Income</td><td>0.17</td><td>-0.04</td></tr>
+                        <tr><th colspan="3">Adult Sample Correlations</th></tr>
+                        <tr><td>Traffic Tickets</td><td>0.03</td><td>0.21</td></tr>
+                        <tr><td>Speeding</td><td>0.17</td><td>0.19</td></tr>
+                        <tr><td>Credit Debt</td><td>0.01</td><td>-0.02</td></tr>
+                        <tr><td>Broken Bone</td><td>0.01</td><td>0.03</td></tr>
+                        <tr><td>Romance</td><td>0.11</td><td>0.23</td></tr>
+                        <tr><td>Cheat</td><td>0.01</td><td>0.16</td></tr>
+                        <tr><td>Move</td><td>0.18</td><td>0.20</td></tr>
+                        <tr><td>Job Change</td><td>0.11</td><td>0.10</td></tr>
+                        <tr><td>Shoplifting</td><td>0.08</td><td>0.22</td></tr>
+                        <tr><td>Car Accident</td><td>0.13</td><td>0.24</td></tr>
+                        <tr><td>Crime Charge</td><td>0.10</td><td>0.27</td></tr>
+                        <tr><td>Financial Stress</td><td>-0.13</td><td>-0.03</td></tr>
+                        <tr><td>Credit Score</td><td>0.05</td><td>-0.17</td></tr>
+                        <tr><td>Extreme Sport</td><td>0.15</td><td>0.21</td></tr>
+                        <tr><td>Travel Insurance</td><td>0.14</td><td>-0.05</td></tr>
+                        <tr><td>Drinks</td><td>-0.01</td><td>0.06</td></tr>
+                        <tr><td>Entrepreneurship</td><td>0.39</td><td>0.29</td></tr>
+                        <tr><td>Wellbeing</td><td>0.28</td><td>0.01</td></tr>
+                        <tr><td>Gambling Behavior</td><td>0.15</td><td>0.25</td></tr>
+                        <tr><td>Gambling Outcome</td><td>0.12</td><td>0.15</td></tr>
+                    </table>
                 </div>
-
-                <div class="chart-container">
-                    <h3>Correlations with Personality Traits</h3>
-                    <canvas id="personalityChart" width="400" height="300"></canvas>
-                </div>
-
-                <div class="chart-container">
-                    <h3>Predictive Validity: Life Outcomes</h3>
-                    <canvas id="outcomesChart" width="400" height="400"></canvas>
-                </div>
-
                 <div class="stats-box">
                     <h3 class="stats-box__title">Incremental Validity Beyond Big Five</h3>
                     <table class="data-table">
@@ -443,27 +507,15 @@
                 
                 <div class="resource-grid">
                     <div class="resource-card">
-                        <h3>📄 Full Scale (PDF)</h3>
-                        <p>Complete 12-item CASPRT scale with instructions and scoring guidelines</p>
-                        <a href="#" class="download-btn">Download PDF</a>
+                        <h3>📄 Administration Documentation</h3>
+                        <p>CASPRT Scale Administration Manual with instructions and scoring guidelines</p>
+                        <a href="assets/docs/casprt-manual.pdf" class="download-btn">Download PDF</a>
                     </div>
                     
                     <div class="resource-card">
                         <h3>📊 Data & Materials</h3>
                         <p>OSF repository with all study data, materials, and analysis code</p>
                         <a href="https://osf.io/ade8q/?view_only=ba91e4d8ebd046b8a7a12756c082af00" class="download-btn" target="_blank">View OSF</a>
-                    </div>
-                    
-                    <div class="resource-card">
-                        <h3>📋 Administration Guide</h3>
-                        <p>Guidelines for researchers and practitioners using CASPRT</p>
-                        <a href="#" class="download-btn">Download Guide</a>
-                    </div>
-                    
-                    <div class="resource-card">
-                        <h3>📈 Norms Tables</h3>
-                        <p>Demographic norms and percentile rankings for interpretation</p>
-                        <a href="#" class="download-btn">Download Norms</a>
                     </div>
                     
                     <div class="resource-card">
@@ -620,9 +672,7 @@
             
             // Initialize charts if needed
             if (sectionId === 'validity') {
-                setTimeout(() => {
-                    initValidityCharts();
-                }, 100);
+                initValidityCharts();
             }
         }
 
@@ -869,143 +919,198 @@
             });
         }
 
-        function initValidityCharts() {
-            // Convergent validity chart
-            const convergentCtx = document.getElementById('convergentChart').getContext('2d');
-            new Chart(convergentCtx, {
+        // Global chart instance tracking
+        window._validityCharts = {};
+
+        window.initValidityCharts = function() {
+            console.log('Initializing validity charts...');
+            
+            // Check if Chart.js is loaded
+            if (typeof Chart === 'undefined') {
+                console.error('Chart.js is not loaded!');
+                return;
+            }
+            
+            // Check if canvas elements exist and are visible
+            const canvasElements = [
+                'riskMeasuresChart',
+                'nonRiskTraitsChart', 
+                'studentSampleChart',
+                'workingSampleChart',
+                'adultSampleChart'
+            ];
+            
+            for (let canvasId of canvasElements) {
+                const canvas = document.getElementById(canvasId);
+                if (!canvas) {
+                    console.error(`Canvas element ${canvasId} not found!`);
+                    return;
+                }
+                // Check if canvas is visible
+                if (canvas.offsetParent === null) {
+                    console.warn(`Canvas element ${canvasId} is not visible yet.`);
+                    return;
+                }
+            }
+
+            // Destroy previous chart instances if they exist
+            for (let canvasId of canvasElements) {
+                if (window._validityCharts[canvasId]) {
+                    window._validityCharts[canvasId].destroy();
+                }
+            }
+
+            // Risk Measures Chart
+            window._validityCharts['riskMeasuresChart'] = new Chart(document.getElementById('riskMeasuresChart').getContext('2d'), {
                 type: 'bar',
                 data: {
-                    labels: ['DOSPERT', 'GRiPS', 'General Risk'],
+                    labels: ['Social', 'Recreational', 'Financial', 'Health', 'Ethical', 'Gambling', 'Investment', 'DOSPERT Sum', 'GRiPS'],
                     datasets: [{
                         label: 'Calculated Risk',
-                        data: [0.49, 0.67, 0.58],
+                        data: [0.33, 0.38, 0.45, 0.30, 0.29, 0.26, 0.47, 0.50, 0.69],
                         backgroundColor: 'rgba(102, 126, 234, 0.8)'
                     }, {
                         label: 'Spontaneous Risk',
-                        data: [0.57, 0.69, 0.61],
+                        data: [0.17, 0.45, 0.45, 0.48, 0.46, 0.52, 0.24, 0.58, 0.79],
                         backgroundColor: 'rgba(118, 75, 162, 0.8)'
                     }]
                 },
                 options: {
                     responsive: true,
                     plugins: {
-                        title: {
-                            display: true,
-                            text: 'Correlations with Existing Risk Measures'
-                        }
+                        title: { display: true, text: 'Correlations with Risk Measures' }
                     },
                     scales: {
                         y: {
                             beginAtZero: true,
                             max: 1,
-                            title: {
-                                display: true,
-                                text: 'Correlation (r)'
-                            }
+                            title: { display: true, text: 'Correlation (r)' }
                         }
                     }
                 }
             });
 
-            // Personality correlations
-            const personalityCtx = document.getElementById('personalityChart').getContext('2d');
-            new Chart(personalityCtx, {
+            // Non-Risk Traits Chart
+            window._validityCharts['nonRiskTraitsChart'] = new Chart(document.getElementById('nonRiskTraitsChart').getContext('2d'), {
                 type: 'bar',
                 data: {
-                    labels: ['Extraversion', 'Conscientiousness', 'Openness', 'Agreeableness', 'Neuroticism'],
+                    labels: ['Neuroticism', 'Extraversion', 'Openness', 'Agreeableness', 'Conscientiousness', 'Promotion', 'Prevention', 'SNS', 'CRT', 'Berlin', 'NFC', 'Maximize', 'Rational', 'Intuitive'],
                     datasets: [{
                         label: 'Calculated Risk',
-                        data: [0.45, 0.12, 0.31, -0.16, -0.08],
+                        data: [-0.20, 0.45, 0.16, -0.16, 0.12, 0.35, -0.03, 0.19, -0.03, -0.04, 0.24, 0.29, 0.00, 0.15],
                         backgroundColor: 'rgba(102, 126, 234, 0.8)'
                     }, {
                         label: 'Spontaneous Risk',
-                        data: [0.31, -0.26, 0.24, -0.22, 0.15],
+                        data: [0.06, 0.31, 0.08, -0.22, -0.26, 0.14, 0.07, 0.04, -0.13, -0.09, 0.05, 0.11, -0.36, 0.40],
                         backgroundColor: 'rgba(118, 75, 162, 0.8)'
                     }]
                 },
                 options: {
                     responsive: true,
                     plugins: {
-                        title: {
-                            display: true,
-                            text: 'Correlations with Big Five Personality Traits'
-                        }
+                        title: { display: true, text: 'Correlations with Non-Risk Traits' }
                     },
                     scales: {
                         y: {
                             min: -0.5,
                             max: 0.5,
-                            title: {
-                                display: true,
-                                text: 'Correlation (r)'
-                            }
+                            title: { display: true, text: 'Correlation (r)' }
                         }
                     }
                 }
             });
 
-            // Outcomes chart
-            const outcomesCtx = document.getElementById('outcomesChart').getContext('2d');
-            new Chart(outcomesCtx, {
-                type: 'scatter',
+            // Student Sample Chart
+            window._validityCharts['studentSampleChart'] = new Chart(document.getElementById('studentSampleChart').getContext('2d'), {
+                type: 'bar',
                 data: {
+                    labels: ['Dropout', 'Alcohol', 'CWB', 'Tardiness', 'Absenteeism'],
                     datasets: [{
-                        label: 'Adaptive Outcomes',
-                        data: [
-                            {x: 0.28, y: 0.20, label: 'Creativity'},
-                            {x: 0.39, y: 0.29, label: 'Entrepreneurship'},
-                            {x: 0.19, y: 0.01, label: 'Health'},
-                            {x: 0.28, y: -0.01, label: 'Wellbeing'},
-                            {x: 0.23, y: 0.15, label: 'Employee Voice'}
-                        ],
-                        backgroundColor: 'rgba(34, 197, 94, 0.8)',
-                        borderColor: 'rgb(34, 197, 94)',
-                        pointRadius: 8
+                        label: 'Calculated Risk',
+                        data: [-0.01, 0.19, 0.04, 0.00, 0.00],
+                        backgroundColor: 'rgba(102, 126, 234, 0.8)'
                     }, {
-                        label: 'Maladaptive Outcomes',
-                        data: [
-                            {x: 0.01, y: 0.27, label: 'Crime'},
-                            {x: -0.01, y: 0.17, label: 'Safety Violations'},
-                            {x: 0.01, y: 0.22, label: 'Shoplifting'},
-                            {x: -0.04, y: 0.22, label: 'Traffic Tickets'},
-                            {x: -0.02, y: 0.16, label: 'Infidelity'}
-                        ],
-                        backgroundColor: 'rgba(239, 68, 68, 0.8)',
-                        borderColor: 'rgb(239, 68, 68)',
-                        pointRadius: 8
+                        label: 'Spontaneous Risk',
+                        data: [0.07, 0.21, 0.03, 0.18, 0.13],
+                        backgroundColor: 'rgba(118, 75, 162, 0.8)'
                     }]
                 },
                 options: {
                     responsive: true,
                     plugins: {
-                        title: {
-                            display: true,
-                            text: 'Predictive Relationships with Life Outcomes'
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    return `${context.raw.label}: Calc=${context.raw.x.toFixed(2)}, Spont=${context.raw.y.toFixed(2)}`;
-                                }
-                            }
-                        }
+                        title: { display: true, text: 'Student Sample Correlations' }
                     },
                     scales: {
-                        x: {
-                            title: {
-                                display: true,
-                                text: 'Calculated Risk-Taking (r)'
-                            },
-                            min: -0.1,
-                            max: 0.5
-                        },
                         y: {
-                            title: {
-                                display: true,
-                                text: 'Spontaneous Risk-Taking (r)'
-                            },
                             min: -0.1,
-                            max: 0.3
+                            max: 0.3,
+                            title: { display: true, text: 'Correlation (r)' }
+                        }
+                    }
+                }
+            });
+
+            // Working Sample Chart
+            window._validityCharts['workingSampleChart'] = new Chart(document.getElementById('workingSampleChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['Voice Challenge', 'Voice Prohibitive', 'Creativity', 'CWBC', 'Status', 'PSRB Total', 'Safety Motivation', 'Income'],
+                    datasets: [{
+                        label: 'Calculated Risk',
+                        data: [0.17, 0.23, 0.28, 0.04, 0.18, 0.11, -0.07, 0.17],
+                        backgroundColor: 'rgba(102, 126, 234, 0.8)'
+                    }, {
+                        label: 'Spontaneous Risk',
+                        data: [0.14, 0.15, 0.20, 0.12, 0.09, 0.09, -0.17, -0.04],
+                        backgroundColor: 'rgba(118, 75, 162, 0.8)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: { display: true, text: 'Working Sample Correlations' }
+                    },
+                    scales: {
+                        y: {
+                            min: -0.2,
+                            max: 0.3,
+                            title: { display: true, text: 'Correlation (r)' }
+                        }
+                    }
+                }
+            });
+
+            // Adult Sample Chart
+            window._validityCharts['adultSampleChart'] = new Chart(document.getElementById('adultSampleChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['Traffic Tickets', 'Speeding', 'Credit Debt', 'Broken Bone', 'Romance', 'Cheat', 'Move', 'Job Change', 'Shoplifting', 'Car Accident', 'Crime Charge', 'Financial Stress', 'Credit Score', 'Extreme Sport', 'Travel Insurance', 'Drinks', 'Entrepreneurship', 'Wellbeing', 'Gambling Behavior', 'Gambling Outcome'],
+                    datasets: [{
+                        label: 'Calculated Risk',
+                        data: [0.03, 0.17, 0.01, 0.01, 0.11, 0.01, 0.18, 0.11, 0.08, 0.13, 0.10, -0.13, 0.05, 0.15, 0.14, -0.01, 0.39, 0.28, 0.15, 0.12],
+                        backgroundColor: 'rgba(102, 126, 234, 0.8)'
+                    }, {
+                        label: 'Spontaneous Risk',
+                        data: [0.21, 0.19, -0.02, 0.03, 0.23, 0.16, 0.20, 0.10, 0.22, 0.24, 0.27, -0.03, -0.17, 0.21, -0.05, 0.06, 0.29, 0.01, 0.25, 0.15],
+                        backgroundColor: 'rgba(118, 75, 162, 0.8)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: { display: true, text: 'Adult Sample Correlations' }
+                    },
+                    scales: {
+                        y: {
+                            min: -0.2,
+                            max: 0.4,
+                            title: { display: true, text: 'Correlation (r)' }
+                        },
+                        x: {
+                            ticks: {
+                                maxRotation: 45,
+                                minRotation: 45
+                            }
                         }
                     }
                 }

@@ -1,0 +1,120 @@
+---
+title: "CASPRT Scale Administration Manual"
+author: "Risk and Decision Making Lab"
+date: "`r Sys.Date()`"
+output:
+  pdf_document:
+    latex_engine: xelatex
+    toc: true
+    toc_depth: '3'
+  html_document:
+    toc: true
+    toc_depth: 3
+    number_sections: true
+---
+
+# Introduction
+
+The **Calculated and Spontaneous Risk-Taking Scale (CASPRT)** is a 12-item self-report measure designed to assess two distinct styles of risk-taking: *calculated* and *spontaneous*. This manual provides guidance for researchers and practitioners on administering, scoring, and interpreting the CASPRT.
+
+# Theoretical Background
+
+CASPRT is grounded in dual-process theory, which posits two modes of thinking:
+
+- **Calculated Risk-Taking**: Deliberate, analytical, and planned risk-taking after careful consideration of outcomes.
+- **Spontaneous Risk-Taking**: Impulsive, emotion-driven, and thrill-seeking risk-taking without extensive deliberation.
+
+Research shows these two styles are related but distinct, predicting different life outcomes and personality profiles.
+
+# Scale Items
+
+The CASPRT consists of 12 items, rated on a 5-point Likert scale (1 = Strongly Disagree, 5 = Strongly Agree):
+
+**Calculated Risk-Taking Items:**
+
+1. I tend to take calculated risks in my everyday life.
+2. I am willing to take risks after careful consideration of the potential outcomes.
+3. I consider myself a calculated risk taker.
+4. I believe taking calculated risks is important to achieve your goals.
+5. I enjoy taking risks that involve calculation.
+6. My friends would consider me as someone that takes calculated risks.
+
+**Spontaneous Risk-Taking Items:**
+
+7. I enjoy the thrill of taking risks without thinking.
+8. I am attracted to risky activities where I don't know what will happen.
+9. I don't think much about the consequences of risky decisions. I just make them.
+10. I find it difficult to resist the urge to take risks.
+11. I am a spontaneous risk taker.
+12. I often jump into risky situations without thinking through them.
+
+# Administration Instructions
+
+- **Target Population:** Adults and adolescents (research samples include college students, working adults, and general population).
+- **Format:** Self-administered questionnaire (paper or electronic).
+- **Instructions to Respondents:**
+  - "Please rate how well each statement describes you, using the following scale:"
+    - 1 = Strongly Disagree
+    - 2 = Disagree
+    - 3 = Neutral
+    - 4 = Agree
+    - 5 = Strongly Agree
+- **Estimated Completion Time:** 2-3 minutes.
+
+# Scoring and Interpretation
+
+- **Subscale Scores:**
+  - *Calculated Risk-Taking*: Mean of items 1-6
+  - *Spontaneous Risk-Taking*: Mean of items 7-12
+- **Total Score:** Not recommended; interpret subscales separately.
+- **Interpretation:**
+  - Higher scores indicate greater endorsement of the respective risk-taking style.
+  - Example cutoffs (based on population norms):
+    - Calculated: High (≥4.0), Moderate (3.0–3.99), Low (<3.0)
+    - Spontaneous: High (≥3.0), Moderate (2.0–2.99), Low (<2.0)
+- **Percentile Ranks:** See Norms and Percentiles section for interpretation relative to population.
+
+# Psychometric Properties
+
+- **Reliability:**
+  - Calculated subscale: Cronbach's α = 0.89; Test-retest (1 week) = 0.83
+  - Spontaneous subscale: Cronbach's α = 0.91; Test-retest (1 week) = 0.84
+- **Factor Structure:**
+  - Two-factor structure confirmed via factor analysis
+  - Items load distinctly on calculated and spontaneous factors
+- **Measurement Invariance:**
+  - Invariant across sex, age, and sample type
+
+# Validity Evidence
+
+- **Convergent Validity:**
+  - Both subscales correlate with established risk-taking measures (e.g., DOSPERT, GRiPS)
+- **Discriminant Validity:**
+  - Calculated risk-taking is associated with conscientiousness, need for cognition, and adaptive outcomes (e.g., creativity, entrepreneurship)
+  - Spontaneous risk-taking is associated with impulsivity, lower conscientiousness, and problematic outcomes (e.g., criminal charges, safety violations)
+- **Incremental Validity:**
+  - CASPRT explains unique variance in life outcomes beyond Big Five personality traits
+
+# Norms and Percentiles
+
+Population norms (N = 1,860):
+
+| Subscale     | Mean | SD  |
+|--------------|------|-----|
+| Calculated   | 3.34 | 0.85|
+| Spontaneous  | 1.93 | 0.91|
+
+Percentile ranks can be calculated using the mean and SD above. Example: a calculated score of 4.0 is approximately the 80th percentile.
+
+# References
+
+Zhang, D. C., & Smith, R. W. (in press). Development and validation of the Calculated and Spontaneous Risk-Taking Scale (CASPRT). *Journal of Behavioral Decision Making*.
+
+For full scale, data, and materials: [OSF Repository](https://osf.io/ade8q/?view_only=ba91e4d8ebd046b8a7a12756c082af00)
+
+# Contact Information
+
+For questions or permission to use the scale, contact:
+
+- Dr. Don Zhang (zhang1@lsu.edu)
+- Risk and Decision Making Lab, Department of Psychology, Louisiana State University

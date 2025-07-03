@@ -14,6 +14,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (selectedTab && selectedContent) {
             selectedTab.classList.add('tabs__button--active');
             selectedContent.classList.add('tab-content--active');
+
+            // Initialize charts if the validity tab is selected
+            if (tabId === 'validity') {
+                setTimeout(() => {
+                    initValidityCharts();
+                }, 100);
+            }
         }
     }
 
