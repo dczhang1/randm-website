@@ -502,3 +502,43 @@
 .navbar.scrolled .navbar__link {
     color: var(--color-primary);
 }
+
+/* Subpage hero height adjustment (about 30% shorter) */
+body[data-page="team"] .hero,
+body[data-page="research"] .hero,
+body[data-page="news"] .hero,
+body[data-page="get-involved"] .hero,
+.hero.hero--sm {
+    height: 56vh !important;
+    min-height: 340px !important;
+}
+
+@media (max-width: 768px) {
+  body[data-page="team"] .hero,
+  body[data-page="research"] .hero,
+  body[data-page="news"] .hero,
+  body[data-page="get-involved"] .hero,
+  .hero.hero--sm {
+    height: 32vh !important;
+    min-height: 120px !important;
+  }
+}
+
+/* Subtle hero text animation for subpages (matches homepage) */
+.hero--animated .hero__title,
+.hero--animated .hero__subtitle {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+.hero--animated .hero__title.animate-in,
+.hero--animated .hero__subtitle.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+.hero--animated .hero__title {
+    transition-delay: 0.1s;
+}
+.hero--animated .hero__subtitle {
+    transition-delay: 0.3s;
+}
