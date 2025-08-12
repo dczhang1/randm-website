@@ -19,6 +19,17 @@
     background-color: transparent;
 }
 
+/* Mobile navbar adjustments */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1rem;
+    }
+    
+    .navbar__logo-img {
+        height: 24px;
+    }
+}
+
 /* Scrolled state - beige background */
 .navbar.scrolled {
     background-color: var(--color-background-accent);
