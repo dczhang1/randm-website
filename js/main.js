@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Core initialization
         init() {
             this.setupHeroAnimation();
+            this.setupHeroParallax();
             this.setupNavbarScroll();
             this.setupMobileNav();
             this.setupGlobalAnimations();
@@ -40,6 +41,24 @@ document.addEventListener('DOMContentLoaded', () => {
             ].filter(el => el); // Filter out null elements
             
             LabUtils.animateSequential(elements, 'animate-in', 300, 300);
+        },
+
+        // Optional subtle parallax for hero background
+        setupHeroParallax() {
+            const heroBg = document.querySelector('.hero__bg');
+            if (!heroBg) return;
+
+            // Respect reduced motion preference
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (prefersReducedMotion) return;
+
+            const onScroll = LabUtils.throttle(() => {
+                const scrollY = window.scrollY || 0;
+                const translate = Math.min(scrollY * 0.1, 20); // cap at 20px
+                heroBg.style.transform = `translateY(${translate}px)`;
+            }, 16);
+
+            window.addEventListener('scroll', onScroll);
         },
         
         // Navigation scroll effect - transparent to beige

@@ -32,7 +32,9 @@
 
 /* Scrolled state - beige background */
 .navbar.scrolled {
-    background-color: var(--color-background-accent);
+    background-color: rgba(223, 208, 184, 0.85);
+    -webkit-backdrop-filter: saturate(180%) blur(8px);
+    backdrop-filter: saturate(180%) blur(8px);
     box-shadow: var(--shadow-md);
 }
 
@@ -124,6 +126,7 @@
 
 .btn:active {
     transform: translateY(0);
+    filter: brightness(0.98);
 }
 
 /* Size variants */
@@ -187,12 +190,13 @@
     padding: var(--spacing-lg);
     margin-bottom: var(--spacing-lg);
     border-radius: var(--border-radius);
+    border: 1px solid rgba(0, 0, 0, 0.06);
     transition: transform var(--transition-standard),
                 box-shadow var(--transition-standard);
 }
 
 .card:hover {
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
 }
 
 .card--border-top-primary {
@@ -333,7 +337,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--color-navy-85);
+    background: linear-gradient(180deg, rgba(21,52,72,0.65), rgba(21,52,72,0.35));
     z-index: -1;
 }
 
@@ -454,6 +458,20 @@
     opacity: 0.8;
     font-size: 0.875rem;
     margin-bottom: var(--spacing-sm);
+}
+
+/* Image ratios and rounding for CLS reduction */
+.member-photo,
+.news-image img {
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+}
+
+/* Disabled button state */
+.btn[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 /* 

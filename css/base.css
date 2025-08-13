@@ -41,7 +41,7 @@
     --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.05);
     --shadow-md: 0 4px 15px rgba(0, 0, 0, 0.05);
     --shadow-lg: 0 8px 20px rgba(0, 0, 0, 0.1);
-    --border-radius: 0;
+    --border-radius: 8px;
     --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
     --spacing-md: 1.5rem;
@@ -56,12 +56,20 @@
     --content-max-width: 1000px;
     
     /* Typography variables */
-    --heading-font: 'Futura', 'Avenir Next', 'Arial', sans-serif;
-    --body-font: 'Proxima Nova', 'Lato', 'Arial', sans-serif;
+    --heading-font: 'Montserrat', 'Arial', sans-serif;
+    --body-font: 'Open Sans', 'Arial', sans-serif;
     --heading-weight: 500; /* Bold */
     --body-weight: 400; /* Regular */
     --body-size: 16px; /* Minimum body text size per design guide */
     --line-height: 1.5; /* 1.5x font size as per design guide */
+
+    /* Additional spacing scale */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-6: 24px;
+    --space-8: 32px;
 }
 
 /* Reset and base styles */
@@ -94,11 +102,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    font-size: 32px;
+    font-size: 40px;
 }
 
 h2 {
-    font-size: 28px;
+    font-size: 32px;
 }
 
 h3 {
@@ -283,40 +291,7 @@ img {
     animation: fadeIn 0.5s ease forwards;
 }
 
-/* Transition utilities */
-.transition-all {
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 300ms;
-}
-
-.transition-opacity {
-    transition-property: opacity;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 300ms;
-}
-
-.transition-transform {
-    transition-property: transform;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 300ms;
-}
-
-.ease-in-out {
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.duration-200 {
-    transition-duration: 200ms;
-}
-
-.duration-300 {
-    transition-duration: 300ms;
-}
-
-.duration-500 {
-    transition-duration: 500ms;
-}
+/* Transition utilities moved to animations.css to avoid duplication */
 
 /* Hero section */
 .hero__bg {
@@ -375,37 +350,4 @@ img {
 --large-desktop: 1200px
 */
 
-/* Add to base.css */
-.transition-all {
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 300ms;
-}
-
-.transition-opacity {
-    transition-property: opacity;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 300ms;
-}
-
-.transition-transform {
-    transition-property: transform;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 300ms;
-}
-
-.ease-in-out {
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.duration-200 {
-    transition-duration: 200ms;
-}
-
-.duration-300 {
-    transition-duration: 300ms;
-}
-
-.duration-500 {
-    transition-duration: 500ms;
-}
+/* Duplicate transition utilities removed; see animations.css */

@@ -409,7 +409,7 @@ function renderPublications(publications, container) {
 // Create a publication element using existing card classes
 function createPublicationElement(pub) {
     const pubElement = document.createElement('div');
-    pubElement.className = 'card card--border-left'; // Reuse existing card classes
+    pubElement.className = 'card publication-card';
     pubElement.dataset.type = pub.type;
     pubElement.dataset.year = pub.year;
     
@@ -418,22 +418,22 @@ function createPublicationElement(pub) {
         venueText += `, ${pub.pages}`;
     }
     
-    // Create card content using inline styles to complement existing classes
+    // Create card content with classes
     pubElement.innerHTML = `
-        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; flex-wrap: wrap;">
-            <h3 style="font-weight: 700; color: var(--color-primary); margin-bottom: 0.75rem; font-size: 1.1rem; line-height: 1.4;">${pub.title}</h3>
-            <span style="color: white; background-color: var(--color-tertiary); padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.9rem; display: inline-block;">${pub.year}</span>
+        <div class="publication-card__header">
+            <h3 class="publication-card__title">${pub.title}</h3>
+            <span class="publication-card__year-badge">${pub.year}</span>
         </div>
-        <p style="margin-bottom: 0.75rem; line-height: 1.5; color: #333;">${pub.authors}</p>
-        <p style="font-style: italic; margin-bottom: 0.75rem; color: #555;">${venueText}</p>
-        ${pub.notes ? `<p style="margin-bottom: 0.75rem;"><em>${pub.notes}</em></p>` : ''}
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #eee;">
-            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                ${pub.tags ? pub.tags.map(tag => `<span style="background-color: #f0f0f0; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.8rem; color: #666;">${tag}</span>`).join('') : ''}
+        <p class="publication-card__authors">${pub.authors}</p>
+        <p class="publication-card__venue">${venueText}</p>
+        ${pub.notes ? `<p class="publication-card__notes"><em>${pub.notes}</em></p>` : ''}
+        <div class="publication-card__footer">
+            <div class="publication-tags">
+                ${pub.tags ? pub.tags.map(tag => `<span class="publication-tag">${tag}</span>`).join('') : ''}
             </div>
-            <div style="display: flex; gap: 0.75rem;">
-                ${pub.pdf ? `<a href="${pub.pdf}" style="display: inline-flex; align-items: center; gap: 0.25rem; color: var(--color-secondary); text-decoration: none; font-weight: 500; transition: color 0.2s ease;" target="_blank"><i class="fas fa-file-pdf"></i> PDF</a>` : ''}
-                ${pub.doi ? `<a href="${pub.doi}" style="display: inline-flex; align-items: center; gap: 0.25rem; color: var(--color-secondary); text-decoration: none; font-weight: 500; transition: color 0.2s ease;" target="_blank"><i class="fas fa-external-link-alt"></i> DOI</a>` : ''}
+            <div class="publication-actions">
+                ${pub.pdf ? `<a href="${pub.pdf}" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-pdf"></i> PDF</a>` : ''}
+                ${pub.doi ? `<a href="${pub.doi}" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> DOI</a>` : ''}
             </div>
         </div>
     `;
