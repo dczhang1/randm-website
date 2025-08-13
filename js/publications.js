@@ -11,6 +11,16 @@ function initPublicationsPage() {
 const publicationsData = {
     articles: [
         {
+            authors: "Zhang, D.C., & Smith, R.W.",
+            title: "Development and Validation of the Calculated and Spontaneous Risk‐Taking Scale (CASPRT)",
+            venue: "Journal of Behavioral Decision Making",
+            year: 2025,
+            pages: "38(3), e70020",
+            type: "article",
+            tags: ["risk-taking", "scale development", "validation"],
+            doi: "https://doi.org/10.1002/bdm.70020"
+        },
+        {
             authors: "Zhang, D.C., Barratt, C.L. & Smith, R.W.",
             title: "The Bright, Dark, and Grey Sides of Risk Takers at Work: Criterion Validity of Risk Propensity for Contextual Performance at Work",
             venue: "Journal of Business and Psychology",

@@ -108,6 +108,11 @@
     z-index: 100;
     box-shadow: var(--shadow-lg);
   }
+
+  /* Ensure readable link color on light mobile menu background */
+  .navbar__links .navbar__link {
+    color: var(--color-primary);
+  }
   
   .navbar__links.active {
     transform: translateX(0);
