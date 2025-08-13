@@ -1,254 +1,17 @@
 /* main.css - Main stylesheet that imports all other CSS files */
 
-/* Import font styles - add your preferred CDN links here */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&family=Roboto:wght@400;500;700&family=Lora:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap');
-
-/* Import CSS files in order of specificity */
-@import 'base.css';
-@import 'components.css';
-@import 'layout.css';
-
-/* Page-specific styles - Only import what you need */
-@import 'research.css';
-@import 'news.css';
-@import 'get-involved.css';
-@import 'detailed-content.css';
-@import 'team.css';
-
-/* Single Item Carousel Styles */
-.news-carousel {
-    position: relative;
-    max-width: 800px;
-    margin: 0 auto;
-    overflow: hidden;
-    padding: 0 40px;
-}
-
-.carousel-items-container {
-    display: flex;
-    transition: transform 0.3s ease;
-    width: 100%;
-}
-
-.carousel-item {
-    min-width: 100%;
-    padding: 20px 40px;
-    box-sizing: border-box;
-    transition: opacity 0.3s ease;
-    opacity: 0;
-}
-
-.carousel-item.active {
-    opacity: 1;
-}
-
-/* Clean Carousel Arrows */
-.carousel-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 24px;
-    height: 24px;
-    background: transparent;
-    color: #2D3748;
-    border: none;
-    cursor: pointer;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-}
-
-.carousel-arrow:hover {
-    color: #1A202C;
-    transform: translateY(-50%) scale(1.2);
-}
-
-.carousel-arrow--left {
-    left: 15px;
-}
-
-.carousel-arrow--right {
-    right: 15px;
-}
-
-.carousel-indicators {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 20px;
-}
-
-.carousel-indicator {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: #e9ecef;
-    border: none;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.carousel-indicator.active {
-    background: #495057;
-    transform: scale(1.2);
-}
-
-/* Hide scrollbar but keep functionality */
-.carousel-items-container::-webkit-scrollbar {
-    display: none;
-}
-
-.carousel-items-container {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-/* Page Transition Animations */
-.page-transition {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 9999;
-    background: var(--color-background);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease-in-out;
-}
-
-.page-transition.active {
-    opacity: 1;
-}
-
-/* Smooth page load animation */
-body.page-load {
-    opacity: 0;
-    animation: fadeIn 0.5s ease-in-out forwards;
-    animation-delay: 0.1s;
-}
-
-/* Smooth route change animation */
-.route-change {
-    position: relative;
-}
-
-.route-change::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 9998;
-    background: var(--color-background);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease-in-out;
-}
-
-.route-change.active::before {
-    opacity: 1;
-}
-
-/* Add these classes to your HTML structure */
-/* <div class="page-transition"></div> */
-/* <body class="page-load"> */
-
-/**
- * main.css - Main entry point for RANDM Lab website styles
- * Imports all necessary stylesheets in the correct order
- */
-
-/* Base styles, variables, resets */
+/* Imports in canonical order */
 @import url('base.css');
-
-/* Layout and structure */
 @import url('layout.css');
-
-/* Animation system */
 @import url('animations.css');
-
-/* Component styles */
 @import url('components.css');
 @import url('components/hamburger.css');
 @import url('tabs.css');
-
-/* Page-specific styles */
 @import url('research.css');
 @import url('team.css');
 @import url('news.css');
 @import url('get-involved.css');
 @import url('detailed-content.css');
-
-/* 
- * Additional utility classes that should override other styles
- * These should be loaded last to ensure they take precedence
- */
-
-/* Utility classes for responsive design */
-.hide-mobile {
-  display: none;
-}
-
-.hide-desktop {
-  display: block;
-}
-
-/* Fixed positioning utilities */
-.fixed {
-  position: fixed;
-}
-
-.inset-0 {
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-
-.z-50 {
-  z-index: 50;
-}
-
-/* Background utilities */
-.bg-black {
-  background-color: #000;
-}
-
-.bg-opacity-50 {
-  --bg-opacity: 0.5;
-  background-color: rgba(0, 0, 0, var(--bg-opacity));
-}
-
-/* Display utilities */
-.hidden {
-  display: none;
-}
-
-.overflow-hidden {
-  overflow: hidden;
-}
-
-/* Hardware acceleration utilities */
-.hardware-accelerate {
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  perspective: 1000px;
-}
-
-/* Media queries */
-@media (min-width: 768px) {
-  .hide-mobile {
-    display: block;
-  }
-  
-  .hide-desktop {
-    display: none;
-  }
-}
 
 /* Accessibility focus styles */
 :focus-visible {
@@ -256,7 +19,7 @@ body.page-load {
   outline-offset: 2px;
 }
 
-/* Skip to content link for accessibility */
+/* Skip to content link */
 .skip-to-content {
   position: absolute;
   top: -40px;
@@ -272,39 +35,27 @@ body.page-load {
   top: 0;
 }
 
-/* Transition & animation utilities */
-.transition-opacity {
-  transition-property: opacity;
-}
+/* Utility helpers retained */
+.hide-mobile { display: none; }
+.hide-desktop { display: block; }
+.fixed { position: fixed; }
+.inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+.z-50 { z-index: 50; }
+.bg-black { background-color: #000; }
+.bg-opacity-50 { --bg-opacity: 0.5; background-color: rgba(0, 0, 0, var(--bg-opacity)); }
+.hidden { display: none; }
+.overflow-hidden { overflow: hidden; }
+.hardware-accelerate { transform: translateZ(0); backface-visibility: hidden; perspective: 1000px; }
 
-.duration-slow {
-  transition-duration: var(--duration-slow);
-}
-
-.ease-in-out {
-  transition-timing-function: var(--ease-in-out);
+@media (min-width: 768px) {
+  .hide-mobile { display: block; }
+  .hide-desktop { display: none; }
 }
 
 /* Print styles */
 @media print {
-  .no-print {
-    display: none !important;
-  }
-  
-  body {
-    background-color: white;
-    color: black;
-    font-size: 12pt;
-  }
-  
-  a {
-    color: black;
-    text-decoration: underline;
-  }
-  
-  .container {
-    max-width: 100%;
-    margin: 0;
-    padding: 0;
-  }
+  .no-print { display: none !important; }
+  body { background-color: white; color: black; font-size: 12pt; }
+  a { color: black; text-decoration: underline; }
+  .container { max-width: 100%; margin: 0; padding: 0; }
 }
