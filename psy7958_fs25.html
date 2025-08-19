@@ -12,6 +12,23 @@
   <link rel="stylesheet" href="css/main.css">
   <style>
     /* Additional syllabus-specific styles */
+    .navbar.navbar--solid {
+      background-color: var(--color-background);
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .navbar.navbar--solid .navbar__link {
+      color: var(--color-text);
+    }
+    
+    .navbar.navbar--solid .navbar__link:hover,
+    .navbar.navbar--solid .navbar__link.active {
+      color: var(--color-primary);
+    }
+    
+    .navbar.navbar--solid .hamburger__line {
+      background-color: var(--color-text);
+    }
     .syllabus-header {
       background: var(--color-background-accent);
       padding: var(--spacing-xl);
@@ -399,7 +416,7 @@
   <a href="#main-content" class="skip-to-content">Skip to content</a>
   
   <!-- Navigation using website's navbar component -->
-  <nav class="navbar" role="navigation" aria-label="Main navigation">
+  <nav class="navbar navbar--solid" role="navigation" aria-label="Main navigation">
     <div class="navbar__logo">
       <a href="index.html">
         <img src="assets/logo.svg" alt="RANDM Lab Logo" class="navbar__logo-img">
@@ -679,8 +696,8 @@
             <tr class="border-b"><td class="py-2 px-3">1</td><td class="py-2 px-3">Aug 25</td><td class="py-2 px-3">Introduction & Theoretical Foundations</td><td class="py-2 px-3">Don</td></tr>
             <tr class="border-b bg-red-50"><td class="py-2 px-3">2</td><td class="py-2 px-3">Sept 1</td><td class="py-2 px-3 text-red-700">Labor Day</td><td class="py-2 px-3 text-red-600">No Class</td></tr>
             <tr class="border-b"><td class="py-2 px-3">3</td><td class="py-2 px-3">Sept 8</td><td class="py-2 px-3">Methodological Foundations</td><td class="py-2 px-3">Don</td></tr>
-            <tr class="border-b"><td class="py-2 px-3">4</td><td class="py-2 px-3">Sept 15</td><td class="py-2 px-3">Predicting Performance I</td><td class="py-2 px-3"></td></tr>
-            <tr class="border-b"><td class="py-2 px-3">5</td><td class="py-2 px-3">Sept 22</td><td class="py-2 px-3">Predicting Performance II</td><td class="py-2 px-3"></td></tr>
+            <tr class="border-b"><td class="py-2 px-3">4</td><td class="py-2 px-3">Sept 15</td><td class="py-2 px-3">Selection and Validation</td><td class="py-2 px-3">Don</td></tr>
+            <tr class="border-b"><td class="py-2 px-3">5</td><td class="py-2 px-3">Sept 22</td><td class="py-2 px-3">Predicting Performance</td><td class="py-2 px-3"></td></tr>
             <tr class="border-b"><td class="py-2 px-3">6</td><td class="py-2 px-3">Sept 29</td><td class="py-2 px-3">Beyond Job Performance</td><td class="py-2 px-3"></td></tr>
             <tr class="border-b"><td class="py-2 px-3">7</td><td class="py-2 px-3">Oct 6</td><td class="py-2 px-3">Within-Person Dynamics</td><td class="py-2 px-3"></td></tr>
             <tr class="border-b bg-yellow-50"><td class="py-2 px-3">8</td><td class="py-2 px-3">Oct 13</td><td class="py-2 px-3 text-yellow-700">In-class midterms</td><td class="py-2 px-3 text-yellow-600"></td></tr>
@@ -688,7 +705,7 @@
             <tr class="border-b"><td class="py-2 px-3">10</td><td class="py-2 px-3">Oct 27</td><td class="py-2 px-3">Performance and Wellbeing</td><td class="py-2 px-3"></td></tr>
             <tr class="border-b"><td class="py-2 px-3">11</td><td class="py-2 px-3">Nov 3</td><td class="py-2 px-3">Team and Leader Performance</td><td class="py-2 px-3"></td></tr>
             <tr class="border-b"><td class="py-2 px-3">12</td><td class="py-2 px-3">Nov 10</td><td class="py-2 px-3">Interdisciplinary Perspectives</td><td class="py-2 px-3"></td></tr>
-            <tr class="border-b"><td class="py-2 px-3">13</td><td class="py-2 px-3">Nov 17</td><td class="py-2 px-3">Future of Performance</td><td class="py-2 px-3">Don</td></tr>
+            <tr class="border-b"><td class="py-2 px-3">13</td><td class="py-2 px-3">Nov 17</td><td class="py-2 px-3">Future of Performance</td><td class="py-2 px-3"></td></tr>
             <tr class="border-b bg-red-50"><td class="py-2 px-3">14</td><td class="py-2 px-3">Nov 24</td><td class="py-2 px-3 text-red-700">Thanksgiving</td><td class="py-2 px-3 text-red-600">No Class</td></tr>
             <tr class="border-b bg-blue-50"><td class="py-2 px-3">15</td><td class="py-2 px-3">Dec 1</td><td class="py-2 px-3 text-blue-700">Proposal Presentations</td><td class="py-2 px-3 text-blue-600"></td></tr>
             <tr class="bg-green-50"><td class="py-2 px-3">16</td><td class="py-2 px-3">Dec 8</td><td class="py-2 px-3 text-green-700">Research Feedback (Optional, By Appointment)</td><td class="py-2 px-3 text-green-600"></td></tr>
@@ -740,15 +757,15 @@
           </div>
         </div>
 
-        <!-- Week 4: Predicting Performance I -->
+        <!-- Week 4: Selection and Validation -->
         <div class="accordion-section">
           <button class="accordion-header" aria-expanded="false" aria-controls="week4" id="accordion-header-week4">
-            Week 4 (Sept 15): Predicting Performance I
+            Week 4 (Sept 15): Selection and Validation  
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </button>
           <div id="week4" class="accordion-panel hidden" aria-labelledby="accordion-header-week4">
             <ul>
-              <li>Van Iddekinge, C. H., Aguinis, H., Mackey, J. D., & DeOrtentiis, P. S. (2018). A meta-analysis of the interactive, additive, and relative effects of cognitive ability and motivation on performance. <i>Journal of Management</i>, 44(1), 249-279.</li>
+              <li>Lievens, F., & Sackett, P. R. (2017). The effects of predictor method factors on selection outcomes: A modular approach to personnel selection procedures. Journal of Applied Psychology, 102(1), 43.</li>
               <li>Carretta, T. R., & Ree, M. J. (2022). Correction for range restriction: Lessons from 20 research scenarios. Military psychology, 34(5), 551-569.</a></li>
               <li>Lebreton et al., CH4. Situational Specificity, Validity Generalization, and the Future of Psychometric Meta-Analysis. in Farr & Tippins (2017), Handbook of Employee Selection</li>
             </ul>
@@ -761,10 +778,10 @@
           </div>
         </div>
 
-        <!-- Week 5: Predicting Performance II -->
+        <!-- Week 5: Predicting Performance I -->
         <div class="accordion-section">
           <button class="accordion-header" aria-expanded="false" aria-controls="week5" id="accordion-header-week5">
-            Week 5 (Sept 22): Predicting Performance II
+            Week 5 (Sept 22): Predicting Performance I
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </button>
           <div id="week5" class="accordion-panel hidden" aria-labelledby="accordion-header-week5">
