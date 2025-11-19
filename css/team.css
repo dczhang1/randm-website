@@ -1,12 +1,13 @@
-/* team.css - Team page specific styles */
+/* team.css - Team page specific styles (Dark theme) */
 
 /* Team grid specific styling */
 .team .grid {
-    gap: var(--spacing-sm); /* Even smaller gap for team grid */
+    gap: var(--spacing-md);
 }
 
 .team .team-member {
-    padding: var(--spacing-xs); /* Even smaller padding for team members */
+    padding: var(--spacing-sm);
+    text-align: center;
 }
 
 /* PI Card hover styles */
@@ -45,13 +46,14 @@
 }
 
 .team-modal.active {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(4px);
 }
 
 .team-modal-content {
-    background-color: var(--color-background);
+    background-color: var(--color-bg-secondary);
     border-radius: var(--border-radius);
-    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--color-border);
     max-width: 900px;
     width: 100%;
     margin: 50px auto;
@@ -73,24 +75,31 @@
     right: var(--spacing-md);
     font-size: 24px;
     cursor: pointer;
-    color: var(--color-primary);
+    color: var(--color-text-secondary);
+    transition: color var(--transition-standard);
+}
+
+.team-modal-close:hover {
+    color: var(--color-text-primary);
 }
 
 .team-modal-header {
     margin-bottom: var(--spacing-lg);
-    border-bottom: 1px solid var(--color-background-accent);
+    border-bottom: 1px solid var(--color-border);
     padding-bottom: var(--spacing-md);
 }
 
 .team-modal-header h2 {
     margin-bottom: var(--spacing-xs);
-    font-size: 24px;
+    font-size: 1.5rem;
+    color: var(--color-text-primary);
 }
 
 .team-modal-header h3 {
-    color: var(--color-secondary);
-    font-size: 18px;
+    color: var(--color-text-secondary);
+    font-size: 1rem;
     margin-bottom: 0;
+    font-weight: 400;
 }
 
 .team-modal-body {
@@ -103,7 +112,7 @@
     justify-content: space-between;
     margin-top: var(--spacing-lg);
     padding-top: var(--spacing-md);
-    border-top: 1px solid var(--color-background-accent);
+    border-top: 1px solid var(--color-border);
 }
 
 /* PI modal content layout */
@@ -123,9 +132,8 @@
     max-width: 280px;
     height: auto;
     object-fit: cover;
-    border-radius: 5px;
-    border: 3px solid var(--color-primary);
-    box-shadow: var(--shadow-md);
+    border-radius: var(--border-radius);
+    border: 2px solid var(--color-border);
 }
 
 .pi-section {
@@ -133,11 +141,11 @@
 }
 
 .pi-section h3 {
-    color: var(--color-accent);
-    font-size: 18px;
+    color: var(--color-text-primary);
+    font-size: 1rem;
     margin-bottom: var(--spacing-sm);
     padding-bottom: var(--spacing-xs);
-    border-bottom: 1px solid var(--color-background-accent);
+    border-bottom: 1px solid var(--color-border);
 }
 
 .pi-section ul {
@@ -146,6 +154,7 @@
 
 .pi-section li {
     margin-bottom: var(--spacing-xs);
+    color: var(--color-text-secondary);
 }
 
 /* Responsive adjustments */
@@ -154,47 +163,78 @@
         grid-template-columns: 1fr;
         gap: var(--spacing-md);
     }
-    
+
     .pi-modal-image {
         position: relative;
         text-align: center;
         margin-bottom: var(--spacing-md);
     }
-    
+
     .pi-photo-lg {
         max-width: 200px;
     }
-    
+
     .team-modal-content {
         padding: var(--spacing-md);
     }
 }
 
+/* Team member photos */
 .team-member .member-photo {
     width: 150px;
     height: 150px;
     object-fit: cover;
     border-radius: 50%;
-    border: 3px solid var(--color-primary);
+    border: 2px solid var(--color-border);
     margin: 0 auto var(--spacing-md);
     display: block;
-    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-standard);
 }
 
+.team-member:hover .member-photo {
+    border-color: var(--color-accent-primary);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+}
+
+.team-member h3 {
+    color: var(--color-text-primary);
+    font-size: 1rem;
+    margin-bottom: var(--spacing-xs);
+}
+
+.team-member p {
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+}
+
+/* PI Banner */
 .pi-banner .pi-photo {
     width: 200px;
     height: 200px;
     object-fit: cover;
     border-radius: 50%;
-    border: 3px solid var(--color-primary);
-    box-shadow: var(--shadow-md);
+    border: 2px solid var(--color-accent-primary);
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.2);
 }
 
+/* Mascot section */
 .mascot-section .mascot-photo {
     width: 200px;
     height: 200px;
     object-fit: cover;
     border-radius: 50%;
-    border: 3px solid var(--color-primary);
-    box-shadow: var(--shadow-md);
+    border: 2px solid var(--color-border);
+}
+
+/* Alumni section */
+.alumni-section {
+    margin-top: var(--spacing-section);
+}
+
+.alumni-section h2 {
+    color: var(--color-text-primary);
+}
+
+.alumni-list {
+    color: var(--color-text-secondary);
 }

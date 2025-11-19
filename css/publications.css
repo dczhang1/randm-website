@@ -32,13 +32,13 @@
 .publication-card__authors {
     margin-bottom: 0.75rem;
     line-height: 1.5;
-    color: #333;
+    color: var(--color-text-secondary);
 }
 
 .publication-card__venue {
     font-style: italic;
     margin-bottom: 0.75rem;
-    color: #555;
+    color: var(--color-text-tertiary);
 }
 
 .publication-card__notes {
@@ -52,7 +52,7 @@
     gap: 0.75rem;
     margin-top: 1rem;
     padding-top: 1rem;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--color-border);
     flex-wrap: wrap;
 }
 
@@ -63,11 +63,12 @@
 }
 
 .publication-tag {
-    background-color: #f0f0f0;
+    background-color: var(--color-bg-tertiary);
     padding: 0.25rem 0.5rem;
     border-radius: 0.25rem;
     font-size: 0.8rem;
-    color: #666;
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-border);
 }
 
 .publication-actions {

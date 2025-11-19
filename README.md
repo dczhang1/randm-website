@@ -86,4 +86,18 @@ For new components, follow the existing patterns and CSS variables for consisten
 - Use CSS variables for colors, spacing, and typography
 - Follow the BEM (Block, Element, Modifier) naming convention
 - Maintain consistent spacing with the defined variables
-- Keep accessibility in mind when developing new features 
+- Keep accessibility in mind when developing new features
+
+## Color Palette
+
+The website uses a dark mode color palette inspired by the "Bert" design:
+
+| Color | Hex | Usage |
+|-------|-----|-------|
+| Near Black | `#0B0C10` | Primary background |
+| Dark Blue-Gray | `#1F2833` | Secondary backgrounds, cards |
+| Gray | `#C5C6C7` | Body text |
+| Cyan | `#66FCF1` | Primary accent, links, highlights |
+| Teal | `#45A29E` | Secondary accent |
+
+All colors are defined as CSS variables in `css/base.css` for easy customization.
