@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Risk and Decision Making Lab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        .contact-hero {
+            background: linear-gradient(135deg, var(--color-bg-primary), var(--color-bg-secondary));
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+        }
+
+        .contact-hero__title {
+            font-family: var(--heading-font);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .contact-hero__subtitle {
+            font-size: 1.25rem;
+            color: var(--color-text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .contact-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .contact-info-card {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s var(--ease-out);
+        }
+
+        .contact-info-card:hover {
+            border-color: var(--color-border-hover);
+            transform: translateY(-5px);
+        }
+
+        .contact-info-card__icon {
+            font-size: 2.5rem;
+            color: var(--color-accent-primary);
+            margin-bottom: 1rem;
+        }
+
+        .contact-info-card__title {
+            font-family: var(--heading-font);
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info-card__text {
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+
+        .contact-info-card__link {
+            color: var(--color-accent-primary);
+            text-decoration: none;
+            transition: color 0.3s var(--ease-out);
+        }
+
+        .contact-info-card__link:hover {
+            color: var(--color-accent-secondary);
+        }
+
+        .opportunities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .opportunity-card {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            transition: all 0.3s var(--ease-out);
+        }
+
+        .opportunity-card:hover {
+            border-color: var(--color-border-hover);
+            transform: translateY(-5px);
+        }
+
+        .opportunity-card__icon {
+            font-size: 2rem;
+            color: var(--color-accent-primary);
+            margin-bottom: 1rem;
+        }
+
+        .opportunity-card__title {
+            font-family: var(--heading-font);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .opportunity-card__text {
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title-main {
+            font-family: var(--heading-font);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--color-text-secondary);
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+    </style>
+    <script>
+      window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+    <script>
+      va('set', { projectId: 'prj_80x6plCjhxYjsNmRzreAN5csYdxG' });
+    </script>
+</head>
+<body data-page="contact">
+    <a href="#main-content" class="skip-to-content">Skip to content</a>
+
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="navbar__logo">
+            <a href="index.html">
+                <img src="assets/logo.svg" alt="RANDM Lab Logo" class="navbar__logo-img">
+            </a>
+        </div>
+        <div class="hamburger" aria-controls="mobile-menu" aria-expanded="false" aria-label="Toggle menu" tabindex="0">
+            <span class="hamburger__line"></span>
+            <span class="hamburger__line"></span>
+            <span class="hamburger__line"></span>
+        </div>
+        <div class="navbar__links" id="mobile-menu" aria-hidden="true">
+            <a href="index.html" class="navbar__link">Home</a>
+            <a href="team.html" class="navbar__link">Team</a>
+            <a href="research.html" class="navbar__link">Research</a>
+            <a href="news.html" class="navbar__link">News</a>
+            <a href="contact.html" class="navbar__link active" aria-current="page">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="contact-hero fade-in-up">
+        <h1 class="contact-hero__title">Get in Touch</h1>
+        <p class="contact-hero__subtitle">
+            We're always looking for talented individuals and collaborators. Whether you're interested in joining our lab, participating in research, or partnering with us, we'd love to hear from you.
+        </p>
+    </section>
+
+    <main id="main-content">
+        <!-- Contact Information -->
+        <section class="contact-section fade-in-up">
+            <div class="contact-info-grid">
+                <div class="contact-info-card scale-in" data-stagger="0">
+                    <div class="contact-info-card__icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h2 class="contact-info-card__title">Location</h2>
+                    <p class="contact-info-card__text">
+                        Audubon Hall, Rooms 9 and 10<br>
+                        Louisiana State University<br>
+                        Baton Rouge, LA 70803
+                    </p>
+                </div>
+
+                <div class="contact-info-card scale-in" data-stagger="1">
+                    <div class="contact-info-card__icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h2 class="contact-info-card__title">Email</h2>
+                    <p class="contact-info-card__text">
+                        <a href="mailto:zhang1@lsu.edu" class="contact-info-card__link">zhang1@lsu.edu</a>
+                    </p>
+                    <p class="contact-info-card__text" style="margin-top: 0.5rem; font-size: 0.875rem;">
+                        For general inquiries and collaboration opportunities
+                    </p>
+                </div>
+
+                <div class="contact-info-card scale-in" data-stagger="2">
+                    <div class="contact-info-card__icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h2 class="contact-info-card__title">Phone</h2>
+                    <p class="contact-info-card__text">
+                        <a href="tel:+12255784093" class="contact-info-card__link">+1 (225) 578-4093</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Get Involved Section -->
+        <section class="contact-section" style="background-color: var(--color-bg-secondary); margin-top: 2rem; padding-top: 4rem; padding-bottom: 4rem;">
+            <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
+                <h2 class="section-title-main fade-in-up">Join Our Lab</h2>
+                <p class="section-subtitle fade-in-up">We offer various opportunities to engage with our research</p>
+
+                <div class="opportunities-grid">
+                    <!-- Research Assistants -->
+                    <div class="opportunity-card scale-in" data-stagger="0">
+                        <div class="opportunity-card__icon">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <h3 class="opportunity-card__title">Research Assistants</h3>
+                        <p class="opportunity-card__text">
+                            Undergraduate students can join our lab as research assistants. You'll gain hands-on experience with literature reviews, data analysis, experiment design, and manuscript preparation.
+                        </p>
+                        <p class="opportunity-card__text" style="font-size: 0.875rem; margin-bottom: 1rem;">
+                            <strong>Requirements:</strong> GPA 3.5+, 3-6 hours/week commitment, two-semester minimum
+                        </p>
+                        <a href="https://forms.office.com/r/gTpaMBjbua" class="btn btn--primary hover-lift" target="_blank">Apply Now</a>
+                    </div>
+
+                    <!-- Graduate Students -->
+                    <div class="opportunity-card scale-in" data-stagger="1">
+                        <div class="opportunity-card__icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3 class="opportunity-card__title">Graduate Students</h3>
+                        <p class="opportunity-card__text">
+                            We're currently accepting graduate applications for students interested in risk-taking, decision-making, and employee selection research.
+                        </p>
+                        <p class="opportunity-card__text" style="font-size: 0.875rem; margin-bottom: 1rem;">
+                            <strong>What we look for:</strong> Intense curiosity, evidence-driven mindset, self-starter attitude
+                        </p>
+                        <a href="https://www.lsu.edu/hss/psychology/grad/prospective-student/NatureoftheProgram.php" class="btn btn--primary hover-lift" target="_blank">Learn More</a>
+                    </div>
+
+                    <!-- Research Participants -->
+                    <div class="opportunity-card scale-in" data-stagger="2">
+                        <div class="opportunity-card__icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="opportunity-card__title">Research Participants</h3>
+                        <p class="opportunity-card__text">
+                            Volunteer as a research participant and contribute to our scientific investigations. Studies include online surveys, laboratory experiments, and decision-making tasks.
+                        </p>
+                        <p class="opportunity-card__text" style="font-size: 0.875rem; margin-bottom: 1rem;">
+                            <strong>Compensation:</strong> $10-$40 per study, 30-90 minutes
+                        </p>
+                        <a href="mailto:zhang1@lsu.edu?subject=Research%20Participation%20Inquiry" class="btn btn--primary hover-lift">Sign Up</a>
+                    </div>
+
+                    <!-- Industry Partners -->
+                    <div class="opportunity-card scale-in" data-stagger="3">
+                        <div class="opportunity-card__icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3 class="opportunity-card__title">Industry Partners</h3>
+                        <p class="opportunity-card__text">
+                            We collaborate with organizations on applied research, employee selection tools, risk assessment practices, and decision-making workshops.
+                        </p>
+                        <p class="opportunity-card__text" style="font-size: 0.875rem; margin-bottom: 1rem;">
+                            <strong>Services:</strong> Consulting, tool development, workshops, applied research
+                        </p>
+                        <a href="mailto:zhang1@lsu.edu?subject=Partnership%20Inquiry" class="btn btn--primary hover-lift">Explore Partnerships</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Additional Information -->
+        <section class="contact-section fade-in-up">
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <h2 class="section-title-main">Visit Us</h2>
+                <p class="section-subtitle">
+                    Our lab is located in Audubon Hall on the Louisiana State University campus. We welcome visitors by appointment. Please email us in advance to schedule a visit.
+                </p>
+                <div style="margin-top: 2rem;">
+                    <a href="https://www.lsu.edu/parking/maps.php" class="btn btn--outline hover-lift" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-map" style="margin-right: 0.5rem;"></i>Campus Map
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="footer__container">
+            <div class="footer__section">
+                <h3 class="footer__heading">Contact Us</h3>
+                <address class="footer__address">
+                    <p>Risk and Decision Making Lab</p>
+                    <p>Department of Psychology</p>
+                    <p>Louisiana State University</p>
+                    <p>Baton Rouge, LA 70803</p>
+                    <p><a href="mailto:zhang1@lsu.edu" class="footer__link">zhang1@lsu.edu</a></p>
+                    <p><a href="tel:+12257876543" class="footer__link">+1 225 578 4093</a></p>
+                </address>
+            </div>
+
+            <div class="footer__section">
+                <h3 class="footer__heading">Quick Links</h3>
+                <ul class="footer__list">
+                    <li><a href="index.html" class="footer__link">Home</a></li>
+                    <li><a href="team.html" class="footer__link">Team</a></li>
+                    <li><a href="research.html" class="footer__link">Research</a></li>
+                    <li><a href="news.html" class="footer__link">News</a></li>
+                    <li><a href="contact.html" class="footer__link" aria-current="page">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__section">
+                <h3 class="footer__heading">Follow Us</h3>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/company/randm-lab" class="social-link hover-lift" title="LinkedIn" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://www.researchgate.net/lab/Risk-and-Decision-Making-Lab" class="social-link hover-lift" title="ResearchGate" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-researchgate"></i>
+                    </a>
+                    <a href="mailto:zhang1@lsu.edu" class="social-link hover-lift" title="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="https://www.lsu.edu" class="social-link hover-lift" title="University" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-university"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer__legal">
+            <p class="footer__text">© 2025 Risk and Decision Making Lab. All rights reserved.</p>
+            <p class="footer__text"><a href="privacy.html" class="footer__link">Privacy Policy</a> | <a href="terms.html" class="footer__link">Terms of Use</a></p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/utils.js" defer></script>
+    <script src="js/main.js" defer></script>
+    <script src="js/scroll-animations.js" defer></script>
+</body>
+</html>
