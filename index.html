@@ -6,11 +6,285 @@
     <title>Risk and Decision Making Lab</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome for social icons -->
+    <!-- Space Grotesk for headings, Inter for body -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- Single CSS file that imports all other CSS files -->
     <link rel="stylesheet" href="css/main.css">
+    <style>
+        /* Homepage-specific styles */
+        .hero-new {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-color: var(--color-bg-primary);
+        }
+
+        #neural-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .grain-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+
+        .hero-new__content {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .hero-new__title {
+            font-family: var(--heading-font);
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            color: var(--color-text-primary);
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero-new__subtitle {
+            font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+            color: var(--color-text-secondary);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--color-text-secondary);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        /* Section styling */
+        .section {
+            padding: 8rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section--dark {
+            background-color: var(--color-bg-secondary);
+        }
+
+        .section__label {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--color-accent-primary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .section__title {
+            font-family: var(--heading-font);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
+        }
+
+        .section__text {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--color-text-secondary);
+            max-width: 800px;
+        }
+
+        /* Two-column layout */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        @media (max-width: 768px) {
+            .two-col {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        /* Bento Grid for research highlights */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(3, 200px);
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .bento-card {
+            background: var(--color-bg-secondary);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            border: 1px solid var(--color-border);
+            transition: all 0.3s var(--ease-out);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bento-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-secondary));
+            opacity: 0;
+            transition: opacity 0.3s var(--ease-out);
+        }
+
+        .bento-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .bento-card:hover {
+            border-color: var(--color-border-hover);
+            transform: translateY(-5px);
+        }
+
+        .bento-card__title {
+            font-family: var(--heading-font);
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .bento-card__text {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        .bento-card--large {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .bento-card--tall {
+            grid-row: span 2;
+        }
+
+        .bento-card--wide {
+            grid-column: span 2;
+        }
+
+        @media (max-width: 768px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+            }
+
+            .bento-card--large,
+            .bento-card--tall,
+            .bento-card--wide {
+                grid-column: 1;
+                grid-row: auto;
+            }
+        }
+
+        /* Resources cards */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .resource-card {
+            background: var(--color-bg-secondary);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            border: 1px solid var(--color-border);
+            transition: all 0.3s var(--ease-out);
+        }
+
+        .resource-card:hover {
+            border-color: var(--color-border-hover);
+            transform: translateY(-5px);
+        }
+
+        .resource-card__title {
+            font-family: var(--heading-font);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .resource-card__description {
+            color: var(--color-text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--color-bg-secondary), var(--color-bg-tertiary));
+            border-radius: var(--border-radius-lg);
+            padding: 4rem;
+            text-align: center;
+            border: 1px solid var(--color-border);
+        }
+
+        .cta-section__title {
+            font-family: var(--heading-font);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .cta-section__text {
+            font-size: 1.125rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+    </style>
     <script>
       window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
     </script>
@@ -19,11 +293,10 @@
       va('set', { projectId: 'prj_80x6plCjhxYjsNmRzreAN5csYdxG' });
     </script>
 </head>
-<body data-page="home" class="home-page">
-    <!-- Accessibility: Skip to content link -->
+<body data-page="home">
     <a href="#main-content" class="skip-to-content">Skip to content</a>
-    
-    <!-- Navigation using the new component classes -->
+
+    <!-- Navigation - Simplified -->
     <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="navbar__logo">
             <a href="index.html">
@@ -40,67 +313,156 @@
             <a href="team.html" class="navbar__link">Team</a>
             <a href="research.html" class="navbar__link">Research</a>
             <a href="news.html" class="navbar__link">News</a>
-            <a href="get-involved.html" class="navbar__link">Get Involved</a>
+            <a href="contact.html" class="navbar__link">Contact</a>
         </div>
     </nav>
-    
-    <!-- Hero section with enhanced animation classes -->
-    <div class="hero hardware-accelerated">
-        <div class="hero__bg"></div>
-        <div class="hero__overlay"></div>
-        <div class="hero__content fade-up">
-            <h1 class="hero__title">Risk and Decision Making Laboratory</h1>
-            <p class="hero__subtitle">The science of how people make decisions at work</p>
-            <a href="research.html" class="btn btn--lg btn--outline-light hover-lift">Our Research</a>
-        </div>
-    </div>
-    
-    <main id="main-content">
-        <div class="content-container-narrow mt-xl">
-            <div class="card card--border-top-primary fade-up">
-                <h2>About Our Lab</h2>
-                <p>Founded in 2016 by Dr. Don Zhang, the Risk and Decision Making Lab is housed in Louisiana State University, Department of Psychology. We conduct 
-                research on how people make decisions at work, with a focus on risk and decision making. Our mission is to understand the cognitive, personality, and organizational influences on decision making at work. 
-                We are committed to conducting rigorous, high-quality research that has practical implications for organizations and individuals.</p>
+
+    <!-- Hero Section with Neural Canvas -->
+    <section class="hero-new">
+        <canvas id="neural-canvas"></canvas>
+        <div class="grain-overlay"></div>
+        <div class="hero-new__content fade-in-up">
+            <h1 class="hero-new__title">Risk and Decision Making Laboratory</h1>
+            <p class="hero-new__subtitle">The science of how people make decisions at work</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="#research" class="btn btn--lg btn--primary hover-lift">Explore Research</a>
+                <a href="contact.html" class="btn btn--lg btn--outline hover-lift">Get Involved</a>
             </div>
         </div>
+        <div class="scroll-indicator">
+            <div>Scroll to explore</div>
+            <i class="fas fa-chevron-down" style="display: block; margin-top: 0.5rem;"></i>
+        </div>
+    </section>
 
-        <!-- News Carousel Section with enhanced animations and accessibility -->
-        <div class="content-container-narrow mt-xl">
-            <div class="card fade-up">
-                <h2 class="section-title">Latest News</h2>
+    <main id="main-content">
+        <!-- About Section -->
+        <section class="section fade-in-up">
+            <div class="two-col">
+                <div class="section__label">About</div>
+                <div>
+                    <h2 class="section__title">Understanding Decision Making at Work</h2>
+                    <p class="section__text">
+                        Founded in 2016 by Dr. Don Zhang, the Risk and Decision Making Lab is housed in Louisiana State University, Department of Psychology. We conduct research on how people make decisions at work, with a focus on risk and decision making. Our mission is to understand the cognitive, personality, and organizational influences on decision making at work. We are committed to conducting rigorous, high-quality research that has practical implications for organizations and individuals.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Research Highlights Section -->
+        <section id="research" class="section section--dark fade-in-up">
+            <div class="section__label">Research</div>
+            <h2 class="section__title">Research Programs</h2>
+
+            <div class="bento-grid">
+                <!-- Large card - Risk Taking Research -->
+                <div class="bento-card bento-card--large scale-in" data-stagger="0">
+                    <h3 class="bento-card__title">Risk Taking Research</h3>
+                    <p class="bento-card__text">
+                        We study how individuals perceive and respond to risk in organizational contexts. Our research examines personality traits, cognitive processes, and situational factors that influence risk-taking behavior.
+                    </p>
+                </div>
+
+                <!-- Tall card - Employee Selection -->
+                <div class="bento-card bento-card--tall scale-in" data-stagger="1">
+                    <h3 class="bento-card__title">Employee Selection</h3>
+                    <p class="bento-card__text">
+                        Developing evidence-based tools and methods for identifying and selecting top talent in organizations.
+                    </p>
+                </div>
+
+                <!-- Regular card - Decision Making Under Uncertainty -->
+                <div class="bento-card scale-in" data-stagger="2">
+                    <h3 class="bento-card__title">Decision Making Under Uncertainty</h3>
+                    <p class="bento-card__text">
+                        Examining how people make choices when outcomes are uncertain.
+                    </p>
+                </div>
+
+                <!-- Wide card - Judgment and Decision Making -->
+                <div class="bento-card bento-card--wide scale-in" data-stagger="3">
+                    <h3 class="bento-card__title">Judgment and Decision Making</h3>
+                    <p class="bento-card__text">
+                        Investigating cognitive biases, heuristics, and systematic errors in workplace decision making.
+                    </p>
+                </div>
+
+                <!-- Regular card - Organizational Behavior -->
+                <div class="bento-card scale-in" data-stagger="4">
+                    <h3 class="bento-card__title">Organizational Behavior</h3>
+                    <p class="bento-card__text">
+                        Understanding how organizational contexts shape individual and team decisions.
+                    </p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="research.html" class="btn btn--lg btn--outline hover-lift">View All Research</a>
+            </div>
+        </section>
+
+        <!-- Resources Section -->
+        <section class="section fade-in-up">
+            <div class="section__label">Resources</div>
+            <h2 class="section__title">Research Tools & Scales</h2>
+
+            <div class="resources-grid">
+                <div class="resource-card scale-in" data-stagger="0">
+                    <h3 class="resource-card__title">GRiPS</h3>
+                    <p class="resource-card__description">
+                        General Risk Propensity Scale - A validated measure of individual differences in risk-taking propensity across various domains.
+                    </p>
+                    <a href="grips.html" class="btn btn--primary hover-lift">Learn More</a>
+                </div>
+
+                <div class="resource-card scale-in" data-stagger="1">
+                    <h3 class="resource-card__title">CASPRT</h3>
+                    <p class="resource-card__description">
+                        Composite Anticipated and Subjective Probability of Risk Taking - A comprehensive assessment of risk perceptions and tendencies.
+                    </p>
+                    <a href="casprt.html" class="btn btn--primary hover-lift">Learn More</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Latest News Section -->
+        <section class="section section--dark fade-in-up">
+            <div class="section__label">Updates</div>
+            <h2 class="section__title">Latest News</h2>
+
+            <div class="card">
                 <div class="news-carousel" data-autoplay="5000" role="region" aria-roledescription="carousel">
-                    <button class="carousel-arrow carousel-arrow--left" aria-label="Previous news item" role="button">
-                        <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                    <button class="carousel-arrow carousel-arrow--left" aria-label="Previous news item">
+                        <i class="fas fa-chevron-left"></i>
                     </button>
-                    <div class="carousel-items-container transition-transform duration-normal ease-out">
-                        <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="Slide 1 of 4">
-                            <div class="news-date text-sm text-gray-600">April 27, 2024</div>
+                    <div class="carousel-items-container">
+                        <div class="carousel-item" role="group" aria-roledescription="slide">
+                            <div class="news-date">April 27, 2024</div>
                             <h3>Presentations at SIOP 2025, Chicago</h3>
                             <p>RANDM Lab members presented research on AI, chronotype, and large language models at SIOP 2025, fostering new collaborations and receiving valuable feedback.</p>
                             <a href="news.html" class="btn btn--primary btn--sm hover-lift">Read more</a>
                         </div>
-                        <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="Slide 2 of 4">
-                            <div class="news-date text-sm text-gray-600">January 27, 2024</div>
+                        <div class="carousel-item" role="group" aria-roledescription="slide">
+                            <div class="news-date">January 27, 2024</div>
                             <h3>Editor's Commendation in the Journal of Business and Psychology</h3>
                             <p>RANDM Lab's 2023 publication received the Editor Commendation in the Journal of Business and Psychology.</p>
                             <a href="news.html" class="btn btn--primary btn--sm hover-lift">Read more</a>
                         </div>
-                        <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="Slide 3 of 4">
-                            <div class="news-date text-sm text-gray-600">January 12, 2024</div>
+                        <div class="carousel-item" role="group" aria-roledescription="slide">
+                            <div class="news-date">January 12, 2024</div>
                             <h3>Congratulations, Dr. Gino Howard</h3>
                             <p>Gino graduated with his PhD and is now an Assistant Professor at CSU San Bernadino.</p>
                             <a href="news.html" class="btn btn--primary btn--sm hover-lift">Read more</a>
                         </div>
-                        <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="Slide 4 of 4">
-                            <div class="news-date text-sm text-gray-600">November 27, 2023</div>
+                        <div class="carousel-item" role="group" aria-roledescription="slide">
+                            <div class="news-date">November 27, 2023</div>
                             <h3>Graduate Student Katelyn Reeves Presenting at SJDM Conference</h3>
                             <p>Katelyn Reeves presented our research on risk takers at work at the SJDM Conference.</p>
                             <a href="news.html" class="btn btn--primary btn--sm hover-lift">Read more</a>
                         </div>
                     </div>
-                    <button class="carousel-arrow carousel-arrow--right" aria-label="Next news item" role="button">
-                        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                    <button class="carousel-arrow carousel-arrow--right" aria-label="Next news item">
+                        <i class="fas fa-chevron-right"></i>
                     </button>
                 </div>
                 <div class="carousel-indicators">
@@ -109,17 +471,33 @@
                     <button class="carousel-indicator" aria-label="Go to news item 3"></button>
                     <button class="carousel-indicator" aria-label="Go to news item 4"></button>
                 </div>
-                <!-- Live region for screen reader announcements -->
                 <div class="carousel-live-region" aria-live="polite" aria-atomic="true"></div>
             </div>
-        </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="news.html" class="btn btn--lg btn--outline hover-lift">View All News</a>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="section fade-in-up">
+            <div class="cta-section">
+                <h2 class="cta-section__title">Join Our Research</h2>
+                <p class="cta-section__text">
+                    We're always looking for talented students, research participants, and industry partners to collaborate with. Get involved with cutting-edge research on decision making and risk.
+                </p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn btn--lg btn--primary hover-lift">Get Involved</a>
+                    <a href="publications.html" class="btn btn--lg btn--outline hover-lift">View Publications</a>
+                </div>
+            </div>
+        </section>
     </main>
-    
-    <!-- Footer with enhanced accessibility -->
+
+    <!-- Footer -->
     <footer class="footer" role="contentinfo">
         <div class="footer__container">
-            <!-- Contact Information -->
-            <div class="footer__section fade-up">
+            <div class="footer__section">
                 <h3 class="footer__heading">Contact Us</h3>
                 <address class="footer__address">
                     <p>Risk and Decision Making Lab</p>
@@ -131,48 +509,47 @@
                 </address>
             </div>
 
-            <!-- Quick Links -->
-            <div class="footer__section fade-up" style="transition-delay: 100ms;">
+            <div class="footer__section">
                 <h3 class="footer__heading">Quick Links</h3>
                 <ul class="footer__list">
                     <li><a href="index.html" class="footer__link" aria-current="page">Home</a></li>
                     <li><a href="team.html" class="footer__link">Team</a></li>
                     <li><a href="research.html" class="footer__link">Research</a></li>
                     <li><a href="news.html" class="footer__link">News</a></li>
-                    <li><a href="get-involved.html" class="footer__link">Get Involved</a></li>
+                    <li><a href="contact.html" class="footer__link">Contact</a></li>
                 </ul>
             </div>
 
-            <!-- Social Media Links -->
-            <div class="footer__section fade-up" style="transition-delay: 200ms;">
+            <div class="footer__section">
                 <h3 class="footer__heading">Follow Us</h3>
                 <div class="social-links">
-                    <a href="https://www.linkedin.com/company/randm-lab" class="social-link hover-lift" title="LinkedIn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin" aria-hidden="true"></i>
+                    <a href="https://www.linkedin.com/company/randm-lab" class="social-link hover-lift" title="LinkedIn" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-linkedin"></i>
                     </a>
-                    <a href="https://www.researchgate.net/lab/Risk-and-Decision-Making-Lab" class="social-link hover-lift" title="ResearchGate" target="_blank" rel="noopener noreferrer" aria-label="ResearchGate">
-                        <i class="fab fa-researchgate" aria-hidden="true"></i>
+                    <a href="https://www.researchgate.net/lab/Risk-and-Decision-Making-Lab" class="social-link hover-lift" title="ResearchGate" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-researchgate"></i>
                     </a>
-                    <a href="mailto:zhang1@lsu.edu" class="social-link hover-lift" title="Email" aria-label="Email">
-                        <i class="fas fa-envelope" aria-hidden="true"></i>
+                    <a href="mailto:zhang1@lsu.edu" class="social-link hover-lift" title="Email">
+                        <i class="fas fa-envelope"></i>
                     </a>
-                    <a href="https://www.lsu.edu" class="social-link hover-lift" title="University" target="_blank" rel="noopener noreferrer" aria-label="University website">
-                        <i class="fas fa-university" aria-hidden="true"></i>
+                    <a href="https://www.lsu.edu" class="social-link hover-lift" title="University" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-university"></i>
                     </a>
                 </div>
             </div>
         </div>
 
-        <!-- Copyright and Legal -->
         <div class="footer__legal">
             <p class="footer__text">© 2025 Risk and Decision Making Lab. All rights reserved.</p>
             <p class="footer__text"><a href="privacy.html" class="footer__link">Privacy Policy</a> | <a href="terms.html" class="footer__link">Terms of Use</a></p>
         </div>
     </footer>
-    
-    <!-- Include the JavaScript files -->
+
+    <!-- Scripts -->
     <script src="js/utils.js" defer></script>
     <script src="js/main.js" defer></script>
     <script src="js/carousel.js" defer></script>
+    <script src="js/neural-canvas.js" defer></script>
+    <script src="js/scroll-animations.js" defer></script>
 </body>
 </html>
