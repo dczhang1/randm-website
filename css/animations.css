@@ -296,7 +296,175 @@
   animation: pulse 2s infinite;
 }
 
-/* 
+/*
+ * New Scroll-Triggered Animation Classes
+ * These work with scroll-animations.js using Intersection Observer
+ */
+
+/* Base state - hidden */
+.fade-in,
+.fade-in-up,
+.fade-in-down,
+.fade-in-left,
+.fade-in-right,
+.scale-in,
+.slide-up {
+  opacity: 0;
+  transition: opacity 0.6s var(--ease-out),
+              transform 0.6s var(--ease-out);
+}
+
+/* Fade In (no movement) */
+.fade-in {
+  transform: none;
+}
+
+.fade-in.animated {
+  opacity: 1;
+}
+
+/* Fade In Up */
+.fade-in-up {
+  transform: translateY(30px);
+}
+
+.fade-in-up.animated {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Fade In Down */
+.fade-in-down {
+  transform: translateY(-30px);
+}
+
+.fade-in-down.animated {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Fade In Left */
+.fade-in-left {
+  transform: translateX(-30px);
+}
+
+.fade-in-left.animated {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Fade In Right */
+.fade-in-right {
+  transform: translateX(30px);
+}
+
+.fade-in-right.animated {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Scale In */
+.scale-in {
+  transform: scale(0.9);
+}
+
+.scale-in.animated {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Slide Up */
+.slide-up {
+  transform: translateY(50px);
+}
+
+.slide-up.animated {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/*
+ * Card Tilt Effect (3D)
+ * Apply .card-tilt class to enable 3D hover effect
+ */
+.card-tilt {
+  transform-style: preserve-3d;
+  transition: transform 0.3s var(--ease-out);
+}
+
+.card-tilt:hover {
+  transform: perspective(1000px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+}
+
+/*
+ * Glow effect on hover
+ */
+.glow-on-hover {
+  position: relative;
+  transition: all 0.3s var(--ease-out);
+}
+
+.glow-on-hover::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(
+    45deg,
+    var(--color-accent-primary),
+    var(--color-accent-secondary)
+  );
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s var(--ease-out);
+  z-index: -1;
+  filter: blur(10px);
+}
+
+.glow-on-hover:hover::before {
+  opacity: 0.7;
+}
+
+/*
+ * Glitch text effect on hover
+ */
+.glitch-text {
+  position: relative;
+}
+
+.glitch-text:hover {
+  animation: glitch 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes glitch {
+  0%, 100% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+}
+
+/*
+ * Magnetic button effect
+ */
+.magnetic-btn {
+  transition: transform 0.2s var(--ease-out);
+}
+
+.magnetic-btn:hover {
+  transform: translate(var(--mouse-x, 0), var(--mouse-y, 0));
+}
+
+/*
  * Responsive adjustments for animations
  */
 @media (prefers-reduced-motion: reduce) {
@@ -308,7 +476,7 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  
+
   .fade-element,
   .fade-up,
   .fade-down,
@@ -319,9 +487,16 @@
   .hero__title,
   .hero__subtitle,
   .hero .btn,
-  .stagger-children .stagger-item {
-    opacity: 1;
-    transform: none;
-    transition: none;
+  .stagger-children .stagger-item,
+  .fade-in,
+  .fade-in-up,
+  .fade-in-down,
+  .fade-in-left,
+  .fade-in-right,
+  .scale-in,
+  .slide-up {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
-} 
+}
