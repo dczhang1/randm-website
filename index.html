@@ -175,7 +175,6 @@
 
         .bento-card:hover {
             border-color: rgba(0, 240, 255, 0.3);
-            transform: translateY(-5px);
         }
 
         .bento-card:hover::after {
@@ -190,8 +189,9 @@
             font-size: 3rem;
             color: var(--color-accent-primary);
             opacity: 0.2;
-            transition: opacity 0.5s var(--ease-out);
+            transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
             z-index: 1;
+            transform: translateZ(60px);
         }
 
         .bento-card:hover .bento-card__icon {
@@ -208,6 +208,8 @@
             margin-bottom: 0.75rem;
             position: relative;
             z-index: 1;
+            transform: translateZ(40px);
+            transition: transform 0.5s var(--ease-out);
         }
 
         .bento-card__title {
@@ -218,11 +220,12 @@
             margin-bottom: 0.75rem;
             position: relative;
             z-index: 1;
+            transform: translateZ(50px);
             transition: transform 0.3s var(--ease-out);
         }
 
         .bento-card:hover .bento-card__title {
-            transform: translateX(0.5rem);
+            transform: translateZ(50px) translateX(0.5rem);
         }
 
         .bento-card__text {
@@ -231,6 +234,8 @@
             line-height: 1.6;
             position: relative;
             z-index: 1;
+            transform: translateZ(30px);
+            transition: transform 0.5s var(--ease-out);
         }
 
         /* Color variations for different research areas */
@@ -824,5 +829,6 @@
     <script src="js/carousel.js" defer></script>
     <script src="js/neural-canvas.js" defer></script>
     <script src="js/scroll-animations.js" defer></script>
+    <script src="js/card-3d.js" defer></script>
 </body>
 </html>

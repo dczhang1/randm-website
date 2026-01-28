@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risk & Decision Lab | Cognitive Neuroscience</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        'lab-dark': '#050507',
+                        'lab-slate': '#0f111a',
+                        'lab-accent': '#00f0ff',
+                        'lab-purple': '#7c3aed',
+                        'lab-gray': '#8a8f98',
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'grain': 'grain 8s steps(10) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        grain: {
+                            '0%, 100%': { transform: 'translate(0, 0)' },
+                            '10%': { transform: 'translate(-5%, -10%)' },
+                            '20%': { transform: 'translate(-15%, 5%)' },
+                            '30%': { transform: 'translate(7%, -25%)' },
+                            '40%': { transform: 'translate(-5%, 25%)' },
+                            '50%': { transform: 'translate(-15%, 10%)' },
+                            '60%': { transform: 'translate(15%, 0%)' },
+                            '70%': { transform: 'translate(0%, 15%)' },
+                            '80%': { transform: 'translate(3%, 35%)' },
+                            '90%': { transform: 'translate(-10%, 10%)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #050507;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        /* Grain Overlay for Filmic Texture */
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050507;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e1e24;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00f0ff;
+        }
+
+        /* Glitch Text Effect Class */
+        .glitch-hover:hover {
+            animation: glitch-skew 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+            color: #00f0ff;
+        }
+        @keyframes glitch-skew {
+            0% { transform: skew(0deg); }
+            20% { transform: skew(-2deg); }
+            40% { transform: skew(2deg); }
+            60% { transform: skew(-1deg); }
+            80% { transform: skew(1deg); }
+            100% { transform: skew(0deg); }
+        }
+
+        /* Magnetic Button Wrapper */
+        .magnetic-wrap {
+            display: inline-block;
+            position: relative;
+        }
+
+        /* Card Tilt */
+        .tilt-card {
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+        }
+        
+        .reveal-text {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal-text.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .line-draw {
+            width: 0;
+            transition: width 1.5s ease-in-out;
+        }
+        .line-draw.active {
+            width: 100%;
+        }
+    </style>
+<base target="_blank">
+</head>
+<body class="antialiased selection:bg-lab-accent selection:text-lab-dark">
+
+    <!-- Noise Texture -->
+    <div class="noise-overlay"></div>
+
+    <!-- Background Canvas for Neural Network -->
+    <canvas id="neuralCanvas" class="fixed top-0 left-0 w-full h-full -z-10 opacity-30"></canvas>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-40 px-6 py-4 flex justify-between items-center border-b border-white/5 backdrop-blur-md transition-all duration-300" id="navbar">
+        <div class="text-2xl font-display font-bold tracking-tighter cursor-pointer group">
+            <span class="inline-block group-hover:-translate-y-1 transition-transform duration-300">D</span><span class="text-lab-accent inline-block group-hover:translate-y-1 transition-transform duration-300">M</span>L
+        </div>
+        
+        <div class="hidden md:flex space-x-8 text-sm font-medium tracking-widest text-lab-gray uppercase">
+            <a href="#mission" class="hover:text-white transition-colors duration-300">The Mission</a>
+            <a href="#research" class="hover:text-white transition-colors duration-300">Research</a>
+            <a href="#publications" class="hover:text-white transition-colors duration-300">Papers</a>
+            <a href="#contact" class="hover:text-white transition-colors duration-300">Contact</a>
+        </div>
+
+        <button class="magnetic-wrap px-6 py-2 rounded-full border border-white/20 hover:border-lab-accent hover:bg-lab-accent/10 transition-colors duration-300 text-sm font-bold tracking-widest uppercase group overflow-hidden relative">
+            <span class="relative z-10 group-hover:text-lab-accent transition-colors">Join Study</span>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative h-screen flex flex-col justify-center items-center px-6 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-lab-dark/50 to-lab-dark pointer-events-none"></div>
+        
+        <div class="relative z-10 max-w-5xl mx-auto text-center">
+            <p class="text-lab-accent font-mono mb-4 tracking-widest opacity-0 animate-[fadeIn_1s_ease-out_forwards]">University Department of Psychology</p>
+            <h1 class="text-6xl md:text-8xl lg:text-9xl font-display font-bold tracking-tighter leading-[0.9] mb-8 mix-blend-difference">
+                <span class="block overflow-hidden"><span class="inline-block translate-y-full animate-[slideUp_1s_ease-out_0.3s_forwards]">RISK &</span></span>
+                <span class="block overflow-hidden text-transparent bg-clip-text bg-gradient-to-r from-white via-lab-gray to-white"><span class="inline-block translate-y-full animate-[slideUp_1s_ease-out_0.5s_forwards]">DECISION</span></span>
+                <span class="block overflow-hidden"><span class="inline-block translate-y-full animate-[slideUp_1s_ease-out_0.7s_forwards]">MAKING LAB</span></span>
+            </h1>
+            
+            <p class="max-w-2xl mx-auto text-lg md:text-xl text-lab-gray leading-relaxed opacity-0 animate-[fadeIn_1s_ease-out_1s_forwards]">
+                We decode the cognitive architecture of uncertainty. Exploring the neural pathways between risk, reward, and human behavior.
+            </p>
+            
+            <div class="mt-12 opacity-0 animate-[fadeIn_1s_ease-out_1.2s_forwards]">
+                <a href="#mission" class="group inline-flex items-center gap-2 text-white hover:text-lab-accent transition-colors">
+                    <span class="text-sm uppercase tracking-widest">Explore The Data</span>
+                    <svg class="w-5 h-5 transform group-hover:translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Decorative Stats -->
+        <div class="absolute bottom-10 left-6 md:left-12 font-mono text-xs text-lab-gray hidden md:block">
+            <div class="mb-2">LAT: 40.7128° N</div>
+            <div class="mb-2">LON: 74.0060° W</div>
+            <div class="text-lab-accent">STATUS: ACTIVE</div>
+        </div>
+    </header>
+
+    <!-- Mission Section -->
+    <section id="mission" class="py-24 md:py-32 px-6 relative">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex flex-col md:flex-row gap-12 items-start">
+                <div class="w-full md:w-1/3">
+                    <h2 class="text-sm font-bold text-lab-accent uppercase tracking-widest mb-2 reveal-text">Our Philosophy</h2>
+                    <div class="h-[1px] bg-white/20 line-draw mb-8"></div>
+                </div>
+                <div class="w-full md:w-2/3">
+                    <p class="text-3xl md:text-5xl font-display font-light leading-tight mb-8 reveal-text">
+                        Uncertainty is not the enemy of decision-making; <span class="text-lab-gray italic">it is its raw material.</span>
+                    </p>
+                    <p class="text-lab-gray text-lg leading-relaxed reveal-text">
+                        The Risk & Decision Making Lab investigates the intersection of neuroscience, psychology, and behavioral economics. We utilize advanced fMRI techniques, computational modeling, and immersive virtual reality environments to understand how humans navigate ambiguous environments. From financial trading to clinical diagnosis, our research reveals the hidden variables driving choice.
+                    </p>
+                </ div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Bento Grid -->
+    <section id="research" class="py-24 px-6 bg-lab-slate/30 relative overflow-hidden">
+        <!-- Large background number -->
+        <div class="absolute top-0 right-0 text-[20rem] font-display font-bold text-white/5 leading-none select-none -z-10 pointer-events-none">03</div>
+
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16">
+                <h2 class="text-4xl md:text-6xl font-display font-bold tracking-tighter reveal-text">Current Research</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[400px]">
+                
+                <!-- Card 1: Neural -->
+                <div class="tilt-card group relative col-span-1 md:col-span-2 bg-zinc-900/50 rounded-2xl border border-white/5 p-8 overflow-hidden cursor-pointer hover:border-lab-accent/50 transition-colors duration-300">
+                    <div class="absolute top-0 right-0 p-8 opacity-20 group-hover:opacity-100 transition-opacity duration-500">
+                        <svg class="w-12 h-12 text-lab-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                    </div>
+                    <div class="h-full flex flex-col justify-end relative z-10">
+                        <span class="text-lab-accent font-mono text-xs tracking-widest mb-2">NEUROIMAGING</span>
+                        <h3 class="text-3xl font-display font-bold mb-4 group-hover:translate-x-2 transition-transform duration-300">Neural Correlates of Ambiguity</h3>
+                        <p class="text-lab-gray max-w-md text-sm">Utilizing fMRI to map the amygdala and prefrontal cortex activity during high-uncertainty financial tasks.</p>
+                    </div>
+                    <!-- Abstract gradient -->
+                    <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-lab-purple/20 rounded-full blur-[80px] group-hover:bg-lab-accent/20 transition-colors duration-500"></div>
+                </div>
+
+                <!-- Card 2: Behavioral -->
+                <div class="tilt-card group relative bg-zinc-900/50 rounded-2xl border border-white/5 p-8 overflow-hidden cursor-pointer hover:border-white/20 transition-colors duration-300">
+                    <div class="h-full flex flex-col justify-between relative z-10">
+                        <div class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center">
+                            <span class="font-mono text-xs">02</span>
+                        </div>
+                        <div>
+                            <span class="text-amber-500 font-mono text-xs tracking-widest mb-2 block">BEHAVIORAL</span>
+                            <h3 class="text-2xl font-display font-bold mb-2">Temporal Discounting</h3>
+                            <p class="text-lab-gray text-sm">Why do we choose immediate gratification over long-term reward? Time-preference studies in adolescents vs. adults.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Clinical -->
+                <div class="tilt-card group relative bg-zinc-900/50 rounded-2xl border border-white/5 p-8 overflow-hidden cursor-pointer hover:border-white/20 transition-colors duration-300">
+                     <div class="h-full flex flex-col justify-between relative z-10">
+                        <div class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center">
+                            <span class="font-mono text-xs">03</span>
+                        </div>
+                        <div>
+                            <span class="text-rose-500 font-mono text-xs tracking-widest mb-2 block">CLINICAL</span>
+                            <h3 class="text-2xl font-display font-bold mb-2">Compulsive Betting</h3>
+                            <p class="text-lab-gray text-sm">Computational phenotyping of gambling disorder using reinforcement learning models.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: AI/Data -->
+                <div class="tilt-card group relative col-span-1 md:col-span-2 bg-zinc-900/50 rounded-2xl border border-white/5 p-8 overflow-hidden cursor-pointer hover:border-lab-accent/50 transition-colors duration-300">
+                    <div class="flex h-full gap-8 items-center">
+                        <div class="w-1/2 h-full relative overflow-hidden rounded-lg opacity-60 group-hover:opacity-100 transition-opacity">
+                            <!-- Abstract Data Viz -->
+                            <div class="absolute inset-0 bg-gradient-to-tr from-zinc-800 to-zinc-900 flex items-center justify-center">
+                                <div class="grid grid-cols-6 gap-2 w-full px-8">
+                                    <div class="h-20 bg-white/10 rounded animate-pulse"></div>
+                                    <div class="h-32 bg-white/20 rounded"></div>
+                                    <div class="h-16 bg-lab-accent/40 rounded"></div>
+                                    <div class="h-24 bg-white/10 rounded"></div>
+                                    <div class="h-12 bg-white/20 rounded animate-pulse"></div>
+                                    <div class="h-28 bg-white/10 rounded"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-1/2">
+                            <span class="text-lab-accent font-mono text-xs tracking-widest mb-2 block">AI INTEGRATION</span>
+                            <h3 class="text-3xl font-display font-bold mb-4">Algorithmic Aversion</h3>
+                            <p class="text-lab-gray text-sm mb-4">Investigating the psychological resistance to algorithmic decision aids when human intuition conflicts with data.</p>
+                            <ul class="text-xs font-mono text-lab-gray space-y-2">
+                                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-lab-accent rounded-full"></span>Human-Computer Interaction</li>
+                                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-white rounded-full"></span>Predictive Modeling</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Full Width Quote/Parallax -->
+    <section class="py-32 px-6 relative overflow-hidden flex items-center justify-center min-h-[60vh]">
+        <div class="absolute inset-0 z-0 opacity-20">
+             <!-- Generative Lines -->
+             <div class="absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-lab-accent to-transparent"></div>
+             <div class="absolute top-1/3 left-0 w-full h-[1px] bg-white/10 rotate-3"></div>
+             <div class="absolute top-2/3 left-0 w-full h-[1px] bg-white/10 -rotate-2"></div>
+        </div>
+
+        <div class="relative z-10 max-w-5xl text-center">
+             <svg class="w-12 h-12 text-lab-accent mx-auto mb-8 opacity-50" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 8.44772 14.017 9V11C14.017 11.5523 13.5693 12 13.017 12H12.017V5H22.017V15C22.017 16.6569 20.6739 18 19.017 18H16.017C15.4647 18 15.017 18.4477 15.017 19V21H14.017zM5.0166 21L5.0166 18C5.0166 16.8954 5.91203 16 7.0166 16H10.0166C10.5689 16 11.0166 15.5523 11.0166 15V9C11.0166 8.44772 10.5689 8 10.0166 8H6.0166C5.46432 8 5.0166 8.44772 5.0166 9V11C5.0166 11.5523 4.56889 12 4.0166 12H3.0166V5H13.0166V15C13.0166 16.6569 11.6735 18 10.0166 18H7.0166C6.46432 18 6.0166 18.4477 6.0166 19V21H5.0166z" /></svg>
+            <h2 class="text-3xl md:text-5xl font-display font-light leading-tight italic reveal-text">
+                "In the face of ambiguity, refuse the temptation to guess. Yet, it is precisely this temptation that defines us."
+            </h2>
+            <p class="mt-6 text-lab-accent font-mono text-sm tracking-widest reveal-text">— DANIEL KAHNEMAN TRIBUTE</p>
+        </div>
+    </section>
+
+    <!-- Publications & Data Streams -->
+    <section id="publications" class="py-24 px-6 bg-lab-dark relative">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
+            <div>
+                <h2 class="text-4xl font-display font-bold mb-12 reveal-text">Latest Papers</h2>
+                <div class="space-y-8">
+                    
+                    <!-- Paper Item -->
+                    <div class="group p-6 rounded-xl border border-white/5 hover:bg-white/5 transition-colors cursor-pointer reveal-text">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-xs font-mono text-lab-accent">2024 • NATURE NEUROSCIENCE</span>
+                            <svg class="w-5 h-5 text-lab-gray group-hover:text-white -rotate-45 group-hover:rotate-0 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-lab-accent transition-colors">The Role of Norepinephrine in Uncertainty Encoding</h3>
+                        <p class="text-sm text-lab-gray line-clamp-2">A computational framework linking arousal states to decision variability in stochastic environments.</p>
+                    </div>
+
+                    <!-- Paper Item -->
+                    <div class="group p-6 rounded-xl border border-white/5 hover:bg-white/5 transition-colors cursor-pointer reveal-text">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-xs font-mono text-lab-accent">2023 • PSYCHOLOGICAL REVIEW</span>
+                            <svg class="w-5 h-5 text-lab-gray group-hover:text-white -rotate-45 group-hover:rotate-0 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-lab-accent transition-colors">Prospect Theory Revisited: Hyperbolic Discounting in VR</h3>
+                        <p class="text-sm text-lab-gray line-clamp-2">Findings suggest spatial presence fundamentally alters temporal discounting rates.</p>
+                    </div>
+
+                     <!-- Paper Item -->
+                    <div class="group p-6 rounded-xl border border-white/5 hover:bg-white/5 transition-colors cursor-pointer reveal-text">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-xs font-mono text-lab-accent">2023 • NEURON</span>
+                            <svg class="w-5 h-5 text-lab-gray group-hover:text-white -rotate-45 group-hover:rotate-0 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-lab-accent transition-colors">Model-Based Control in Adverse Childhoods</h3>
+                        <p class="text-sm text-lab-gray line-clamp-2">How early life stress impacts the arbitration between goal-directed and habitual systems.</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Live Stats / Viz -->
+            <div class="flex flex-col justify-center">
+                 <div class="bg-zinc-900/80 rounded-2xl p-8 border border-white/10 relative overflow-hidden reveal-text">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-lab-purple/10 blur-[100px] rounded-full"></div>
+                    
+                    <h3 class="text-sm font-mono text-lab-gray uppercase tracking-widest mb-8">Real-time Simulation</h3>
+                    
+                    <div class="grid grid-cols-2 gap-8 mb-8">
+                        <div>
+                            <div class="text-4xl font-display font-bold text-white mb-1" id="counter1">84.2%</div>
+                            <div class="text-xs text-lab-gray font-mono">RISK AVERSION</div>
+                        </div>
+                        <div>
+                            <div class="text-4xl font-display font-bold text-lab-accent mb-1" id="counter2">124ms</div>
+                            <div class="text-xs text-lab-gray font-mono">REACTION TIME</div>
+                        </div>
+                    </div>
+                    
+                    <div class="h-32 flex items-end justify-between gap-1" id="barChart">
+                        <!-- Bars generated by JS -->
+                    </div>
+                    <div class="mt-4 flex justify-between items-center">
+                        <span class="text-xs font-mono text-lab-gray">N=1,240 PARTICIPANTS</span>
+                        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                    </div>
+                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA / Contact -->
+    <section id="contact" class="py-32 px-6 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-t from-lab-purple/20 to-transparent"></div>
+        <div class="max-w-3xl mx-auto text-center relative z-10 reveal-text">
+            <h2 class="text-5xl md:text-7xl font-display font-bold mb-8 tracking-tighter">Participate</h2>
+            <p class="text-xl text-lab-gray mb-12">Join our volunteer pool to contribute to cutting-edge neuroscience. Earn up to $50 per session.</p>
+            
+            <form class="max-w-md mx-auto space-y-4 text-left" onsubmit="event.preventDefault(); alert('Thank you! We simulate form submissions in this demo.');">
+                <div class="relative group">
+                    <input type="email" placeholder="Enter your email" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-4 text-white placeholder-lab-gray focus:outline-none focus:border-lab-accent focus:ring-1 focus:ring-lab-accent transition-all">
+                </div>
+                <button class="w-full bg-white text-lab-dark font-bold text-lg py-4 rounded-lg hover:bg-lab-accent hover:scale-[1.02] transition-all duration-300">
+                    Get Notified
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 py-12 px-6 bg-lab-slate">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-2xl font-display font-bold tracking-tighter">DML</div>
+            <div class="text-lab-gray text-sm font-mono">
+                &copy; 2024 Risk & Decision Making Lab. All rights reserved.
+            </div>
+            <div class="flex gap-6">
+                <a href="#" class="text-lab-gray hover:text-white transition-colors">Twitter</a>
+                <a href="#" class="text-lab-gray hover:text-white transition-colors">GitHub</a>
+                <a href="#" class="text-lab-gray hover:text-white transition-colors">Google Scholar</a>
+            </div>
+        </div>
+    </footer>
+
+    <style>
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    </style>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // --- 1. Neural Network Canvas Animation ---
+        const canvas = document.getElementById('neuralCanvas');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+        const particleCount = 60; // Performance optimized
+        
+        // Setup Canvas
+        function resize() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.size = Math.random() * 2 + 1;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+            }
+
+            draw() {
+                ctx.fillStyle = 'rgba(0, 240, 255, 0.5)'; // lab-accent
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, width, height);
+            
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+                
+                // Draw connections
+                for (let j = i; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 150) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(100, 102, 241, ${0.1 - distance/1500})`; // lab-purple with fade
+                        ctx.lineWidth = 1;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animateCanvas);
+        }
+
+        initParticles();
+        animateCanvas();
+
+        // --- 2. Scroll Animations (Intersection Observer) ---
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Only animate once
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-text, .line-draw').forEach(el => {
+            observer.observe(el);
+        });
+
+        // --- 3. 3D Tilt Effect for Cards ---
+        const cards = document.querySelectorAll('.tilt-card');
+
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = ((y - centerY) / centerY) * -5; // Max rotation deg
+                const rotateY = ((x - centerX) / centerX) * 5;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+            });
+        });
+
+        // --- 4. Live Bar Chart Simulation ---
+        const chartContainer = document.getElementById('barChart');
+        const bars = 20;
+        
+        for(let i=0; i<bars; i++) {
+            const bar = document.createElement('div');
+            bar.className = 'flex-1 bg-lab-accent/50 rounded-t-sm transition-all duration-500 ease-in-out';
+            bar.style.height = Math.random() * 100 + '%';
+            chartContainer.appendChild(bar);
+        }
+
+        setInterval(() => {
+            // Randomly update bars
+            const allBars = chartContainer.children;
+            // Update 3 random bars
+            for(let k=0; k<3; k++) {
+                const idx = Math.floor(Math.random() * bars);
+                allBars[idx].style.height = Math.random() * 100 + '%';
+                allBars[idx].style.opacity = Math.random() * 0.5 + 0.2;
+            }
+
+            // Jitter numbers
+            document.getElementById('counter2').innerText = (100 + Math.random() * 50).toFixed(0) + 'ms';
+        }, 800);
+
+        // --- 5. Navbar Scroll Effect ---
+        const nav = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('py-2', 'bg-lab-dark/80');
+                nav.classList.remove('py-4', 'bg-transparent');
+            } else {
+                nav.classList.add('py-4', 'bg-transparent');
+                nav.classList.remove('py-2', 'bg-lab-dark/80');
+            }
+        });
+
+    </script>
+</body>
+</html>
