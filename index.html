@@ -140,46 +140,89 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             grid-template-rows: repeat(3, 200px);
-            gap: 1rem;
+            gap: 1.5rem;
             margin-top: 3rem;
         }
 
         .bento-card {
-            background: var(--color-bg-secondary);
-            border-radius: var(--border-radius);
+            background: rgba(15, 17, 26, 0.5);
+            border-radius: 1rem;
             padding: 2rem;
-            border: 1px solid var(--color-border);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             transition: all 0.3s var(--ease-out);
             position: relative;
             overflow: hidden;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
         }
 
-        .bento-card::before {
+        .bento-card::after {
             content: '';
             position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-secondary));
-            opacity: 0;
-            transition: opacity 0.3s var(--ease-out);
-        }
-
-        .bento-card:hover::before {
-            opacity: 0.05;
+            bottom: -5rem;
+            left: -5rem;
+            width: 16rem;
+            height: 16rem;
+            background: var(--card-gradient, rgba(124, 58, 237, 0.2));
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+            transition: all 0.5s var(--ease-out);
+            z-index: 0;
         }
 
         .bento-card:hover {
-            border-color: var(--color-border-hover);
+            border-color: rgba(0, 240, 255, 0.3);
             transform: translateY(-5px);
+        }
+
+        .bento-card:hover::after {
+            background: rgba(0, 240, 255, 0.15);
+            opacity: 1;
+        }
+
+        .bento-card__icon {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 3rem;
+            color: var(--color-accent-primary);
+            opacity: 0.2;
+            transition: opacity 0.5s var(--ease-out);
+            z-index: 1;
+        }
+
+        .bento-card:hover .bento-card__icon {
+            opacity: 1;
+        }
+
+        .bento-card__category {
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--card-category-color, var(--color-accent-primary));
+            margin-bottom: 0.75rem;
+            position: relative;
+            z-index: 1;
         }
 
         .bento-card__title {
             font-family: var(--heading-font);
-            font-size: 1.25rem;
-            font-weight: 600;
+            font-size: 1.5rem;
+            font-weight: 700;
             color: var(--color-text-primary);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
             position: relative;
             z-index: 1;
+            transition: transform 0.3s var(--ease-out);
+        }
+
+        .bento-card:hover .bento-card__title {
+            transform: translateX(0.5rem);
         }
 
         .bento-card__text {
@@ -188,6 +231,32 @@
             line-height: 1.6;
             position: relative;
             z-index: 1;
+        }
+
+        /* Color variations for different research areas */
+        .bento-card--risk {
+            --card-category-color: #00f0ff;
+            --card-gradient: rgba(0, 240, 255, 0.15);
+        }
+
+        .bento-card--employee {
+            --card-category-color: #f59e0b;
+            --card-gradient: rgba(245, 158, 11, 0.15);
+        }
+
+        .bento-card--decision {
+            --card-category-color: #f43f5e;
+            --card-gradient: rgba(244, 63, 94, 0.15);
+        }
+
+        .bento-card--judgment {
+            --card-category-color: #8b5cf6;
+            --card-gradient: rgba(139, 92, 246, 0.15);
+        }
+
+        .bento-card--org {
+            --card-category-color: #10b981;
+            --card-gradient: rgba(16, 185, 129, 0.15);
         }
 
         .bento-card--large {
@@ -419,49 +488,82 @@
         </section>
 
         <!-- Research Highlights Section -->
-        <section id="research" class="section section--dark fade-in-up">
-            <div class="section__label">Research</div>
-            <h2 class="section__title">Research Programs</h2>
+        <section id="research" class="section section--dark fade-in-up" style="position: relative; overflow: hidden;">
+            <!-- Decorative background number -->
+            <div style="position: absolute; top: 0; right: 0; font-family: var(--heading-font); font-size: 20rem; font-weight: 700; color: rgba(255, 255, 255, 0.02); line-height: 1; user-select: none; pointer-events: none; z-index: 0;">03</div>
+
+            <div class="section__label" style="position: relative; z-index: 1;">Research</div>
+            <h2 class="section__title" style="position: relative; z-index: 1;">Research Programs</h2>
 
             <div class="bento-grid">
                 <!-- Large card - Risk Taking Research -->
-                <div class="bento-card bento-card--large scale-in" data-stagger="0">
-                    <h3 class="bento-card__title">Risk Taking Research</h3>
-                    <p class="bento-card__text">
-                        We study how individuals perceive and respond to risk in organizational contexts. Our research examines personality traits, cognitive processes, and situational factors that influence risk-taking behavior.
-                    </p>
+                <div class="bento-card bento-card--large bento-card--risk scale-in" data-stagger="0">
+                    <div class="bento-card__icon">
+                        <i class="fas fa-dice"></i>
+                    </div>
+                    <div>
+                        <div class="bento-card__category">Risk & Propensity</div>
+                        <h3 class="bento-card__title">Risk Taking Research</h3>
+                        <p class="bento-card__text">
+                            We study how individuals perceive and respond to risk in organizational contexts. Our research examines personality traits, cognitive processes, and situational factors that influence risk-taking behavior.
+                        </p>
+                    </div>
                 </div>
 
                 <!-- Tall card - Employee Selection -->
-                <div class="bento-card bento-card--tall scale-in" data-stagger="1">
-                    <h3 class="bento-card__title">Employee Selection</h3>
-                    <p class="bento-card__text">
-                        Developing evidence-based tools and methods for identifying and selecting top talent in organizations.
-                    </p>
+                <div class="bento-card bento-card--tall bento-card--employee scale-in" data-stagger="1">
+                    <div class="bento-card__icon">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                    <div>
+                        <div class="bento-card__category">Talent Assessment</div>
+                        <h3 class="bento-card__title">Employee Selection</h3>
+                        <p class="bento-card__text">
+                            Developing evidence-based tools and methods for identifying and selecting top talent in organizations.
+                        </p>
+                    </div>
                 </div>
 
                 <!-- Regular card - Decision Making Under Uncertainty -->
-                <div class="bento-card scale-in" data-stagger="2">
-                    <h3 class="bento-card__title">Decision Making Under Uncertainty</h3>
-                    <p class="bento-card__text">
-                        Examining how people make choices when outcomes are uncertain.
-                    </p>
+                <div class="bento-card bento-card--decision scale-in" data-stagger="2">
+                    <div class="bento-card__icon">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                    <div>
+                        <div class="bento-card__category">Uncertainty</div>
+                        <h3 class="bento-card__title">Decision Making Under Uncertainty</h3>
+                        <p class="bento-card__text">
+                            Examining how people make choices when outcomes are uncertain.
+                        </p>
+                    </div>
                 </div>
 
                 <!-- Wide card - Judgment and Decision Making -->
-                <div class="bento-card bento-card--wide scale-in" data-stagger="3">
-                    <h3 class="bento-card__title">Judgment and Decision Making</h3>
-                    <p class="bento-card__text">
-                        Investigating cognitive biases, heuristics, and systematic errors in workplace decision making.
-                    </p>
+                <div class="bento-card bento-card--wide bento-card--judgment scale-in" data-stagger="3">
+                    <div class="bento-card__icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div>
+                        <div class="bento-card__category">Cognitive Science</div>
+                        <h3 class="bento-card__title">Judgment and Decision Making</h3>
+                        <p class="bento-card__text">
+                            Investigating cognitive biases, heuristics, and systematic errors in workplace decision making.
+                        </p>
+                    </div>
                 </div>
 
                 <!-- Regular card - Organizational Behavior -->
-                <div class="bento-card scale-in" data-stagger="4">
-                    <h3 class="bento-card__title">Organizational Behavior</h3>
-                    <p class="bento-card__text">
-                        Understanding how organizational contexts shape individual and team decisions.
-                    </p>
+                <div class="bento-card bento-card--org scale-in" data-stagger="4">
+                    <div class="bento-card__icon">
+                        <i class="fas fa-sitemap"></i>
+                    </div>
+                    <div>
+                        <div class="bento-card__category">Organizational</div>
+                        <h3 class="bento-card__title">Organizational Behavior</h3>
+                        <p class="bento-card__text">
+                            Understanding how organizational contexts shape individual and team decisions.
+                        </p>
+                    </div>
                 </div>
             </div>
 
