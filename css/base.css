@@ -369,9 +369,6 @@ img {
     width: 100%;
     height: 100%;
     background-color: var(--color-bg-primary); /* Fallback */
-    background-image: url('../assets/hero-background.jpg');
-    background-position: center;
-    background-size: cover;
     z-index: -1;
 }
 

@@ -6,161 +6,19 @@
     <title>Publications | Risk and Decision Making Lab</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome for social icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/publications.css">
-    <style>
-        /* Custom compact styles for publications page */
-        .publications {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 1.5rem;
-            background-color: var(--color-bg-secondary);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-            border-radius: var(--border-radius);
-        }
-        
-        .section-heading {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            border-bottom: 2px solid var(--color-accent);
-            padding-bottom: 0.3rem;
-            margin-top: 1rem;
-            display: flex;
-            align-items: center;
-        }
-        
-        .count-badge {
-            font-size: 0.8rem;
-            background-color: var(--color-primary);
-            color: white;
-            padding: 0.1rem 0.35rem;
-            border-radius: 1rem;
-            margin-left: 0.5rem;
-            font-weight: 400;
-        }
-        
-        .publications-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 0.5rem;
-        }
-        
-        .content-section {
-            margin-bottom: 1rem;
-        }
-        
-        .news-filters {
-            margin-bottom: 1rem;
-            padding: 0.75rem 1rem;
-            background-color: var(--color-bg-tertiary);
-            border-radius: 0.25rem;
-        }
-        
-        .filter-group {
-            margin-bottom: 0.5rem;
-        }
-        
-        /* Research statistics styles */
-        .research-stats-container {
-            background-color: var(--color-bg-elevated);
-            color: var(--color-text-primary);
-            padding: 1.5rem 1rem;
-            margin-bottom: 1.5rem;
-            border-radius: 0.25rem;
-            border: 1px solid var(--color-border);
-        }
-        
-        .research-stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-        }
-        
-        .stat-box {
-            text-align: center;
-            padding: 0.75rem;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 0.25rem;
-            transition: transform 0.2s ease;
-        }
-        
-        .stat-box:hover {
-            transform: translateY(-5px);
-            background-color: rgba(255, 255, 255, 0.15);
-        }
-        
-        .stat-number {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 0.25rem;
-            font-family: 'Montserrat', sans-serif;
-            color: var(--color-accent-primary);
-        }
-        
-        .stat-label {
-            font-size: 0.85rem;
-            opacity: 0.9;
-        }
-        
-        .stats-footer {
-            text-align: center;
-            margin-top: 1rem;
-            font-size: 0.85rem;
-            opacity: 0.8;
-        }
-        
-        .scholar-link {
-            color: var(--color-accent-primary);
-            text-decoration: underline;
-            transition: opacity 0.2s ease;
-        }
-
-        .scholar-link:hover {
-            opacity: 0.9;
-            color: var(--color-accent-secondary);
-        }
-        
-        @media (min-width: 768px) {
-            .publications-grid {
-                grid-template-columns: repeat(1, 1fr);
-            }
-            
-            .filter-container {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 0.5rem;
-            }
-            
-            .research-stats {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/publications-page.css">
 </head>
 <body data-page="publications">
-    <nav class="navbar" role="navigation" aria-label="Main navigation">
-        <div class="navbar__logo">
-            <a href="index.html">
-                <img src="assets/logo.svg" alt="RANDM Lab Logo" class="navbar__logo-img">
-            </a>
-        </div>
-        <div class="hamburger" aria-controls="mobile-menu" aria-expanded="false" aria-label="Toggle menu" tabindex="0">
-            <span class="hamburger__line"></span>
-            <span class="hamburger__line"></span>
-            <span class="hamburger__line"></span>
-        </div>
-        <div class="navbar__links" id="mobile-menu" aria-hidden="true">
-            <a href="index.html" class="navbar__link">Home</a>
-            <a href="team.html" class="navbar__link">Team</a>
-            <a href="research.html" class="navbar__link">Research</a>
-            <a href="news.html" class="navbar__link">News</a>
-            <a href="publications.html" class="navbar__link active" aria-current="page">Publications</a>
-            <a href="get-involved.html" class="navbar__link">Get Involved</a>
-        </div>
-    </nav>
+    <header class="subpage-header">
+        <a href="index.html" class="subpage-header__logo" aria-label="Back to homepage">
+            <img src="assets/logo.svg" alt="RANDM Lab Logo" class="subpage-header__logo-img">
+        </a>
+    </header>
     
     <!-- Add hero banner like in other pages -->
     <div class="hero hero--sm">
@@ -176,12 +34,6 @@
         <!-- Add container with max-width and dark background -->
         <div style="background-color: var(--color-bg-primary); padding: 1.5rem 0;">
             <section class="publications">
-                <!-- Breadcrumb navigation -->
-                <div class="breadcrumbs" style="margin-bottom: 0.75rem; font-size: 0.85rem;">
-                    <a href="index.html">Home</a> &gt; 
-                    <span>Publications</span>
-                </div>
-                
                 <!-- Research Statistics Summary -->
                 <div class="research-stats-container fade-in">
                     <div class="research-stats">
@@ -280,25 +132,31 @@
         </div>
     </main>
     
-    <footer class="footer">
-        <div class="social-links">
-            <a href="#" class="social-link" title="LinkedIn">
-                <i class="fab fa-linkedin"></i>
-            </a>
-            <a href="#" class="social-link" title="Twitter">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="social-link" title="ResearchGate">
-                <i class="fab fa-researchgate"></i>
-            </a>
-            <a href="mailto:zhang1@lsu.edu" class="social-link" title="Email">
-                <i class="fas fa-envelope"></i>
-            </a>
-            <a href="#" class="social-link" title="University">
-                <i class="fas fa-university"></i>
-            </a>
+    <footer class="footer footer--subpage">
+        <nav class="footer__breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">Home</a>
+            <span class="footer__breadcrumb-sep">›</span>
+            <span>Publications</span>
+        </nav>
+        <div class="footer__container">
+            <div class="footer__section">
+                <address class="footer__address">
+                    <p>Risk and Decision Making Lab · Department of Psychology · Louisiana State University</p>
+                    <p><a href="mailto:zhang1@lsu.edu" class="footer__link">zhang1@lsu.edu</a> · <a href="tel:+12257876543" class="footer__link">+1 225 578 4093</a></p>
+                </address>
+            </div>
+            <div class="footer__section">
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/company/randm-lab" class="social-link" title="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.researchgate.net/lab/Risk-and-Decision-Making-Lab" class="social-link" title="ResearchGate" target="_blank" rel="noopener noreferrer"><i class="fab fa-researchgate"></i></a>
+                    <a href="mailto:zhang1@lsu.edu" class="social-link" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://www.lsu.edu" class="social-link" title="University" target="_blank" rel="noopener noreferrer"><i class="fas fa-university"></i></a>
+                </div>
+            </div>
         </div>
-        <p class="footer__text">© 2025 Risk and Decision Making Lab. All rights reserved.</p>
+        <div class="footer__legal">
+            <p class="footer__text">© 2025 Risk and Decision Making Lab. <a href="privacy.html" class="footer__link">Privacy</a> · <a href="terms.html" class="footer__link">Terms</a></p>
+        </div>
     </footer>
     
     <script src="js/utils.js"></script>

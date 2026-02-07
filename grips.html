@@ -6,7 +6,7 @@
     <title>General Risk Propensity Scale (GRiPS) | Risk and Decision Making Lab</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome for social icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="css/main.css">
@@ -14,25 +14,11 @@
     <link rel="stylesheet" href="css/grips-publications.css">
 </head>
 <body data-page="detailed-content">
-    <nav class="navbar" role="navigation" aria-label="Main navigation">
-        <div class="navbar__logo">
-            <a href="index.html">
-                <img src="assets/logo.svg" alt="RANDM Lab Logo" class="navbar__logo-img">
-            </a>
-        </div>
-        <div class="hamburger" aria-controls="mobile-menu" aria-expanded="false" aria-label="Toggle menu" tabindex="0">
-            <span class="hamburger__line"></span>
-            <span class="hamburger__line"></span>
-            <span class="hamburger__line"></span>
-        </div>
-        <div class="navbar__links" id="mobile-menu" aria-hidden="true">
-            <a href="index.html" class="navbar__link">Home</a>
-            <a href="team.html" class="navbar__link">Team</a>
-            <a href="research.html" class="navbar__link">Research</a>
-            <a href="news.html" class="navbar__link">News</a>
-            <a href="get-involved.html" class="navbar__link">Get Involved</a>
-        </div>
-    </nav>
+    <header class="subpage-header">
+        <a href="index.html" class="subpage-header__logo" aria-label="Back to homepage">
+            <img src="assets/logo.svg" alt="RANDM Lab Logo" class="subpage-header__logo-img">
+        </a>
+    </header>
     
     <div class="hero hero--sm">
         <div class="hero__bg"></div>
@@ -45,13 +31,6 @@
     
     <main>
         <section class="detailed-content">
-            <!-- Breadcrumb navigation -->
-            <div class="breadcrumbs">
-                <a href="index.html">Home</a> &gt; 
-                <a href="research.html">Research</a> &gt; 
-                <span>General Risk Propensity Scale (GRiPS)</span>
-            </div>
-            
             <h1>General Risk Propensity Scale (GRiPS)</h1>
             
             <!-- Introduction -->
@@ -482,9 +461,9 @@
                 <div class="download-section">
                     <h3>Scale Materials</h3>
                     <p>You can download the GRiPS in PDF format for use in your research:</p>
-                    <a href="assets/docs/grips-manual.pdf" class="download-button">Download GRiPS (PDF) <span class="download-icon">↓</span></a>
+                    <a href="../assets/docs/grips-manual.pdf" class="download-button">Download GRiPS (PDF) <span class="download-icon">↓</span></a>
                     <p>You can also download the published manuscript:</p>
-                    <a href="assets/docs/Zhang2018_JBDM_Grips.pdf" class="download-button">Download Published Manuscript (PDF) <span class="download-icon">↓</span></a>
+                    <a href="../assets/docs/Zhang2018_JBDM_Grips.pdf" class="download-button">Download Published Manuscript (PDF) <span class="download-icon">↓</span></a>
                     <p class="download-note">Note: By downloading this scale, you agree to the usage terms outlined above.</p>
                 </div>
             </div>
@@ -507,72 +486,44 @@
 
             <!-- Back button or related links -->
             <div class="content-nav fade-in">
-                <a href="research.html" class="content-nav__back">&larr; Back to Research</a>
-                
+                <a href="index.html#research" class="content-nav__back">&larr; Back to Research</a>
+
                 <div class="content-nav__related">
                     <h3 class="content-nav__related-title">Related Content:</h3>
                     <ul class="content-nav__related-list">
-                        <li><a href="news.html">Recent Publications</a></li>
+                        <li><a href="index.html#news">Recent Publications</a></li>
                     </ul>
                 </div>
             </div>
         </section>
     </main>
     
-    <footer class="footer">
+    <footer class="footer footer--subpage">
+        <nav class="footer__breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">Home</a>
+            <span class="footer__breadcrumb-sep">›</span>
+            <a href="index.html#research">Research</a>
+            <span class="footer__breadcrumb-sep">›</span>
+            <span>GRiPS</span>
+        </nav>
         <div class="footer__container">
-            <!-- Contact Information -->
             <div class="footer__section">
-                <h3 class="footer__heading">Contact Us</h3>
                 <address class="footer__address">
-                    <p>Risk and Decision Making Lab</p>
-                    <p>Department of Psychology</p>
-                    <p>Louisiana State University</p>
-                    <p>Baton Rouge, LA 70803</p>
-                    <p><a href="mailto:zhang1@lsu.edu" class="footer__link">zhang1@lsu.edu</a></p>
-                    <p><a href="tel:+12257876543" class="footer__link">+1 225 578 4093</a></p>
+                    <p>Risk and Decision Making Lab · Department of Psychology · Louisiana State University</p>
+                    <p><a href="mailto:zhang1@lsu.edu" class="footer__link">zhang1@lsu.edu</a> · <a href="tel:+12257876543" class="footer__link">+1 225 578 4093</a></p>
                 </address>
             </div>
-
-            <!-- Quick Links -->
             <div class="footer__section">
-                <h3 class="footer__heading">Quick Links</h3>
-                <ul class="footer__list">
-                    <li><a href="index.html" class="footer__link">Home</a></li>
-                    <li><a href="team.html" class="footer__link">Team</a></li>
-                    <li><a href="research.html" class="footer__link">Research</a></li>
-                    <li><a href="news.html" class="footer__link">News</a></li>
-                    <li><a href="get-involved.html" class="footer__link">Get Involved</a></li>
-                </ul>
-            </div>
-
-            <!-- Social Media Links -->
-            <div class="footer__section">
-                <h3 class="footer__heading">Follow Us</h3>
                 <div class="social-links">
-                    <a href="https://www.linkedin.com/company/randm-lab" class="social-link" title="LinkedIn" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://twitter.com/randmlab" class="social-link" title="Twitter" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="https://www.researchgate.net/lab/Risk-and-Decision-Making-Lab" class="social-link" title="ResearchGate" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-researchgate"></i>
-                    </a>
-                    <a href="mailto:zhang1@lsu.edu" class="social-link" title="Email">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                    <a href="https://www.lsu.edu" class="social-link" title="University" target="_blank" rel="noopener noreferrer">
-                        <i class="fas fa-university"></i>
-                    </a>
+                    <a href="https://www.linkedin.com/company/randm-lab" class="social-link" title="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.researchgate.net/lab/Risk-and-Decision-Making-Lab" class="social-link" title="ResearchGate" target="_blank" rel="noopener noreferrer"><i class="fab fa-researchgate"></i></a>
+                    <a href="mailto:zhang1@lsu.edu" class="social-link" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://www.lsu.edu" class="social-link" title="University" target="_blank" rel="noopener noreferrer"><i class="fas fa-university"></i></a>
                 </div>
             </div>
         </div>
-
-        <!-- Copyright and Legal -->
         <div class="footer__legal">
-            <p class="footer__text">© 2025 Risk and Decision Making Lab. All rights reserved.</p>
-            <p class="footer__text"><a href="privacy.html" class="footer__link">Privacy Policy</a> | <a href="terms.html" class="footer__link">Terms of Use</a></p>
+            <p class="footer__text">© 2025 Risk and Decision Making Lab. <a href="privacy.html" class="footer__link">Privacy</a> · <a href="terms.html" class="footer__link">Terms</a></p>
         </div>
     </footer>
     
