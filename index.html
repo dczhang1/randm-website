@@ -145,8 +145,8 @@
         /* Bento Grid for research highlights */
         .bento-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(3, minmax(260px, auto));
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: minmax(280px, auto);
             gap: 1.5rem;
             margin-top: 3rem;
         }
@@ -259,7 +259,6 @@
         .bento-card--decision {
             --card-category-color: #f43f5e;
             --card-gradient: rgba(244, 63, 94, 0.15);
-            grid-row: span 2;
         }
 
         .bento-card--judgment {
@@ -599,72 +598,86 @@
             <h2 class="section__title" style="position: relative; z-index: 1;">Research Programs</h2>
 
             <div class="bento-grid">
-                <!-- Large card - Risk Taking Research -->
-                <div class="bento-card bento-card--large bento-card--risk scale-in" data-stagger="0">
+                <!-- 1. Individual Differences - Risk Propensity and Work -->
+                <div class="bento-card bento-card--risk scale-in" data-stagger="0">
                     <div class="bento-card__icon">
                         <i class="fas fa-dice"></i>
                     </div>
                     <div>
-                        <div class="bento-card__category">Risk & Propensity</div>
-                        <h3 class="bento-card__title">Risk Taking Research</h3>
+                        <div class="bento-card__category">Individual Differences</div>
+                        <h3 class="bento-card__title">Risk Propensity and Work</h3>
                         <p class="bento-card__text">
-                            We study how individuals perceive and respond to risk in organizational contexts. Our research examines personality traits, cognitive processes, and situational factors that influence risk-taking behavior.
+                            We study how individual differences in risk propensity affects outcomes at work and in life. Our research explores both the bright side of risk propensity (e.g., creativity) and the dark side (e.g., deviance).
                         </p>
                     </div>
                 </div>
 
-                <!-- Tall card - Employee Selection -->
-                <div class="bento-card bento-card--tall bento-card--employee scale-in" data-stagger="1">
-                    <div class="bento-card__icon">
-                        <i class="fas fa-user-check"></i>
-                    </div>
-                    <div>
-                        <div class="bento-card__category">Talent Assessment</div>
-                        <h3 class="bento-card__title">Employee Selection</h3>
-                        <p class="bento-card__text">
-                            Developing evidence-based tools and methods for identifying and selecting top talent in organizations.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Regular card - Decision Making Under Uncertainty -->
-                <div class="bento-card bento-card--decision scale-in" data-stagger="2">
-                    <div class="bento-card__icon">
-                        <i class="fas fa-question-circle"></i>
-                    </div>
-                    <div>
-                        <div class="bento-card__category">Uncertainty</div>
-                        <h3 class="bento-card__title">Decision Making Under Uncertainty</h3>
-                        <p class="bento-card__text">
-                            Examining how people make choices when outcomes are uncertain.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Wide card - Judgment and Decision Making -->
-                <div class="bento-card bento-card--wide bento-card--judgment scale-in" data-stagger="3">
+                <!-- 2. Cognitive Science - Decision Modeling -->
+                <div class="bento-card bento-card--judgment scale-in" data-stagger="1">
                     <div class="bento-card__icon">
                         <i class="fas fa-brain"></i>
                     </div>
                     <div>
                         <div class="bento-card__category">Cognitive Science</div>
-                        <h3 class="bento-card__title">Judgment and Decision Making</h3>
+                        <h3 class="bento-card__title">Decision Modeling</h3>
                         <p class="bento-card__text">
-                            Investigating cognitive biases, heuristics, and systematic errors in workplace decision making.
+                            We are interested in applying cognitive and decision models to how people make decisions at work.
                         </p>
                     </div>
                 </div>
 
-                <!-- Regular card - Organizational Behavior -->
-                <div class="bento-card bento-card--org scale-in" data-stagger="4">
+                <!-- 3. Talent - Employee Selection -->
+                <div class="bento-card bento-card--employee scale-in" data-stagger="2">
                     <div class="bento-card__icon">
-                        <i class="fas fa-sitemap"></i>
+                        <i class="fas fa-user-check"></i>
                     </div>
                     <div>
-                        <div class="bento-card__category">Organizational</div>
-                        <h3 class="bento-card__title">Organizational Behavior</h3>
+                        <div class="bento-card__category">Talent</div>
+                        <h3 class="bento-card__title">Employee Selection</h3>
                         <p class="bento-card__text">
-                            Understanding how organizational contexts shape individual and team decisions.
+                            We develop and advocate for evidence-based tools and methods for identifying, recruiting, and placing talent at work.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 4. Science Communication - Scientist-Practitioner Gap -->
+                <div class="bento-card bento-card--org scale-in" data-stagger="3">
+                    <div class="bento-card__icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div>
+                        <div class="bento-card__category">Science Communication</div>
+                        <h3 class="bento-card__title">Scientist-Practitioner Gap</h3>
+                        <p class="bento-card__text">
+                            We use consumer friendly methods to communicate scientific evidence to deliver evidence based findings to relevant stakeholders.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 5. AI - Large Language Models -->
+                <div class="bento-card bento-card--decision scale-in" data-stagger="4">
+                    <div class="bento-card__icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div>
+                        <div class="bento-card__category">AI</div>
+                        <h3 class="bento-card__title">Large Language Models</h3>
+                        <p class="bento-card__text">
+                            We use modern LLMs to understand psychological mechanisms underlying decision making processes at work.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 6. Meta-Science - Replicability -->
+                <div class="bento-card bento-card--risk scale-in" data-stagger="5">
+                    <div class="bento-card__icon">
+                        <i class="fas fa-check-double"></i>
+                    </div>
+                    <div>
+                        <div class="bento-card__category">Meta-Science</div>
+                        <h3 class="bento-card__title">Replicability</h3>
+                        <p class="bento-card__text">
+                            We are interested in the replicability of scientific research and how to conduct research that is robust, reproducible, and trustworthy.
                         </p>
                     </div>
                 </div>
@@ -961,52 +974,32 @@
     <!-- Footer -->
     <footer class="footer" role="contentinfo">
         <div class="footer__container">
-            <div class="footer__section">
-                <h3 class="footer__heading">Contact Us</h3>
-                <address class="footer__address">
-                    <p>Risk and Decision Making Lab</p>
-                    <p>Department of Psychology</p>
-                    <p>Louisiana State University</p>
-                    <p>Baton Rouge, LA 70803</p>
-                    <p><a href="mailto:zhang1@lsu.edu" class="footer__link">zhang1@lsu.edu</a></p>
-                    <p><a href="tel:+12257876543" class="footer__link">+1 225 578 4093</a></p>
-                </address>
-            </div>
+            <ul class="footer__list footer__list--horizontal">
+                <li><a href="#about" class="footer__link">About</a></li>
+                <li><a href="#research" class="footer__link">Research</a></li>
+                <li><a href="#team" class="footer__link">Team</a></li>
+                <li><a href="#news" class="footer__link">News</a></li>
+                <li><a href="#contact" class="footer__link">Contact</a></li>
+            </ul>
 
-            <div class="footer__section">
-                <h3 class="footer__heading">Quick Links</h3>
-                <ul class="footer__list">
-                    <li><a href="#about" class="footer__link">About</a></li>
-                    <li><a href="#research" class="footer__link">Research</a></li>
-                    <li><a href="#team" class="footer__link">Team</a></li>
-                    <li><a href="#news" class="footer__link">News</a></li>
-                    <li><a href="#contact" class="footer__link">Contact</a></li>
-                    <li><a href="publications.html" class="footer__link">Publications</a></li>
-                </ul>
-            </div>
-
-            <div class="footer__section">
-                <h3 class="footer__heading">Follow Us</h3>
-                <div class="social-links">
-                    <a href="https://www.linkedin.com/company/randm-lab" class="social-link hover-lift" title="LinkedIn" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://www.researchgate.net/lab/Risk-and-Decision-Making-Lab" class="social-link hover-lift" title="ResearchGate" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-researchgate"></i>
-                    </a>
-                    <a href="mailto:zhang1@lsu.edu" class="social-link hover-lift" title="Email">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                    <a href="https://www.lsu.edu" class="social-link hover-lift" title="University" target="_blank" rel="noopener noreferrer">
-                        <i class="fas fa-university"></i>
-                    </a>
-                </div>
+            <div class="social-links footer__social">
+                <a href="https://www.linkedin.com/company/randm-lab" class="social-link hover-lift" title="LinkedIn" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://www.researchgate.net/lab/Risk-and-Decision-Making-Lab" class="social-link hover-lift" title="ResearchGate" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-researchgate"></i>
+                </a>
+                <a href="mailto:zhang1@lsu.edu" class="social-link hover-lift" title="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="https://www.lsu.edu" class="social-link hover-lift" title="University" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-university"></i>
+                </a>
             </div>
         </div>
 
         <div class="footer__legal">
             <p class="footer__text">© 2025 Risk and Decision Making Lab. All rights reserved.</p>
-            <p class="footer__text"><a href="privacy.html" class="footer__link">Privacy Policy</a> | <a href="terms.html" class="footer__link">Terms of Use</a></p>
         </div>
     </footer>
 
