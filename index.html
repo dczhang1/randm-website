@@ -95,6 +95,13 @@
             background-color: var(--color-bg-secondary);
         }
 
+        /* Contact section – distinct from News for clear visual separation */
+        #contact {
+            background-color: var(--color-bg-tertiary);
+            border-top: 1px solid var(--color-border);
+            box-shadow: inset 0 1px 0 0 rgba(0, 240, 255, 0.08);
+        }
+
         .section__label {
             font-size: 0.875rem;
             text-transform: uppercase;
@@ -139,7 +146,7 @@
         .bento-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(3, 200px);
+            grid-template-rows: repeat(3, minmax(260px, auto));
             gap: 1.5rem;
             margin-top: 3rem;
         }
@@ -252,6 +259,7 @@
         .bento-card--decision {
             --card-category-color: #f43f5e;
             --card-gradient: rgba(244, 63, 94, 0.15);
+            grid-row: span 2;
         }
 
         .bento-card--judgment {
@@ -285,6 +293,7 @@
 
             .bento-card--large,
             .bento-card--tall,
+            .bento-card--decision,
             .bento-card--wide {
                 grid-column: 1;
                 grid-row: auto;
@@ -358,6 +367,164 @@
             justify-content: center;
             flex-wrap: wrap;
         }
+
+        /* Alumni Modal (pop-up) */
+        .alumni-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 1100;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            pointer-events: none;
+        }
+        .alumni-modal[aria-hidden="false"] {
+            display: flex;
+            pointer-events: auto;
+        }
+        .alumni-modal-overlay {
+            position: absolute;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0);
+            backdrop-filter: blur(0);
+            transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+        }
+        .alumni-modal[aria-hidden="false"] .alumni-modal-overlay {
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+        }
+        .alumni-modal-content {
+            position: relative;
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius);
+            max-width: 640px;
+            width: 100%;
+            max-height: 85vh;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .alumni-modal[aria-hidden="false"] .alumni-modal-content {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .alumni-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+        .alumni-modal-title {
+            font-family: var(--heading-font);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin: 0;
+        }
+        .alumni-modal-close {
+            background: none;
+            border: none;
+            font-size: 1.75rem;
+            color: var(--color-text-secondary);
+            cursor: pointer;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: color 0.3s ease, background 0.3s ease;
+        }
+        .alumni-modal-close:hover {
+            color: var(--color-text-primary);
+            background: var(--color-border);
+        }
+        .alumni-modal-body {
+            padding: 1.5rem;
+            overflow-y: auto;
+            max-height: calc(85vh - 80px);
+        }
+        .alumni-modal-subtitle {
+            font-family: var(--heading-font);
+            font-size: 1.125rem;
+            color: var(--color-text-primary);
+            margin: 0 0 0.75rem;
+        }
+        .alumni-modal-subtitle + .alumni-modal-list {
+            margin-bottom: 1.5rem;
+        }
+        .alumni-modal-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.5rem;
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+        }
+        .alumni-modal-list:last-of-type { margin-bottom: 0; }
+        .alumni-modal-list li { margin-bottom: 0.5rem; }
+        .alumni-modal-list .alumni-name { color: var(--color-text-primary); font-weight: 500; }
+        .alumni-modal-list .alumni-position { color: var(--color-text-secondary); }
+
+        /* Card hover effect grid – Aceternity-style */
+        .card-hover-effect {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .team-member-card {
+            position: relative;
+            overflow: hidden;
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-bg-secondary);
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius);
+            transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+        }
+        .team-member-card .card-hover-highlight {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0;
+            z-index: 0;
+            border-radius: inherit;
+            background: radial-gradient(
+                600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+                rgba(0, 240, 255, 0.12),
+                rgba(124, 58, 237, 0.08) 40%,
+                transparent 60%
+            );
+            transition: opacity 0.3s ease;
+        }
+        .team-member-card:hover .card-hover-highlight {
+            opacity: 1;
+        }
+        .team-member-card .member-photo,
+        .team-member-card h4,
+        .team-member-card p {
+            position: relative;
+            z-index: 1;
+        }
+        .team-member-card .member-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1rem;
+            border: 2px solid var(--color-accent-primary);
+        }
     </style>
     <script>
       window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
@@ -384,8 +551,8 @@
         </div>
         <div class="navbar__links" id="mobile-menu" aria-hidden="true">
             <a href="#about" class="navbar__link">About</a>
-            <a href="#team" class="navbar__link">Team</a>
             <a href="#research" class="navbar__link">Research</a>
+            <a href="#team" class="navbar__link">Team</a>
             <a href="#news" class="navbar__link">News</a>
             <a href="#contact" class="navbar__link">Contact</a>
         </div>
@@ -420,75 +587,6 @@
                         Founded in 2016 by Dr. Don Zhang, the Risk and Decision Making Lab is housed in Louisiana State University, Department of Psychology. We conduct research on how people make decisions at work, with a focus on risk and decision making. Our mission is to understand the cognitive, personality, and organizational influences on decision making at work. We are committed to conducting rigorous, high-quality research that has practical implications for organizations and individuals.
                     </p>
                 </div>
-            </div>
-        </section>
-
-        <!-- Team Section -->
-        <section id="team" class="section fade-in-up">
-            <div class="section__label">Team</div>
-            <h2 class="section__title">Meet Our Researchers</h2>
-
-            <!-- PI Overview -->
-            <div class="card" style="background: var(--color-bg-secondary); padding: 3rem; margin-bottom: 3rem; border: 1px solid var(--color-border);">
-                <div style="display: grid; grid-template-columns: 200px 1fr; gap: 3rem; align-items: center;">
-                    <img src="assets/headshot_donzhang.jpg" alt="Dr. Don Zhang" style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 3px solid var(--color-accent-primary);" loading="lazy">
-                    <div>
-                        <h3 style="font-family: var(--heading-font); font-size: 2rem; color: var(--color-text-primary); margin-bottom: 0.5rem;">Don C. Zhang, PhD</h3>
-                        <p style="color: var(--color-accent-primary); font-weight: 600; margin-bottom: 1rem;">Principal Investigator</p>
-                        <p style="color: var(--color-text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
-                            Associate Professor of Industrial and Organizational Psychology at Louisiana State University and director of the Risk and Decision Making Lab. Don studies decision making, employee selection, and risk taking. He has received over $2.9 million in federal funding, including the National Science Foundation CAREER Award.
-                        </p>
-                        <a href="https://drive.google.com/file/d/1VsTzM6DWIMvqMVMwf9taIJ7zK1_-MTOF/view?usp=drive_link" class="btn btn--outline hover-lift" target="_blank" rel="noopener noreferrer">View CV</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Graduate Students Grid -->
-            <div style="margin-bottom: 3rem;">
-                <h3 style="font-family: var(--heading-font); font-size: 1.5rem; color: var(--color-text-primary); margin-bottom: 1.5rem;">Graduate Students</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
-                    <div class="card scale-in" data-stagger="0" style="background: var(--color-bg-secondary); padding: 2rem; text-align: center; border: 1px solid var(--color-border);">
-                        <img src="assets/headshot_cowley.jpg" alt="Tyler Cowley" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin: 0 auto 1rem; border: 2px solid var(--color-accent-primary);" loading="lazy">
-                        <h4 style="font-family: var(--heading-font); font-size: 1.125rem; color: var(--color-text-primary); margin-bottom: 0.25rem;">Tyler Cowley</h4>
-                        <p style="color: var(--color-accent-secondary); font-size: 0.875rem;">Ph.D. Student (Sixth Year)</p>
-                    </div>
-                    <div class="card scale-in" data-stagger="1" style="background: var(--color-bg-secondary); padding: 2rem; text-align: center; border: 1px solid var(--color-border);">
-                        <img src="assets/headshot_reeves.jpg" alt="Katelyn Reeves" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin: 0 auto 1rem; border: 2px solid var(--color-accent-primary);" loading="lazy">
-                        <h4 style="font-family: var(--heading-font); font-size: 1.125rem; color: var(--color-text-primary); margin-bottom: 0.25rem;">Katelyn Reeves</h4>
-                        <p style="color: var(--color-accent-secondary); font-size: 0.875rem;">Ph.D. Student (Fourth Year)</p>
-                    </div>
-                    <div class="card scale-in" data-stagger="2" style="background: var(--color-bg-secondary); padding: 2rem; text-align: center; border: 1px solid var(--color-border);">
-                        <img src="assets/headshot_dodangeh.jpg" alt="Niloufar Dodangeh" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin: 0 auto 1rem; border: 2px solid var(--color-accent-primary);" loading="lazy">
-                        <h4 style="font-family: var(--heading-font); font-size: 1.125rem; color: var(--color-text-primary); margin-bottom: 0.25rem;">Niloufar (Nilou) Dodangeh</h4>
-                        <p style="color: var(--color-accent-secondary); font-size: 0.875rem;">Ph.D. Student (Second Year)</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Undergraduate RAs -->
-            <div style="margin-bottom: 2rem;">
-                <h3 style="font-family: var(--heading-font); font-size: 1.5rem; color: var(--color-text-primary); margin-bottom: 1.5rem;">Undergraduate Research Assistants</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
-                    <div class="card scale-in" data-stagger="3" style="background: var(--color-bg-secondary); padding: 1.5rem; text-align: center; border: 1px solid var(--color-border);">
-                        <img src="assets/headshot_martin.jpg" alt="Abby Martin" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin: 0 auto 0.75rem; border: 2px solid var(--color-accent-primary);" loading="lazy">
-                        <h4 style="font-family: var(--heading-font); font-size: 1rem; color: var(--color-text-primary); margin-bottom: 0.25rem;">Abby Martin</h4>
-                        <p style="color: var(--color-text-secondary); font-size: 0.8rem;">Undergraduate RA</p>
-                    </div>
-                    <div class="card scale-in" data-stagger="4" style="background: var(--color-bg-secondary); padding: 1.5rem; text-align: center; border: 1px solid var(--color-border);">
-                        <img src="assets/headshot_kidder.jpg" alt="Caleb Kidder" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin: 0 auto 0.75rem; border: 2px solid var(--color-accent-primary);" loading="lazy">
-                        <h4 style="font-family: var(--heading-font); font-size: 1rem; color: var(--color-text-primary); margin-bottom: 0.25rem;">Caleb Kidder</h4>
-                        <p style="color: var(--color-text-secondary); font-size: 0.8rem;">Undergraduate RA</p>
-                    </div>
-                    <div class="card scale-in" data-stagger="5" style="background: var(--color-bg-secondary); padding: 1.5rem; text-align: center; border: 1px solid var(--color-border);">
-                        <img src="assets/headshot_greenfield.jpg" alt="London Greenfield" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin: 0 auto 0.75rem; border: 2px solid var(--color-accent-primary);" loading="lazy">
-                        <h4 style="font-family: var(--heading-font); font-size: 1rem; color: var(--color-text-primary); margin-bottom: 0.25rem;">London Greenfield</h4>
-                        <p style="color: var(--color-text-secondary); font-size: 0.8rem;">Undergraduate RA</p>
-                    </div>
-                </div>
-            </div>
-
-            <div style="text-align: center; margin-top: 2rem;">
-                <a href="team.html" class="btn btn--lg btn--outline hover-lift">Meet Full Team & Alumni</a>
             </div>
         </section>
 
@@ -577,6 +675,95 @@
             </div>
         </section>
 
+        <!-- Team Section -->
+        <section id="team" class="section fade-in-up">
+            <div class="section__label">Team</div>
+            <h2 class="section__title">Meet Our Researchers</h2>
+
+            <div class="card-hover-effect">
+                <div class="card scale-in team-member-card" data-stagger="0">
+                    <img src="assets/headshot_donzhang.jpg" alt="Dr. Don Zhang" class="member-photo" loading="lazy">
+                    <h4 style="font-family: var(--heading-font); font-size: 1.125rem; color: var(--color-text-primary); margin-bottom: 0.25rem;">Don C. Zhang, PhD</h4>
+                    <p style="color: var(--color-accent-secondary); font-size: 0.875rem;">Principal Investigator</p>
+                </div>
+                <div class="card scale-in team-member-card" data-stagger="1">
+                    <img src="assets/headshot_cowley.jpg" alt="Tyler Cowley" class="member-photo" loading="lazy">
+                    <h4 style="font-family: var(--heading-font); font-size: 1.125rem; color: var(--color-text-primary); margin-bottom: 0.25rem;">Tyler Cowley</h4>
+                    <p style="color: var(--color-accent-secondary); font-size: 0.875rem;">Ph.D. Student (Sixth Year)</p>
+                </div>
+                <div class="card scale-in team-member-card" data-stagger="2">
+                    <img src="assets/headshot_reeves.jpg" alt="Katelyn Reeves" class="member-photo" loading="lazy">
+                    <h4 style="font-family: var(--heading-font); font-size: 1.125rem; color: var(--color-text-primary); margin-bottom: 0.25rem;">Katelyn Reeves</h4>
+                    <p style="color: var(--color-accent-secondary); font-size: 0.875rem;">Ph.D. Student (Fourth Year)</p>
+                </div>
+                <div class="card scale-in team-member-card" data-stagger="3">
+                    <img src="assets/headshot_dodangeh.jpg" alt="Niloufar Dodangeh" class="member-photo" loading="lazy">
+                    <h4 style="font-family: var(--heading-font); font-size: 1.125rem; color: var(--color-text-primary); margin-bottom: 0.25rem;">Niloufar (Nilou) Dodangeh</h4>
+                    <p style="color: var(--color-accent-secondary); font-size: 0.875rem;">Ph.D. Student (Second Year)</p>
+                </div>
+                <div class="card scale-in team-member-card" data-stagger="4">
+                    <img src="assets/headshot_martin.jpg" alt="Abby Martin" class="member-photo" loading="lazy">
+                    <h4 style="font-family: var(--heading-font); font-size: 1.125rem; color: var(--color-text-primary); margin-bottom: 0.25rem;">Abby Martin</h4>
+                    <p style="color: var(--color-accent-secondary); font-size: 0.875rem;">Undergraduate Research Assistant</p>
+                </div>
+                <div class="card scale-in team-member-card" data-stagger="5">
+                    <img src="assets/headshot_kidder.jpg" alt="Caleb Kidder" class="member-photo" loading="lazy">
+                    <h4 style="font-family: var(--heading-font); font-size: 1.125rem; color: var(--color-text-primary); margin-bottom: 0.25rem;">Caleb Kidder</h4>
+                    <p style="color: var(--color-accent-secondary); font-size: 0.875rem;">Undergraduate Research Assistant</p>
+                </div>
+                <div class="card scale-in team-member-card" data-stagger="6">
+                    <img src="assets/headshot_filler.jpg" alt="London Greenfield" class="member-photo" loading="lazy">
+                    <h4 style="font-family: var(--heading-font); font-size: 1.125rem; color: var(--color-text-primary); margin-bottom: 0.25rem;">London Greenfield</h4>
+                    <p style="color: var(--color-accent-secondary); font-size: 0.875rem;">Undergraduate Research Assistant</p>
+                </div>
+                <div class="card scale-in team-member-card" data-stagger="7">
+                    <img src="assets/headshot_filler.jpg" alt="Maddie Nguyen" class="member-photo" loading="lazy">
+                    <h4 style="font-family: var(--heading-font); font-size: 1.125rem; color: var(--color-text-primary); margin-bottom: 0.25rem;">Maddie Nguyen</h4>
+                    <p style="color: var(--color-accent-secondary); font-size: 0.875rem;">Undergraduate Research Assistant</p>
+                </div>
+            </div>
+
+            <!-- Alumni Button -->
+            <div style="text-align: center; margin-top: 3rem;">
+                <button id="showAlumniBtn" type="button" class="btn btn--lg btn--outline hover-lift">View Lab Alumni</button>
+            </div>
+
+        </section>
+
+        <!-- Alumni Modal (pop-up) -->
+        <div id="alumniModal" class="alumni-modal" role="dialog" aria-modal="true" aria-labelledby="alumniModalTitle" aria-hidden="true">
+            <div class="alumni-modal-overlay" id="alumniModalOverlay"></div>
+            <div class="alumni-modal-content">
+                <div class="alumni-modal-header">
+                    <h2 id="alumniModalTitle" class="alumni-modal-title">Lab Alumni</h2>
+                    <button type="button" class="alumni-modal-close" id="alumniModalClose" aria-label="Close alumni pop-up">&times;</button>
+                </div>
+                <div class="alumni-modal-body">
+                    <h3 class="alumni-modal-subtitle">Graduate Alumni</h3>
+                    <ul class="alumni-modal-list">
+                        <li><span class="alumni-name">John-Luke McCord, Ph.D. (2016 – 2022)</span> – <span class="alumni-position">Associate Consultant at Xecutive Metrix</span></li>
+                        <li><span class="alumni-name">Gino Howard, Ph.D. (2020 - 2023)</span> – <span class="alumni-position">Assistant Professor, UC San Bernardino</span></li>
+                    </ul>
+                    <h3 class="alumni-modal-subtitle">Undergraduate Alumni</h3>
+                    <ul class="alumni-modal-list">
+                        <li><span class="alumni-name">Sarah Graff, B.A. (2017 – 2018)</span> – <span class="alumni-position">Masters student at I/O Psychology at Middle Tennessee State University, Now HR Specialist at Ochsner Health</span></li>
+                        <li><span class="alumni-name">Paige Resnick, B.A. (2017 – 2018)</span> – <span class="alumni-position">Masters student in I/O Psychology at University of Texas Arlington, Now HR Program Manager at Hilltop Holdings</span></li>
+                        <li><span class="alumni-name">Sidney Thomas, B.A. (2017 – 2019)</span> – <span class="alumni-position">PhD student in I/O Psychology at Louisiana Tech University, Now at AllState</span></li>
+                        <li><span class="alumni-name">Gabi Danna, B.A. (2017 – 2019)</span> – <span class="alumni-position">PhD student in I/O Psychology at University at Albany, SUNY, Now at Google</span></li>
+                        <li><span class="alumni-name">Elizabeth Joseph, B.A. (2018 – 2019)</span> – <span class="alumni-position">PhD student in Experimental Psychology at Texas Christian University</span></li>
+                        <li><span class="alumni-name">Kevin Sullivan, B.A. (2019)</span> – <span class="alumni-position">PhD student in I/O Psychology at Louisiana Tech University</span></li>
+                        <li><span class="alumni-name">Olivia Kjellsten, B.A. (2019-2020)</span> – <span class="alumni-position">Masters student in I/O Psychology at Vrije University, now Deloitte</span></li>
+                        <li><span class="alumni-name">Gaurangi Das, B.A. (2018-2021)</span> – <span class="alumni-position">PhD student in I/O Psychology at Bowling Green State University</span></li>
+                        <li><span class="alumni-name">Brynne Babin, B.A. (2020-2021)</span> – <span class="alumni-position">Masters student in Social Work at Louisiana State University</span></li>
+                        <li><span class="alumni-name">Erica Leonard, B.A. (2022-2023)</span> – <span class="alumni-position">D.O. Student at William Carey University</span></li>
+                        <li><span class="alumni-name">Coulette Mouton, B.A. (2022-2024)</span></li>
+                        <li><span class="alumni-name">Maria Gordon, B.A. (2023-2024)</span></li>
+                        <li><span class="alumni-name">Gabrielle Mellor, B.A. (2022-2025)</span> – <span class="alumni-position">PhD student in I/O Psychology at University of Oklahoma</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
         <!-- Resources Section -->
         <section class="section fade-in-up">
             <div class="section__label">Resources</div>
@@ -656,7 +843,7 @@
         </section>
 
         <!-- Contact & Get Involved Section -->
-        <section id="contact" class="section section--dark fade-in-up">
+        <section id="contact" class="section section--dark section--contact fade-in-up">
             <div class="section__label">Contact</div>
             <h2 class="section__title">Get in Touch</h2>
             <p style="text-align: center; color: var(--color-text-secondary); max-width: 700px; margin: 0 auto 3rem; font-size: 1.125rem; line-height: 1.6;">
@@ -790,8 +977,8 @@
                 <h3 class="footer__heading">Quick Links</h3>
                 <ul class="footer__list">
                     <li><a href="#about" class="footer__link">About</a></li>
-                    <li><a href="#team" class="footer__link">Team</a></li>
                     <li><a href="#research" class="footer__link">Research</a></li>
+                    <li><a href="#team" class="footer__link">Team</a></li>
                     <li><a href="#news" class="footer__link">News</a></li>
                     <li><a href="#contact" class="footer__link">Contact</a></li>
                     <li><a href="publications.html" class="footer__link">Publications</a></li>
@@ -826,6 +1013,8 @@
     <!-- Scripts -->
     <script src="js/utils.js" defer></script>
     <script src="js/main.js" defer></script>
+    <script src="js/card-hover-effect.js" defer></script>
+    <script src="js/index.js" defer></script>
     <script src="js/carousel.js" defer></script>
     <script src="js/neural-canvas.js" defer></script>
     <script src="js/scroll-animations.js" defer></script>
