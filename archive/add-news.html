@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add News Entry | Risk and Decision Making Lab</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Single CSS file that imports all other CSS files -->
+    <link rel="stylesheet" href="../css/main.css">
+    <style>
+        /* Additional styles specific to the form */
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #153448;
+        }
+        
+        input[type="text"],
+        input[type="date"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+        }
+        
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .image-preview {
+            margin-top: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .image-preview img {
+            max-width: 200px;
+            max-height: 150px;
+            object-fit: cover;
+            border: 1px solid #ddd;
+        }
+        
+        .preview-container {
+            margin-top: 2rem;
+            border: 1px solid #ddd;
+            padding: 1.5rem;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+        
+        .preview-container h3 {
+            margin-top: 0;
+            color: #153448;
+        }
+        
+        .form-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        /* Style for the custom file input */
+        .file-input-container {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+        
+        .file-input-container input[type="file"] {
+            position: absolute;
+            font-size: 100px;
+            opacity: 0;
+            right: 0;
+            top: 0;
+            cursor: pointer;
+        }
+        
+        .file-input-button {
+            background-color: #3C5B6F;
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            display: inline-block;
+        }
+        
+        .file-name {
+            margin-left: 1rem;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body data-page="admin">
+    <!-- Navigation using the new component classes -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="navbar__logo">
+            <a href="../index.html">
+                <img src="../assets/logo.svg" alt="RANDM Lab Logo" class="navbar__logo-img">
+            </a>
+        </div>
+        <div class="hamburger" aria-controls="mobile-menu" aria-expanded="false" aria-label="Toggle menu" tabindex="0">
+            <span class="hamburger__line"></span>
+            <span class="hamburger__line"></span>
+            <span class="hamburger__line"></span>
+        </div>
+        <div class="navbar__links" id="mobile-menu" aria-hidden="true">
+            <a href="../index.html" class="navbar__link">Home</a>
+            <a href="../index.html#team" class="navbar__link">Team</a>
+            <a href="../index.html#research" class="navbar__link">Research</a>
+            <a href="../index.html#news" class="navbar__link">News</a>
+            <a href="../index.html#contact" class="navbar__link">Get Involved</a>
+            <a href="add-news.html" class="navbar__link active" aria-current="page">Admin</a>
+        </div>
+    </nav>
+    
+    <!-- Page header using new component classes -->
+    <div class="hero hero--sm">
+        <div class="hero__bg"></div>
+        <div class="hero__overlay"></div>
+        <div class="hero__content">
+            <h1 class="hero__title">Add News Entry</h1>
+            <p class="hero__subtitle">Create a new news entry for the RANDM Lab website.</p>
+        </div>
+    </div>
+    
+    <main>
+        <div class="container">
+            <div class="form-container">
+                <form id="newsEntryForm">
+                    <div class="form-group">
+                        <label for="newsDate">Date *</label>
+                        <input type="date" id="newsDate" name="newsDate" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="newsTitle">Title *</label>
+                        <input type="text" id="newsTitle" name="newsTitle" required placeholder="Enter news title">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="newsCategory">Category *</label>
+                        <select id="newsCategory" name="newsCategory" required>
+                            <option value="">Select a category</option>
+                            <option value="news">News</option>
+                            <option value="publications">Publications</option>
+                            <option value="media">Media</option>
+                            <option value="conferences">Conferences</option>
+                            <option value="fun">Fun</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="newsSummary">Summary *</label>
+                        <textarea id="newsSummary" name="newsSummary" required placeholder="A brief summary (1-2 sentences)"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="newsDetails">Details</label>
+                        <textarea id="newsDetails" name="newsDetails" placeholder="Full details for the 'Read more' section"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Include Image?</label>
+                        <div>
+                            <input type="radio" id="includeImageYes" name="includeImage" value="yes">
+                            <label for="includeImageYes" style="display:inline;">Yes</label>
+                            
+                            <input type="radio" id="includeImageNo" name="includeImage" value="no" checked>
+                            <label for="includeImageNo" style="display:inline;">No</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group image-upload-section hidden">
+                        <label for="newsImage">Image</label>
+                        <div class="file-input-container">
+                            <div class="file-input-button">Choose File</div>
+                            <input type="file" id="newsImage" name="newsImage" accept="image/*">
+                            <span class="file-name">No file chosen</span>
+                        </div>
+                        <div class="image-preview"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="imageAlt">Image Alt Text <span class="image-alt-note hidden">(Required if image is uploaded)</span></label>
+                        <input type="text" id="imageAlt" name="imageAlt" placeholder="Descriptive text for the image" class="hidden">
+                    </div>
+                    
+                    <hr>
+                    
+                    <div class="form-buttons">
+                        <button type="button" id="previewButton" class="btn">Preview Entry</button>
+                        <button type="submit" class="btn btn--secondary">Generate HTML</button>
+                        <button type="reset" class="btn btn--outline">Reset Form</button>
+                    </div>
+                </form>
+                
+                <div class="preview-container hidden" id="previewContainer">
+                    <h3>Preview</h3>
+                    <div id="newsPreview"></div>
+                </div>
+                
+                <div class="form-group hidden" id="generatedHtmlContainer">
+                    <label for="generatedHtml">Generated HTML (Copy and paste this into your news.html file)</label>
+                    <textarea id="generatedHtml" readonly style="min-height: 200px; font-family: monospace; font-size: 14px;"></textarea>
+                    <button type="button" id="copyHtmlButton" class="btn btn--sm" style="margin-top: 10px;">Copy to Clipboard</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer using the new component classes -->
+    <footer class="footer">
+        <div class="footer__container">
+            <!-- Contact Information -->
+            <div class="footer__section">
+                <h3 class="footer__heading">Contact Us</h3>
+                <address class="footer__address">
+                    <p>Risk and Decision Making Lab</p>
+                    <p>Department of Psychology</p>
+                    <p>Louisiana State University</p>
+                    <p>Baton Rouge, LA 70803</p>
+                    <p><a href="mailto:zhang1@lsu.edu" class="footer__link">zhang1@lsu.edu</a></p>
+                    <p><a href="tel:+12257876543" class="footer__link">+1 225 578 4093</a></p>
+                </address>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer__section">
+                <h3 class="footer__heading">Quick Links</h3>
+                <ul class="footer__list">
+                    <li><a href="../index.html" class="footer__link">Home</a></li>
+                    <li><a href="../index.html#team" class="footer__link">Team</a></li>
+                    <li><a href="../index.html#research" class="footer__link">Research</a></li>
+                    <li><a href="../index.html#news" class="footer__link">News</a></li>
+                    <li><a href="../index.html#contact" class="footer__link">Get Involved</a></li>
+                </ul>
+            </div>
+
+            <!-- Social Media Links -->
+            <div class="footer__section">
+                <h3 class="footer__heading">Follow Us</h3>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/company/randm-lab" class="social-link" title="LinkedIn" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://twitter.com/randmlab" class="social-link" title="Twitter" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://www.researchgate.net/lab/Risk-and-Decision-Making-Lab" class="social-link" title="ResearchGate" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-researchgate"></i>
+                    </a>
+                    <a href="mailto:zhang1@lsu.edu" class="social-link" title="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="https://www.lsu.edu" class="social-link" title="University" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-university"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright and Legal -->
+        <div class="footer__legal">
+            <p class="footer__text">© 2025 Risk and Decision Making Lab. All rights reserved.</p>
+            <p class="footer__text"><a href="privacy.html" class="footer__link">Privacy Policy</a> | <a href="terms.html" class="footer__link">Terms of Use</a></p>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Toggle image upload section based on radio button selection
+            const includeImageRadios = document.querySelectorAll('input[name="includeImage"]');
+            const imageUploadSection = document.querySelector('.image-upload-section');
+            const imageAltField = document.getElementById('imageAlt');
+            const imageAltNote = document.querySelector('.image-alt-note');
+            
+            includeImageRadios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    if (this.value === 'yes') {
+                        imageUploadSection.classList.remove('hidden');
+                        imageAltField.classList.remove('hidden');
+                        imageAltNote.classList.remove('hidden');
+                    } else {
+                        imageUploadSection.classList.add('hidden');
+                        imageAltField.classList.add('hidden');
+                        imageAltNote.classList.add('hidden');
+                    }
+                });
+            });
+            
+            // File input preview
+            const fileInput = document.getElementById('newsImage');
+            const fileName = document.querySelector('.file-name');
+            const imagePreview = document.querySelector('.image-preview');
+            
+            fileInput.addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    const file = this.files[0];
+                    fileName.textContent = file.name;
+                    
+                    // Create image preview
+                    imagePreview.innerHTML = '';
+                    const img = document.createElement('img');
+                    img.src = URL.createObjectURL(file);
+                    img.onload = function() {
+                        URL.revokeObjectURL(this.src);
+                    }
+                    imagePreview.appendChild(img);
+                } else {
+                    fileName.textContent = 'No file chosen';
+                    imagePreview.innerHTML = '';
+                }
+            });
+            
+            // Preview button functionality
+            const previewButton = document.getElementById('previewButton');
+            const previewContainer = document.getElementById('previewContainer');
+            const newsPreview = document.getElementById('newsPreview');
+            
+            previewButton.addEventListener('click', function() {
+                const title = document.getElementById('newsTitle').value;
+                const date = document.getElementById('newsDate').value;
+                const summary = document.getElementById('newsSummary').value;
+                const details = document.getElementById('newsDetails').value;
+                const includeImage = document.querySelector('input[name="includeImage"]:checked').value;
+                
+                if (!title || !date || !summary) {
+                    alert('Please fill out all required fields (Title, Date, and Summary)');
+                    return;
+                }
+                
+                let formattedDate = '';
+                if (date) {
+                    const dateObj = new Date(date);
+                    formattedDate = dateObj.toLocaleDateString('en-US', { 
+                        year: 'numeric', 
+                        month: 'long', 
+                        day: 'numeric' 
+                    });
+                }
+                
+                let previewHTML = `
+                    <article class="card card--border-top news-item">
+                        <div class="news-date">${formattedDate}</div>
+                        <h2>${title}</h2>
+                        <div class="news-content-wrapper">
+                `;
+                
+                if (includeImage === 'yes' && fileInput.files && fileInput.files[0]) {
+                    const altText = document.getElementById('imageAlt').value || title;
+                    previewHTML += `
+                        <div class="news-image">
+                            <img src="${URL.createObjectURL(fileInput.files[0])}" alt="${altText}" />
+                        </div>
+                    `;
+                }
+                
+                previewHTML += `
+                        <div class="news-text-content">
+                            <div class="news-summary">
+                                <p>${summary}</p>
+                            </div>
+                `;
+                
+                if (details) {
+                    previewHTML += `
+                            <div class="news-details">
+                                <p>${details}</p>
+                            </div>
+                    `;
+                }
+                
+                previewHTML += `
+                        </div>
+                    </div>
+                    <button class="btn btn--sm read-more-btn">Read more</button>
+                </article>
+                `;
+                
+                newsPreview.innerHTML = previewHTML;
+                previewContainer.classList.remove('hidden');
+                
+                // Scroll to preview
+                previewContainer.scrollIntoView({ behavior: 'smooth' });
+            });
+            
+            // Form submission
+            const newsForm = document.getElementById('newsEntryForm');
+            const generatedHtmlContainer = document.getElementById('generatedHtmlContainer');
+            const generatedHtmlTextarea = document.getElementById('generatedHtml');
+            
+            newsForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const title = document.getElementById('newsTitle').value;
+                const date = document.getElementById('newsDate').value;
+                const category = document.getElementById('newsCategory').value;
+                const summary = document.getElementById('newsSummary').value;
+                const details = document.getElementById('newsDetails').value;
+                const includeImage = document.querySelector('input[name="includeImage"]:checked').value;
+                const altText = document.getElementById('imageAlt').value;
+                
+                if (!title || !date || !category || !summary) {
+                    alert('Please fill out all required fields (Title, Date, Category, and Summary)');
+                    return;
+                }
+                
+                if (includeImage === 'yes' && (!fileInput.files || !fileInput.files[0])) {
+                    alert('Please select an image or change the "Include Image" option to "No"');
+                    return;
+                }
+                
+                if (includeImage === 'yes' && !altText) {
+                    alert('Please provide alt text for the image');
+                    return;
+                }
+                
+                // Format date for display
+                const dateObj = new Date(date);
+                const formattedDate = dateObj.toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                });
+                
+                // Format date for data-date attribute (YYYY-MM)
+                const dataDate = `${dateObj.getFullYear()}-${String(dateObj.getMonth() + 1).padStart(2, '0')}`;
+                
+                // Generate HTML
+                let generatedHTML = `
+<article class="card card--border-top news-item fade-element" data-category="${category}" data-date="${dataDate}">
+    <div class="news-date">${formattedDate}</div>
+    <h2>${title}</h2>
+    <div class="news-content-wrapper">`;
+                
+                if (includeImage === 'yes') {
+                    // Note: In a real implementation, you would need to upload the image and get its URL
+                    // Here we just use a placeholder path that assumes the user will update it manually
+                    generatedHTML += `
+        <div class="news-image">
+            <img src="../assets/news/[filename].jpg" alt="${altText}" />
+        </div>`;
+                }
+                
+                generatedHTML += `
+        <div class="news-text-content">
+            <div class="news-summary">
+                <p>${summary}</p>
+            </div>`;
+                
+                if (details) {
+                    generatedHTML += `
+            <div class="news-details">
+                <p>${details}</p>
+            </div>`;
+                }
+                
+                generatedHTML += `
+        </div>
+    </div>
+    <button class="btn btn--sm read-more-btn">Read more</button>
+</article>`;
+                
+                generatedHtmlTextarea.value = generatedHTML;
+                generatedHtmlContainer.classList.remove('hidden');
+                
+                // Scroll to generated HTML
+                generatedHtmlContainer.scrollIntoView({ behavior: 'smooth' });
+            });
+            
+            // Copy to clipboard functionality
+            const copyHtmlButton = document.getElementById('copyHtmlButton');
+            
+            copyHtmlButton.addEventListener('click', function() {
+                generatedHtmlTextarea.select();
+                document.execCommand('copy');
+                
+                // Change button text temporarily
+                const originalText = this.textContent;
+                this.textContent = 'Copied!';
+                
+                setTimeout(() => {
+                    this.textContent = originalText;
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>

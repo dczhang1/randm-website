@@ -1,0 +1,289 @@
+/* casprt.css - CASPRT Assessment Page Styles */
+
+/* ============================================
+   ASSESSMENT FORM STYLES
+   ============================================ */
+
+.assessment-form {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2.5rem;
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: var(--color-bg-tertiary);
+    border-radius: var(--border-radius-pill);
+    margin-bottom: 2rem;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-accent-primary), var(--color-accent-secondary));
+    width: 0;
+    transition: width 0.3s ease;
+    border-radius: var(--border-radius-pill);
+}
+
+/* ============================================
+   QUESTION ITEMS
+   ============================================ */
+
+.question-item {
+    text-align: center;
+    padding: 1.5rem 1rem;
+}
+
+.question-item h4 {
+    color: var(--color-text-secondary);
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+}
+
+.question-item p {
+    font-size: 1.25rem;
+    color: var(--color-text-primary);
+    margin-bottom: 2rem;
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+/* ============================================
+   LIKERT SCALE
+   ============================================ */
+
+.likert-scale {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin: 0 auto;
+    max-width: 650px;
+}
+
+.likert-option {
+    flex: 1;
+    padding: 1.25rem 0.75rem;
+    background: var(--color-bg-tertiary);
+    border: 2px solid var(--color-border);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+    position: relative;
+}
+
+.likert-option:hover {
+    background: var(--color-bg-elevated);
+    border-color: var(--color-accent-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 240, 255, 0.15);
+}
+
+.likert-option.selected {
+    background: linear-gradient(135deg,
+        rgba(0, 240, 255, 0.15),
+        rgba(124, 58, 237, 0.15));
+    border-color: var(--color-accent-primary);
+}
+
+.likert-option input[type="radio"] {
+    display: none;
+}
+
+.likert-label {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+.likert-option:hover .likert-label {
+    color: var(--color-text-primary);
+}
+
+/* ============================================
+   SUBMIT BUTTON
+   ============================================ */
+
+.submit-btn {
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    margin: 2.5rem auto;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-secondary));
+    color: var(--color-text-primary);
+    border: none;
+    border-radius: var(--border-radius-pill);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(0, 240, 255, 0.25);
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 240, 255, 0.35);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+/* ============================================
+   RESULTS CONTAINER
+   ============================================ */
+
+.results-container {
+    display: none;
+    max-width: 900px;
+    margin: 2.5rem auto;
+    padding: 2.5rem;
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+}
+
+.results-container h3 {
+    color: var(--color-text-primary);
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    text-align: center;
+}
+
+/* ============================================
+   SCORE DISPLAY
+   ============================================ */
+
+.score-display {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.score-card {
+    padding: 2rem 1.5rem;
+    background: var(--color-bg-tertiary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.score-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.score-card h4 {
+    color: var(--color-text-secondary);
+    margin-bottom: 1.5rem;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+}
+
+.score-value {
+    font-size: 3.5rem;
+    font-weight: 700;
+    font-family: var(--heading-font);
+    margin-bottom: 1rem;
+}
+
+.calculated-score {
+    color: var(--color-accent-primary);
+    text-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+}
+
+.spontaneous-score {
+    color: var(--color-accent-secondary);
+    text-shadow: 0 0 20px rgba(124, 58, 237, 0.5);
+}
+
+.percentile-text {
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    margin: 0.75rem 0;
+    font-weight: 500;
+}
+
+.percentile-text strong {
+    color: var(--color-text-primary);
+}
+
+/* ============================================
+   CHART CONTAINER
+   ============================================ */
+
+.chart-container {
+    margin: 2.5rem 0;
+    padding: 2rem;
+    background: var(--color-bg-tertiary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+}
+
+.chart-container h4 {
+    color: var(--color-text-primary);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1.125rem;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 768px) {
+    .assessment-form,
+    .results-container {
+        padding: 1.5rem;
+        margin: 1.5rem 1rem;
+    }
+
+    .likert-scale {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .likert-option {
+        padding: 1rem;
+    }
+
+    .score-display {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .score-value {
+        font-size: 2.5rem;
+    }
+
+    .question-item p {
+        font-size: 1.125rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .likert-label {
+        font-size: 0.8125rem;
+    }
+
+    .submit-btn {
+        font-size: 0.9375rem;
+        padding: 0.875rem 1.5rem;
+    }
+}

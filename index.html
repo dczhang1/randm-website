@@ -6,11 +6,525 @@
     <title>Risk and Decision Making Lab</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome for social icons -->
+    <!-- Space Grotesk for headings, Inter for body -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- Single CSS file that imports all other CSS files -->
     <link rel="stylesheet" href="css/main.css">
+    <style>
+        /* Homepage-specific styles */
+        .hero-new {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-color: var(--color-bg-primary);
+        }
+
+        #neural-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .grain-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+
+        .hero-new__content {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .hero-new__title {
+            font-family: var(--heading-font);
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            color: var(--color-text-primary);
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero-new__subtitle {
+            font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+            color: var(--color-text-secondary);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--color-text-secondary);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        /* Section styling */
+        .section {
+            padding: 8rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section--dark {
+            background-color: var(--color-bg-secondary);
+        }
+
+        /* Contact section – distinct from News for clear visual separation */
+        #contact {
+            background-color: var(--color-bg-tertiary);
+            border-top: 1px solid var(--color-border);
+            box-shadow: inset 0 1px 0 0 rgba(0, 240, 255, 0.08);
+        }
+
+        .section__label {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--color-accent-primary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .section__title {
+            font-family: var(--heading-font);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
+        }
+
+        .section__text {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--color-text-secondary);
+            max-width: 800px;
+        }
+
+        /* Two-column layout */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        @media (max-width: 768px) {
+            .two-col {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        /* Bento Grid for research highlights */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: minmax(280px, auto);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .bento-card {
+            background: rgba(15, 17, 26, 0.5);
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s var(--ease-out);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .bento-card::after {
+            content: '';
+            position: absolute;
+            bottom: -5rem;
+            left: -5rem;
+            width: 16rem;
+            height: 16rem;
+            background: var(--card-gradient, rgba(124, 58, 237, 0.2));
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+            transition: all 0.5s var(--ease-out);
+            z-index: 0;
+        }
+
+        .bento-card:hover {
+            border-color: rgba(0, 240, 255, 0.3);
+        }
+
+        .bento-card:hover::after {
+            background: rgba(0, 240, 255, 0.15);
+            opacity: 1;
+        }
+
+        .bento-card__icon {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 3rem;
+            color: var(--color-accent-primary);
+            opacity: 0.2;
+            transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
+            z-index: 1;
+            transform: translateZ(60px);
+        }
+
+        .bento-card:hover .bento-card__icon {
+            opacity: 1;
+        }
+
+        .bento-card__category {
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--card-category-color, var(--color-accent-primary));
+            margin-bottom: 0.75rem;
+            position: relative;
+            z-index: 1;
+            transform: translateZ(40px);
+            transition: transform 0.5s var(--ease-out);
+        }
+
+        .bento-card__title {
+            font-family: var(--heading-font);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: 0.75rem;
+            position: relative;
+            z-index: 1;
+            transform: translateZ(50px);
+            transition: transform 0.3s var(--ease-out);
+        }
+
+        .bento-card:hover .bento-card__title {
+            transform: translateZ(50px) translateX(0.5rem);
+        }
+
+        .bento-card__text {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+            transform: translateZ(30px);
+            transition: transform 0.5s var(--ease-out);
+        }
+
+        /* Color variations for different research areas */
+        .bento-card--risk {
+            --card-category-color: #00f0ff;
+            --card-gradient: rgba(0, 240, 255, 0.15);
+        }
+
+        .bento-card--employee {
+            --card-category-color: #f59e0b;
+            --card-gradient: rgba(245, 158, 11, 0.15);
+        }
+
+        .bento-card--decision {
+            --card-category-color: #f43f5e;
+            --card-gradient: rgba(244, 63, 94, 0.15);
+        }
+
+        .bento-card--judgment {
+            --card-category-color: #8b5cf6;
+            --card-gradient: rgba(139, 92, 246, 0.15);
+        }
+
+        .bento-card--org {
+            --card-category-color: #10b981;
+            --card-gradient: rgba(16, 185, 129, 0.15);
+        }
+
+        .bento-card--large {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .bento-card--tall {
+            grid-row: span 2;
+        }
+
+        .bento-card--wide {
+            grid-column: span 2;
+        }
+
+        @media (max-width: 768px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+            }
+
+            .bento-card--large,
+            .bento-card--tall,
+            .bento-card--decision,
+            .bento-card--wide {
+                grid-column: 1;
+                grid-row: auto;
+            }
+        }
+
+        /* Resources cards */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .resource-card {
+            background: var(--color-bg-secondary);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            border: 1px solid var(--color-border);
+            transition: all 0.3s var(--ease-out);
+        }
+
+        .resource-card:hover {
+            border-color: var(--color-border-hover);
+            transform: translateY(-5px);
+        }
+
+        .resource-card__title {
+            font-family: var(--heading-font);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .resource-card__description {
+            color: var(--color-text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--color-bg-secondary), var(--color-bg-tertiary));
+            border-radius: var(--border-radius-lg);
+            padding: 4rem;
+            text-align: center;
+            border: 1px solid var(--color-border);
+        }
+
+        .cta-section__title {
+            font-family: var(--heading-font);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .cta-section__text {
+            font-size: 1.125rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Alumni Modal (pop-up) */
+        .alumni-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 1100;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            pointer-events: none;
+        }
+        .alumni-modal[aria-hidden="false"] {
+            display: flex;
+            pointer-events: auto;
+        }
+        .alumni-modal-overlay {
+            position: absolute;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0);
+            backdrop-filter: blur(0);
+            transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+        }
+        .alumni-modal[aria-hidden="false"] .alumni-modal-overlay {
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+        }
+        .alumni-modal-content {
+            position: relative;
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius);
+            max-width: 640px;
+            width: 100%;
+            max-height: 85vh;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .alumni-modal[aria-hidden="false"] .alumni-modal-content {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .alumni-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+        .alumni-modal-title {
+            font-family: var(--heading-font);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin: 0;
+        }
+        .alumni-modal-close {
+            background: none;
+            border: none;
+            font-size: 1.75rem;
+            color: var(--color-text-secondary);
+            cursor: pointer;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: color 0.3s ease, background 0.3s ease;
+        }
+        .alumni-modal-close:hover {
+            color: var(--color-text-primary);
+            background: var(--color-border);
+        }
+        .alumni-modal-body {
+            padding: 1.5rem;
+            overflow-y: auto;
+            max-height: calc(85vh - 80px);
+        }
+        .alumni-modal-subtitle {
+            font-family: var(--heading-font);
+            font-size: 1.125rem;
+            color: var(--color-text-primary);
+            margin: 0 0 0.75rem;
+        }
+        .alumni-modal-subtitle + .alumni-modal-list {
+            margin-bottom: 1.5rem;
+        }
+        .alumni-modal-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.5rem;
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+        }
+        .alumni-modal-list:last-of-type { margin-bottom: 0; }
+        .alumni-modal-list li { margin-bottom: 0.5rem; }
+        .alumni-modal-list .alumni-name { color: var(--color-text-primary); font-weight: 500; }
+        .alumni-modal-list .alumni-position { color: var(--color-text-secondary); }
+
+        /* Card hover effect grid – Aceternity-style */
+        .card-hover-effect {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .team-member-card {
+            position: relative;
+            overflow: hidden;
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-bg-secondary);
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius);
+            transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+        }
+        .team-member-card .card-hover-highlight {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0;
+            z-index: 0;
+            border-radius: inherit;
+            background: radial-gradient(
+                600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+                rgba(0, 240, 255, 0.12),
+                rgba(124, 58, 237, 0.08) 40%,
+                transparent 60%
+            );
+            transition: opacity 0.3s ease;
+        }
+        .team-member-card:hover .card-hover-highlight {
+            opacity: 1;
+        }
+        .team-member-card .member-photo,
+        .team-member-card h4,
+        .team-member-card p {
+            position: relative;
+            z-index: 1;
+        }
+        .team-member-card .member-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1rem;
+            border: 2px solid var(--color-accent-primary);
+        }
+    </style>
     <script>
       window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
     </script>
@@ -19,14 +533,13 @@
       va('set', { projectId: 'prj_80x6plCjhxYjsNmRzreAN5csYdxG' });
     </script>
 </head>
-<body data-page="home" class="home-page">
-    <!-- Accessibility: Skip to content link -->
+<body data-page="home">
     <a href="#main-content" class="skip-to-content">Skip to content</a>
-    
-    <!-- Navigation using the new component classes -->
+
+    <!-- Navigation - Simplified -->
     <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="navbar__logo">
-            <a href="index.html">
+            <a href="#">
                 <img src="assets/logo.svg" alt="RANDM Lab Logo" class="navbar__logo-img">
             </a>
         </div>
@@ -36,71 +549,304 @@
             <span class="hamburger__line"></span>
         </div>
         <div class="navbar__links" id="mobile-menu" aria-hidden="true">
-            <a href="index.html" class="navbar__link active" aria-current="page">Home</a>
-            <a href="team.html" class="navbar__link">Team</a>
-            <a href="research.html" class="navbar__link">Research</a>
-            <a href="news.html" class="navbar__link">News</a>
-            <a href="get-involved.html" class="navbar__link">Get Involved</a>
+            <a href="#about" class="navbar__link">About</a>
+            <a href="#research" class="navbar__link">Research</a>
+            <a href="#team" class="navbar__link">Team</a>
+            <a href="#news" class="navbar__link">News</a>
+            <a href="#contact" class="navbar__link">Contact</a>
         </div>
     </nav>
-    
-    <!-- Hero section with enhanced animation classes -->
-    <div class="hero hardware-accelerated">
-        <div class="hero__bg"></div>
-        <div class="hero__overlay"></div>
-        <div class="hero__content fade-up">
-            <h1 class="hero__title">Risk and Decision Making Laboratory</h1>
-            <p class="hero__subtitle">The science of how people make decisions at work</p>
-            <a href="research.html" class="btn btn--lg btn--outline-light hover-lift">Our Research</a>
+
+    <!-- Hero Section with Neural Canvas -->
+    <section class="hero-new">
+        <canvas id="neural-canvas"></canvas>
+        <div class="grain-overlay"></div>
+        <div class="hero-new__content fade-in-up">
+            <h1 class="hero-new__title">Risk and Decision Making Laboratory</h1>
+            <p class="hero-new__subtitle">The science of how people make decisions at work</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="#research" class="btn btn--lg btn--primary hover-lift">Explore Research</a>
+                <a href="#contact" class="btn btn--lg btn--outline hover-lift">Get Involved</a>
+            </div>
         </div>
-    </div>
-    
+        <div class="scroll-indicator">
+            <div>Scroll to explore</div>
+            <i class="fas fa-chevron-down" style="display: block; margin-top: 0.5rem;"></i>
+        </div>
+    </section>
+
     <main id="main-content">
-        <div class="content-container-narrow mt-xl">
-            <div class="card card--border-top-primary fade-up">
-                <h2>About Our Lab</h2>
-                <p>Founded in 2016 by Dr. Don Zhang, the Risk and Decision Making Lab is housed in Louisiana State University, Department of Psychology. We conduct 
-                research on how people make decisions at work, with a focus on risk and decision making. Our mission is to understand the cognitive, personality, and organizational influences on decision making at work. 
-                We are committed to conducting rigorous, high-quality research that has practical implications for organizations and individuals.</p>
+        <!-- About Section -->
+        <section id="about" class="section fade-in-up">
+            <div class="two-col">
+                <div class="section__label">About</div>
+                <div>
+                    <h2 class="section__title">Understanding Decision Making at Work</h2>
+                    <p class="section__text">
+                        Founded in 2016 by Dr. Don Zhang, the Risk and Decision Making Lab is housed in Louisiana State University, Department of Psychology. We conduct research on how people make decisions at work, with a focus on risk and decision making. Our mission is to understand the cognitive, personality, and organizational influences on decision making at work. We are committed to conducting rigorous, high-quality research that has practical implications for organizations and individuals.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Research Highlights Section -->
+        <section id="research" class="section section--dark fade-in-up" style="position: relative; overflow: hidden;">
+            <!-- Decorative background number -->
+            <div style="position: absolute; top: 0; right: 0; font-family: var(--heading-font); font-size: 20rem; font-weight: 700; color: rgba(255, 255, 255, 0.02); line-height: 1; user-select: none; pointer-events: none; z-index: 0;">03</div>
+
+            <div class="section__label" style="position: relative; z-index: 1;">Research</div>
+            <h2 class="section__title" style="position: relative; z-index: 1;">Research Programs</h2>
+
+            <div class="bento-grid">
+                <!-- 1. Individual Differences - Risk Propensity and Work -->
+                <div class="bento-card bento-card--risk scale-in" data-stagger="0">
+                    <div class="bento-card__icon">
+                        <i class="fas fa-dice"></i>
+                    </div>
+                    <div>
+                        <div class="bento-card__category">Individual Differences</div>
+                        <h3 class="bento-card__title">Risk Propensity and Work</h3>
+                        <p class="bento-card__text">
+                            We study how individual differences in risk propensity affects outcomes at work and in life. Our research explores both the bright side of risk propensity (e.g., creativity) and the dark side (e.g., deviance).
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 2. Cognitive Science - Decision Modeling -->
+                <div class="bento-card bento-card--judgment scale-in" data-stagger="1">
+                    <div class="bento-card__icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div>
+                        <div class="bento-card__category">Cognitive Science</div>
+                        <h3 class="bento-card__title">Decision Modeling</h3>
+                        <p class="bento-card__text">
+                            We are interested in applying cognitive and decision models to how people make decisions at work.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 3. Talent - Employee Selection -->
+                <div class="bento-card bento-card--employee scale-in" data-stagger="2">
+                    <div class="bento-card__icon">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                    <div>
+                        <div class="bento-card__category">Talent</div>
+                        <h3 class="bento-card__title">Employee Selection</h3>
+                        <p class="bento-card__text">
+                            We develop and advocate for evidence-based tools and methods for identifying, recruiting, and placing talent at work.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 4. Science Communication - Scientist-Practitioner Gap -->
+                <div class="bento-card bento-card--org scale-in" data-stagger="3">
+                    <div class="bento-card__icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div>
+                        <div class="bento-card__category">Science Communication</div>
+                        <h3 class="bento-card__title">Scientist-Practitioner Gap</h3>
+                        <p class="bento-card__text">
+                            We use consumer friendly methods to communicate scientific evidence to deliver evidence based findings to relevant stakeholders.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 5. AI - Large Language Models -->
+                <div class="bento-card bento-card--decision scale-in" data-stagger="4">
+                    <div class="bento-card__icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div>
+                        <div class="bento-card__category">AI</div>
+                        <h3 class="bento-card__title">Large Language Models</h3>
+                        <p class="bento-card__text">
+                            We use modern LLMs to understand psychological mechanisms underlying decision making processes at work.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 6. Meta-Science - Replicability -->
+                <div class="bento-card bento-card--risk scale-in" data-stagger="5">
+                    <div class="bento-card__icon">
+                        <i class="fas fa-check-double"></i>
+                    </div>
+                    <div>
+                        <div class="bento-card__category">Meta-Science</div>
+                        <h3 class="bento-card__title">Replicability</h3>
+                        <p class="bento-card__text">
+                            We are interested in the replicability of scientific research and how to conduct research that is robust, reproducible, and trustworthy.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="publications.html" class="btn btn--lg btn--outline hover-lift">Publications</a>
+            </div>
+        </section>
+
+        <!-- Resources Section -->
+        <section class="section fade-in-up">
+            <div class="section__label">Resources</div>
+            <h2 class="section__title">Research Tools & Scales</h2>
+
+            <div class="resources-grid">
+                <div class="resource-card scale-in" data-stagger="0">
+                    <h3 class="resource-card__title">GRiPS</h3>
+                    <p class="resource-card__description">
+                        General Risk Propensity Scale - A validated measure of individual differences in risk-taking propensity across various domains.
+                    </p>
+                    <a href="grips.html" class="btn btn--primary hover-lift">Learn More</a>
+                </div>
+
+                <div class="resource-card scale-in" data-stagger="1">
+                    <h3 class="resource-card__title">CASPRT</h3>
+                    <p class="resource-card__description">
+                        Composite Anticipated and Subjective Probability of Risk Taking - A comprehensive assessment of risk perceptions and tendencies.
+                    </p>
+                    <a href="casprt.html" class="btn btn--primary hover-lift">Learn More</a>
+                </div>
+
+                <div class="resource-card scale-in" data-stagger="2">
+                    <h3 class="resource-card__title">Risk Propensity at Work Meta-Analysis</h3>
+                    <p class="resource-card__description">
+                        A comprehensive meta-analytic investigation on the construct validity of risk propensity at work, integrating insights from decision science and large language models.
+                    </p>
+                    <a href="risk_meta/index.html" class="btn btn--primary hover-lift">Learn More</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section id="team" class="section fade-in-up">
+            <div class="section__label">Team</div>
+            <h2 class="section__title">Meet Our Researchers</h2>
+
+            <div class="card-hover-effect">
+                <div class="card scale-in team-member-card" data-stagger="0">
+                    <img src="assets/headshot_donzhang.jpg" alt="Dr. Don Zhang" class="member-photo" loading="lazy">
+                    <h4 style="font-family: var(--heading-font); font-size: 1.125rem; color: var(--color-text-primary); margin-bottom: 0.25rem;">Don C. Zhang, PhD</h4>
+                    <p style="color: var(--color-accent-secondary); font-size: 0.875rem;">Principal Investigator</p>
+                </div>
+                <div class="card scale-in team-member-card" data-stagger="1">
+                    <img src="assets/headshot_cowley.jpg" alt="Tyler Cowley" class="member-photo" loading="lazy">
+                    <h4 style="font-family: var(--heading-font); font-size: 1.125rem; color: var(--color-text-primary); margin-bottom: 0.25rem;">Tyler Cowley</h4>
+                    <p style="color: var(--color-accent-secondary); font-size: 0.875rem;">Ph.D. Student (Sixth Year)</p>
+                </div>
+                <div class="card scale-in team-member-card" data-stagger="2">
+                    <img src="assets/headshot_reeves.jpg" alt="Katelyn Reeves" class="member-photo" loading="lazy">
+                    <h4 style="font-family: var(--heading-font); font-size: 1.125rem; color: var(--color-text-primary); margin-bottom: 0.25rem;">Katelyn Reeves</h4>
+                    <p style="color: var(--color-accent-secondary); font-size: 0.875rem;">Ph.D. Student (Fourth Year)</p>
+                </div>
+                <div class="card scale-in team-member-card" data-stagger="3">
+                    <img src="assets/headshot_dodangeh.jpg" alt="Niloufar Dodangeh" class="member-photo" loading="lazy">
+                    <h4 style="font-family: var(--heading-font); font-size: 1.125rem; color: var(--color-text-primary); margin-bottom: 0.25rem;">Niloufar (Nilou) Dodangeh</h4>
+                    <p style="color: var(--color-accent-secondary); font-size: 0.875rem;">Ph.D. Student (Second Year)</p>
+                </div>
+                <div class="card scale-in team-member-card" data-stagger="4">
+                    <img src="assets/headshot_martin.jpg" alt="Abby Martin" class="member-photo" loading="lazy">
+                    <h4 style="font-family: var(--heading-font); font-size: 1.125rem; color: var(--color-text-primary); margin-bottom: 0.25rem;">Abby Martin</h4>
+                    <p style="color: var(--color-accent-secondary); font-size: 0.875rem;">Undergraduate Research Assistant</p>
+                </div>
+                <div class="card scale-in team-member-card" data-stagger="5">
+                    <img src="assets/headshot_kidder.jpg" alt="Caleb Kidder" class="member-photo" loading="lazy">
+                    <h4 style="font-family: var(--heading-font); font-size: 1.125rem; color: var(--color-text-primary); margin-bottom: 0.25rem;">Caleb Kidder</h4>
+                    <p style="color: var(--color-accent-secondary); font-size: 0.875rem;">Undergraduate Research Assistant</p>
+                </div>
+                <div class="card scale-in team-member-card" data-stagger="6">
+                    <img src="assets/headshot_filler.jpg" alt="London Greenfield" class="member-photo" loading="lazy">
+                    <h4 style="font-family: var(--heading-font); font-size: 1.125rem; color: var(--color-text-primary); margin-bottom: 0.25rem;">London Greenfield</h4>
+                    <p style="color: var(--color-accent-secondary); font-size: 0.875rem;">Undergraduate Research Assistant</p>
+                </div>
+                <div class="card scale-in team-member-card" data-stagger="7">
+                    <img src="assets/headshot_filler.jpg" alt="Maddie Nguyen" class="member-photo" loading="lazy">
+                    <h4 style="font-family: var(--heading-font); font-size: 1.125rem; color: var(--color-text-primary); margin-bottom: 0.25rem;">Maddie Nguyen</h4>
+                    <p style="color: var(--color-accent-secondary); font-size: 0.875rem;">Undergraduate Research Assistant</p>
+                </div>
+            </div>
+
+            <!-- Alumni Button -->
+            <div style="text-align: center; margin-top: 3rem;">
+                <button id="showAlumniBtn" type="button" class="btn btn--lg btn--outline hover-lift">View Lab Alumni</button>
+            </div>
+
+        </section>
+
+        <!-- Alumni Modal (pop-up) -->
+        <div id="alumniModal" class="alumni-modal" role="dialog" aria-modal="true" aria-labelledby="alumniModalTitle" aria-hidden="true">
+            <div class="alumni-modal-overlay" id="alumniModalOverlay"></div>
+            <div class="alumni-modal-content">
+                <div class="alumni-modal-header">
+                    <h2 id="alumniModalTitle" class="alumni-modal-title">Lab Alumni</h2>
+                    <button type="button" class="alumni-modal-close" id="alumniModalClose" aria-label="Close alumni pop-up">&times;</button>
+                </div>
+                <div class="alumni-modal-body">
+                    <h3 class="alumni-modal-subtitle">Graduate Alumni</h3>
+                    <ul class="alumni-modal-list">
+                        <li><span class="alumni-name">John-Luke McCord, Ph.D. (2016 – 2022)</span> – <span class="alumni-position">Associate Consultant at Xecutive Metrix</span></li>
+                        <li><span class="alumni-name">Gino Howard, Ph.D. (2020 - 2023)</span> – <span class="alumni-position">Assistant Professor, UC San Bernardino</span></li>
+                    </ul>
+                    <h3 class="alumni-modal-subtitle">Undergraduate Alumni</h3>
+                    <ul class="alumni-modal-list">
+                        <li><span class="alumni-name">Sarah Graff, B.A. (2017 – 2018)</span> – <span class="alumni-position">Masters student at I/O Psychology at Middle Tennessee State University, Now HR Specialist at Ochsner Health</span></li>
+                        <li><span class="alumni-name">Paige Resnick, B.A. (2017 – 2018)</span> – <span class="alumni-position">Masters student in I/O Psychology at University of Texas Arlington, Now HR Program Manager at Hilltop Holdings</span></li>
+                        <li><span class="alumni-name">Sidney Thomas, B.A. (2017 – 2019)</span> – <span class="alumni-position">PhD student in I/O Psychology at Louisiana Tech University, Now at AllState</span></li>
+                        <li><span class="alumni-name">Gabi Danna, B.A. (2017 – 2019)</span> – <span class="alumni-position">PhD student in I/O Psychology at University at Albany, SUNY, Now at Google</span></li>
+                        <li><span class="alumni-name">Elizabeth Joseph, B.A. (2018 – 2019)</span> – <span class="alumni-position">PhD student in Experimental Psychology at Texas Christian University</span></li>
+                        <li><span class="alumni-name">Kevin Sullivan, B.A. (2019)</span> – <span class="alumni-position">PhD student in I/O Psychology at Louisiana Tech University</span></li>
+                        <li><span class="alumni-name">Olivia Kjellsten, B.A. (2019-2020)</span> – <span class="alumni-position">Masters student in I/O Psychology at Vrije University, now Deloitte</span></li>
+                        <li><span class="alumni-name">Gaurangi Das, B.A. (2018-2021)</span> – <span class="alumni-position">PhD student in I/O Psychology at Bowling Green State University</span></li>
+                        <li><span class="alumni-name">Brynne Babin, B.A. (2020-2021)</span> – <span class="alumni-position">Masters student in Social Work at Louisiana State University</span></li>
+                        <li><span class="alumni-name">Erica Leonard, B.A. (2022-2023)</span> – <span class="alumni-position">D.O. Student at William Carey University</span></li>
+                        <li><span class="alumni-name">Coulette Mouton, B.A. (2022-2024)</span></li>
+                        <li><span class="alumni-name">Maria Gordon, B.A. (2023-2024)</span></li>
+                        <li><span class="alumni-name">Gabrielle Mellor, B.A. (2022-2025)</span> – <span class="alumni-position">PhD student in I/O Psychology at University of Oklahoma</span></li>
+                    </ul>
+                </div>
             </div>
         </div>
 
-        <!-- News Carousel Section with enhanced animations and accessibility -->
-        <div class="content-container-narrow mt-xl">
-            <div class="card fade-up">
-                <h2 class="section-title">Latest News</h2>
+        <!-- Latest News Section -->
+        <section id="news" class="section section--dark fade-in-up">
+            <div class="section__label">Updates</div>
+            <h2 class="section__title">Latest News</h2>
+
+            <div class="card">
                 <div class="news-carousel" data-autoplay="5000" role="region" aria-roledescription="carousel">
-                    <button class="carousel-arrow carousel-arrow--left" aria-label="Previous news item" role="button">
-                        <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                    <button class="carousel-arrow carousel-arrow--left" aria-label="Previous news item">
+                        <i class="fas fa-chevron-left"></i>
                     </button>
-                    <div class="carousel-items-container transition-transform duration-normal ease-out">
-                        <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="Slide 1 of 4">
-                            <div class="news-date text-sm text-gray-600">April 27, 2024</div>
+                    <div class="carousel-items-container">
+                        <div class="carousel-item" role="group" aria-roledescription="slide">
+                            <div class="news-date">April 27, 2024</div>
                             <h3>Presentations at SIOP 2025, Chicago</h3>
                             <p>RANDM Lab members presented research on AI, chronotype, and large language models at SIOP 2025, fostering new collaborations and receiving valuable feedback.</p>
-                            <a href="news.html" class="btn btn--primary btn--sm hover-lift">Read more</a>
+                            <a href="#news" class="btn btn--primary btn--sm hover-lift">Read more</a>
                         </div>
-                        <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="Slide 2 of 4">
-                            <div class="news-date text-sm text-gray-600">January 27, 2024</div>
+                        <div class="carousel-item" role="group" aria-roledescription="slide">
+                            <div class="news-date">January 27, 2024</div>
                             <h3>Editor's Commendation in the Journal of Business and Psychology</h3>
                             <p>RANDM Lab's 2023 publication received the Editor Commendation in the Journal of Business and Psychology.</p>
-                            <a href="news.html" class="btn btn--primary btn--sm hover-lift">Read more</a>
+                            <a href="#news" class="btn btn--primary btn--sm hover-lift">Read more</a>
                         </div>
-                        <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="Slide 3 of 4">
-                            <div class="news-date text-sm text-gray-600">January 12, 2024</div>
+                        <div class="carousel-item" role="group" aria-roledescription="slide">
+                            <div class="news-date">January 12, 2024</div>
                             <h3>Congratulations, Dr. Gino Howard</h3>
                             <p>Gino graduated with his PhD and is now an Assistant Professor at CSU San Bernadino.</p>
-                            <a href="news.html" class="btn btn--primary btn--sm hover-lift">Read more</a>
+                            <a href="#news" class="btn btn--primary btn--sm hover-lift">Read more</a>
                         </div>
-                        <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="Slide 4 of 4">
-                            <div class="news-date text-sm text-gray-600">November 27, 2023</div>
+                        <div class="carousel-item" role="group" aria-roledescription="slide">
+                            <div class="news-date">November 27, 2023</div>
                             <h3>Graduate Student Katelyn Reeves Presenting at SJDM Conference</h3>
                             <p>Katelyn Reeves presented our research on risk takers at work at the SJDM Conference.</p>
-                            <a href="news.html" class="btn btn--primary btn--sm hover-lift">Read more</a>
+                            <a href="#news" class="btn btn--primary btn--sm hover-lift">Read more</a>
                         </div>
                     </div>
-                    <button class="carousel-arrow carousel-arrow--right" aria-label="Next news item" role="button">
-                        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                    <button class="carousel-arrow carousel-arrow--right" aria-label="Next news item">
+                        <i class="fas fa-chevron-right"></i>
                     </button>
                 </div>
                 <div class="carousel-indicators">
@@ -109,70 +855,170 @@
                     <button class="carousel-indicator" aria-label="Go to news item 3"></button>
                     <button class="carousel-indicator" aria-label="Go to news item 4"></button>
                 </div>
-                <!-- Live region for screen reader announcements -->
                 <div class="carousel-live-region" aria-live="polite" aria-atomic="true"></div>
             </div>
-        </div>
-    </main>
-    
-    <!-- Footer with enhanced accessibility -->
-    <footer class="footer" role="contentinfo">
-        <div class="footer__container">
-            <!-- Contact Information -->
-            <div class="footer__section fade-up">
-                <h3 class="footer__heading">Contact Us</h3>
-                <address class="footer__address">
-                    <p>Risk and Decision Making Lab</p>
-                    <p>Department of Psychology</p>
-                    <p>Louisiana State University</p>
-                    <p>Baton Rouge, LA 70803</p>
-                    <p><a href="mailto:zhang1@lsu.edu" class="footer__link">zhang1@lsu.edu</a></p>
-                    <p><a href="tel:+12257876543" class="footer__link">+1 225 578 4093</a></p>
-                </address>
-            </div>
 
-            <!-- Quick Links -->
-            <div class="footer__section fade-up" style="transition-delay: 100ms;">
-                <h3 class="footer__heading">Quick Links</h3>
-                <ul class="footer__list">
-                    <li><a href="index.html" class="footer__link" aria-current="page">Home</a></li>
-                    <li><a href="team.html" class="footer__link">Team</a></li>
-                    <li><a href="research.html" class="footer__link">Research</a></li>
-                    <li><a href="news.html" class="footer__link">News</a></li>
-                    <li><a href="get-involved.html" class="footer__link">Get Involved</a></li>
-                </ul>
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="#news" class="btn btn--lg btn--outline hover-lift">View All News</a>
             </div>
+        </section>
 
-            <!-- Social Media Links -->
-            <div class="footer__section fade-up" style="transition-delay: 200ms;">
-                <h3 class="footer__heading">Follow Us</h3>
-                <div class="social-links">
-                    <a href="https://www.linkedin.com/company/randm-lab" class="social-link hover-lift" title="LinkedIn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin" aria-hidden="true"></i>
-                    </a>
-                    <a href="https://www.researchgate.net/lab/Risk-and-Decision-Making-Lab" class="social-link hover-lift" title="ResearchGate" target="_blank" rel="noopener noreferrer" aria-label="ResearchGate">
-                        <i class="fab fa-researchgate" aria-hidden="true"></i>
-                    </a>
-                    <a href="mailto:zhang1@lsu.edu" class="social-link hover-lift" title="Email" aria-label="Email">
-                        <i class="fas fa-envelope" aria-hidden="true"></i>
-                    </a>
-                    <a href="https://www.lsu.edu" class="social-link hover-lift" title="University" target="_blank" rel="noopener noreferrer" aria-label="University website">
-                        <i class="fas fa-university" aria-hidden="true"></i>
-                    </a>
+        <!-- Contact & Get Involved Section -->
+        <section id="contact" class="section section--dark section--contact fade-in-up">
+            <div class="section__label">Contact</div>
+            <h2 class="section__title">Get in Touch</h2>
+            <p style="text-align: center; color: var(--color-text-secondary); max-width: 700px; margin: 0 auto 3rem; font-size: 1.125rem; line-height: 1.6;">
+                We're always looking for talented individuals and collaborators. Whether you're interested in joining our lab, participating in research, or partnering with us, we'd love to hear from you.
+            </p>
+
+            <!-- Contact Information Cards -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 4rem;">
+                <div class="card scale-in" data-stagger="0" style="background: var(--color-bg-secondary); padding: 2rem; text-align: center; border: 1px solid var(--color-border); transition: all 0.3s var(--ease-out);">
+                    <div style="font-size: 2.5rem; color: var(--color-accent-primary); margin-bottom: 1rem;">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3 style="font-family: var(--heading-font); font-size: 1.25rem; color: var(--color-text-primary); margin-bottom: 0.5rem;">Location</h3>
+                    <p style="color: var(--color-text-secondary); line-height: 1.6;">
+                        Audubon Hall, Rooms 9 and 10<br>
+                        Louisiana State University<br>
+                        Baton Rouge, LA 70803
+                    </p>
+                </div>
+
+                <div class="card scale-in" data-stagger="1" style="background: var(--color-bg-secondary); padding: 2rem; text-align: center; border: 1px solid var(--color-border); transition: all 0.3s var(--ease-out);">
+                    <div style="font-size: 2.5rem; color: var(--color-accent-primary); margin-bottom: 1rem;">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3 style="font-family: var(--heading-font); font-size: 1.25rem; color: var(--color-text-primary); margin-bottom: 0.5rem;">Email</h3>
+                    <p style="color: var(--color-text-secondary); margin-bottom: 0.5rem;">
+                        <a href="mailto:zhang1@lsu.edu" style="color: var(--color-accent-primary); text-decoration: none; transition: color 0.3s var(--ease-out);">zhang1@lsu.edu</a>
+                    </p>
+                    <p style="color: var(--color-text-secondary); font-size: 0.875rem;">
+                        For general inquiries and collaboration opportunities
+                    </p>
+                </div>
+
+                <div class="card scale-in" data-stagger="2" style="background: var(--color-bg-secondary); padding: 2rem; text-align: center; border: 1px solid var(--color-border); transition: all 0.3s var(--ease-out);">
+                    <div style="font-size: 2.5rem; color: var(--color-accent-primary); margin-bottom: 1rem;">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3 style="font-family: var(--heading-font); font-size: 1.25rem; color: var(--color-text-primary); margin-bottom: 0.5rem;">Phone</h3>
+                    <p style="color: var(--color-text-secondary);">
+                        <a href="tel:+12255784093" style="color: var(--color-accent-primary); text-decoration: none; transition: color 0.3s var(--ease-out);">+1 (225) 578-4093</a>
+                    </p>
                 </div>
             </div>
+
+            <!-- Join Our Lab - Opportunities -->
+            <div style="margin-top: 4rem;">
+                <h3 style="font-family: var(--heading-font); font-size: clamp(1.75rem, 3vw, 2.5rem); color: var(--color-text-primary); text-align: center; margin-bottom: 1rem;">Join Our Lab</h3>
+                <p style="text-align: center; color: var(--color-text-secondary); max-width: 700px; margin: 0 auto 2rem; font-size: 1.125rem;">We offer various opportunities to engage with our research</p>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;">
+                    <!-- Research Assistants -->
+                    <div class="card scale-in" data-stagger="3" style="background: var(--color-bg-primary); padding: 2rem; border: 1px solid var(--color-border); transition: all 0.3s var(--ease-out);">
+                        <div style="font-size: 2rem; color: var(--color-accent-primary); margin-bottom: 1rem;">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <h4 style="font-family: var(--heading-font); font-size: 1.5rem; color: var(--color-text-primary); margin-bottom: 1rem;">Research Assistants</h4>
+                        <p style="color: var(--color-text-secondary); line-height: 1.6; margin-bottom: 1rem;">
+                            Undergraduate students can join our lab as research assistants. Gain hands-on experience with literature reviews, data analysis, experiment design, and manuscript preparation.
+                        </p>
+                        <p style="color: var(--color-text-secondary); font-size: 0.875rem; margin-bottom: 1.5rem;">
+                            <strong>Requirements:</strong> GPA 3.5+, 3-6 hours/week commitment, two-semester minimum
+                        </p>
+                        <a href="https://forms.office.com/r/gTpaMBjbua" class="btn btn--primary hover-lift" target="_blank" rel="noopener noreferrer">Apply Now</a>
+                    </div>
+
+                    <!-- Graduate Students -->
+                    <div class="card scale-in" data-stagger="4" style="background: var(--color-bg-primary); padding: 2rem; border: 1px solid var(--color-border); transition: all 0.3s var(--ease-out);">
+                        <div style="font-size: 2rem; color: var(--color-accent-primary); margin-bottom: 1rem;">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h4 style="font-family: var(--heading-font); font-size: 1.5rem; color: var(--color-text-primary); margin-bottom: 1rem;">Graduate Students</h4>
+                        <p style="color: var(--color-text-secondary); line-height: 1.6; margin-bottom: 1rem;">
+                            We're accepting graduate applications for students interested in risk-taking, decision-making, and employee selection research.
+                        </p>
+                        <p style="color: var(--color-text-secondary); font-size: 0.875rem; margin-bottom: 1.5rem;">
+                            <strong>What we look for:</strong> Intense curiosity, evidence-driven mindset, self-starter attitude
+                        </p>
+                        <a href="https://www.lsu.edu/hss/psychology/grad/prospective-student/NatureoftheProgram.php" class="btn btn--primary hover-lift" target="_blank" rel="noopener noreferrer">Learn More</a>
+                    </div>
+
+                    <!-- Research Participants -->
+                    <div class="card scale-in" data-stagger="5" style="background: var(--color-bg-primary); padding: 2rem; border: 1px solid var(--color-border); transition: all 0.3s var(--ease-out);">
+                        <div style="font-size: 2rem; color: var(--color-accent-primary); margin-bottom: 1rem;">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4 style="font-family: var(--heading-font); font-size: 1.5rem; color: var(--color-text-primary); margin-bottom: 1rem;">Research Participants</h4>
+                        <p style="color: var(--color-text-secondary); line-height: 1.6; margin-bottom: 1rem;">
+                            Volunteer as a research participant and contribute to our scientific investigations. Studies include online surveys, laboratory experiments, and decision-making tasks.
+                        </p>
+                        <p style="color: var(--color-text-secondary); font-size: 0.875rem; margin-bottom: 1.5rem;">
+                            <strong>Compensation:</strong> $10-$40 per study, 30-90 minutes
+                        </p>
+                        <a href="mailto:zhang1@lsu.edu?subject=Research%20Participation%20Inquiry" class="btn btn--primary hover-lift">Sign Up</a>
+                    </div>
+
+                    <!-- Industry Partners -->
+                    <div class="card scale-in" data-stagger="6" style="background: var(--color-bg-primary); padding: 2rem; border: 1px solid var(--color-border); transition: all 0.3s var(--ease-out);">
+                        <div style="font-size: 2rem; color: var(--color-accent-primary); margin-bottom: 1rem;">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h4 style="font-family: var(--heading-font); font-size: 1.5rem; color: var(--color-text-primary); margin-bottom: 1rem;">Industry Partners</h4>
+                        <p style="color: var(--color-text-secondary); line-height: 1.6; margin-bottom: 1rem;">
+                            We collaborate with organizations on applied research, employee selection tools, risk assessment practices, and decision-making workshops.
+                        </p>
+                        <p style="color: var(--color-text-secondary); font-size: 0.875rem; margin-bottom: 1.5rem;">
+                            <strong>Services:</strong> Consulting, tool development, workshops, applied research
+                        </p>
+                        <a href="mailto:zhang1@lsu.edu?subject=Partnership%20Inquiry" class="btn btn--primary hover-lift">Explore Partnerships</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="footer__container">
+            <ul class="footer__list footer__list--horizontal">
+                <li><a href="#about" class="footer__link">About</a></li>
+                <li><a href="#research" class="footer__link">Research</a></li>
+                <li><a href="#team" class="footer__link">Team</a></li>
+                <li><a href="#news" class="footer__link">News</a></li>
+                <li><a href="#contact" class="footer__link">Contact</a></li>
+            </ul>
+
+            <div class="social-links footer__social">
+                <a href="https://www.linkedin.com/company/randm-lab" class="social-link hover-lift" title="LinkedIn" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://www.researchgate.net/lab/Risk-and-Decision-Making-Lab" class="social-link hover-lift" title="ResearchGate" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-researchgate"></i>
+                </a>
+                <a href="mailto:zhang1@lsu.edu" class="social-link hover-lift" title="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="https://www.lsu.edu" class="social-link hover-lift" title="University" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-university"></i>
+                </a>
+            </div>
         </div>
 
-        <!-- Copyright and Legal -->
         <div class="footer__legal">
             <p class="footer__text">© 2025 Risk and Decision Making Lab. All rights reserved.</p>
-            <p class="footer__text"><a href="privacy.html" class="footer__link">Privacy Policy</a> | <a href="terms.html" class="footer__link">Terms of Use</a></p>
         </div>
     </footer>
-    
-    <!-- Include the JavaScript files -->
+
+    <!-- Scripts -->
     <script src="js/utils.js" defer></script>
     <script src="js/main.js" defer></script>
+    <script src="js/card-hover-effect.js" defer></script>
+    <script src="js/index.js" defer></script>
     <script src="js/carousel.js" defer></script>
+    <script src="js/neural-canvas.js" defer></script>
+    <script src="js/scroll-animations.js" defer></script>
+    <script src="js/card-3d.js" defer></script>
 </body>
 </html>

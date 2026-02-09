@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PSY7958: Topics in Personnel Psychology – Fall 2025 Syllabus</title>
+  <!-- Website fonts matching main site -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <!-- Website's main CSS file -->
+  <link rel="stylesheet" href="../css/main.css">
+  <style>
+    /* Additional syllabus-specific styles */
+    .navbar.navbar--solid {
+      background-color: var(--color-background);
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .navbar.navbar--solid .navbar__link {
+      color: var(--color-text);
+    }
+    
+    .navbar.navbar--solid .navbar__link:hover,
+    .navbar.navbar--solid .navbar__link.active {
+      color: var(--color-primary);
+    }
+    
+    .navbar.navbar--solid .hamburger__line {
+      background-color: var(--color-text);
+    }
+    .syllabus-header {
+      background: var(--color-background-accent);
+      padding: var(--spacing-xl);
+      margin-bottom: var(--spacing-xl);
+      border-top: 3px solid var(--color-primary);
+    }
+    
+    .syllabus-title {
+      color: var(--color-primary);
+      font-family: var(--heading-font);
+      font-size: 32px;
+      font-weight: var(--heading-weight);
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .syllabus-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .syllabus-table td {
+      padding: var(--spacing-xs) 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      vertical-align: top;
+    }
+    
+    .syllabus-table .label {
+      font-weight: 600;
+      color: var(--color-text);
+      width: 120px;
+      font-family: var(--heading-font);
+    }
+    
+    .syllabus-table .value {
+      color: var(--color-text);
+    }
+    
+    .toc-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-xs);
+      justify-content: center;
+      margin-bottom: var(--spacing-xl);
+    }
+    
+    .toc-link {
+      padding: var(--spacing-xs) var(--spacing-sm);
+      background: var(--color-background-alt);
+      color: var(--color-accent);
+      text-decoration: none;
+      font-weight: 500;
+      border-radius: var(--border-radius);
+      transition: all var(--transition-standard);
+      font-size: 14px;
+    }
+    
+    .toc-link:hover {
+      background: var(--color-background-accent);
+      color: var(--color-primary);
+      transform: translateY(-2px);
+    }
+    
+    .section-content {
+      margin-bottom: var(--spacing-xl);
+    }
+    
+    .welcome-section {
+      background: var(--color-background-light);
+      padding: var(--spacing-xl);
+      border-left: 4px solid var(--color-secondary);
+      margin-bottom: var(--spacing-xl);
+    }
+    
+    .welcome-section h2 {
+      color: var(--color-primary);
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .welcome-section p {
+      margin-bottom: var(--spacing-md);
+      line-height: var(--line-height);
+    }
+    
+    .welcome-section ul {
+      margin-left: var(--spacing-lg);
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .welcome-section li {
+      margin-bottom: var(--spacing-xs);
+    }
+    
+    .assessments-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: var(--spacing-lg);
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .assessments-table thead tr {
+      background: var(--color-background-accent);
+    }
+    
+    .assessments-table th,
+    .assessments-table td {
+      padding: var(--spacing-sm);
+      text-align: left;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      vertical-align: top;
+    }
+    
+    .assessments-table th {
+      font-weight: 600;
+      color: var(--color-primary);
+      font-family: var(--heading-font);
+    }
+    
+    .grade-ranges {
+      background: var(--color-background-alt);
+      padding: var(--spacing-sm);
+      border-radius: var(--border-radius);
+      margin-top: var(--spacing-md);
+    }
+    
+    .grade-ranges h3 {
+      color: var(--color-primary);
+      font-size: 18px;
+      margin-bottom: var(--spacing-xs);
+    }
+    
+    .policy-subsection {
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    .policy-subsection h2 {
+      color: var(--color-primary);
+      font-size: 22px;
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .policy-box {
+      background: var(--color-background-alt);
+      padding: var(--spacing-md);
+      border-radius: var(--border-radius);
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .policy-box h3 {
+      color: var(--color-primary);
+      font-size: 18px;
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .ai-policy {
+      background: var(--color-background-light);
+      padding: var(--spacing-md);
+      border-radius: var(--border-radius);
+      border-left: 4px solid var(--color-accent);
+    }
+    
+    .ai-policy h3 {
+      color: var(--color-accent);
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .schedule-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: var(--spacing-lg);
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .schedule-table thead tr {
+      background: var(--color-background-accent);
+    }
+    
+    .schedule-table th,
+    .schedule-table td {
+      padding: var(--spacing-sm);
+      text-align: left;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    
+    .schedule-table th {
+      font-weight: 600;
+      color: var(--color-primary);
+      font-family: var(--heading-font);
+    }
+    
+    .no-class {
+      background: rgba(255, 0, 0, 0.1);
+      color: var(--color-primary);
+    }
+    
+    .exam-day {
+      background: rgba(255, 193, 7, 0.1);
+      color: var(--color-primary);
+    }
+    
+    .presentation-day {
+      background: rgba(0, 123, 255, 0.1);
+      color: var(--color-primary);
+    }
+    
+    .optional-day {
+      background: rgba(40, 167, 69, 0.1);
+      color: var(--color-primary);
+    }
+    
+    .accordion-section {
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: var(--border-radius);
+      margin-bottom: var(--spacing-sm);
+      overflow: hidden;
+    }
+    
+    .accordion-header {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      background: var(--color-background-accent);
+      border: none;
+      text-align: left;
+      font-weight: 600;
+      color: var(--color-primary);
+      cursor: pointer;
+      transition: background-color var(--transition-standard);
+      font-family: var(--heading-font);
+      font-size: 16px;
+    }
+    
+    .accordion-header:hover {
+      background: var(--color-background-alt);
+    }
+    
+    .accordion-header svg {
+      width: 16px;
+      height: 16px;
+      transition: transform var(--transition-standard);
+      flex-shrink: 0;
+      margin-left: 8px;
+    }
+    
+    .accordion-header[aria-expanded="true"] svg {
+      transform: rotate(180deg);
+    }
+    
+    .accordion-panel {
+      padding: 16px;
+      background: var(--color-background);
+    }
+    
+    .accordion-panel.hidden {
+      display: none;
+    }
+    
+    .accordion-panel ul {
+      list-style: disc;
+      margin-left: 24px;
+      margin-bottom: 0;
+    }
+    
+    .accordion-panel li {
+      margin-bottom: 8px;
+      line-height: var(--line-height);
+      font-size: 14px;
+    }
+    
+    .supplemental-readings {
+      background: var(--color-background-alt);
+      padding: 12px;
+      border-radius: var(--border-radius);
+      margin-top: 12px;
+    }
+    
+    .supplemental-readings h4 {
+      color: var(--color-primary);
+      font-size: 14px;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+    
+    .supplemental-readings ul {
+      margin-left: 20px;
+      margin-bottom: 0;
+    }
+    
+    .supplemental-readings li {
+      font-size: 13px;
+      color: var(--color-text-muted);
+      margin-bottom: 4px;
+    }
+    
+    /* Responsive design */
+    @media (min-width: 768px) {
+      .toc-nav {
+        justify-content: center;
+      }
+      
+      .syllabus-table .label {
+        width: 150px;
+      }
+    }
+    
+    /* Print Styles */
+    @media print {
+      .print-title {
+        display: block !important;
+        text-align: center !important;
+        font-size: 24pt !important;
+        font-weight: bold !important;
+        margin-bottom: 2em !important;
+        page-break-after: always !important;
+      }
+      
+      .navbar,
+      .toc-nav,
+      .accordion-header svg,
+      button {
+        display: none !important;
+      }
+      
+      .accordion-panel {
+        display: block !important;
+        height: auto !important;
+        opacity: 1 !important;
+      }
+      
+      .card,
+      .syllabus-header,
+      .welcome-section,
+      .policy-box,
+      .ai-policy {
+        box-shadow: none !important;
+        border: 1px solid #e5e7eb !important;
+        background: white !important;
+      }
+      
+      body {
+        font-size: 12pt !important;
+        line-height: 1.4 !important;
+        color: black !important;
+        background: white !important;
+      }
+      
+      h1, h2, h3, h4, h5, h6 {
+        color: black !important;
+        page-break-after: avoid !important;
+      }
+      
+      section {
+        page-break-inside: avoid !important;
+        margin-bottom: 1em !important;
+      }
+      
+      table {
+        font-size: 10pt !important;
+        border-collapse: collapse !important;
+      }
+      
+      th, td {
+        border: 1px solid #d1d5db !important;
+        padding: 8px !important;
+      }
+      
+      a {
+        color: black !important;
+        text-decoration: underline !important;
+      }
+      
+      @page {
+        margin: 1in;
+        @bottom-center {
+          content: counter(page);
+        }
+      }
+    }
+  </style>
+</head>
+<body data-page="syllabus">
+  <!-- Accessibility: Skip to content link -->
+  <a href="#main-content" class="skip-to-content">Skip to content</a>
+  
+  <!-- Navigation using website's navbar component -->
+  <nav class="navbar navbar--solid" role="navigation" aria-label="Main navigation">
+    <div class="navbar__logo">
+      <a href="../index.html">
+        <img src="../assets/logo.svg" alt="RANDM Lab Logo" class="navbar__logo-img">
+      </a>
+    </div>
+    <div class="hamburger" aria-controls="mobile-menu" aria-expanded="false" aria-label="Toggle menu" tabindex="0">
+      <span class="hamburger__line"></span>
+      <span class="hamburger__line"></span>
+      <span class="hamburger__line"></span>
+    </div>
+    <div class="navbar__links" id="mobile-menu" aria-hidden="true">
+      <a href="../index.html" class="navbar__link">Home</a>
+      <a href="../index.html#team" class="navbar__link">Team</a>
+      <a href="../index.html#research" class="navbar__link">Research</a>
+      <a href="../index.html#news" class="navbar__link">News</a>
+      <a href="../index.html#contact" class="navbar__link">Get Involved</a>
+      <a href="psy7958_fs25.html" class="navbar__link active" aria-current="page">PSY7958</a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main id="main-content" class="content-container-narrow" style="margin-top: 80px;">
+    <!-- Print-only title -->
+    <div class="print-title hidden">PSY7958: Topics in Personnel Psychology - Fall 2025 Syllabus</div>
+    
+    <!-- Header Section -->
+    <section class="syllabus-header">
+      <h1 class="syllabus-title">PSY7958: Topics in Personnel Psychology</h1>
+      
+      <table class="syllabus-table">
+        <tbody>
+          <tr>
+            <td class="label">Term:</td>
+            <td class="value">Fall 2025</td>
+          </tr>
+          <tr>
+            <td class="label">Schedule:</td>
+            <td class="value">Monday, 1:00PM – 3:50 PM</td>
+          </tr>
+          <tr>
+            <td class="label">Room:</td>
+            <td class="value"><strong>205 Audubon Hall</strong></td>
+          </tr>
+          <tr>
+            <td class="label">Professor:</td>
+            <td class="value"><strong>Don Zhang, Ph.D.</strong></td>
+          </tr>
+          <tr>
+            <td class="label">Email:</td>
+            <td class="value"><code>zhang1[at]lsu.edu</code></td>
+          </tr>
+          <tr>
+            <td class="label">Office:</td>
+            <td class="value">221 Audubon Hall</td>
+          </tr>
+          <tr>
+            <td class="label">Office Hours:</td>
+            <td class="value"><strong>By Appointment</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Table of Contents -->
+    <nav aria-label="Table of Contents" class="toc-nav">
+      <a href="#objectives" class="toc-link">Objectives</a>
+      <a href="#format" class="toc-link">Class Format</a>
+      <a href="#assessments" class="toc-link">Assessments</a>
+      <a href="#policies" class="toc-link">Policies</a>
+      <a href="#reading-list" class="toc-link">Reading List</a>
+      <a href="#course-schedule" class="toc-link">Course Schedule</a>
+    </nav>
+
+    <!-- Welcome Message -->
+    <section class="welcome-section">
+      <h2>Welcome!</h2>
+      <p>
+        Welcome to this seminar on "Topics in Personnel Psychology". This course is designed to give you a deeper understanding of the theoretical, methodological, and practical aspects of personnel psychology with a focus on employee selection and performance.
+        This course is not meant to be a comprehensive review of personnel psychology, but rather a in-depth exploration of contemporary topics in personnel psychology.
+        The purpose of this course is to introduce you to the latest research, theory, and methodology in the field, and to help you develop your own research ideas.
+        By the end of the course, you will develop the skills to design rigorous research, contribute to scholarly discourse, and translate theory into evidence-based practice. I look forward to a engaging and collaborative semester!
+      </p>
+    </section>
+
+    <!-- Course Objectives -->
+    <section id="objectives" class="section-content">
+      <div class="card">
+        <h2>Course Objectives</h2>
+        <ul>
+          <li>Critically evaluate both seminal and contemporary theoretical frameworks in selection and performance research.</li>
+          <li>Analyze methodological challenges and innovative approaches in performance measurement, prediction, and application.</li>
+          <li>Synthesize empirical studies to bridge theoretical insights with practical organizational issues.</li>
+          <li>Learn how to develop a rigorous research proposal that integrates theory, addresses methodological challenges, and demonstrates scholarly contribution.</li>
+          <li>Engage in constructive peer discussion and critique to refine research ideas and foster a collaborative learning environment.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Class Format -->
+    <section id="format" class="section-content">
+      <div class="card">
+        <h2>Class Format</h2>
+        <ul>
+          <li>Weekly 3-hour seminar sessions with brief presentations and peer-discussions of class readings.</li>
+          <li>Instructor/Student-facilitated in-class activities (debates, case studies, article critiques, etc.).</li>
+          <li>Weekly discussion questions: Each student submits 5 thoughtful questions to me and the week discussion leader based on the readings by <strong>Sunday at Noon</strong>.</li>
+          <li>Extended reading list: Each student finds and submits 1 recent (~ 5 years old) article weekly. The articles should be published in <a href="https://grand-lens-c7b.notion.site/Journal-List-e4e13a9438964be69430003964b38cd5" class="external-link">relevant journal</a> to I/O psychology, or related fields. Your nomination should include a pdf of the article, and a brief (3-4 sentences) description of why you chose this article.</li>
+          <li>Peer review: Each student provides constructive feedback to a peer's research proposal.</li>
+          <li>In-person mid-term exam: An open-ended, in-person essay exam testing knowledge of theoretical and methodological issues personnel psychology</li>
+          <li>Research proposal: Each student develops a research proposal grounded in psychological theory. You will submit a one-pager and a final proposal.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Assessments and Grading -->
+    <section id="assessments" class="section-content">
+      <div class="card">
+        <h2>Assessments & Grading</h2>
+        <table class="assessments-table">
+          <thead>
+            <tr>
+              <th>Component</th>
+              <th>Points</th>
+              <th>Due Date</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Weekly Participation</td>
+              <td>10</td>
+              <td>Every Sunday by Noon</td>
+              <td>
+                Submit thoughtful weekly discussion questions, share a recent empirical article, and actively engage in class discussion with research-based, thoughtful comments.
+              </td>
+            </tr>
+            <tr>
+              <td>Discussion Leader</td>
+              <td>10</td>
+              <td>Assigned Week</td>
+              <td>
+                Effectively lead the assigned weekly discussion by organizing readings, preparing guiding questions, and facilitating a critical, inclusive discussion among peers.
+              </td>
+            </tr>
+            <tr>
+              <td>Midterm Exam</td>
+              <td>20</td>
+              <td>Oct 13 (in class)</td>
+              <td>
+                Open-ended, in-class essay exam assessing your understanding of core methodological and theoretical issues pertaining to personnel psychology.
+              </td>
+            </tr>
+            <tr>
+              <td>Research One Pager</td>
+              <td>10</td>
+              <td>Nov 3</td>
+              <td>
+                Draft a one-pager of an existing article and a one-pager of your own proposal with an annotated bibliography of 5 key articles.
+              </td>
+            </tr>
+            <tr>
+              <td>Final Research Proposal</td>
+              <td>40</td>
+              <td>Nov 30</td>
+              <td>
+                Develop and present a well-constructed research proposal that integrates theory, addresses methodological challenges, and demonstrates potential for scholarly contribution. The proposal 
+                must be for an empirical study. Meta-analysis is allowed but conceptual/theoretical papers are not. The full proposal should be prepared in APA format and should be 10-15 pages of text, not including tables, references, title page, etc. 
+              </td>
+            </tr>
+            <tr>
+              <td>Peer Review</td>
+              <td>10</td>
+              <td>Dec 8</td>
+              <td>
+                Provide constructive, scholarly feedback and critique on a peer's research proposal, focusing on theoretical integration, methodological rigor, and ethical considerations.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <!-- Grade Ranges -->
+        <div class="grade-ranges">
+          <h3>Grade Ranges:</h3>
+          <div class="text-sm text-gray-700">
+            <span class="font-medium">A+ (97-100%)</span> | 
+            <span class="font-medium">A (93-96%)</span> | 
+            <span class="font-medium">A- (90-92%)</span> | 
+            <span class="font-medium">B+ (87-89%)</span> | 
+            <span class="font-medium">B (83-86%)</span> | 
+            <span class="font-medium">B- (80-82%)</span> | 
+            <span class="font-medium">C (70-79%)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Combined Policies & Resources Section -->
+    <section id="policies" class="section-content">
+      <div class="card">
+        <h2>Policies & Resources</h2>
+
+        <!-- Student Conduct Subsection -->
+        <div class="policy-subsection">
+          <h2>Student Conduct</h2>
+          <!-- General Conduct -->
+          <div class="policy-box">
+            <h3>General Expectations</h3>
+            <ul>
+              <li><span class="font-semibold">Academic Integrity:</span> Plagiarism, fabrication, or misrepresentation of work will result in disciplinary action.</li>
+              <li><span class="font-semibold">Participation:</span> Engage respectfully in discussions and peer feedback.</li>
+              <li><span class="font-semibold">Deadlines:</span> Late submissions without prior approval will incur penalties.</li>
+              <li><span class="font-semibold">Classroom Conduct:</span> Please be respectful of others and the instructor. Food and drinks are allowed in moderation. Please do not your phone in class</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Academic Success Subsection -->
+        <div class="policy-subsection">
+          <h2>Academic Success Resources</h2>
+          <p>
+            LSU offers resources to support your academic success:
+          </p>
+          <ul>
+            <li><span class="font-semibold">Center for Academic Success (CAS):</span> Learning strategies, tutoring, and workshops.</li>
+            <li><span class="font-semibold">Communication Across the Curriculum:</span> Develops communication skills.</li>
+            <li><span class="font-semibold">Olinde Career Center:</span> Career planning and major selection.</li>
+          </ul>
+        </div>
+
+        <!-- Nondiscrimination Subsection -->
+        <div class="policy-subsection">
+          <h2>Nondiscrimination & Title IX</h2>
+          <p>
+            LSU provides equal opportunity in all programs. Faculty are mandatory reporters of discrimination or harassment to the <span class="font-semibold">Office of Civil Rights & Title IX</span> (118 Himes Hall; 225-578-9000).
+          </p>
+          <div class="policy-box">
+            <h3>Resources</h3>
+            <ul>
+              <li><span class="font-semibold">LSU Title IX:</span> <a href="https://www.lsu.edu/civil-rights" class="external-link">www.lsu.edu/civil-rights</a></li>
+              <li><span class="font-semibold">STAR (24/7):</span> 855-435-7827</li>
+              <li><span class="font-semibold">RAINN (24/7):</span> 800-656-4673</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI Policy -->
+      <div class="ai-policy">
+        <h3>Policy on AI Tools</h3>
+        <p>
+          In this doctoral seminar, the use of AI tools is strictly limited. You may use AI only for minor editorial or copy-editing changes to your own writing (such as grammar, clarity, or style), but you are not permitted to use AI to generate original writing or content for any assignment. Additionally, AI tools should not be used for research purposes, as they are unreliable and do not provide access to scholarly sources. All submitted work must be your own original thought, analysis, and scholarship.
+        </p>
+        <p>
+          <span class="font-semibold">Core Policy:</span> If it's against the rules to ask a human to perform a task designed to assess your understanding, then you shouldn't ask AI to do it either. 
+        </p>
+        <p>
+          <span class="font-semibold">Transparency:</span> When you use AI in permitted ways, acknowledge how you utilized the tool.
+        </p>
+      </div>
+    </section>
+
+    <!-- Course Schedule -->
+    <section id="course-schedule" class="section-content">
+      <div class="card">
+        <h2>Course Schedule</h2>
+        
+        <table class="schedule-table">
+          <thead>
+            <tr>
+              <th class="py-2 px-3 font-semibold">Week</th>
+              <th class="py-2 px-3 font-semibold">Date</th>
+              <th class="py-2 px-3 font-semibold">Topic</th>
+              <th class="py-2 px-3 font-semibold">Notes</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-800">
+            <tr class="border-b"><td class="py-2 px-3">1</td><td class="py-2 px-3">Aug 25</td><td class="py-2 px-3">Introduction & Theoretical Foundations</td><td class="py-2 px-3">Don</td></tr>
+            <tr class="border-b bg-red-50"><td class="py-2 px-3">2</td><td class="py-2 px-3">Sept 1</td><td class="py-2 px-3 text-red-700">Labor Day</td><td class="py-2 px-3 text-red-600">No Class</td></tr>
+            <tr class="border-b"><td class="py-2 px-3">3</td><td class="py-2 px-3">Sept 8</td><td class="py-2 px-3">Methodological Foundations</td><td class="py-2 px-3">Don</td></tr>
+            <tr class="border-b"><td class="py-2 px-3">4</td><td class="py-2 px-3">Sept 15</td><td class="py-2 px-3">Assessment and Selection</td><td class="py-2 px-3">Don</td></tr>
+            <tr class="border-b"><td class="py-2 px-3">5</td><td class="py-2 px-3">Sept 22</td><td class="py-2 px-3">Predicting Performance</td><td class="py-2 px-3">Mercedeh H</td></tr>
+            <tr class="border-b"><td class="py-2 px-3">6</td><td class="py-2 px-3">Sept 29</td><td class="py-2 px-3">Beyond Job Performance</td><td class="py-2 px-3">Nilou D</td></tr>
+            <tr class="border-b"><td class="py-2 px-3">7</td><td class="py-2 px-3">Oct 6</td><td class="py-2 px-3">Within-Person Dynamics</td><td class="py-2 px-3">Katelyn R</td></tr>
+            <tr class="border-b bg-yellow-50"><td class="py-2 px-3">8</td><td class="py-2 px-3">Oct 13</td><td class="py-2 px-3 text-yellow-700">In-class midterms</td><td class="py-2 px-3 text-yellow-600"></td></tr>
+            <tr class="border-b"><td class="py-2 px-3">9</td><td class="py-2 px-3">Oct 20</td><td class="py-2 px-3">Person x Situation Interactions</td><td class="py-2 px-3">Sam K</tr>
+            <tr class="border-b"><td class="py-2 px-3">10</td><td class="py-2 px-3">Oct 27</td><td class="py-2 px-3">Performance and Wellbeing</td><td class="py-2 px-3">Kelsea W</tr>
+              <tr class="border-b"><td class="py-2 px-3">11</td><td class="py-2 px-3">Nov 3</td><td class="py-2 px-3">Interdisciplinary Perspectives</td><td class="py-2 px-3">Rabbia Z</tr>
+              <tr class="border-b"><td class="py-2 px-3">12</td><td class="py-2 px-3">Nov 10</td><td class="py-2 px-3">Team and Leader Performance</td><td class="py-2 px-3">Abby M</tr>
+            <tr class="border-b"><td class="py-2 px-3">13</td><td class="py-2 px-3">Nov 17</td><td class="py-2 px-3">Future of Performance</td><td class="py-2 px-3">Don</td></tr>
+            <tr class="border-b bg-red-50"><td class="py-2 px-3">14</td><td class="py-2 px-3">Nov 24</td><td class="py-2 px-3 text-red-700">Thanksgiving</td><td class="py-2 px-3 text-red-600">No Class</td></tr>
+            <tr class="border-b bg-blue-50"><td class="py-2 px-3">15</td><td class="py-2 px-3">Dec 1</td><td class="py-2 px-3 text-blue-700">Proposal Presentations</td><td class="py-2 px-3 text-blue-600"></td></tr>
+            <tr class="bg-green-50"><td class="py-2 px-3">16</td><td class="py-2 px-3">Dec 8</td><td class="py-2 px-3 text-green-700">Research Feedback (Optional, By Appointment)</td><td class="py-2 px-3 text-green-600"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Reading List (Accordion) -->
+    <section id="reading-list" class="section-content">
+      <div class="card">
+        <h2>Weekly Reading Schedule</h2>
+        <div class="policy-box" style="margin-bottom: 1.5em;">
+          <strong>Referenced Textbook:</strong> <br>
+          <i>Handbook of Employee Selection</i> (2nd Edition, 2017) by John L. Farr & Nancy T. Tippins.<br>
+          <span style="font-size: 90%;">Some readings will be assigned from this text. A digital copy is available on the Course Moodle page. This book is meant to be a critical reference/resource and is considered essential reading for I/O students in the program</span>
+        </div>
+        <div class="accordion-section">
+          <button class="accordion-header" aria-expanded="false" aria-controls="week1" id="accordion-header-week1">
+            Week 1 (Aug 25): Theoretical Foundations
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="week1" class="accordion-panel hidden" aria-labelledby="accordion-header-week1">
+            <ul>
+              <li>Campbell, J. P., & Wiernik, B. M. (2015). The modeling and assessment of work performance. <i>Annu. Rev. Organ. Psychol. Organ. Behav.</i>, 2(1), 47-74.</li>
+            </ul>
+          
+          </div>
+        </div>
+
+        <!-- Week 3: Methodological Foundations -->
+        <div class="accordion-section">
+          <button class="accordion-header" aria-expanded="false" aria-controls="week3" id="accordion-header-week3">
+            Week 3 (Sept 8): Methodological Foundations
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="week3" class="accordion-panel hidden" aria-labelledby="accordion-header-week3">
+            <ul>
+              <li>Bommer, W. H., Johnson, J. L., Rich, G. A., Podsakoff, P. M., & MacKenzie, S. B. (1995). On the interchangeability of objective and subjective measures of employee performance: A meta-analysis. <i>Personnel Psychology</i>, 48, 587-603.</li>
+              <li>Guion, R.M. (2002). Validity and reliability. In S.G. Rogelberg (Ed.) <i>Handbook of research methods in industrial and organizational psychology</i>. Malden, MA: Blackwell.</li>
+              <li>Carretta, T. R., & Ree, M. J. (2022). Correction for range restriction: Lessons from 20 research scenarios. Military psychology, 34(5), 551-569.</a></li>
+            </ul>
+            <div class="supplemental-readings">
+              <h4>Supplemental Readings:</h4>
+              <ul>
+                <li>Schmitt et al., CH2, Validation Strategies for Primary Studies. in Farr & Tippins (2017), Handbook of Employee Selection</li>
+                <li>Austin, J. T., & Villanova, P. (1992). The criterion problem: 1917–1992. <i>Journal of applied psychology</i>, 77(6), 836.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Week 4: Assessment and Selection -->
+        <div class="accordion-section">
+          <button class="accordion-header" aria-expanded="false" aria-controls="week4" id="accordion-header-week4">
+            Week 4 (Sept 15): Assessment and Selection  
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="week4" class="accordion-panel hidden" aria-labelledby="accordion-header-week4">
+            <ul>
+              <li>Zickar et al.. CH18. Choosing a psychological assessment.in Farr & Tippins (2017), Handbook of Employee Selection</li>
+              <li>Lievens, F., & Sackett, P. R. (2017). The effects of predictor method factors on selection outcomes: A modular approach to personnel selection procedures. Journal of Applied Psychology, 102(1), 43.</li>
+              <li>Speer, A. B., Tenbrink, A. P., Wegmeyer, L. J., Sendra, C. C., Shihadeh, M., & Kaur, S. (2022). Meta-analysis of biodata in employment settings: Providing clarity to criterion and construct-related validity estimates. Journal of Applied Psychology, 107(10), 1678.</li>
+            </ul>
+            <div class="supplemental-readings">
+              <h4>Supplemental Readings:</h4>
+              <ul>
+                <li>Sackett, P. R., Zhang, C., Berry, C. M., & Lievens, F. (2022). Revisiting meta-analytic estimates of validity in personnel selection: Addressing systematic overcorrection for restriction of range. Journal of Applied Psychology, 107(11), 2040.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Week 5: Predicting Performance-->
+        <div class="accordion-section">
+          <button class="accordion-header" aria-expanded="false" aria-controls="week5" id="accordion-header-week5">
+            Week 5 (Sept 22): Predicting Performance
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="week5" class="accordion-panel hidden" aria-labelledby="accordion-header-week5">
+            <ul>
+              <li>Putka, D. J., Beatty, A. S., & Reeder, M. C. (2018). Modern prediction methods: New perspectives on a common problem. Organizational Research Methods, 21(3), 689-732.</li>
+              <li>Connelly, B. S., McAbee, S. T., Oh, I. S., Jung, Y., & Jung, C. W. (2022). A multirater perspective on personality and performance: An empirical examination of the trait–reputation–identity model. <i>Journal of Applied Psychology</i>, 107(8), 1352.</li>
+              <li>Yarkoni, T., & Westfall, J. (2017). Choosing prediction over explanation in psychology: Lessons from machine learning. Perspectives on Psychological Science, 12(6), 1100-1122.</li>
+              <li>Kuncel, N. R., Hezlett, S. A., & Ones, D. S. (2004). Academic performance, career potential, creativity, and job performance: Can one construct predict them all?. Journal of personality and social psychology, 86(1), 148.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Week 6: Beyond Job Performance -->
+        <div class="accordion-section">
+          <button class="accordion-header" aria-expanded="false" aria-controls="week6" id="accordion-header-week6">
+            Week 6 (Sept 29): Beyond Job Performance
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="week6" class="accordion-panel hidden" aria-labelledby="accordion-header-week6">
+            <ul>
+              <li>Motowidlo, S. J., Borman, W. C., & Schmit, M. J. (1997). A theory of individual differences in task and contextual performance. <i>Human Performance</i>, 27(1), 1-23.</li>
+              <li>Kim, J. J., Vaulont, M. J., Zhang, Z., & Byron, K. (2024). Looking inside the black box of gender differences in creativity: A dual-process model and meta-analysis. <i>Journal of Applied Psychology</i>.</li>
+              <li>Dalal, R. S., & Carpenter, N. C. (2018). The other side of the coin? Similarities and differences between organizational citizenship behavior and counterproductive work behavior. <i>The Oxford Handbook of Organizational Citizenship Behavior</i>, 69–90.</li>
+            </ul>
+            <div class="supplemental-readings">
+              <h4>Supplemental Readings:</h4>
+              <ul>
+                <li>Borman et al., CH20. The Measurement of Task Performance as Criteria in Selection Research. in Farr & Tippins (2017), Handbook of Employee Selection</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Week 7: Within-Person Dynamics -->
+        <div class="accordion-section">
+          <button class="accordion-header" aria-expanded="false" aria-controls="week7" id="accordion-header-week7">
+            Week 7 (Oct 6): Within-Person Dynamics
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="week7" class="accordion-panel hidden" aria-labelledby="accordion-header-week7">
+            <ul>
+              <li>Weiss, H. M., & Merlo, K. L. (2020). Affect, Attention, and Episodic Performance. <i>Current Directions in Psychological Science</i>, 29(5), 453–459. <a href="https://doi.org/10.1177/0963721420949496" class="external-link">Link</a></li>
+              <li>Dalal, R. S., Bhave, D. P., & Fiset, J. (2014). Within-person variability in job performance: A theoretical review and research agenda. <i>Journal of Management</i>, 40(5), 1396-1436.</li>
+              <li>Yan, L., McAllister, D. J., Lim, G. J., & Yam, K. C. (2025). How Underdogs Succeed and Fail: An Integrated Model of the Workplace Underdog’s Trajectories. <i>Academy of Management Review</i>, (ja), amr-2023.</li>
+              <li>Alessandri, G., Cortina, J. M., Sheng, Z., & Borgogni, L. (2021). Where you came from and where you are going: The role of performance trajectory in promotion decisions. <i>Journal of Applied Psychology</i>, 106(4), 599.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Week 9: Person x Situation Interactions -->
+        <div class="accordion-section">
+          <button class="accordion-header" aria-expanded="false" aria-controls="week9" id="accordion-header-week9">
+            Week 9 (Oct 20): Person x Situation Interactions
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="week9" class="accordion-panel hidden" aria-labelledby="accordion-header-week9">
+            <ul>
+              <li>Beck, E. D., & Jackson, J. J. (2022). Personalized prediction of behaviors and experiences: An idiographic person–situation test. <i>Psychological Science</i>, 33(10), 1767-1782.</li>
+              <li>Dalal, R. S., Meyer, R. D., Bradshaw, R. P., Green, J. P., Kelly, E. D., & Zhu, M. (2015). Personality strength and situational influences on behavior: A conceptual review and research agenda. Journal of Management, 41(1), 261-287.</li>
+              <li>Wilmot, M. P., & Ones, D. S. (2021). Occupational characteristics moderate personality–performance relations in major occupational groups. <i>Journal of Vocational Behavior</i>, 131, 103655.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Week 10: Performance and Wellbeing -->
+        <div class="accordion-section">
+          <button class="accordion-header" aria-expanded="false" aria-controls="week10" id="accordion-header-week10">
+            Week 10 (Oct 27): Performance and Wellbeing
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="week10" class="accordion-panel hidden" aria-labelledby="accordion-header-week10">
+            <ul>
+              <li>Jensen, J. M., Patel, P. C., & Raver, J. L. (2014). Is it better to be average? High and low performance as predictors of employee victimization. <i>Journal of Applied Psychology</i>, 99(2), 296.</li>
+              <li>Bellet, C. S., De Neve, J. E., & Ward, G. (2024). Does employee happiness have an impact on productivity?. Management science, 70(3), 1656-1679.</li>
+              <li>Tay, L., Batz-Barbarich, C., Yang, L. Q., & Wiese, C. W. (2023). Well-being: The ultimate criterion for organizational sciences. <i>Journal of Business and Psychology</i>, 38(6), 1141-1157.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Week 11: Interdisciplinary Perspectives -->
+        <div class="accordion-section">
+          <button class="accordion-header" aria-expanded="false" aria-controls="week11" id="accordion-header-week11">
+            Week 11 (Nov 3): Interdisciplinary Perspectives
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="week11" class="accordion-panel hidden" aria-labelledby="accordion-header-week11">
+            <ul>
+              <li>Macnamara, B. N., Hambrick, D. Z., & Oswald, F. L. (2014). Deliberate practice and performance in music, games, sports, education, and professions: A meta-analysis. <i></i>Psychological science</i>, 25(8), 1608-1618.</li>
+              <li>Bosco, F., Allen, D. G., & Singh, K. (2015). Executive attention: An alternative perspective on general mental ability, performance, and subgroup differences. <i>Personnel Psychology</i>, 68(4), 859-898.</li>
+              <li>Milkman, K. L., Chugh, D., & Bazerman, M. H. (2009). How can decision making be improved?. <i>Perspectives on psychological science</i>, 4(4), 379-383.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Week 12: Team and Leader Performance -->
+        <div class="accordion-section">
+          <button class="accordion-header" aria-expanded="false" aria-controls="week12" id="accordion-header-week12">
+            Week 12 (Nov 10): Team and Leader Performance
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="week12" class="accordion-panel hidden" aria-labelledby="accordion-header-week12">
+            <ul>
+              <li>Salas, E., Cooke, N. J., Rosen, M. A. (2008). On teams, teamwork, and team performance: Discoveries and developments. <i>Human factors</i>, 50(3), 540-547.</li>
+              <li>Grijalva, E., Maynes, T. D., Badura, K. L., & Whiting, S. W. (2020). Examining the "I" in team: A longitudinal investigation of the influence of team narcissism composition on team outcomes in the NBA. <i>Academy of Management Journal</i>, 63(1), 7-33.</li>
+              <li>Green, J. P., Dalal, R. S., Fyffe, S., Zaccaro, S. J., Putka, D. J., & Wallace, D. M. (2023). An empirical taxonomy of leadership situations: Development, validation, and implications for the science and practice of leadership. Journal of Applied Psychology, 108(9), 1515.</i>, 46(3), 572-590.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Week 13: Future of Performance -->
+        <div class="accordion-section">
+          <button class="accordion-header" aria-expanded="false" aria-controls="week13" id="accordion-header-week13">
+            Week 13 (Nov 17): Future of Performance
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="week13" class="accordion-panel hidden" aria-labelledby="accordion-header-week13">
+            <ul>
+              <li>2-3 articles nominated by the students throughout the semester will be selected by the instructor for in-depth critique.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+  </main>
+
+  <!-- Footer with website's footer styling -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__container">
+      <!-- Contact Information -->
+      <div class="footer__section">
+        <h3 class="footer__heading">Contact</h3>
+        <address class="footer__address">
+          <p>Risk and Decision Making Lab</p>
+          <p>Department of Psychology</p>
+          <p>Louisiana State University</p>
+          <p><a href="mailto:zhang1@lsu.edu" class="footer__link">zhang1@lsu.edu</a></p>
+        </address>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer__section">
+        <h3 class="footer__heading">Quick Links</h3>
+        <ul class="footer__list">
+          <li><a href="../index.html" class="footer__link">Home</a></li>
+          <li><a href="../index.html#team" class="footer__link">Team</a></li>
+          <li><a href="../index.html#research" class="footer__link">Research</a></li>
+          <li><a href="../index.html#news" class="footer__link">News</a></li>
+          <li><a href="../index.html#contact" class="footer__link">Get Involved</a></li>
+        </ul>
+      </div>
+
+      <!-- Course Info -->
+      <div class="footer__section">
+        <h3 class="footer__heading">PSY7958</h3>
+        <p style="color: var(--color-text-light); font-size: 14px;">
+          &copy; 2025 Don Zhang, Ph.D.<br>
+          Louisiana State University<br>
+          For educational use only.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Include website's main JavaScript -->
+  <script src="../js/main.js"></script>
+  
+  <!-- Syllabus-specific JavaScript -->
+  <script>
+    // Accordion functionality for reading list
+    document.querySelectorAll('.accordion-header').forEach((header) => {
+      header.addEventListener('click', function() {
+        const controls = this.getAttribute('aria-controls');
+        const panel = document.getElementById(controls);
+        const expanded = this.getAttribute('aria-expanded') === 'true';
+        
+        // Close all other panels
+        document.querySelectorAll('.accordion-panel').forEach(p => p.classList.add('hidden'));
+        document.querySelectorAll('.accordion-header').forEach(h => {
+          h.setAttribute('aria-expanded', 'false');
+          h.querySelector('svg').style.transform = 'rotate(0deg)';
+        });
+        
+        // Toggle current panel
+        if (!expanded) {
+          panel.classList.remove('hidden');
+          this.setAttribute('aria-expanded', 'true');
+          this.querySelector('svg').style.transform = 'rotate(180deg)';
+        }
+      });
+      
+      // Keyboard navigation
+      header.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          this.click();
+        }
+      });
+    });
+
+    // Smooth scrolling for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          // Account for fixed navbar height
+          const navbarHeight = 80;
+          const targetPosition = target.offsetTop - navbarHeight;
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Add print functionality
+    function addPrintButton() {
+      const navbar = document.querySelector('.navbar__links');
+      const printBtn = document.createElement('button');
+      printBtn.innerHTML = '<i class="fas fa-print"></i> Print';
+      printBtn.className = 'btn btn--sm';
+      printBtn.style.marginLeft = 'var(--spacing-sm)';
+      printBtn.onclick = () => window.print();
+      navbar.appendChild(printBtn);
+    }
+
+    // Initialize print button after page load
+    document.addEventListener('DOMContentLoaded', addPrintButton);
+  </script>
+</body>
+</html> 

@@ -51,7 +51,7 @@ npx http-server -p 8000
 # PHP
 php -S localhost:8000
             </pre>
-            <p>Then visit: <a href="http://localhost:8000/grips.html" style="color: #2c5282;">http://localhost:8000/grips.html</a></p>
+            <p>Then visit: <a href="http://localhost:8000/archive/grips.html" style="color: #2c5282;">http://localhost:8000/archive/grips.html</a></p>
         `;
         document.getElementById('summary-stats')?.appendChild(errorMsg);
     }

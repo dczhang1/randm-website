@@ -12,6 +12,8 @@
 @import url('news.css');
 @import url('get-involved.css');
 @import url('detailed-content.css');
+@import url('casprt.css');
+@import url('publications-page.css');
 
 /* Accessibility focus styles */
 :focus-visible {

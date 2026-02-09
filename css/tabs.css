@@ -1,37 +1,87 @@
 /* tabs.css - Tab components (Dark theme) */
 
 .tabs {
-    margin: 2rem 0;
-    border-bottom: 1px solid var(--color-border);
+    margin: 3rem 0 2rem;
+    border-bottom: 2px solid var(--color-border);
 }
 
 .tabs__list {
     display: flex;
+    flex-wrap: wrap;
+    gap: 0;
     list-style: none;
     padding: 0;
     margin: 0;
-    gap: 0.5rem;
 }
 
 .tabs__button {
-    padding: 1rem 1.5rem;
+    background: transparent;
     border: none;
-    background: none;
-    cursor: pointer;
-    font-size: 0.875rem;
-    font-family: var(--body-font);
+    padding: 1rem 1.5rem;
     color: var(--color-text-secondary);
+    font-family: var(--body-font);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
     border-bottom: 2px solid transparent;
-    transition: all var(--transition-standard);
+    margin-bottom: -2px;
 }
 
 .tabs__button:hover {
     color: var(--color-text-primary);
+    background: rgba(0, 240, 255, 0.05);
 }
 
 .tabs__button--active {
     color: var(--color-accent-primary);
     border-bottom-color: var(--color-accent-primary);
+    font-weight: 600;
+}
+
+.tabs__button--active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-accent-primary), var(--color-accent-secondary));
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: scaleX(0);
+    }
+    to {
+        transform: scaleX(1);
+    }
+}
+
+@media (max-width: 576px) {
+    .tabs__list {
+        flex-direction: column;
+    }
+
+    .tabs__button {
+        width: 100%;
+        text-align: left;
+        border-left: 3px solid transparent;
+        border-bottom: 1px solid var(--color-border);
+        margin-bottom: 0;
+    }
+
+    .tabs__button--active {
+        border-left-color: var(--color-accent-primary);
+        border-bottom-color: transparent;
+        background: rgba(0, 240, 255, 0.08);
+    }
+
+    .tabs__button--active::after {
+        display: none;
+    }
 }
 
 .tab-content {
@@ -46,50 +96,115 @@
 /* Data Tables */
 .data-table {
     width: 100%;
-    border-collapse: collapse;
-    margin: 1rem 0;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 1.5rem 0;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
 }
 
 .data-table th,
 .data-table td {
-    padding: 0.75rem 1rem;
-    border: 1px solid var(--color-border);
+    padding: 1rem 1.25rem;
+    border: none;
+    border-bottom: 1px solid var(--color-border);
     text-align: left;
     font-size: 0.875rem;
 }
 
 .data-table th {
-    background-color: var(--color-bg-tertiary);
+    background: linear-gradient(180deg,
+        var(--color-bg-elevated) 0%,
+        var(--color-bg-tertiary) 100%);
     font-weight: 600;
     color: var(--color-text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.8125rem;
+    border-bottom: 2px solid var(--color-border);
 }
 
 .data-table td {
     color: var(--color-text-secondary);
-}
-
-.data-table tr:nth-child(even) {
     background-color: var(--color-bg-secondary);
 }
 
-.data-table tr:hover {
-    background-color: rgba(139, 92, 246, 0.05);
+.data-table tbody tr {
+    transition: all 0.2s ease;
+}
+
+.data-table tbody tr:hover {
+    background-color: rgba(0, 240, 255, 0.05);
+}
+
+.data-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.data-table tbody tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.data-table tbody tr:nth-child(even):hover {
+    background-color: rgba(0, 240, 255, 0.05);
 }
 
 /* Stats Box */
 .stats-box {
-    background-color: var(--color-bg-secondary);
+    background: linear-gradient(135deg,
+        var(--color-bg-secondary) 0%,
+        var(--color-bg-tertiary) 100%);
     border: 1px solid var(--color-border);
-    border-radius: var(--border-radius);
-    padding: 1.5rem;
-    margin: 1rem 0;
+    border-radius: var(--border-radius-lg);
+    padding: 2rem;
+    margin: 1.5rem 0;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.stats-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-accent-primary), var(--color-accent-secondary));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.stats-box:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    border-color: var(--color-border-hover);
+}
+
+.stats-box:hover::before {
+    opacity: 1;
 }
 
 .stats-box__title {
     color: var(--color-text-primary);
     margin-top: 0;
-    margin-bottom: 1rem;
-    font-size: 1.125rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+.stats-box p,
+.stats-box ul,
+.stats-box ol {
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+}
+
+.stats-box strong {
+    color: var(--color-text-primary);
+    font-weight: 600;
 }
 
 .stats-grid {
@@ -145,17 +260,50 @@
 
 /* Citation Box */
 .citation-box {
-    background-color: var(--color-bg-secondary);
-    border-left: 3px solid var(--color-accent-primary);
-    border-radius: 0 var(--border-radius) var(--border-radius) 0;
-    padding: 1.5rem;
-    margin: 1.5rem 0;
+    background: linear-gradient(135deg,
+        rgba(0, 240, 255, 0.05) 0%,
+        rgba(124, 58, 237, 0.05) 100%);
+    border-left: 4px solid var(--color-accent-primary);
+    border-radius: 0 var(--border-radius-lg) var(--border-radius-lg) 0;
+    padding: 2rem;
+    margin: 2rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.citation-box::before {
+    content: '"';
+    position: absolute;
+    top: -0.5rem;
+    left: 1rem;
+    font-size: 6rem;
+    color: var(--color-accent-primary);
+    opacity: 0.1;
+    font-family: Georgia, serif;
+    line-height: 1;
 }
 
 .citation-box__text {
     margin: 0;
     font-style: italic;
     color: var(--color-text-secondary);
-    font-size: 0.875rem;
-    line-height: 1.6;
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
+}
+
+.citation-box__text strong {
+    color: var(--color-text-primary);
+    font-weight: 600;
+}
+
+.citation-box__text a {
+    color: var(--color-accent-primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.citation-box__text a:hover {
+    color: var(--color-accent-secondary);
 }

@@ -6,28 +6,30 @@
  */
 
  :root {
-    /* Dark Mode Color Palette - Inspired by Bert/Striking palette */
-    --color-bg-primary: #0B0C10; /* Near-black base */
-    --color-bg-secondary: #1F2833; /* Elevated surfaces */
-    --color-bg-tertiary: #1F2833; /* Cards and modals */
-    --color-bg-elevated: #2a3544; /* Higher elevation */
+    /* New Design System - Dark Mode Color Palette */
+    --color-bg-primary: #050507; /* Near-black base - darker */
+    --color-bg-secondary: #0f111a; /* Elevated surfaces - slate */
+    --color-bg-tertiary: #1a1d2e; /* Cards and modals */
+    --color-bg-elevated: #1f2333; /* Higher elevation */
 
-    /* Accent Colors */
-    --color-accent-primary: #66FCF1; /* Vibrant cyan */
-    --color-accent-secondary: #45A29E; /* Teal */
-    --color-accent-blue: #45A29E; /* Teal accent */
-    --color-accent-cyan: #66FCF1; /* Cyan accent */
-    --color-accent-glow: rgba(102, 252, 241, 0.4); /* Cyan glow */
+    /* Accent Colors - Updated to match example design */
+    --color-accent-primary: #00f0ff; /* Vibrant tech cyan */
+    --color-accent-secondary: #7c3aed; /* Purple accent */
+    --color-accent-blue: #00f0ff; /* Cyan accent */
+    --color-accent-cyan: #00f0ff; /* Cyan accent */
+    --color-accent-purple: #7c3aed; /* Purple accent */
+    --color-accent-glow: rgba(0, 240, 255, 0.4); /* Cyan glow */
+    --color-accent-glow-purple: rgba(124, 58, 237, 0.4); /* Purple glow */
 
     /* Text Colors */
-    --color-text-primary: #FAFAFA; /* White headings */
-    --color-text-secondary: #C5C6C7; /* Gray body text */
-    --color-text-tertiary: #8b8d8e; /* Even more muted */
-    --color-text-link: #66FCF1; /* Link color */
+    --color-text-primary: #f8fafc; /* White headings - brighter */
+    --color-text-secondary: #8a8f98; /* Muted gray body text */
+    --color-text-tertiary: #6b7280; /* Even more muted */
+    --color-text-link: #00f0ff; /* Link color */
 
     /* Border Colors */
-    --color-border: rgba(197, 198, 199, 0.15);
-    --color-border-hover: rgba(102, 252, 241, 0.3);
+    --color-border: rgba(138, 143, 152, 0.15);
+    --color-border-hover: rgba(0, 240, 255, 0.3);
 
     /* Legacy color mapping for compatibility */
     --color-navy: #0B0C10;
@@ -86,13 +88,28 @@
     --container-max-width: 1200px;
     --content-max-width: 900px;
 
-    /* Typography variables - Inter font family */
-    --heading-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    /* Typography variables - Space Grotesk for headings, Inter for body */
+    --heading-font: 'Space Grotesk', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --body-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --heading-weight: 600;
+    --heading-weight: 700;
     --body-weight: 400;
     --body-size: 16px;
     --line-height: 1.7; /* Increased for dark mode readability */
+
+    /* Typography Scale - Larger hero text */
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.25rem;
+    --text-2xl: 1.5rem;
+    --text-3xl: 1.875rem;
+    --text-4xl: 2.25rem;
+    --text-5xl: 3rem;
+    --text-6xl: 3.75rem;
+    --text-7xl: 4.5rem;
+    --text-8xl: 6rem;
+    --text-9xl: 8rem;
 
     /* Additional spacing scale */
     --space-1: 4px;
@@ -352,9 +369,6 @@ img {
     width: 100%;
     height: 100%;
     background-color: var(--color-bg-primary); /* Fallback */
-    background-image: url('../assets/hero-background.jpg');
-    background-position: center;
-    background-size: cover;
     z-index: -1;
 }
 
@@ -393,8 +407,39 @@ img {
   transition-delay: 0.2s;
 }
 
+/* Custom Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-accent-primary);
+  border-radius: 6px;
+  border: 2px solid var(--color-bg-primary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-secondary);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-accent-primary) var(--color-bg-primary);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
 /* Media query variables - Just a reference, actual media queries in components */
-/* 
+/*
 --mobile: 576px
 --tablet: 768px
 --desktop: 992px
