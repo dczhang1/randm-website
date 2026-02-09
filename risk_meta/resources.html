@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources &amp; Data | Risk Propensity Meta-Analysis</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="nav-wrap">
+        <div class="navbar">
+            <a href="index.html" class="logo">
+                <img src="assets/images/figures/logo.svg" alt="RaNML Lab Logo" style="height: 1.8rem; width: auto;">
+            </a>
+            <button class="mobile-menu-btn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#findings">Key Findings</a>
+                <a href="index.html#implications">Implications</a>
+                <a href="resources.html" class="active">Resources</a>
+                <a href="https://tinyurl.com/56crjm7z" target="_blank" rel="noopener">OSF <i class="fas fa-external-link-alt" style="font-size:0.75em;"></i></a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" style="padding:4rem 1.5rem;">
+        <div class="hero-content">
+            <div class="hero-label">Companion Site</div>
+            <h1 class="hero-title">Resources &amp; Data</h1>
+            <p class="hero-description">Interactive study database, LLM decision-attribute tool, and supplemental material.</p>
+        </div>
+    </section>
+
+    <section class="section section-alt">
+        <div class="container">
+            <div class="tabs" role="tablist">
+                <button class="tab-btn active" data-tab="database" role="tab">Study Database</button>
+                <button class="tab-btn" data-tab="llm-tool" role="tab">LLM Methodology</button>
+                <button class="tab-btn" data-tab="supplements" role="tab">Supplemental Material</button>
+            </div>
+
+            <div id="database" class="tab-content active" role="tabpanel">
+                <div class="card" style="margin-bottom:1.5rem;padding:1.5rem;">
+                    <h3 style="margin-bottom:0.75rem;">Filter Studies</h3>
+                    <div class="filter-group" style="max-width:320px;">
+                        <label for="filter-outcome">Outcome</label>
+                        <select id="filter-outcome" class="filter-select">
+                            <option value="">All outcomes</option>
+                            <option value="CREATIVEP">Creative Performance</option>
+                            <option value="CWB">CWB</option>
+                            <option value="OCB">OCB</option>
+                            <option value="SAFINCID">Safety Incidents</option>
+                            <option value="SAFCOMPLY">Safety Compliance</option>
+                            <option value="TASK">Task Performance</option>
+                            <option value="TRNINT">Turnover Intentions</option>
+                            <option value="TRNBEH">Turnover Behavior</option>
+                            <option value="POSDEV">Positive Deviance</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="resource-table-wrap card">
+                    <table id="studiesTable" class="resource-table">
+                        <thead>
+                            <tr>
+                                <th>Reference</th>
+                                <th>Year</th>
+                                <th>Outcome</th>
+                                <th>N</th>
+                                <th>r (raw)</th>
+                                <th>r (corrected)</th>
+                                <th>Measure</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <div style="margin-top:1.5rem;text-align:right;">
+                    <a href="https://tinyurl.com/56crjm7z" target="_blank" rel="noopener" class="btn btn-outline">Download full dataset (OSF)</a>
+                </div>
+            </div>
+
+            <div id="llm-tool" class="tab-content" role="tabpanel">
+                <div class="section-label">Decision attributes</div>
+                <h2 class="section-title">LLM Attribute Comparison</h2>
+                <p style="text-align:center;color:var(--text-muted);max-width:700px;margin:0 auto 2rem;">
+                    We used state-of-the-art LLMs to rate each outcome on Risk, Benefit, Uncertainty, and Organizational Valence. Compare two outcomes below.
+                </p>
+                <div class="card" style="padding:1.5rem;max-width:900px;margin:0 auto;">
+                    <div style="display:flex;justify-content:center;align-items:center;gap:1rem;margin-bottom:2rem;flex-wrap:wrap;">
+                        <select id="outcome1-select" class="filter-select" style="max-width:220px;">
+                            <option value="CREATIVEP">Creative Performance</option>
+                            <option value="CWB">Counterproductive Behavior</option>
+                            <option value="OCB">OCB</option>
+                            <option value="SAFINCID">Safety Incidents</option>
+                            <option value="SAFCOMPLY">Safety Compliance</option>
+                            <option value="TASK">Task Performance</option>
+                            <option value="TRNINT">Turnover Intentions</option>
+                            <option value="POSDEV">Positive Deviance</option>
+                        </select>
+                        <span style="color:var(--text-muted);">vs</span>
+                        <select id="outcome2-select" class="filter-select" style="max-width:220px;">
+                            <option value="SAFCOMPLY">Safety Compliance</option>
+                            <option value="CREATIVEP">Creative Performance</option>
+                            <option value="CWB">Counterproductive Behavior</option>
+                            <option value="OCB">OCB</option>
+                            <option value="SAFINCID">Safety Incidents</option>
+                            <option value="TASK">Task Performance</option>
+                            <option value="TRNINT">Turnover Intentions</option>
+                            <option value="POSDEV">Positive Deviance</option>
+                        </select>
+                    </div>
+                    <div id="llm-comparison" class="llm-comparison"></div>
+                    <p id="comparison-text" style="text-align:center;margin-top:1.5rem;font-style:italic;color:var(--text-muted);"></p>
+                </div>
+            </div>
+
+            <div id="supplements" class="tab-content" role="tabpanel">
+                <div class="tabs" style="margin-bottom:1.5rem;">
+                    <button class="tab-btn active" data-subtab="sup-measures">Measures &amp; Constructs</button>
+                    <button class="tab-btn" data-subtab="sup-methods">Search &amp; Bias</button>
+                    <button class="tab-btn" data-subtab="sup-prompts">LLM Prompts</button>
+                </div>
+                <div id="sup-measures" class="sub-tab-content active">
+                    <div class="supp-grid grid-2">
+                        <div>
+                            <h3 style="margin-bottom:1rem;"><i class="fas fa-check-circle" style="color:var(--accent-cyan);"></i> Validated Measures</h3>
+                            <p style="color:var(--text-muted);margin-bottom:1rem;">Recommended scales from our meta-analytic review (Table S5).</p>
+                            <div class="measure-card"><h4>DOSPERT</h4><p><strong>Authors:</strong> Blais &amp; Weber (2006)</p><p><strong>Domains:</strong> Ethical, Financial, Health/Safety, Recreational, Social.</p></div>
+                            <div class="measure-card"><h4>GRiPS</h4><p><strong>Authors:</strong> Zhang, Highhouse, &amp; Nye (2019)</p><p><strong>Description:</strong> 8-item unidimensional measure of general risk propensity.</p></div>
+                            <div class="measure-card"><h4>RPS</h4><p><strong>Authors:</strong> Meertens &amp; Lion (2008)</p><p><strong>Description:</strong> General risk-taking tendency.</p></div>
+                        </div>
+                        <div>
+                            <h3 style="margin-bottom:1rem;"><i class="fas fa-book" style="color:var(--accent-cyan);"></i> Construct Definitions</h3>
+                            <div class="content-card" style="max-height:500px;overflow-y:auto;">
+                                <div style="margin-bottom:1.25rem;"><strong style="color:var(--text);">Risk Aversion</strong><p style="margin-top:0.35rem;">The tendency to prefer options with more certain or stable outcomes over those with higher uncertainty. Reflects discomfort with potential losses.</p></div>
+                                <div style="margin-bottom:1.25rem;"><strong style="color:var(--text);">Risk Avoidance</strong><p style="margin-top:0.35rem;">An individual's dispositional tendency to avoid risks, shaped by personal perceptions of what level of risk is acceptable.</p></div>
+                                <div style="margin-bottom:1.25rem;"><strong style="color:var(--text);">Risk Propensity</strong><p style="margin-top:0.35rem;">An individual's relatively stable yet context-sensitive tendency or willingness to take risks. Influences how individuals evaluate uncertainty and perceive potential threats/opportunities.</p></div>
+                                <div style="margin-bottom:1.25rem;"><strong style="color:var(--text);">Risk Taking</strong><p style="margin-top:0.35rem;">Voluntary behavior that exposes an individual to uncertain outcomes where the possibility of loss, harm, or failure is present.</p></div>
+                                <div style="margin-bottom:1.25rem;"><strong style="color:var(--text);">Willingness to Take Risks</strong><p style="margin-top:0.35rem;">An individual's readiness to engage in behaviors or pursue new ideas that carry the possibility of negative consequences.</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="sup-methods" class="sub-tab-content">
+                    <h3 style="margin-bottom:1rem;">Search Strategy (Table S1)</h3>
+                    <div class="resource-table-wrap card" style="margin-bottom:2rem;">
+                        <table class="resource-table">
+                            <thead><tr><th style="width:18%;">Source</th><th>Search Terms</th><th style="width:10%;">Results</th></tr></thead>
+                            <tbody>
+                                <tr><td>EPSCO Database</td><td><span class="search-term">AB ("risk propensity" OR "risk preference*" ...) AND AB (work OR employ* ...)</span></td><td>2,646</td></tr>
+                                <tr><td>Web of Science</td><td><span class="search-term">ab=("risk propensity" OR "risk preference*" ...) AND ab=(work OR employ* ...)</span></td><td>1,968</td></tr>
+                                <tr><td>Journal Specific</td><td><span class="search-term">SO("academy of management journal") ... AND AB(risk*)</span></td><td>1,580</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h3 style="margin-bottom:1rem;">Publication Bias (Table S4)</h3>
+                    <div class="resource-table-wrap card">
+                        <table class="resource-table">
+                            <thead><tr><th>Outcome</th><th>Begg's Rank</th><th>Egger's Regression</th><th>Conclusion</th></tr></thead>
+                            <tbody>
+                                <tr><td>Task Performance</td><td>-0.028</td><td class="bias-sig">-2.182*</td><td>Possible Bias</td></tr>
+                                <tr><td>CWBs</td><td class="bias-sig">-0.324*</td><td class="bias-sig">-4.564**</td><td>Evidence of Bias</td></tr>
+                                <tr><td>Safety Incidents</td><td>-0.315</td><td>-1.345</td><td>No Evidence</td></tr>
+                                <tr><td>Creative Performance</td><td>-0.117</td><td>0.410</td><td>No Evidence</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div id="sup-prompts" class="sub-tab-content">
+                    <h3 style="margin-bottom:1rem;">LLM Attribute Coding Prompts (Appendix A)</h3>
+                    <div class="prompt-block">For each entry, rate the collection of item(s) on the following dimensions:
+
+**Dimension 1: Perceived Risks**
+Definition: To what extent can this behavior result in a personal loss, damage, or harm?
+Scale: 1 (Not at all risky) to 10 (Extremely risky).
+
+**Dimension 2: Expected Benefits**
+Definition: To what extent can this behavior result in a personal benefit, gain, or advantage?
+Scale: 1 (Not at all beneficial) to 10 (Extremely beneficial).
+
+**Dimension 3: Outcome Uncertainty**
+Definition: To what extent is the outcome of this behavior uncertain and unpredictable?
+Scale: 1 (Not at all uncertain) to 10 (Extremely uncertain).
+
+**Dimension 4: Organizational Valence**
+Definition: The extent to which the behavior contributes to the goals and functioning of the organization.
+Scale: 1 (Extremely negatively) to 10 (Extremely positively).</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-label">Citation</div>
+            <h2 class="section-title">How to Cite This Work</h2>
+            <div class="card" style="max-width: 800px; margin: 0 auto; padding: 2rem;">
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted);">
+                    If you use this research or data, please cite our article in the Journal of Business and Psychology:
+                </p>
+                <div class="citation-text" style="background: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: 12px; font-family: var(--font-mono); font-size: 0.9rem; line-height: 1.8; border: 1px solid var(--border);">
+                    Zhang, D.C., Reeves, K., Stark, H.P., & Cowley, T. (in press). A Meta-Analytic Investigation on the Construct Validity of Risk Propensity at Work: Insights from Decision Science and Large Language Models. <em>Journal of Business and Psychology</em>.
+                </div>
+                <div style="margin-top: 1.5rem; text-align: center;">
+                    <a href="https://tinyurl.com/56crjm7z" target="_blank" rel="noopener" class="btn btn-outline">
+                        <i class="fas fa-database"></i> Access OSF Repository
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Don C. Zhang. All rights reserved.</p>
+                <p style="margin-top: 0.5rem; font-size: 0.75rem; color: var(--text-muted);">
+                    This work was supported by National Science Foundation and conducted at Louisiana State University.
+                    <a href="https://tinyurl.com/56crjm7z" target="_blank" rel="noopener" style="color: var(--accent-cyan);">View OSF</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/data-table.js"></script>
+    <script src="assets/js/comparison-tool.js"></script>
+    <script>
+        (function () {
+            var supplements = document.getElementById('supplements');
+            if (!supplements) return;
+            var subtabBtns = supplements.querySelectorAll('[data-subtab]');
+            var subtabPanels = supplements.querySelectorAll('.sub-tab-content');
+            subtabBtns.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var id = btn.getAttribute('data-subtab');
+                    subtabBtns.forEach(function (b) { b.classList.remove('active'); });
+                    subtabPanels.forEach(function (p) { p.classList.remove('active'); });
+                    btn.classList.add('active');
+                    var panel = document.getElementById(id);
+                    if (panel) panel.classList.add('active');
+                });
+            });
+        })();
+    </script>
+</body>
+</html>

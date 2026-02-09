@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risk Propensity Meta-Analysis</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Syne', sans-serif;
+            background: #0F0F0F;
+            color: #FFFFFF;
+            overflow-x: hidden;
+        }
+        
+        #root {
+            width: 100%;
+        }
+        
+        /* Animated Background Bubbles */
+        .bubble-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+        
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 20s infinite ease-in-out;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            25% {
+                transform: translateY(-30px) translateX(20px);
+            }
+            50% {
+                transform: translateY(-60px) translateX(-20px);
+            }
+            75% {
+                transform: translateY(-30px) translateX(20px);
+            }
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+        }
+        
+        .hero-content {
+            max-width: 1200px;
+            text-align: center;
+        }
+        
+        .hero-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            letter-spacing: 0.2em;
+            color: #00F0FF;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+        
+        .typing-container {
+            min-height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #00F0FF 0%, #FF00E5 50%, #FFD700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: gradientFlow 5s ease infinite;
+        }
+        
+        @keyframes gradientFlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1em;
+            background: #00F0FF;
+            margin-left: 5px;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+        
+        .hero-description {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            color: #B0B0B0;
+            margin-bottom: 3rem;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+        
+        .scroll-indicator {
+            margin-top: 4rem;
+            animation: bounce 2s infinite;
+        }
+        
+        .scroll-arrow {
+            font-size: 2rem;
+            color: #00F0FF;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+        
+        /* Counter Stats Section */
+        .stats-section {
+            padding: 8rem 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .stats-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        
+        .stat-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .stat-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: #00F0FF;
+            transform: translateY(-10px);
+        }
+        
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00F0FF, #FF00E5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            font-family: 'Space Mono', monospace;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            color: #B0B0B0;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+        }
+        
+        /* Findings Section with Animated Cards */
+        .findings-section {
+            padding: 8rem 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .findings-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 4rem;
+            letter-spacing: -0.02em;
+        }
+        
+        .findings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .finding-card {
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.05), rgba(255, 0, 229, 0.05));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        
+        .finding-card.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .finding-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent, rgba(0, 240, 255, 0.1));
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        
+        .finding-card:hover::before {
+            opacity: 1;
+        }
+        
+        .finding-card:hover {
+            transform: scale(1.02);
+            border-color: #00F0FF;
+        }
+        
+        .finding-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        
+        .finding-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #FFFFFF;
+        }
+        
+        .finding-text {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #B0B0B0;
+        }
+        
+        .finding-stat {
+            margin-top: 1.5rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid #00F0FF;
+            border-radius: 50px;
+            display: inline-block;
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+            color: #00F0FF;
+        }
+        
+        /* Interactive Data Visualization */
+        .viz-section {
+            padding: 8rem 2rem;
+            background: linear-gradient(180deg, #0F0F0F 0%, #1A0A1A 100%);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .viz-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .viz-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .viz-bar-row {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .viz-bar-row.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .bar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .bar-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        
+        .bar-value {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00F0FF;
+        }
+        
+        .bar-track {
+            height: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00F0FF, #FF00E5);
+            border-radius: 10px;
+            transform-origin: left;
+            transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .bar-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shine 2s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 8rem 2rem;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+        
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
+        }
+        
+        .cta-text {
+            font-size: 1.3rem;
+            color: #B0B0B0;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 1.5rem 4rem;
+            background: linear-gradient(135deg, #00F0FF, #FF00E5);
+            color: #FFFFFF;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .cta-button:hover::before {
+            left: 100%;
+        }
+        
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 40px rgba(0, 240, 255, 0.5);
+        }
+        
+        @media (max-width: 768px) {
+            .findings-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+        
+        // Floating Bubbles Background
+        const BubbleBackground = () => {
+            const bubbles = [
+                { size: 300, color: '#00F0FF', left: '10%', top: '20%', delay: 0 },
+                { size: 200, color: '#FF00E5', left: '70%', top: '60%', delay: 5 },
+                { size: 250, color: '#FFD700', left: '80%', top: '10%', delay: 10 },
+                { size: 180, color: '#00F0FF', left: '20%', top: '70%', delay: 15 },
+            ];
+            
+            return (
+                <div className="bubble-container">
+                    {bubbles.map((bubble, i) => (
+                        <div
+                            key={i}
+                            className="bubble"
+                            style={{
+                                width: bubble.size,
+                                height: bubble.size,
+                                background: bubble.color,
+                                left: bubble.left,
+                                top: bubble.top,
+                                animationDelay: `${bubble.delay}s`
+                            }}
+                        />
+                    ))}
+                </div>
+            );
+        };
+        
+        // Typing Animation Component
+        const TypingText = ({ text, speed = 100 }) => {
+            const [displayText, setDisplayText] = useState('');
+            const [currentIndex, setCurrentIndex] = useState(0);
+            
+            useEffect(() => {
+                if (currentIndex < text.length) {
+                    const timer = setTimeout(() => {
+                        setDisplayText(prev => prev + text[currentIndex]);
+                        setCurrentIndex(prev => prev + 1);
+                    }, speed);
+                    
+                    return () => clearTimeout(timer);
+                }
+            }, [currentIndex, text, speed]);
+            
+            return (
+                <h1 className="hero-title">
+                    {displayText}
+                    {currentIndex < text.length && <span className="cursor"></span>}
+                </h1>
+            );
+        };
+        
+        // Animated Counter Component
+        const AnimatedCounter = ({ end, duration = 2000, suffix = '' }) => {
+            const [count, setCount] = useState(0);
+            const [hasStarted, setHasStarted] = useState(false);
+            const ref = useRef(null);
+            
+            useEffect(() => {
+                const observer = new IntersectionObserver(
+                    ([entry]) => {
+                        if (entry.isIntersecting && !hasStarted) {
+                            setHasStarted(true);
+                            
+                            const startTime = Date.now();
+                            const endValue = typeof end === 'string' ? parseFloat(end) : end;
+                            
+                            const animate = () => {
+                                const now = Date.now();
+                                const progress = Math.min((now - startTime) / duration, 1);
+                                const easeOutQuad = progress * (2 - progress);
+                                const current = easeOutQuad * endValue;
+                                
+                                setCount(current);
+                                
+                                if (progress < 1) {
+                                    requestAnimationFrame(animate);
+                                }
+                            };
+                            
+                            requestAnimationFrame(animate);
+                        }
+                    },
+                    { threshold: 0.3 }
+                );
+                
+                if (ref.current) observer.observe(ref.current);
+                
+                return () => {
+                    if (ref.current) observer.unobserve(ref.current);
+                };
+            }, [end, duration, hasStarted]);
+            
+            const displayValue = typeof end === 'string' && end.includes('.') 
+                ? count.toFixed(2) 
+                : Math.floor(count).toLocaleString();
+            
+            return <span ref={ref}>{displayValue}{suffix}</span>;
+        };
+        
+        // Scroll-Triggered Card Component
+        const ScrollCard = ({ children, delay = 0, className = '' }) => {
+            const [isVisible, setIsVisible] = useState(false);
+            const ref = useRef(null);
+            
+            useEffect(() => {
+                const observer = new IntersectionObserver(
+                    ([entry]) => {
+                        if (entry.isIntersecting) {
+                            setTimeout(() => setIsVisible(true), delay);
+                        }
+                    },
+                    { threshold: 0.2 }
+                );
+                
+                if (ref.current) observer.observe(ref.current);
+                
+                return () => {
+                    if (ref.current) observer.unobserve(ref.current);
+                };
+            }, [delay]);
+            
+            return (
+                <div ref={ref} className={`${className} ${isVisible ? 'visible' : ''}`}>
+                    {children}
+                </div>
+            );
+        };
+        
+        // Animated Bar Component
+        const AnimatedBar = ({ name, value, maxValue, delay }) => {
+            const [isVisible, setIsVisible] = useState(false);
+            const ref = useRef(null);
+            
+            useEffect(() => {
+                const observer = new IntersectionObserver(
+                    ([entry]) => {
+                        if (entry.isIntersecting) {
+                            setTimeout(() => setIsVisible(true), delay);
+                        }
+                    },
+                    { threshold: 0.3 }
+                );
+                
+                if (ref.current) observer.observe(ref.current);
+                
+                return () => {
+                    if (ref.current) observer.unobserve(ref.current);
+                };
+            }, [delay]);
+            
+            const percentage = (Math.abs(parseFloat(value)) / maxValue) * 100;
+            
+            return (
+                <div ref={ref} className={`viz-bar-row ${isVisible ? 'visible' : ''}`}>
+                    <div className="bar-header">
+                        <div className="bar-name">{name}</div>
+                        <div className="bar-value">ρ̄ = {value}</div>
+                    </div>
+                    <div className="bar-track">
+                        <div 
+                            className="bar-fill"
+                            style={{
+                                transform: isVisible ? `scaleX(${percentage / 100})` : 'scaleX(0)'
+                            }}
+                        />
+                    </div>
+                </div>
+            );
+        };
+        
+        // Main App Component
+        const App = () => {
+            return (
+                <div>
+                    <BubbleBackground />
+                    
+                    {/* Hero */}
+                    <section className="hero">
+                        <div className="hero-content">
+                            <div className="hero-label">Meta-Analysis 2025</div>
+                            <div className="typing-container">
+                                <TypingText text="Risk at Work" speed={150} />
+                            </div>
+                            <p className="hero-description">
+                                A comprehensive investigation combining decision science and AI to understand 
+                                how risk propensity shapes workplace outcomes
+                            </p>
+                            <div className="scroll-indicator">
+                                <div className="scroll-arrow">↓</div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    {/* Animated Stats */}
+                    <section className="stats-section">
+                        <div className="stats-container">
+                            <ScrollCard className="stat-card" delay={0}>
+                                <div className="stat-number">
+                                    <AnimatedCounter end={127} />
+                                </div>
+                                <div className="stat-label">Studies Analyzed</div>
+                            </ScrollCard>
+                            
+                            <ScrollCard className="stat-card" delay={200}>
+                                <div className="stat-number">
+                                    <AnimatedCounter end={42318} />
+                                </div>
+                                <div className="stat-label">Participants</div>
+                            </ScrollCard>
+                            
+                            <ScrollCard className="stat-card" delay={400}>
+                                <div className="stat-number">
+                                    <AnimatedCounter end={384} />
+                                </div>
+                                <div className="stat-label">Effect Sizes</div>
+                            </ScrollCard>
+                            
+                            <ScrollCard className="stat-card" delay={600}>
+                                <div className="stat-number">
+                                    <AnimatedCounter end=".31" />
+                                </div>
+                                <div className="stat-label">Mean Effect</div>
+                            </ScrollCard>
+                        </div>
+                    </section>
+                    
+                    {/* Findings */}
+                    <section className="findings-section">
+                        <div className="findings-container">
+                            <h2 className="section-title">Key Findings</h2>
+                            <div className="findings-grid">
+                                <ScrollCard className="finding-card" delay={0}>
+                                    <span className="finding-icon">🚀</span>
+                                    <h3 className="finding-title">Innovation Engine</h3>
+                                    <p className="finding-text">
+                                        Risk propensity emerged as the strongest predictor of innovative 
+                                        work behaviors, driving creative problem-solving and novel approaches 
+                                        across organizational contexts.
+                                    </p>
+                                    <span className="finding-stat">ρ̄ = .35</span>
+                                </ScrollCard>
+                                
+                                <ScrollCard className="finding-card" delay={200}>
+                                    <span className="finding-icon">🎯</span>
+                                    <h3 className="finding-title">Context Precision</h3>
+                                    <p className="finding-text">
+                                        Domain-specific measures dramatically outperformed general scales, 
+                                        with a .15 point advantage highlighting the critical importance of 
+                                        measurement specificity.
+                                    </p>
+                                    <span className="finding-stat">Δ = .15</span>
+                                </ScrollCard>
+                                
+                                <ScrollCard className="finding-card" delay={400}>
+                                    <span className="finding-icon">🤖</span>
+                                    <h3 className="finding-title">AI Breakthrough</h3>
+                                    <p className="finding-text">
+                                        Large language models achieved 94% agreement with human expert coding, 
+                                        demonstrating transformative potential for accelerating research synthesis.
+                                    </p>
+                                    <span className="finding-stat">94% accuracy</span>
+                                </ScrollCard>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    {/* Data Visualization */}
+                    <section className="viz-section">
+                        <div className="viz-container">
+                            <h2 className="section-title">Effect Size Distribution</h2>
+                            <div className="viz-bars">
+                                <AnimatedBar name="Innovation Behavior" value=".35" maxValue={0.4} delay={0} />
+                                <AnimatedBar name="Entrepreneurship" value=".32" maxValue={0.4} delay={150} />
+                                <AnimatedBar name="Job Performance" value=".28" maxValue={0.4} delay={300} />
+                                <AnimatedBar name="Leadership" value=".24" maxValue={0.4} delay={450} />
+                                <AnimatedBar name="Citizenship" value=".18" maxValue={0.4} delay={600} />
+                                <AnimatedBar name="Safety Compliance" value="-.19" maxValue={0.4} delay={750} />
+                            </div>
+                        </div>
+                    </section>
+                    
+                    {/* CTA */}
+                    <section className="cta-section">
+                        <div className="cta-content">
+                            <h2 className="cta-title">Explore the Full Research</h2>
+                            <p className="cta-text">
+                                Access the complete meta-analysis with interactive visualizations, 
+                                downloadable datasets, and comprehensive supplementary materials.
+                            </p>
+                            <button className="cta-button">Read the Paper</button>
+                        </div>
+                    </section>
+                </div>
+            );
+        };
+        
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

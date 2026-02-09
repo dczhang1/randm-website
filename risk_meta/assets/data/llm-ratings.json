@@ -1,0 +1,50 @@
+{
+  "CREATIVEP": {
+    "personal_risk": 3.4044117647058822,
+    "personal_benefit": 7.852941176470588,
+    "uncertainty": 4.540441176470588,
+    "org_valence": 8.139705882352942
+  },
+  "CWB": {
+    "personal_risk": 7.006578947368421,
+    "personal_benefit": 2.5789473684210527,
+    "uncertainty": 4.907894736842105,
+    "org_valence": 2.4802631578947367
+  },
+  "OCB": {
+    "personal_risk": 2.1796875,
+    "personal_benefit": 7.96875,
+    "uncertainty": 3.0625,
+    "org_valence": 8.4296875
+  },
+  "POSDEV": {
+    "personal_risk": 5.805555555555555,
+    "personal_benefit": 5.819444444444445,
+    "uncertainty": 5.625,
+    "org_valence": 5.597222222222222
+  },
+  "SAFCOMPLY": {
+    "personal_risk": 3.5972222222222223,
+    "personal_benefit": 6.2407407407407405,
+    "uncertainty": 3.685185185185185,
+    "org_valence": 6.528935185185185
+  },
+  "SAFINCID": {
+    "personal_risk": 5.041666666666667,
+    "personal_benefit": 3.638888888888889,
+    "uncertainty": 4.541666666666667,
+    "org_valence": 4.291666666666667
+  },
+  "TASK": {
+    "personal_risk": 2.1166666666666667,
+    "personal_benefit": 7.5,
+    "uncertainty": 3.15,
+    "org_valence": 8.058333333333334
+  },
+  "TRNINT": {
+    "personal_risk": 6.160714285714286,
+    "personal_benefit": 3.607142857142857,
+    "uncertainty": 5.875,
+    "org_valence": 3.3035714285714284
+  }
+}
