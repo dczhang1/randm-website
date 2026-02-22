@@ -14,12 +14,12 @@
 
     /* Accent Colors - Updated to match example design */
     --color-accent-primary: #00f0ff; /* Vibrant tech cyan */
-    --color-accent-secondary: #7c3aed; /* Purple accent */
+    --color-accent-secondary: #818cf8; /* Bright indigo accent */
     --color-accent-blue: #00f0ff; /* Cyan accent */
     --color-accent-cyan: #00f0ff; /* Cyan accent */
-    --color-accent-purple: #7c3aed; /* Purple accent */
+    --color-accent-purple: #818cf8; /* Bright indigo accent */
     --color-accent-glow: rgba(0, 240, 255, 0.4); /* Cyan glow */
-    --color-accent-glow-purple: rgba(124, 58, 237, 0.4); /* Purple glow */
+    --color-accent-glow-purple: rgba(129, 140, 248, 0.4); /* Indigo glow */
 
     /* Text Colors */
     --color-text-primary: #f8fafc; /* White headings - brighter */
