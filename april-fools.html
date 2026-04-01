@@ -3,251 +3,532 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>April Fools Reveal - RANDM Lab</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="css/main.css">
+    <title>RANDM Lab | The Big Easy Reveal</title>
     <style>
-        /* April Fools specific styles */
-        .april-fools-container {
-            min-height: 100vh;
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,900;1,400&family=Limelight&family=Inter:wght@400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&display=swap');
+
+        :root {
+            --lsu-purple: #461D7C;
+            --lsu-gold: #FDD023;
+            --mardi-gras-purple: #9457B8;
+            --mardi-gras-green: #009639;
+            --mardi-gras-gold: #CFB53B;
+            --deep-purple: #2D1B4E;
+            --light-gold: #FFD700;
+            --accent-gold: #FFC72C;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--lsu-purple) 0%, var(--deep-purple) 100%);
+            color: white;
+            overflow: hidden;
+            height: 100vh;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #0f111a 0%, #1a1d2e 50%, #2d1a4a 100%);
-            padding: 2rem;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Atmospheric Fog Layers */
+        .fog-container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .fog-layer {
+            position: absolute;
+            width: 200%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><defs><filter id="fog"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="4" /><feColorMatrix values="0 0 0 0 0.1 0 0 0 0 0.2 0 0 0 0 0.2 0 0 0 0.4 0"/></filter></defs><rect width="100%" height="100%" filter="url(%23fog)" opacity="0.5"/></svg>') repeat-x;
+            background-size: 50% 100%;
+            opacity: 0.6;
+            animation: fogMove 60s linear infinite;
+        }
+
+        .fog-layer:nth-child(1) {
+            top: 0;
+            animation-duration: 40s;
+            opacity: 0.3;
+        }
+
+        .fog-layer:nth-child(2) {
+            top: 30%;
+            animation-duration: 50s;
+            animation-direction: reverse;
+            opacity: 0.4;
+        }
+
+        .fog-layer:nth-child(3) {
+            bottom: 0;
+            animation-duration: 45s;
+            opacity: 0.5;
+        }
+
+        @keyframes fogMove {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Neon Glow Effects */
+        .neon-container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(70, 29, 124, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(253, 208, 35, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(207, 181, 59, 0.1) 0%, transparent 70%);
+        }
+
+        /* Main Container */
+        .container {
+            position: relative;
+            width: 90%;
+            max-width: 700px;
+            z-index: 10;
+        }
+
+        /* PHASE 1: Loading (The séance begins) */
+        #loader {
             text-align: center;
+            animation: fadeOut 1s ease-in 3s forwards;
+        }
+
+        .candle-glow {
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, rgba(253, 208, 35, 0.9) 0%, rgba(207, 181, 59, 0.5) 40%, transparent 70%);
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            animation: flicker 2s infinite alternate;
+            box-shadow: 0 0 60px rgba(253, 208, 35, 0.5);
+        }
+
+        @keyframes flicker {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+            25% { transform: scale(0.95); opacity: 0.7; }
+            75% { transform: scale(1.05); opacity: 0.9; }
+        }
+
+        .mystic-text {
+            font-family: 'Merriweather', serif;
+            font-size: 1.2rem;
+            color: var(--lsu-gold);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0.9;
+            text-shadow: 0 0 20px rgba(253, 208, 35, 0.5);
+        }
+
+        .loading-dots::after {
+            content: '';
+            animation: dots 2s steps(4, end) infinite;
+        }
+
+        @keyframes dots {
+            0% { content: ''; }
+            25% { content: '.'; }
+            50% { content: '..'; }
+            75% { content: '...'; }
+        }
+
+        /* PHASE 2: Neon April Fools (Extended Duration) */
+        #neon-reveal {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            opacity: 0;
+            width: 100%;
+            filter: drop-shadow(0 0 30px rgba(70, 29, 124, 0.8));
+        }
+
+        .reveal-active {
+            animation: 
+                ghostlyFloat 3s ease-in-out 3s infinite,
+                fadeIn 0.5s ease-out 3s forwards,
+                fadeOut 1s ease-in 7.5s forwards; /* Extended to stay until 8.5s total */
+        }
+
+        .neon-sign {
+            font-family: 'Limelight', cursive;
+            font-size: clamp(3rem, 10vw, 6rem);
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            position: relative;
+            text-shadow:
+                0 0 10px #fff,
+                0 0 20px #fff,
+                0 0 40px var(--mardi-gras-purple),
+                0 0 80px var(--lsu-purple),
+                0 0 120px var(--lsu-gold),
+                0 0 10px var(--lsu-gold);
+            animation: neonFlicker 4s infinite alternate;
+        }
+
+        .neon-sign::before {
+            content: 'April Fools!';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            color: var(--mardi-gras-green);
+            z-index: -1;
+            animation: ghostShift 3s ease-in-out infinite;
+            opacity: 0.6;
+            filter: blur(4px);
+        }
+
+        .neon-subtitle {
+            font-family: 'Playfair Display', italic;
+            font-size: 1.3rem;
+            color: var(--lsu-gold);
+            margin-top: 30px;
+            opacity: 0;
+            text-shadow: 0 0 10px rgba(253, 208, 35, 0.5);
+            animation: fadeInUp 0.8s ease-out 4s forwards;
+        }
+
+        /* Musical Notes Decoration */
+        .music-notes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 3.5s forwards;
+        }
+
+        .note {
+            position: absolute;
+            font-size: 2rem;
+            color: var(--lsu-gold);
+            opacity: 0.6;
+            animation: floatUp 4s ease-in infinite;
+            text-shadow: 0 0 10px var(--lsu-gold);
+        }
+
+        .note:nth-child(1) { left: 10%; bottom: -20%; animation-delay: 0s; }
+        .note:nth-child(2) { left: 30%; bottom: -20%; animation-delay: 1s; font-size: 1.5rem; }
+        .note:nth-child(3) { right: 20%; bottom: -20%; animation-delay: 2s; }
+        .note:nth-child(4) { right: 10%; bottom: -20%; animation-delay: 1.5s; font-size: 1.2rem; }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes neonFlicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                text-shadow:
+                    0 0 10px #fff,
+                    0 0 20px #fff,
+                    0 0 40px var(--mardi-gras-purple),
+                    0 0 80px var(--lsu-purple),
+                    0 0 120px var(--lsu-gold);
+                opacity: 1;
+            }
+            20%, 24%, 55% {
+                text-shadow: none;
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes ghostShift {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(10px); }
+        }
+
+        @keyframes ghostlyFloat {
+            0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+            50% { transform: translate(-50%, -50%) translateY(-15px); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* PHASE 3: The Ticket (Jazz Age Style) */
+        #session-reveal {
+            opacity: 0;
+            transform: translateY(50px) rotateX(10deg);
+            animation: ticketIn 1.2s cubic-bezier(0.23, 1, 0.32, 1) 8.5s forwards;
+            perspective: 1000px;
+        }
+
+        .jazz-ticket {
+            background: linear-gradient(135deg, var(--lsu-purple) 0%, var(--deep-purple) 100%);
+            border: 2px solid var(--lsu-gold);
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            box-shadow: 
+                0 0 40px rgba(253, 208, 35, 0.3),
+                inset 0 0 60px rgba(0,0,0,0.5);
+            overflow: hidden;
+        }
+
+        .jazz-ticket::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+background: repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(253, 208, 35, 0.05) 10px,
+                    rgba(253, 208, 35, 0.05) 20px
+                );
+            animation: shine 8s linear infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .ticket-notch {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: var(--deep-purple);
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        .ticket-notch.left { left: -15px; }
+        .ticket-notch.right { right: -15px; }
+
+        .admit-one {
+            font-family: 'Limelight', cursive;
+            color: var(--lsu-gold);
+            text-align: center;
+            font-size: 0.9rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+
+        .show-title {
+            font-family: 'Merriweather', serif;
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            text-align: center;
+            color: #fff;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            line-height: 1.3;
+        }
+
+        .show-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--lsu-gold), transparent);
+            margin: 20px auto 0;
+        }
+
+        .details-orleans {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .detail-box {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(253, 208, 35, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
 
-        .grain-overlay {
+        .detail-box:hover {
+            transform: translateY(-3px);
+            border-color: var(--lsu-gold);
+            box-shadow: 0 5px 20px rgba(253, 208, 35, 0.2);
+        }
+
+        .detail-box::before {
+            content: '🎭';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter'%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
-            pointer-events: none;
+            top: 5px;
+            right: 10px;
+            color: var(--lsu-gold);
+            opacity: 0.3;
+            font-size: 1.2rem;
         }
 
-        .confetti-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
+        .detail-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 8px;
+            font-family: 'Inter', sans-serif;
         }
 
-        .confetti {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background: var(--confetti-color);
-            border-radius: 2px;
-            animation: fall linear infinite;
+        .detail-value {
+            font-family: 'Limelight', cursive;
+            font-size: 1.3rem;
+            color: var(--lsu-gold);
+            text-shadow: 0 0 10px rgba(253, 208, 35, 0.3);
         }
 
-        @keyframes fall {
-            0% {
-                transform: translateY(-100px) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-            }
+        .venue-row {
+            grid-column: 1 / -1;
+            background: linear-gradient(90deg, rgba(253, 208, 35, 0.1), rgba(253, 208, 35, 0.2), rgba(253, 208, 35, 0.1));
+            border-color: var(--lsu-gold);
         }
 
-        .reveal-content {
+        .footer-jazz {
+            text-align: center;
+            margin-top: 25px;
+            font-family: 'Playfair Display', italic;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95rem;
             position: relative;
-            z-index: 1;
-            max-width: 800px;
-            background: rgba(15, 17, 26, 0.8);
-            padding: 3rem;
-            border-radius: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            z-index: 2;
         }
 
-        .april-fools-title {
-            font-family: var(--heading-font);
-            font-size: clamp(2rem, 6vw, 4rem);
-            font-weight: 700;
-            color: var(--color-text-primary);
-            margin-bottom: 2rem;
-            background: linear-gradient(135deg, #00f0ff 0%, #8b5cf6 50%, #f43f5e 100%);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shimmer 3s ease-in-out infinite;
-        }
-
-        @keyframes shimmer {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .reveal-text {
-            font-size: clamp(1.125rem, 2.5vw, 1.5rem);
-            color: var(--color-text-secondary);
-            line-height: 1.6;
-            margin-bottom: 2rem;
-        }
-
-        .siop-info {
-            background: rgba(0, 240, 255, 0.1);
-            border: 1px solid rgba(0, 240, 255, 0.2);
-            border-radius: 1rem;
-            padding: 2rem;
-            margin: 2rem 0;
-        }
-
-        .siop-title {
-            font-family: var(--heading-font);
-            font-size: 1.5rem;
+        .nola-accent {
+            color: var(--mardi-gras-green);
             font-weight: 600;
-            color: var(--color-text-primary);
-            margin-bottom: 1rem;
+            text-shadow: 0 0 10px rgba(0, 150, 57, 0.4);
         }
 
-        .siop-details {
-            color: var(--color-text-secondary);
-            line-height: 1.8;
-            font-size: 1.1rem;
+        /* Utility Animations */
+        @keyframes fadeIn {
+            to { opacity: 1; }
         }
 
-        .siop-highlight {
-            color: var(--color-accent-primary);
-            font-weight: 600;
+        @keyframes fadeOut {
+            to { opacity: 0; visibility: hidden; }
         }
 
-        .back-button {
-            margin-top: 2rem;
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, #00f0ff 0%, #8b5cf6 100%);
-            color: white;
-            border: none;
-            border-radius: 0.5rem;
-            font-family: var(--heading-font);
-            font-weight: 600;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: transform 0.3s var(--ease-out);
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .back-button:hover {
-            transform: translateY(-2px);
-        }
-
-        .emoji-animation {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            animation: bounce 2s ease-in-out infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
-
-        @media (max-width: 768px) {
-            .reveal-content {
-                padding: 2rem;
-                margin: 1rem;
+        @keyframes ticketIn {
+            to { 
+                opacity: 1; 
+                transform: translateY(0) rotateX(0deg);
             }
-            
-            .siop-info {
-                padding: 1.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .details-orleans {
+                grid-template-columns: 1fr;
+            }
+            .neon-sign {
+                letter-spacing: 4px;
             }
         }
     </style>
+<base target="_blank">
 </head>
 <body>
-    <div class="april-fools-container">
-        <div class="grain-overlay"></div>
-        <div class="confetti-container" id="confetti"></div>
+
+    <!-- Atmospheric Effects -->
+    <div class="fog-container">
+        <div class="fog-layer"></div>
+        <div class="fog-layer"></div>
+        <div class="fog-layer"></div>
+    </div>
+    <div class="neon-container"></div>
+
+    <div class="container">
         
-        <div class="reveal-content fade-in-up">
-            <div class="emoji-animation">🎉🤣🎭</div>
-            <h1 class="april-fools-title">April Fools!</h1>
-            
-            <p class="reveal-text">
-                The results might be false, but the study was real. To learn the ACTUAL replicability of experiments in organizational science:
-            </p>
-
-            <div class="siop-info">
-                <h2 class="siop-title">SIOP Symposium: Advances in Open Science Practices for I/O Psychology</h2>
-                <div class="siop-details">
-                    <p><span class="siop-highlight">Session ID #:</span> 220</p>
-                    <p><span class="siop-highlight">Room #:</span> R3</p>
-                    <p><span class="siop-highlight">Date & Time:</span> 5/1/2026 2:00:00 PM - 5/1/2026 3:20:00 PM</p>
-                </div>
+        <!-- Phase 1: The Summoning (Loading) -->
+        <div id="loader">
+            <div class="candle-glow"></div>
+            <div class="mystic-text">
+                Consulting the spirits of data<span class="loading-dots"></span>
             </div>
-
-            <p class="reveal-text">
-                Join us for an insightful discussion on improving research practices and ensuring the reliability of scientific findings in our field.
-            </p>
-
-            <a href="index.html" class="back-button">Back to Lab Website</a>
         </div>
+
+        <!-- Phase 2: Bourbon Street Reveal (Extended 4.5s display time) -->
+        <div id="neon-reveal" class="reveal-active">
+            <div class="neon-sign">April Fools!</div>
+            <div class="neon-subtitle">"The replication crisis is unfortunately alive and well... To learn what we actually found, please join us next month in New Orleans"</div>
+            
+            <div class="music-notes">
+                <div class="note">🐯</div>
+                <div class="note">🎷</div>
+                <div class="note">🎭</div>
+                <div class="note">🎺</div>
+            </div>
+        </div>
+
+        <!-- Phase 3: The Golden Ticket -->
+        <div id="session-reveal">
+            <div class="jazz-ticket">
+                <div class="ticket-notch left"></div>
+                <div class="ticket-notch right"></div>
+                
+                <div class="admit-one">ADMIT ONE | NEW ORLEANS | May 2026</div>
+                <h1 class="show-title">Advances in Open Science Practices for I/O Psychology</h1>
+                
+                <div class="details-orleans">
+                    <div class="detail-box">
+                        <div class="detail-label">Session</div>
+                        <div class="detail-value">#220</div>
+                    </div>
+                    
+                    <div class="detail-box">
+                        <div class="detail-label">Room</div>
+                        <div class="detail-value">R3</div>
+                    </div>
+                    
+                    <div class="detail-box">
+                        <div class="detail-label">Date</div>
+                        <div class="detail-value">May 1</div>
+                    </div>
+                    
+                    <div class="detail-box">
+                        <div class="detail-label">Time</div>
+                        <div class="detail-value">2:00 PM</div>
+                    </div>
+      
+                </div>
+
+                <p class="footer-jazz">
+                    Join us at <span class="nola-accent">SIOP 2026</span> to learn more<br>
+                    <em>Geaux Tigers! 🐯💜💛</em>
+                </p>
+            </div>
+        </div>
+
     </div>
 
-    <script>
-        // Create confetti animation
-        function createConfetti() {
-            const container = document.getElementById('confetti');
-            const colors = ['#00f0ff', '#8b5cf6', '#f43f5e', '#f59e0b', '#10b981'];
-            
-            for (let i = 0; i < 50; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.left = Math.random() * 100 + '%';
-                confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                confetti.style.animationDelay = (Math.random() * 2) + 's';
-                confetti.style.setProperty('--confetti-color', colors[Math.floor(Math.random() * colors.length)]);
-                container.appendChild(confetti);
-            }
-        }
-
-        // Add wobble animation to title
-        function addWobbleEffect() {
-            const title = document.querySelector('.april-fools-title');
-            title.style.animation = 'shimmer 3s ease-in-out infinite, wobble 2s ease-in-out infinite';
-            
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes wobble {
-                    0%, 100% { transform: rotate(0deg); }
-                    25% { transform: rotate(-2deg); }
-                    75% { transform: rotate(2deg); }
-                }
-            `;
-            document.head.appendChild(style);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            createConfetti();
-            addWobbleEffect();
-            
-            // Add periodic emoji changes
-            const emoji = document.querySelector('.emoji-animation');
-            const emojis = ['🎉', '🤣', '🎭', '😂', '✨', '🎊'];
-            let index = 0;
-            
-            setInterval(() => {
-                index = (index + 1) % emojis.length;
-                emoji.textContent = emojis[index];
-            }, 2000);
-        });
-    </script>
 </body>
 </html>
