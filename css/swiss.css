@@ -416,6 +416,11 @@
 /* Task 3: publications */
 .pub-year { font-size: clamp(28px, 4vw, 40px); font-weight: 900; margin: 40px 0 16px; }
 .pub-entry { border-top: var(--rule-thin); padding: 14px 0 18px 0; max-width: 90ch; }
-.pub-entry .pub-meta { font-family: var(--font-mono); font-size: 11px; color: var(--gray-2); letter-spacing: 0.08em; text-transform: uppercase; }
+.pub-entry .pub-meta { font-family: var(--font-mono); font-size: 11px; color: var(--gray-2); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; }
+.pub-entry .pub-cite { padding-left: 24px; text-indent: -24px; font-size: 16px; line-height: 1.65; }
+.pub-entry .pub-cite i { font-style: italic; }
+.pub-doi { font-family: var(--font-mono); font-size: 12px; white-space: nowrap; }
+.pub-filters { margin-bottom: 8px; }
+.pub-filters button.filter-link { background: transparent; font-family: var(--font-display); cursor: pointer; }
 .filter-link { font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; text-decoration: none; border: var(--rule-thin); padding: 6px 12px; display: inline-block; margin: 0 8px 8px 0; }
 .filter-link:hover, .filter-link.active { background: var(--ink); color: var(--paper); }

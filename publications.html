@@ -3,164 +3,216 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Publications | Risk and Decision Making Lab</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome for social icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="description" content="Publications from the Risk and Decision Making Laboratory at Louisiana State University.">
+    <title>Publications — RANDM Lab</title>
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/publications.css">
-    <link rel="stylesheet" href="css/publications-page.css">
 </head>
 <body data-page="publications">
-    <header class="subpage-header">
-        <a href="index.html" class="subpage-header__logo" aria-label="Back to homepage">
-            <img src="assets/logo.svg" alt="RANDM Lab Logo" class="subpage-header__logo-img">
-        </a>
-    </header>
-    
-    <!-- Add hero banner like in other pages -->
-    <div class="hero hero--sm">
-        <div class="hero__bg"></div>
-        <div class="hero__overlay"></div>
-        <div class="hero__content">
-            <h1 class="hero__title">Publications</h1>
-            <p class="hero__subtitle">Research contributions from our laboratory</p>
-        </div>
-    </div>
-    
-    <main>
-        <!-- Add container with max-width and dark background -->
-        <div style="background-color: var(--color-bg-primary); padding: 1.5rem 0;">
-            <section class="publications">
-                <!-- Research Statistics Summary -->
-                <div class="research-stats-container fade-in">
-                    <div class="research-stats">
-                        <div class="stat-box">
-                            <div class="stat-number">26</div>
-                            <div class="stat-label">Peer-Reviewed Articles</div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-number">924</div>
-                            <div class="stat-label">Citations</div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-number">14</div>
-                            <div class="stat-label">h-index</div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-number">16</div>
-                            <div class="stat-label">i10-index</div>
-                        </div>
-                    </div>
-                    <div class="stats-footer">
-                        <a href="https://scholar.google.com/citations?user=GTukwAEAAAAJ&hl=en" class="scholar-link" target="_blank">View Google Scholar Profile <i class="fas fa-external-link-alt" style="font-size: 0.8rem;"></i></a>
-                        <span style="margin: 0 0.5rem;">|</span>
-                        <span>Last updated: March 2025</span>
-                    </div>
-                </div>
-                
-                <!-- Introduction -->
+    <a href="#main-content" class="skip-to-content">Skip to content</a>
 
-                
-                <!-- Compact Search and Filter Tools -->
-                <div class="news-filters">
-                    <div style="display: flex; margin-bottom: 0.75rem;">
-                        <input type="text" id="publication-search" placeholder="Search publications..." 
-                        style="flex: 1; padding: 0.5rem; border: 1px solid var(--color-accent); border-radius: 0.25rem 0 0 0.25rem; font-family: var(--font-body); font-size: 0.9rem;">
-                        <button id="search-button" class="btn btn--secondary" style="border-radius: 0 0.25rem 0.25rem 0; padding: 0.25rem 0.5rem;"><i class="fas fa-search"></i></button>
-                    </div>
-                    
-                    <div class="filter-container">
-                        <div class="filter-group">
-                            <label for="publication-type" style="font-size: 0.85rem; display: block; margin-bottom: 0.25rem;">Type:</label>
-                            <select id="publication-type" class="filter-select" style="width: 100%; padding: 0.4rem; font-size: 0.85rem;">
-                                <option value="all">All Types</option>
-                                <option value="article">Articles</option>
-                                <option value="chapter">Chapters</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        
-                        <div class="filter-group">
-                            <label for="publication-year" style="font-size: 0.85rem; display: block; margin-bottom: 0.25rem;">Year:</label>
-                            <select id="publication-year" class="filter-select" style="width: 100%; padding: 0.4rem; font-size: 0.85rem;">
-                                <option value="all">All Years</option>
-                                <option value="2025">2025</option>
-                                <option value="2024">2024</option>
-                                <option value="2023">2023</option>
-                                <option value="2022">2022</option>
-                                <option value="2021">2021</option>
-                                <option value="2020">2020</option>
-                                <option value="2019">2019</option>
-                                <option value="2018">2018</option>
-                                <option value="2017">2017</option>
-                                <option value="2016">2016</option>
-                                <option value="2015">2015</option>
-                            </select>
-                        </div>
-                        
-                        <div class="filter-group">
-                            <label for="sort-by" style="font-size: 0.85rem; display: block; margin-bottom: 0.25rem;">Sort By:</label>
-                            <select id="sort-by" class="filter-select" style="width: 100%; padding: 0.4rem; font-size: 0.85rem;">
-                                <option value="year-desc">Year (Newest First)</option>
-                                <option value="year-asc">Year (Oldest First)</option>
-                                <option value="author">First Author</option>
-                                <option value="title">Title</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Publications List with ultra-compact styling -->
-                <div class="publications-list">
-                    <h2 class="section-heading">Journal Articles <span class="count-badge" id="article-count">(24)</span></h2>
-                    <div id="articles-container" class="publications-grid"></div>
-                    
-                    <h2 class="section-heading">Book Chapters <span class="count-badge" id="chapter-count">(3)</span></h2>
-                    <div id="chapters-container" class="publications-grid"></div>
-                    
-                    <h2 class="section-heading">Other Publications <span class="count-badge" id="other-count">(3)</span></h2>
-                    <div id="other-container" class="publications-grid"></div>
-                    
-                    <div id="no-results" style="padding: 1rem; text-align: center; background-color: var(--color-bg-tertiary); border-radius: 0.25rem; color: var(--color-text-secondary); display: none; font-size: 0.9rem;">
-                        <p style="margin: 0;">No publications match your search criteria. Please try different search terms or filters.</p>
-                    </div>
-                </div>
-            </section>
+    <header class="masthead">
+        <div class="masthead-inner">
+            <a class="masthead-title" href="index.html">RANDM <span>— Risk &amp; Decision</span></a>
+            <nav class="masthead-nav" aria-label="Main navigation">
+                <a href="index.html">Home</a>
+                <a href="index.html#research">Research</a>
+                <a href="publications.html" aria-current="page">Publications</a>
+                <a href="grips.html">GRiPS</a>
+                <a href="casprt.html">CASPRT</a>
+            </nav>
+            <span class="masthead-meta">LSU / Psychology</span>
+            <button class="mobile-toggle" aria-controls="mobile-menu" aria-expanded="false">Menu</button>
         </div>
-    </main>
-    
-    <footer class="footer footer--subpage">
-        <nav class="footer__breadcrumb" aria-label="Breadcrumb">
+        <nav id="mobile-menu" aria-hidden="true" aria-label="Mobile navigation">
             <a href="index.html">Home</a>
-            <span class="footer__breadcrumb-sep">›</span>
-            <span>Publications</span>
+            <a href="index.html#research">Research</a>
+            <a href="publications.html">Publications</a>
+            <a href="grips.html">GRiPS</a>
+            <a href="casprt.html">CASPRT</a>
+            <a href="index.html#contact">Contact</a>
         </nav>
-        <div class="footer__container">
-            <div class="footer__section">
-                <address class="footer__address">
-                    <p>Risk and Decision Making Lab · Department of Psychology · Louisiana State University</p>
-                    <p><a href="mailto:zhang1@lsu.edu" class="footer__link">zhang1@lsu.edu</a> · <a href="tel:+12257876543" class="footer__link">+1 225 578 4093</a></p>
-                </address>
+    </header>
+
+    <main id="main-content" class="container">
+        <section class="rule-section">
+            <span class="idx">01 — Record</span>
+            <h2 class="section-title">Publications</h2>
+            <p style="max-width: 60ch; margin-bottom: 24px;">Research contributions from the laboratory, 2015–2025. Lab members in <b>bold</b>.</p>
+            <div class="pub-filters" role="group" aria-label="Filter publications">
+                <button class="filter-link active" data-filter="all">All (33)</button>
+                <button class="filter-link" data-filter="article">Articles (27)</button>
+                <button class="filter-link" data-filter="chapter">Chapters (3)</button>
+                <button class="filter-link" data-filter="other">Other (3)</button>
             </div>
-            <div class="footer__section">
-                <div class="social-links">
-                    <a href="https://www.linkedin.com/company/randm-lab" class="social-link" title="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://www.researchgate.net/lab/Risk-and-Decision-Making-Lab" class="social-link" title="ResearchGate" target="_blank" rel="noopener noreferrer"><i class="fab fa-researchgate"></i></a>
-                    <a href="mailto:zhang1@lsu.edu" class="social-link" title="Email"><i class="fas fa-envelope"></i></a>
-                    <a href="https://www.lsu.edu" class="social-link" title="University" target="_blank" rel="noopener noreferrer"><i class="fas fa-university"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="footer__legal">
-            <p class="footer__text">© 2025 Risk and Decision Making Lab. <a href="privacy.html" class="footer__link">Privacy</a> · <a href="terms.html" class="footer__link">Terms</a></p>
+        </section>
+
+        <section class="pub-list">
+            <!-- ADD NEW PUBLICATIONS HERE: newest year first, one article element per paper, data-type = article | chapter | other -->
+        <!-- 2025 -->
+        <h3 class="pub-year" id="y2025">2025</h3>
+        <article class="pub-entry" data-type="article">
+          <p class="pub-meta">2025 · Journal article · risk-taking / scale development / validation</p>
+          <p class="pub-cite"><b>Zhang, D.C.</b>, &amp; Smith, R.W. (2025). Development and Validation of the Calculated and Spontaneous Risk‐Taking Scale (CASPRT). <i>Journal of Behavioral Decision Making</i>, 38(3), e70020. <a class="pub-doi" href="https://doi.org/10.1002/bdm.70020" target="_blank" rel="noopener noreferrer">doi ↗</a></p>
+        </article>
+        <!-- 2024 -->
+        <h3 class="pub-year" id="y2024">2024</h3>
+        <article class="pub-entry" data-type="article">
+          <p class="pub-meta">2024 · Journal article · risk propensity / workplace performance</p>
+          <p class="pub-cite"><b>Zhang, D.C.</b>, Barratt, C.L. &amp; Smith, R.W. (2024). The Bright, Dark, and Grey Sides of Risk Takers at Work: Criterion Validity of Risk Propensity for Contextual Performance at Work. <i>Journal of Business and Psychology</i>. <a class="pub-doi" href="https://doi.org/10.1007/s10869-023-09939-y" target="_blank" rel="noopener noreferrer">doi ↗</a></p>
+        </article>
+        <article class="pub-entry" data-type="article">
+          <p class="pub-meta">2024 · Journal article · methodology / statistics</p>
+          <p class="pub-cite">Zhang, B., Luo, J., Zhang, S., Sun, T., &amp; <b>Zhang, D.C.</b> (2024). Improving the statistical performance of oblique bifactor measurement and predictive models: An augmentation approach. <i>Structural Equation Modeling: A Multidisciplinary Journal</i>. <a class="pub-doi" href="https://doi.org/10.1080/10705511.2023.2288691" target="_blank" rel="noopener noreferrer">doi ↗</a></p>
+        </article>
+        <!-- 2023 -->
+        <h3 class="pub-year" id="y2023">2023</h3>
+        <article class="pub-entry" data-type="article">
+          <p class="pub-meta">2023 · Journal article · risk preferences / measurement</p>
+          <p class="pub-cite"><b>Zhang, D.C.</b>, <b>Howard, G.</b>, Matthews, R.A. &amp; <b>Cowley, T.</b> (2023). Eliciting risk preferences: Is a single item enough?. <i>Journal of Risk Research</i>. <a class="pub-doi" href="https://doi.org/10.1080/13669877.2023.2168763" target="_blank" rel="noopener noreferrer">doi ↗</a></p>
+        </article>
+        <article class="pub-entry" data-type="article">
+          <p class="pub-meta">2023 · Journal article · interviews / selection</p>
+          <p class="pub-cite"><b>Zhang, D.C.</b> &amp; McCord J.L. (2023). That's an interesting question! Oddball interview questions and organizational personality perceptions. <i>Personnel Assessment and Decisions</i>. <a class="pub-doi" href="https://doi.org/10.25035/pad.2023.01.001" target="_blank" rel="noopener noreferrer">doi ↗</a></p>
+        </article>
+        <article class="pub-entry" data-type="article">
+          <p class="pub-meta">2023 · Journal article · interviews / validity</p>
+          <p class="pub-cite"><b>Zhang, D.C.</b> &amp; Kausel, E.E. (2023). The illusion of validity: How effort inflates the perceived validity of interview questions. <i>European Journal of Work and Organizational Psychology</i>. <a class="pub-doi" href="https://doi.org/10.1080/1359432X.2022.2158853" target="_blank" rel="noopener noreferrer">doi ↗</a></p>
+        </article>
+        <article class="pub-entry" data-type="chapter">
+          <p class="pub-meta">2023 · Book chapter · risk preferences / individual differences</p>
+          <p class="pub-cite"><b>Zhang, D.C.</b> &amp; <b>Reeves, K.</b> (2023). Risk Preferences. <i>Elgar Encyclopaedia of Personality and Individual Differences. Edward Elgar Publishing Ltd, Cheltenham, United Kingdom</i>.</p>
+        </article>
+        <article class="pub-entry" data-type="chapter">
+          <p class="pub-meta">2023 · Book chapter · career / gifted individuals</p>
+          <p class="pub-cite">Wai J. &amp; <b>Zhang, D.C.</b> (2023). Career and the gifted. <i>Careers Psychology. American Psychological Association, Washington, D.C.</i>.</p>
+        </article>
+        <!-- 2022 -->
+        <h3 class="pub-year" id="y2022">2022</h3>
+        <article class="pub-entry" data-type="article">
+          <p class="pub-meta">2022 · Journal article · risk propensity / personality / meta-analysis</p>
+          <p class="pub-cite">Highhouse, S., <b>Wang, Y.</b> &amp; <b>Zhang, D.C.</b> (2022). Is Risk Propensity Unique from the Big Five Factors of Personality? A Meta-Analytic Investigation. <i>Journal of Research in Personality</i>. <a class="pub-doi" href="https://doi.org/10.1016/j.jrp.2022.104289" target="_blank" rel="noopener noreferrer">doi ↗</a></p>
+        </article>
+        <article class="pub-entry" data-type="article">
+          <p class="pub-meta">2022 · Journal article · moral judgments / cross-cultural</p>
+          <p class="pub-cite">Bago, B., Aczel, B., Kekecs, Z., P. [and others, including <b>Zhang, D.C.</b>], Chartier, C. R (2022). Moral thinking across the world: Exploring the influence of personal force and intention in moral dilemma judgments. <i>Nature Human Behavior</i>. <a class="pub-doi" href="https://doi.org/10.1038/s41562-022-01319-5" target="_blank" rel="noopener noreferrer">doi ↗</a></p>
+        </article>
+        <article class="pub-entry" data-type="article">
+          <p class="pub-meta">2022 · Journal article · recruitment / interviews</p>
+          <p class="pub-cite"><b>Zhang, D.C.</b> (2022). Duck-sized horses or horse-sized ducks? Oddall Personality Questions are likable (but useless) for organizational recruitment. <i>Journal of Business and Psychology</i>. <a class="pub-doi" href="https://doi.org/10.1007/s10869-021-09778-9" target="_blank" rel="noopener noreferrer">doi ↗</a></p>
+        </article>
+        <!-- 2021 -->
+        <h3 class="pub-year" id="y2021">2021</h3>
+        <article class="pub-entry" data-type="article">
+          <p class="pub-meta">2021 · Journal article · risk taking / personality</p>
+          <p class="pub-cite">Joseph, E. &amp; <b>Zhang, D.C.</b> (2021). Personality profile of risk takers: An examination of Big Five facets. <i>Journal of Individual Differences</i>. <a class="pub-doi" href="https://doi.org/10.1027/1614-0001/a000356" target="_blank" rel="noopener noreferrer">doi ↗</a></p>
+        </article>
+        <article class="pub-entry" data-type="article">
+          <p class="pub-meta">2021 · Journal article · SMEs / judgment tests</p>
+          <p class="pub-cite"><b>Zhang, D.C.</b> &amp; <b>Wang, Y.</b> (2021). An empirical approach of identifying subject matter experts (SMEs) for the development of situational judgment tests. <i>Journal of Personnel Psychology</i>. <a class="pub-doi" href="https://doi.org/10.1027/1866-5888/a000278" target="_blank" rel="noopener noreferrer">doi ↗</a></p>
+        </article>
+        <article class="pub-entry" data-type="article">
+          <p class="pub-meta">2021 · Journal article · statistical perception / education</p>
+          <p class="pub-cite"><b>Zhang, D.C.</b> &amp; Wai, J. (2021). Malleability of statistical perception: Impact of validity presentation on college admission test policy preferences. <i>Collabra: Psychology</i>. <a class="pub-doi" href="https://doi.org/10.1525/collabra.19028" target="_blank" rel="noopener noreferrer">doi ↗</a></p>
+        </article>
+        <!-- 2020 -->
+        <h3 class="pub-year" id="y2020">2020</h3>
+        <article class="pub-entry" data-type="article">
+          <p class="pub-meta">2020 · Journal article · peer review / publication</p>
+          <p class="pub-cite"><b>Zhang, D.C.</b>, Smith, R. &amp; Lobo, S (2020). Should you sign your reviews? Open peer-review and review quality. <i>Industrial and Organizational Psychology: Perspectives on Science and Practice</i>. <a class="pub-doi" href="https://doi.org/10.1017/iop.2020.96" target="_blank" rel="noopener noreferrer">doi ↗</a></p>
+        </article>
+        <article class="pub-entry" data-type="article">
+          <p class="pub-meta">2020 · Journal article · personality / well-being</p>
+          <p class="pub-cite"><b>Zhang, D.C.</b> &amp; Renshaw, T (2020). Personality and college student subjective wellbeing: a domain specific approach. <i>Journal of Happiness Studies</i>, 21, 997-1014. <a class="pub-doi" href="https://doi.org/10.1007/s10902-019-00116-8" target="_blank" rel="noopener noreferrer">doi ↗</a></p>
+        </article>
+        <article class="pub-entry" data-type="other">
+          <p class="pub-meta">2020 · Other · peer review / open science</p>
+          <p class="pub-cite">Castille, C., <b>Zhang, D.C.</b>, &amp; Smith, R.W. (2020). Opening Up: How Do I Conduct Peer Review With Open Science in Mind?. <i>The Industrial and Organizational Psychologist</i>.</p>
+        </article>
+        <!-- 2019 -->
+        <h3 class="pub-year" id="y2019">2019</h3>
+        <article class="pub-entry" data-type="article">
+          <p class="pub-meta">2019 · Journal article · structured interviews / employment</p>
+          <p class="pub-cite"><b>Zhang, D.C.</b>, Zhu, X., Ritter, K.J. &amp; Thiele, A. (2019). Telling stories to communicate the value of the pre-employment structured job interview. <i>International Journal of Selection and Assessment</i>, 27(4), 299-314. <a class="pub-doi" href="https://doi.org/10.1111/ijsa.12256" target="_blank" rel="noopener noreferrer">doi ↗</a></p>
+        </article>
+        <article class="pub-entry" data-type="article">
+          <p class="pub-meta">2019 · Journal article · turnover / decision-making</p>
+          <p class="pub-cite"><b>Zhang, D.C.</b> (2019). Turnover as decisions: How judgment and decision-making (JDM) research can inform turnover modeling. <i>Industrial and Organizational Psychology: Perspectives on Science and Practice</i>, 12(3), 326-329. <a class="pub-doi" href="https://doi.org/10.1017/iop.2019.41" target="_blank" rel="noopener noreferrer">doi ↗</a></p>
+        </article>
+        <article class="pub-entry" data-type="article">
+          <p class="pub-meta">2019 · Journal article · DOSPERT / gender / psychometrics</p>
+          <p class="pub-cite"><b>Zhang, D.C.</b>, Foster, G.C., &amp; McKenna, M.G. (2019). Is the DOSPERT gender invariant? A psychometric test of gender invariance. <i>Journal of Behavioral Decision Making</i>, 32(2), 203-211. <a class="pub-doi" href="https://doi.org/10.1002/bdm.2106" target="_blank" rel="noopener noreferrer">doi ↗</a></p>
+        </article>
+        <article class="pub-entry" data-type="article">
+          <p class="pub-meta">2019 · Journal article · GRiPS / risk propensity / validation</p>
+          <p class="pub-cite"><b>Zhang, D.C.</b>, Highhouse, S., &amp; Nye (2019). Development and validation of the general risk propensity scale (GRiPS). <i>Journal of Behavioral Decision Making</i>, 32(2), 152-167. <a class="pub-doi" href="https://doi.org/10.1002/bdm.2102" target="_blank" rel="noopener noreferrer">doi ↗</a></p>
+        </article>
+        <article class="pub-entry" data-type="article">
+          <p class="pub-meta">2019 · Journal article · interviews / brainteasers</p>
+          <p class="pub-cite">Highhouse, S., Nye, C.D., &amp; <b>Zhang, D.C.</b> (2019). Dark motives and elective use of brainteaser interview questions. <i>Applied Psychology: An International Review</i>, 68(2), 311-340. <a class="pub-doi" href="https://doi.org/10.1111/apps.12163" target="_blank" rel="noopener noreferrer">doi ↗</a></p>
+        </article>
+        <article class="pub-entry" data-type="article">
+          <p class="pub-meta">2019 · Journal article · belief bias / bayesian reasoning</p>
+          <p class="pub-cite">Anderson, R.B., Leventhal, L.M., <b>Zhang, D.C.</b>, Fasko, D., Basehore, Z., Branch, J., Gamsby, C. &amp; Patrick, T. (2019). Belief bias in assessing the Bayesian-rationality of others. <i>Judgment and Decision Making Journal</i>, 14(1). <a class="pub-doi" href="https://doi.org/10.1017/S1930297500007543" target="_blank" rel="noopener noreferrer">doi ↗</a></p>
+        </article>
+        <article class="pub-entry" data-type="article">
+          <p class="pub-meta">2019 · Journal article · police / decision making / risk</p>
+          <p class="pub-cite">Harman, J.L., <b>Zhang, D.C.</b>, &amp; Greening, S.G. (2019). Basic Processes in Dynamic Decision Making: How experimental findings about risk, uncertainty, and emotion can contribute to police decision making. <i>Frontiers in Psychology</i>. <a class="pub-doi" href="https://doi.org/10.3389/fpsyg.2019.02140" target="_blank" rel="noopener noreferrer">doi ↗</a></p>
+        </article>
+        <article class="pub-entry" data-type="other">
+          <p class="pub-meta">2019 · Other · standardized tests / education</p>
+          <p class="pub-cite">Wai, J &amp; <b>Zhang, D.C.</b> (2019). Standardized tests remain the best way to fairly and equitably assess students. <i>Flypaper at Thomas B. Fordham Institute</i>.</p>
+        </article>
+        <!-- 2018 -->
+        <h3 class="pub-year" id="y2018">2018</h3>
+        <article class="pub-entry" data-type="article">
+          <p class="pub-meta">2018 · Journal article · structured interviews / validity / visualization</p>
+          <p class="pub-cite"><b>Zhang, D.C.</b>, Highhouse, S., Brooks, M.E. &amp; Zhang, Y. (2018). Communicating the validity of structured interviews with graphical visual aids. <i>International Journal of Selection and Assessment</i>, 26(2-4), 93-108. <a class="pub-doi" href="https://doi.org/10.1111/ijsa.12222" target="_blank" rel="noopener noreferrer">doi ↗</a></p>
+        </article>
+        <article class="pub-entry" data-type="article">
+          <p class="pub-meta">2018 · Journal article · media communication / leadership</p>
+          <p class="pub-cite"><b>Zhang, D.C.</b> (2018). Art of the sale: recommendations for sharing research with mainstream media and senior leaders. <i>Industrial and Organizational Psychology: Perspectives on Science and Practice</i>, 11(4), 589-593. <a class="pub-doi" href="https://doi.org/10.1017/iop.2018.119" target="_blank" rel="noopener noreferrer">doi ↗</a></p>
+        </article>
+        <article class="pub-entry" data-type="article">
+          <p class="pub-meta">2018 · Journal article · effect size / statistics / web tool</p>
+          <p class="pub-cite"><b>Zhang, D.C.</b> (2018). Understandability of alternative effect size statistics and development of a web-based calculator: Shiny-AESC. <i>Frontiers in Psychology</i>, 9, 1221. <a class="pub-doi" href="https://doi.org/10.3389/fpsyg.2018.01221" target="_blank" rel="noopener noreferrer">doi ↗</a></p>
+        </article>
+        <article class="pub-entry" data-type="chapter">
+          <p class="pub-meta">2018 · Book chapter · decision making / workplace</p>
+          <p class="pub-cite"><b>Zhang, D.C.</b> &amp; Highhouse, S. (2018). Judgment and Decision Making in the Workplace. <i>Handbook of Industrial, Work, and Organizational Psychology 2nd Edition. Sage, CA</i>.</p>
+        </article>
+        <article class="pub-entry" data-type="other">
+          <p class="pub-meta">2018 · Other · validity / visualization</p>
+          <p class="pub-cite">Litano, M., Collmus, A. &amp; <b>Zhang, D.C.</b> (2018). Lost in translation: visually communicating validity evidence. <i>The Industrial and Organizational Psychologist</i>, 55(4).</p>
+        </article>
+        <!-- 2017 -->
+        <h3 class="pub-year" id="y2017">2017</h3>
+        <article class="pub-entry" data-type="article">
+          <p class="pub-meta">2017 · Journal article · DOSPERT / risk factor</p>
+          <p class="pub-cite">Highhouse, S., Nye, C.D., &amp; <b>Zhang, D.C.</b>, Rada, T.B. (2017). Structure of the DOSPERT: Is there evidence for a general risk factor. <i>Journal of Behavioral Decision Making</i>, 30(2), 400-407. <a class="pub-doi" href="https://doi.org/10.1002/bdm.1953" target="_blank" rel="noopener noreferrer">doi ↗</a></p>
+        </article>
+        <!-- 2016 -->
+        <h3 class="pub-year" id="y2016">2016</h3>
+        <article class="pub-entry" data-type="article">
+          <p class="pub-meta">2016 · Journal article · sex differences / cognitive reflection</p>
+          <p class="pub-cite"><b>Zhang, D.C.</b>, Highhouse, S., &amp; Rada, T.B. (2016). Explaining sex differences on the Cognitive Reflection Test. <i>Personality and Individual Differences</i>, 101, 425-427. <a class="pub-doi" href="https://doi.org/10.1016/j.paid.2016.06.034" target="_blank" rel="noopener noreferrer">doi ↗</a></p>
+        </article>
+        <!-- 2015 -->
+        <h3 class="pub-year" id="y2015">2015</h3>
+        <article class="pub-entry" data-type="article">
+          <p class="pub-meta">2015 · Journal article · applied psychology / methodology</p>
+          <p class="pub-cite">Highhouse, S. &amp; <b>Zhang, D.C.</b> (2015). The new fruit fly for applied psychological research. <i>Industrial and Organizational Psychology: Perspectives on Science and Practice</i>, 8(2), 179-183. <a class="pub-doi" href="https://doi.org/10.1017/iop.2015.22" target="_blank" rel="noopener noreferrer">doi ↗</a></p>
+        </article>
+        </section>
+    </main>
+
+    <footer class="colophon">
+        <div class="container colophon-bottom">
+            <span>© 2026 Risk and Decision Making Lab</span>
+            <span class="tag-gold">Est. 2016 — Baton Rouge</span>
         </div>
     </footer>
-    
-    <script src="js/utils.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/publications.js"></script>
+
+    <script src="js/main.js" defer></script>
+    <script src="js/publications.js" defer></script>
 </body>
 </html>
