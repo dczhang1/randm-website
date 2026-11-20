@@ -104,9 +104,12 @@
 }
 
 #mobile-menu {
+  display: none;
   background: var(--paper);
   border-bottom: var(--rule);
 }
+
+#mobile-menu.open { display: block; }
 
 #mobile-menu a {
   display: block;
@@ -308,13 +311,102 @@
 
 .skip-to-content:focus { top: 0; }
 
+/* ---------- Team ---------- */
+.pi-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  border: var(--rule);
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.avatar {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  border: var(--rule-thin);
+}
+
+.avatar--pi { width: 96px; height: 96px; }
+
+.avatar--initials {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+}
+
+.index-row {
+  display: grid;
+  grid-template-columns: 48px 1fr minmax(180px, auto);
+  gap: 18px;
+  align-items: center;
+  border-top: var(--rule-thin);
+  padding: 12px 0;
+}
+
+.index-row b { font-size: 17px; }
+.index-row .mono { text-align: right; }
+
+@media (max-width: 640px) {
+  .index-row { grid-template-columns: 44px 1fr; }
+  .index-row .mono { grid-column: 2; text-align: left; }
+}
+
+.alumni summary {
+  cursor: pointer;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 14px;
+  border: var(--rule-thin);
+  display: inline-block;
+  padding: 10px 16px;
+}
+
+.alumni summary:hover { background: var(--ink); color: var(--paper); }
+
+.alumni-list {
+  list-style: none;
+  max-width: 80ch;
+}
+
+.alumni-list li {
+  border-top: 1px solid var(--hairline);
+  padding: 10px 0;
+  font-size: 15px;
+  color: var(--gray-2);
+}
+
+/* ---------- News log ---------- */
+.log-line {
+  border-top: 1px solid var(--hairline);
+  padding: 14px 0;
+  display: flex;
+  gap: 18px;
+  align-items: baseline;
+}
+
+.log-line b { font-size: 16px; }
+.log-line div { max-width: 75ch; }
+
+@media (max-width: 640px) {
+  .log-line { flex-direction: column; gap: 4px; }
+  .log-line .mono { flex-basis: auto; }
+}
+
 /* ---------- Section component stubs (filled by later tasks) ---------- */
 /* Task 2: index sections */
-.program-cell { border: var(--rule-thin); padding: 20px; }
-.resource-entry { border-top: var(--rule-thin); padding: 20px 0; display: flex; align-items: baseline; gap: 20px; flex-wrap: wrap; }
-.index-row { display: grid; grid-template-columns: 56px 1fr 140px 1fr; gap: 16px; border-top: var(--rule-thin); padding: 14px 0; align-items: baseline; }
+.program-cell { border: var(--rule-thin); padding: 20px; background: var(--paper); }
+.program-cell:hover { border: var(--rule); }
+.resource-entry { border-top: var(--rule-thin); padding: 24px 0; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
 .log-line { border-top: 1px solid var(--hairline); padding: 12px 0; display: flex; gap: 18px; }
-.contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 28px; }
+.contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
 
 /* Task 4/5: scale pages */
 .side-index { position: sticky; top: 96px; font-family: var(--font-mono); font-size: 12px; }
