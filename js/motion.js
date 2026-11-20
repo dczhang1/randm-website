@@ -7,7 +7,7 @@
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   if (!('IntersectionObserver' in window)) return;
 
-  var STAGGER_SEL = '.program-cell, .team-card, .resource-entry, .log-line, .pi-row';
+  var STAGGER_SEL = '.program-cell, .team-card, .resource-entry, .log-line, .pi-row, .pub-entry';
 
   var obs = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
