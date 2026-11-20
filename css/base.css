@@ -1,449 +1,119 @@
-/* base.css - Core variables, resets, and base styles */
+/* base.css — Swiss Brutalist tokens, reset, base type
+ * Spec: docs/superpowers/specs/2026-11-20-swiss-brutalist-redesign-design.md */
 
-/* 
- * RANDM Lab Website 
- * Color palette and typography based on design guide
- */
-
- :root {
-    /* New Design System - Dark Mode Color Palette */
-    --color-bg-primary: #050507; /* Near-black base - darker */
-    --color-bg-secondary: #0f111a; /* Elevated surfaces - slate */
-    --color-bg-tertiary: #1a1d2e; /* Cards and modals */
-    --color-bg-elevated: #1f2333; /* Higher elevation */
-
-    /* Accent Colors - Updated to match example design */
-    --color-accent-primary: #00f0ff; /* Vibrant tech cyan */
-    --color-accent-secondary: #818cf8; /* Bright indigo accent */
-    --color-accent-blue: #00f0ff; /* Cyan accent */
-    --color-accent-cyan: #00f0ff; /* Cyan accent */
-    --color-accent-purple: #818cf8; /* Bright indigo accent */
-    --color-accent-glow: rgba(0, 240, 255, 0.4); /* Cyan glow */
-    --color-accent-glow-purple: rgba(129, 140, 248, 0.4); /* Indigo glow */
-
-    /* Text Colors */
-    --color-text-primary: #f8fafc; /* White headings - brighter */
-    --color-text-secondary: #8a8f98; /* Muted gray body text */
-    --color-text-tertiary: #6b7280; /* Even more muted */
-    --color-text-link: #00f0ff; /* Link color */
-
-    /* Border Colors */
-    --color-border: rgba(138, 143, 152, 0.15);
-    --color-border-hover: rgba(0, 240, 255, 0.3);
-
-    /* Legacy color mapping for compatibility */
-    --color-navy: #0B0C10;
-    --color-brown: #C5C6C7;
-    --color-blue: #45A29E;
-    --color-beige: #1F2833;
-    --color-white: #FAFAFA;
-    --color-off-white: #1F2833;
-    --color-dark-gray: #C5C6C7;
-    --color-black: #000000;
-    --color-light-gray: #1F2833;
-    --color-medium-gray: #8b8d8e;
-
-    /* Transparent versions */
-    --color-navy-70: rgba(11, 12, 16, 0.7);
-    --color-navy-85: rgba(11, 12, 16, 0.85);
-    --color-brown-10: rgba(161, 161, 170, 0.1);
-
-    /* Semantic color variables */
-    --color-primary: var(--color-accent-primary);
-    --color-secondary: var(--color-accent-secondary);
-    --color-accent: var(--color-accent-blue);
-    --color-background: var(--color-bg-primary);
-    --color-background-alt: var(--color-bg-secondary);
-    --color-background-accent: var(--color-bg-tertiary);
-    --color-background-light: var(--color-bg-tertiary);
-    --color-text: var(--color-text-secondary);
-    --color-text-light: var(--color-text-primary);
-    --color-text-muted: var(--color-text-tertiary);
-    --color-success: var(--color-accent-cyan);
-    --color-success-hover: var(--color-accent-blue);
-
-    /* System variables - Enhanced shadows for dark mode */
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.3);
-    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5), 0 4px 6px rgba(0, 0, 0, 0.3);
-    --shadow-glow: 0 0 20px var(--color-accent-glow);
-    --border-radius: 12px;
-    --border-radius-sm: 8px;
-    --border-radius-lg: 16px;
-    --border-radius-pill: 9999px;
-
-    /* Generous spacing for Linear aesthetic */
-    --spacing-xs: 0.5rem;
-    --spacing-sm: 1rem;
-    --spacing-md: 1.5rem;
-    --spacing-lg: 2rem;
-    --spacing-xl: 3rem;
-    --spacing-xxl: 4rem;
-    --spacing-section: 8rem; /* Generous section spacing */
-    --transition-fast: 0.15s ease;
-    --transition-standard: 0.2s ease;
-    --transition-slow: 0.3s ease;
-
-    /* Layout variables */
-    --container-max-width: 1200px;
-    --content-max-width: 900px;
-
-    /* Typography variables - Space Grotesk for headings, Inter for body */
-    --heading-font: 'Space Grotesk', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --body-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --heading-weight: 700;
-    --body-weight: 400;
-    --body-size: 16px;
-    --line-height: 1.7; /* Increased for dark mode readability */
-
-    /* Typography Scale - Larger hero text */
-    --text-xs: 0.75rem;
-    --text-sm: 0.875rem;
-    --text-base: 1rem;
-    --text-lg: 1.125rem;
-    --text-xl: 1.25rem;
-    --text-2xl: 1.5rem;
-    --text-3xl: 1.875rem;
-    --text-4xl: 2.25rem;
-    --text-5xl: 3rem;
-    --text-6xl: 3.75rem;
-    --text-7xl: 4.5rem;
-    --text-8xl: 6rem;
-    --text-9xl: 8rem;
-
-    /* Additional spacing scale */
-    --space-1: 4px;
-    --space-2: 8px;
-    --space-3: 12px;
-    --space-4: 16px;
-    --space-6: 24px;
-    --space-8: 32px;
-    --space-12: 48px;
-    --space-16: 64px;
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url('../fonts/archivo-variable.woff2') format('woff2');
 }
 
-/* Reset and base styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+:root {
+  /* Palette — the only colors on the site */
+  --paper: #F4F3EF;
+  --ink: #0E0E0C;
+  --gold: #F0B323;
+  --gray-2: #6E6D66;
+  --hairline: #D9D7CE;
+
+  /* Type */
+  --font-display: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* Rules */
+  --rule: 3px solid var(--ink);
+  --rule-thin: 1px solid var(--ink);
+
+  /* Spacing */
+  --gutter: 24px;
+  --section-gap: clamp(64px, 10vw, 128px);
 }
 
-html {
-    font-size: 16px;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-/* Typography */
-body {
-    font-family: var(--body-font);
-    color: var(--color-text);
-    line-height: var(--line-height);
-    background-color: var(--color-background);
-    font-size: var(--body-size);
-    font-weight: var(--body-weight);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-/* Ambient gradient background */
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 100vh;
-    background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(102, 252, 241, 0.08), transparent);
-    pointer-events: none;
-    z-index: -1;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-family: var(--heading-font);
-    font-weight: var(--heading-weight);
-    color: var(--color-text-primary);
-    line-height: 1.2;
-    margin-bottom: var(--spacing-md);
-    letter-spacing: -0.02em;
-}
-
-h1 {
-    font-size: 3.5rem;
-    font-weight: 700;
-}
-
-h2 {
-    font-size: 2.5rem;
-    font-weight: 600;
-}
-
-h3 {
-    font-size: 1.5rem;
-}
-
-h4 {
-    font-size: 1.25rem;
-}
-
-h5 {
-    font-size: 1.125rem;
-}
-
-h6 {
-    font-size: 1rem;
-}
-
-p {
-    margin-bottom: var(--spacing-md);
-    line-height: var(--line-height);
-    font-size: var(--body-size);
-}
-
-/* Add a new class for captions/citations */
-.caption, figcaption, .citation {
-    font-size: 14px;
-    color: var(--color-text-tertiary);
-    line-height: var(--line-height);
-}
-
-a {
-    color: var(--color-text-link);
-    text-decoration: none;
-    transition: color var(--transition-standard);
-}
-
-a:hover {
-    color: var(--color-accent-primary);
-}
-
-ul, ol {
-    margin-left: var(--spacing-lg);
-    margin-bottom: var(--spacing-lg);
-}
-
-li {
-    margin-bottom: var(--spacing-xs);
-    line-height: var(--line-height);
-    font-size: var(--body-size);
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-/* Container for main content */
-.container {
-    max-width: var(--container-max-width);
-    margin: 0 auto;
-    padding: 0 var(--spacing-lg);
-}
-
-.content-container {
-    max-width: var(--content-max-width);
-    margin: 0 auto;
-    padding: 0 var(--spacing-lg);
-}
-
-.content-container-narrow {
-    max-width: 800px; 
-    margin: 0 auto;
-    padding: 0 var(--spacing-lg);
-}
-
-/* Text utilities */
-.text-primary {
-    color: var(--color-primary);
-}
-
-.text-secondary {
-    color: var(--color-secondary);
-}
-
-.text-accent {
-    color: var(--color-accent);
-}
-
-.text-light {
-    color: var(--color-text-light);
-}
-
-.text-center {
-    text-align: center;
-}
-
-.text-left {
-    text-align: left;
-}
-
-.text-right {
-    text-align: right;
-}
-
-.text-lg {
-    font-size: 18px;
-}
-
-.text-sm {
-    font-size: 14px;
-}
-
-.font-bold {
-    font-weight: 700;
-}
-
-.font-medium {
-    font-weight: 600;
-}
-
-/* Spacing utilities */
-.mb-xs {
-    margin-bottom: var(--spacing-xs);
-}
-
-.mb-sm {
-    margin-bottom: var(--spacing-sm);
-}
-
-.mb-md {
-    margin-bottom: var(--spacing-md);
-}
-
-.mb-lg {
-    margin-bottom: var(--spacing-lg);
-}
-
-.mb-xl {
-    margin-bottom: var(--spacing-xl);
-}
-
-.mb-xxl {
-    margin-bottom: var(--spacing-xxl);
-}
-
-.mt-xs {
-    margin-top: var(--spacing-xs);
-}
-
-.mt-sm {
-    margin-top: var(--spacing-sm);
-}
-
-.mt-md {
-    margin-top: var(--spacing-md);
-}
-
-.mt-lg {
-    margin-top: var(--spacing-lg);
-}
-
-.mt-xl {
-    margin-top: var(--spacing-xl);
-}
-
-.mt-xxl {
-    margin-top: var(--spacing-xxl);
-}
-
-/* Basic animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-.fade-in {
-    animation: fadeIn 0.5s ease forwards;
-}
-
-/* Transition utilities moved to animations.css to avoid duplication */
-
-/* Hero section */
-.hero__bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--color-bg-primary); /* Fallback */
-    z-index: -1;
-}
-
-.hero__overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(180deg, rgba(10, 10, 11, 0.85), rgba(10, 10, 11, 0.7));
-    z-index: -1;
-}
-
-/* Hero animations - only for home page */
-.home-page .hero__title,
-.home-page .hero__subtitle,
-.home-page .hero .btn {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-}
-
-.home-page .hero__title.animate-in,
-.home-page .hero__subtitle.animate-in,
-.home-page .hero .btn.animate-in {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Specific animation variations */
-.home-page .hero__title {
-  transform: translateY(-20px);
-}
-
-.home-page .hero .btn {
-  transition-delay: 0.2s;
-}
-
-/* Custom Scrollbar Styling */
-::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--color-bg-primary);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--color-accent-primary);
-  border-radius: 6px;
-  border: 2px solid var(--color-bg-primary);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-accent-secondary);
-}
-
-/* Firefox scrollbar */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-accent-primary) var(--color-bg-primary);
-}
-
-/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* Media query variables - Just a reference, actual media queries in components */
-/*
---mobile: 576px
---tablet: 768px
---desktop: 992px
---large-desktop: 1200px
-*/
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
 
-/* Duplicate transition utilities removed; see animations.css */
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Selection: gold block, ink text */
+::selection {
+  background: var(--gold);
+  color: var(--ink);
+}
+
+/* Focus: 3px ink ring, offset 2px */
+:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 2px;
+}
+
+/* Type scale */
+h1, h2, h3, h4 {
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.hero-title {
+  font-size: clamp(56px, 12vw, 140px);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.94;
+  text-transform: uppercase;
+}
+
+.section-title {
+  font-size: clamp(32px, 5vw, 56px);
+  text-transform: uppercase;
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+a {
+  color: var(--ink);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+p {
+  max-width: 68ch;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+  filter: grayscale(1) contrast(1.05);
+}
+
+@media print {
+  .no-print { display: none !important; }
+  body { background: #fff; color: #000; }
+}

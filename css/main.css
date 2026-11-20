@@ -1,63 +1,8 @@
-/* main.css - Main stylesheet that imports all other CSS files */
+/* main.css — single CSS entry point
+ * Swiss Brutalist system: base → layout → swiss → components/hamburger
+ * Page-specific sheets are added back per task and pruned in cleanup. */
 
-/* Imports in canonical order */
 @import url('base.css');
 @import url('layout.css');
-@import url('animations.css');
-@import url('components.css');
+@import url('swiss.css');
 @import url('components/hamburger.css');
-@import url('tabs.css');
-@import url('research.css');
-@import url('team.css');
-@import url('news.css');
-@import url('get-involved.css');
-@import url('detailed-content.css');
-@import url('casprt.css');
-@import url('publications-page.css');
-
-/* Accessibility focus styles */
-:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
-}
-
-/* Skip to content link */
-.skip-to-content {
-  position: absolute;
-  top: -40px;
-  left: 0;
-  padding: 8px 12px;
-  background-color: var(--color-primary);
-  color: var(--color-text-light);
-  z-index: 1000;
-  transition: top 0.3s;
-}
-
-.skip-to-content:focus {
-  top: 0;
-}
-
-/* Utility helpers retained */
-.hide-mobile { display: none; }
-.hide-desktop { display: block; }
-.fixed { position: fixed; }
-.inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
-.z-50 { z-index: 50; }
-.bg-black { background-color: #000; }
-.bg-opacity-50 { --bg-opacity: 0.5; background-color: rgba(0, 0, 0, var(--bg-opacity)); }
-.hidden { display: none; }
-.overflow-hidden { overflow: hidden; }
-.hardware-accelerate { transform: translateZ(0); backface-visibility: hidden; perspective: 1000px; }
-
-@media (min-width: 768px) {
-  .hide-mobile { display: block; }
-  .hide-desktop { display: none; }
-}
-
-/* Print styles */
-@media print {
-  .no-print { display: none !important; }
-  body { background-color: white; color: black; font-size: 12pt; }
-  a { color: black; text-decoration: underline; }
-  .container { max-width: 100%; margin: 0; padding: 0; }
-}
