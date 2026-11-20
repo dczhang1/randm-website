@@ -40,6 +40,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* anchors clear the sticky masthead (~65px + rule) */
+  scroll-padding-top: 84px;
 }
 
 @media (prefers-reduced-motion: reduce) {

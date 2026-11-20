@@ -6,7 +6,7 @@
     <meta name="description" content="The Calculated and Spontaneous Risk-Taking Scale (CASPRT) — a dual-process measure of risk-taking preferences, with a free interactive self-assessment.">
     <title>CASPRT — Calculated &amp; Spontaneous Risk-Taking Scale — RANDM Lab</title>
     <link rel="stylesheet" href="css/main.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js" defer></script>
 </head>
 <body data-page="detailed-content">
     <a href="#main-content" class="skip-to-content">Skip to content</a>
@@ -62,6 +62,7 @@
                     <h3 class="stats-box__title">The Problem with Previous Research</h3>
                     <p>Most research on risk-taking has treated it as a single trait - you're either a "risk-taker" or you're not. Scientists have also typically studied risk-taking in specific areas (like financial decisions or health choices) rather than looking at general patterns. This approach has led to confusing findings: sometimes risk-taking seems good (linked to creativity and entrepreneurship), other times it seems bad (linked to accidents and poor decisions).</p>
                     <p>This has created what researchers call the "double-edged" nature of risk-taking. Previous studies found that risk-takers were more likely to engage in both positive behaviors (like starting businesses and being creative at work) and negative ones (like criminal activity and dangerous driving). This left an important question unanswered: are all risk-takers the same, or are there different types who behave in fundamentally different ways?</p>
+</div>
                 </section>
 
                 <section id="s2" class="rule-section scale-section">
@@ -102,7 +103,6 @@
                     <h3 class="stats-box__title">Why This Matters</h3>
                     <p>This research suggests that not all risk-taking is created equal. The key isn't whether you take risks, but how you take them. For parents, educators, and managers, this means that rather than trying to eliminate risk-taking entirely, the goal should be helping people develop more calculated approaches to risk. For individuals, understanding your own risk-taking style can help you make better decisions about everything from career moves to investment choices.</p>
                     <p>Our findings also help resolve the puzzle of why previous research found risk-taking to be both beneficial and harmful - it depends entirely on which type of risk-taking we're measuring.</p>
-                </div>
                 <div class="highlight-box">
                     <span class="highlight-icon" aria-hidden="true"></span>
                     <span>
@@ -301,8 +301,8 @@
                     <p style="max-width: 70ch;">Complete this 12-item assessment to discover your risk-taking style. Rate each statement on how well it describes you. Responses stay in your browser — nothing is sent anywhere.</p>
 
                     <div class="assessment-form">
-                        <div class="assess-progress" role="progressbar" aria-label="Assessment progress"><div class="assess-progress-fill" id="progressFill"></div></div>
-                        <div id="questionContainer"></div>
+                        <div class="assess-progress" role="progressbar" aria-label="Assessment progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"><div class="assess-progress-fill" id="progressFill"></div></div>
+                        <div id="questionContainer" aria-live="polite"></div>
                         <button class="btn btn--gold assess-submit" onclick="calculateResults()" id="submitBtn" style="display: none;">Calculate my results</button>
                     </div>
 
@@ -333,35 +333,35 @@
                     <h2>Materials &amp; citation</h2>
 <div class="resource-grid">
                     <div class="resource-card">
-                        <h3> Administration Documentation</h3>
+                        <h3>Administration Documentation</h3>
                         <p>CASPRT Scale Administration Manual with instructions and scoring guidelines</p>
-                        <a href="assets/docs/casprt-manual.pdf" class="download-btn">Download PDF</a>
+                        <a href="assets/docs/casprt-manual.pdf" class="btn btn--gold">Download PDF</a>
                     </div>
                     <div class="resource-card">
-                        <h3> Data & Materials</h3>
+                        <h3>Data & Materials</h3>
                         <p>OSF repository with all study data, materials, and analysis code</p>
-                        <a href="https://osf.io/ade8q/?view_only=ba91e4d8ebd046b8a7a12756c082af00" class="download-btn" target="_blank">View OSF</a>
+                        <a href="https://osf.io/ade8q/?view_only=ba91e4d8ebd046b8a7a12756c082af00" class="btn btn--gold" target="_blank">View OSF</a>
                     </div>
                     <div class="resource-card">
-                        <h3> Citation Formats</h3>
+                        <h3>Citation Formats</h3>
                         <p>APA, MLA, and other citation formats for the CASPRT</p>
-                        <a href="#" class="download-btn">View Citations</a>
+                        <a href="#s6-cite" class="btn btn--gold">View Citations</a>
                     </div>
                     <div class="resource-card">
-                        <h3> Contact Authors</h3>
+                        <h3>Contact Authors</h3>
                         <p>Questions about the scale or collaboration opportunities</p>
-                        <a href="mailto:zhang1@lsu.edu" class="download-btn">Contact</a>
+                        <a href="mailto:zhang1@lsu.edu" class="btn btn--gold">Contact</a>
                     </div>
                     <!-- New Manuscript Box -->
                     <div class="resource-card">
-                        <h3> Read Manuscript</h3>
+                        <h3>Read Manuscript</h3>
                         <p>Access the full manuscript of our research on the CASPRT scale.</p>
-                        <a href="assets/docs/Zhang2025_JBDM.pdf" class="download-btn" target="_blank">Download PDF</a>
+                        <a href="assets/docs/Zhang2025_JBDM.pdf" class="btn btn--gold" target="_blank">Download PDF</a>
                     </div>
                 </div>
                 <h3>How to Cite</h3>
                 <div class="stats-box">
-                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; font-family: monospace; line-height: 1.8;">
+                    <div class="cell cite-block" id="s6-cite">
                         <strong>APA:</strong><br>
                         Zhang, D. C., & Smith, R. W. (in press). Development and validation of the Calculated and Spontaneous Risk-Taking Scale (CASPRT). <em>Journal of Behavioral Decision Making</em>.<br><br>
                         <strong>Scale Items:</strong><br>
@@ -416,6 +416,13 @@
 
         // Initialize assessment
         function initializeAssessment() {
+            // Tear down any previous run: charts, results panel
+            window._assessCharts = window._assessCharts || {};
+            Object.values(window._assessCharts).forEach(function (c) { try { c.destroy(); } catch (e) {} });
+            window._assessCharts = {};
+            const prevResults = document.getElementById('resultsContainer');
+            if (prevResults) prevResults.style.display = 'none';
+
             currentQuestion = 0;
             responses = {};
             // Shuffle questions for each new assessment
@@ -431,58 +438,48 @@
             if (currentQuestion < questions.length) {
                 const question = questions[currentQuestion];
                 const progress = ((currentQuestion + 1) / questions.length) * 100;
-                
+
                 progressFill.style.width = `${progress}%`;
-                
+                progressFill.parentElement.setAttribute('aria-valuenow', String(Math.round(progress)));
+
+                const labels = ['Strongly<br>Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly<br>Agree'];
+                const options = labels.map((label, i) => `
+                            <label class="likert-option">
+                                <input type="radio" name="q${currentQuestion}" value="${i + 1}" onchange="selectResponse(${i + 1}, this)">
+                                <span class="likert-label">${label}</span>
+                            </label>`).join('');
+
                 container.innerHTML = `
                     <div class="question-item">
                         <h4>Question ${currentQuestion + 1} of ${questions.length}</h4>
                         <p><strong>"${question.text}"</strong></p>
-                        <div class="likert-scale">
-                            <div class="likert-option" onclick="selectResponse(1)">
-                                <input type="radio" name="q${currentQuestion}" value="1">
-                                <div class="likert-label">Strongly<br>Disagree</div>
-                            </div>
-                            <div class="likert-option" onclick="selectResponse(2)">
-                                <input type="radio" name="q${currentQuestion}" value="2">
-                                <div class="likert-label">Disagree</div>
-                            </div>
-                            <div class="likert-option" onclick="selectResponse(3)">
-                                <input type="radio" name="q${currentQuestion}" value="3">
-                                <div class="likert-label">Neutral</div>
-                            </div>
-                            <div class="likert-option" onclick="selectResponse(4)">
-                                <input type="radio" name="q${currentQuestion}" value="4">
-                                <div class="likert-label">Agree</div>
-                            </div>
-                            <div class="likert-option" onclick="selectResponse(5)">
-                                <input type="radio" name="q${currentQuestion}" value="5">
-                                <div class="likert-label">Strongly<br>Agree</div>
-                            </div>
+                        <div class="likert-scale" role="radiogroup" aria-label="Rating for: ${question.text.replace(/"/g, '&quot;')}">
+                            ${options}
                         </div>
                     </div>
                 `;
-                
+
                 submitBtn.style.display = 'none';
             } else {
                 container.innerHTML = '<div class="question-item"><h4>Assessment Complete!</h4><p>Click the button below to see your results.</p></div>';
                 progressFill.style.width = '100%';
+                progressFill.parentElement.setAttribute('aria-valuenow', '100');
                 submitBtn.style.display = 'block';
             }
         }
 
-        function selectResponse(value) {
+        function selectResponse(value, el) {
             responses[currentQuestion] = {
                 value: value,
                 scale: questions[currentQuestion].scale
             };
-            
-            // Visual feedback
+
+            // Visual feedback (keyboard and mouse both land here via radio change)
             document.querySelectorAll('.likert-option').forEach(option => {
-                option.style.background = '';
+                option.classList.remove('selected');
             });
-            event.currentTarget.style.background = '#e9ecef';
-            
+            el.closest('.likert-option').classList.add('selected');
+
             // Auto-advance after short delay
             setTimeout(() => {
                 currentQuestion++;
@@ -574,7 +571,7 @@
 
         function createProfileChart(calcScore, spontScore) {
             const ctx = document.getElementById('profileChart').getContext('2d');
-            new Chart(ctx, {
+            window._assessCharts.profile = new Chart(ctx, {
                 type: 'radar',
                 data: {
                     labels: ['Calculated', 'Spontaneous'],
@@ -606,7 +603,7 @@
 
         function createDemographicChart(calcScore, spontScore, calcPercentile, spontPercentile) {
             const ctx = document.getElementById('demographicChart').getContext('2d');
-            new Chart(ctx, {
+            window._assessCharts.demographic = new Chart(ctx, {
                 type: 'bar',
                 data: {
                     labels: ['Calculated', 'Spontaneous'],
