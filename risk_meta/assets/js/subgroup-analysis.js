@@ -85,7 +85,6 @@ document.addEventListener('DOMContentLoaded', function () {
     function renderInitialMessage() {
         resultsContainer.innerHTML = `
             <div class="subgroup-no-results">
-                <p><i class="fas fa-info-circle" style="font-size: 2rem; color: var(--accent-cyan); margin-bottom: 1rem;"></i></p>
                 <p>Select an outcome from the dropdown above to view all subgroup analyses.</p>
                 <p style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--text-muted);">Subgroup analyses examine how effect sizes vary across methodological and substantive moderators.</p>
             </div>

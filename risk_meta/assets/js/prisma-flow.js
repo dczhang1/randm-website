@@ -64,5 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initial state
     setActiveSlide(0);
-    startAutoPlay();
+    // Respect reduced motion: no autoplay, dots still work
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduceMotion) startAutoPlay();
 });

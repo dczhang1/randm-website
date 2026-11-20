@@ -59,7 +59,7 @@
     function renderRows(data) {
         if (!tbody) return;
         tbody.innerHTML = data.map(function (d) {
-            var ref = (d.reference || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            var ref = ((d.reference || '')).replace(/<U\+00A0>/g, ' ').replace(/</g, '&lt;').replace(/>/g, '&gt;');
             var year = d.year || '—';
             var outcome = d.outcome || '—';
             var n = d.n || '—';
@@ -119,7 +119,7 @@
                 if (filterEl) filterEl.addEventListener('change', applyFilter);
             })
             .catch(function (e) {
-                tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:#e74c3c;padding:2rem;">Failed to load studies. Check console.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--ink);font-weight:700;padding:2rem;">Failed to load studies. Check console.</td></tr>';
                 console.error('data-table:', e);
             });
     }

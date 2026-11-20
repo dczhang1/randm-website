@@ -43,7 +43,7 @@
     const MAX_R2 = 0.5;
 
     function animateCounters() {
-        var cards = document.querySelectorAll('.stat-card .stat-number[data-count]');
+        var cards = document.querySelectorAll('.stat-number[data-count]');
         var observer = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
                 if (!entry.isIntersecting) return;
@@ -119,19 +119,17 @@
             SAFCOMPLY: '<div style="margin-top:0.75rem;padding-top:0.75rem;border-top:1px solid var(--border);"><strong>Safety Incidents:</strong> ρ = 0.18 [0.06, 0.30]<br><span style="font-size:0.85rem;color:var(--text-muted);">k = 8, N = 18,912</span></div>',
             TRNINT: '<div style="margin-top:0.75rem;padding-top:0.75rem;border-top:1px solid var(--border);"><strong>Turnover Behavior:</strong> ρ = 0.05 [−0.14, 0.23]<br><span style="font-size:0.85rem;color:var(--text-muted);">k = 4, N = 1,563</span></div>'
         };
-        const icons = { CREATIVEP: 'fa-lightbulb', SAFCOMPLY: 'fa-hard-hat', SAFINCID: 'fa-exclamation-triangle', CWB: 'fa-ban', TASK: 'fa-tasks', OCB: 'fa-hand-holding-heart', TRNINT: 'fa-door-open', TRNBEH: 'fa-door-open', POSDEV: 'fa-star' };
         const order = ['CREATIVEP', 'SAFCOMPLY', 'CWB', 'TASK', 'OCB', 'TRNINT'];
         const rest = metaData.filter(function (d) { return order.indexOf(d.outcome) === -1; });
         const list = order.map(function (o) { return metaData.find(function (d) { return d.outcome === o; }); }).filter(Boolean).concat(rest);
 
         container.innerHTML = list.map(function (d) {
             const cls = 'finding-card card ' + (d.type || 'neutral');
-            const icon = icons[d.outcome] || 'fa-chart-line';
             const ci = '[' + d.ci_lower.toFixed(2) + ', ' + d.ci_upper.toFixed(2) + ']';
             const extra = extras[d.outcome] || '';
             return (
                 '<div class="' + cls + '">' +
-                '<h4><i class="fas ' + icon + '"></i> ' + d.name + '</h4>' +
+                '<h4>' + d.name + '</h4>' +
                 '<div class="finding-stat">ρ = ' + (d.rho >= 0 ? '' : '−') + Math.abs(d.rho).toFixed(2) + '</div>' +
                 '<div class="finding-meta">95% CI ' + ci + ' · k = ' + d.k + ', N = ' + d.N.toLocaleString() + '</div>' +
                 '<p>' + (desc[d.outcome] || '') + '</p>' +
