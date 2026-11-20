@@ -138,7 +138,21 @@
 
 /* ---------- Hero ---------- */
 .hero {
+  position: relative;
   padding: clamp(48px, 8vw, 110px) 0 0;
+}
+
+/* Googie orbit motif (index hero; other pages may reuse) */
+.orbit-motif {
+  position: absolute;
+  right: 0;
+  top: clamp(56px, 9vw, 130px);
+  width: 190px;
+  height: auto;
+}
+
+@media (max-width: 880px) {
+  .orbit-motif { display: none; }
 }
 
 .hero .hollow {
