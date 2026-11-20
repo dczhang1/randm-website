@@ -7,7 +7,8 @@
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   if (!('IntersectionObserver' in window)) return;
 
-  var STAGGER_SEL = '.program-cell, .team-card, .resource-entry, .log-line, .pi-row, .pub-entry';
+  var STAGGER_SEL = '.program-cell, .team-card, .resource-entry, .log-line, .pi-row, .pub-entry, ' +
+                    '.m-stat, .finding-card, .practitioner-card, .measure-card, .content-card, .llm-outcome-panel';
 
   var obs = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
@@ -19,6 +20,9 @@
   }, { threshold: 0.12, rootMargin: '0px 0px -36px' });
 
   function tag(el, delay) {
+    /* never tag elements inside display:none subtrees (e.g. inactive tab
+       panels) — they would stay invisible when the tab is opened */
+    if (!el.offsetParent) return;
     el.classList.add('reveal');
     el.style.transitionDelay = delay + 'ms';
     obs.observe(el);
