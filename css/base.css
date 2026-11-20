@@ -85,7 +85,7 @@ h1, h2, h3, h4 {
 }
 
 .hero-title {
-  font-size: clamp(56px, 12vw, 140px);
+  font-size: clamp(48px, 10.2vw, 119px);
   font-weight: 900;
   letter-spacing: -0.04em;
   line-height: 0.94;

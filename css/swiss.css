@@ -397,13 +397,15 @@
 }
 
 .avatar {
-  width: 44px;
-  height: 44px;
+  width: 88px;
+  height: 88px;
   object-fit: cover;
   border: var(--rule-thin);
+  /* profile pictures stay in color — overrides the global grayscale img rule */
+  filter: none;
 }
 
-.avatar--pi { width: 96px; height: 96px; }
+.avatar--pi { width: 120px; height: 120px; }
 
 .avatar--initials {
   display: inline-flex;
@@ -412,9 +414,26 @@
   background: var(--ink);
   color: var(--paper);
   font-family: var(--font-mono);
-  font-size: 13px;
+  font-size: 20px;
   letter-spacing: 0.08em;
 }
+
+/* Googie: members as a card grid */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.team-card {
+  border: 2px solid var(--ink);
+  background: var(--card);
+  padding: 16px;
+}
+
+.team-card b { display: block; margin-top: 12px; font-size: 15px; }
+.team-card .mono { display: block; margin-top: 4px; }
 
 .index-row {
   display: grid;
