@@ -1,7 +1,7 @@
 /* swiss.css — shared chrome and components
  * Class vocabulary contract (consumed by all pages):
  * .masthead .masthead-title .masthead-meta .mobile-toggle #mobile-menu
- * .colophon .tag-gold .stamp .crumb .link-underline
+ * .colophon .tag-accent .stamp .crumb .link-underline
  * .hero .hero-title .hollow
  * Section components filled in by later tasks:
  * .program-cell .resource-entry .index-row .pi-row .avatar
@@ -154,9 +154,9 @@
 }
 
 /* ---------- Shared components ---------- */
-.tag-gold {
+.tag-accent {
   display: inline-block;
-  background: var(--gold);
+  background: var(--accent);
   color: var(--ink);
   font-family: var(--font-mono);
   font-size: 11px;
@@ -216,7 +216,7 @@
 
 .link-arrow:hover,
 .link-arrow:focus-visible {
-  background: var(--gold);
+  background: var(--accent);
 }
 
 /* ---------- Colophon footer ---------- */
@@ -286,14 +286,14 @@
   color: var(--paper);
 }
 
-.btn--gold {
-  background: var(--gold);
+.btn--accent {
+  background: var(--accent);
 }
 
-.btn--gold:hover,
-.btn--gold:focus-visible {
+.btn--accent:hover,
+.btn--accent:focus-visible {
   background: var(--ink);
-  color: var(--gold);
+  color: var(--accent);
 }
 
 /* ---------- Skip link ---------- */
@@ -462,7 +462,7 @@
 
 /* Task 5: assessment */
 .assess-progress { border: var(--rule-thin); height: 14px; margin: 20px 0; }
-.assess-progress-fill { height: 100%; background: var(--gold); width: 0; }
+.assess-progress-fill { height: 100%; background: var(--accent); width: 0; }
 .question-item h4 { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-2); font-weight: 400; }
 .question-item p { font-size: 19px; font-weight: 600; margin: 8px 0 16px; }
 .likert-scale { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; max-width: 720px; }
@@ -482,7 +482,7 @@
 .coming-soon { border: var(--rule-thin); padding: 18px; margin-top: 24px; }
 .coming-soon p { color: var(--gray-2); font-size: 15px; }
 /* old tab content aliases */
-.highlight-box { border: var(--rule); background: var(--gold); padding: 18px 20px; font-size: 17px; margin: 32px 0 0; max-width: 70ch; }
+.highlight-box { border: var(--rule); background: var(--accent); padding: 18px 20px; font-size: 17px; margin: 32px 0 0; max-width: 70ch; }
 .note { font-family: var(--font-mono); font-size: 11.5px; color: var(--gray-2); line-height: 1.7; max-width: 90ch; margin-top: 12px; }
 .cite-block { font-family: var(--font-mono); font-size: 12.5px; line-height: 1.9; }
 .cite-section .cell-title { margin-bottom: 12px; }

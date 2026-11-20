@@ -1,29 +1,34 @@
-/* base.css — Swiss Brutalist tokens, reset, base type
- * Spec: docs/superpowers/specs/2026-11-20-swiss-brutalist-redesign-design.md */
+/* base.css — Space-Age Googie (retrofuturist) tokens, reset, base type
+ * Spec: docs/superpowers/specs/2026-11-20-retrofuturism-googie-redesign-design.md */
 
 @font-face {
-  font-family: 'Archivo';
+  font-family: 'Jost';
   font-style: normal;
-  font-weight: 400 900;
+  font-weight: 100 900;
   font-display: swap;
-  src: url('../fonts/archivo-variable.woff2') format('woff2');
+  src: url('../fonts/jost-variable.woff2') format('woff2');
 }
 
 :root {
   /* Palette — the only colors on the site */
-  --paper: #F4F3EF;
-  --ink: #0E0E0C;
-  --gold: #F0B323;
-  --gray-2: #6E6D66;
-  --hairline: #D9D7CE;
+  --paper: #F6F1E5;
+  --ink: #1C1A14;
+  --accent: #E8541E;
+  --accent-2: #17797F;
+  --card: #FFFFFF;
+  --gray-2: #55524A;
+  --hairline: #DAD3C2;
 
   /* Type */
-  --font-display: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-display: 'Jost', Futura, 'Century Gothic', 'Trebuchet MS', sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
   /* Rules */
-  --rule: 3px solid var(--ink);
+  --rule: 2px solid var(--ink);
   --rule-thin: 1px solid var(--ink);
+
+  /* Shape */
+  --radius-pill: 999px;
 
   /* Spacing */
   --gutter: 24px;
@@ -59,9 +64,9 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Selection: gold block, ink text */
+/* Selection: accent block, ink text */
 ::selection {
-  background: var(--gold);
+  background: var(--accent);
   color: var(--ink);
 }
 
