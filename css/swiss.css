@@ -583,6 +583,6 @@
 .pub-entry .pub-cite i { font-style: italic; }
 .pub-doi { font-family: var(--font-mono); font-size: 12px; white-space: nowrap; }
 .pub-filters { margin-bottom: 8px; }
-.pub-filters button.filter-link { background: transparent; font-family: var(--font-display); cursor: pointer; }
+.pub-filters button.filter-link { font-family: var(--font-display); cursor: pointer; }
 .filter-link { font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; text-decoration: none; border: 2px solid var(--ink); border-radius: var(--radius-pill); padding: 6px 14px; display: inline-block; margin: 0 8px 8px 0; }
 .filter-link:hover, .filter-link.active { background: var(--ink); color: var(--paper); }
