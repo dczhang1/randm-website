@@ -139,7 +139,7 @@
 /* ---------- Hero ---------- */
 .hero {
   position: relative;
-  padding: clamp(48px, 8vw, 110px) 0 0;
+  padding: clamp(48px, 8vw, 110px) 0 clamp(44px, 6vw, 80px);
 }
 
 /* Galton board — individual differences figure (index hero) */
@@ -166,6 +166,10 @@
 
 @media (max-width: 880px) {
   .hero-figure, .hero-figcap { display: none; }
+}
+
+@media (min-width: 881px) {
+  .hero-title { max-width: 900px; }
 }
 
 /* ---------- Motion (only when motion is welcome) ---------- */
