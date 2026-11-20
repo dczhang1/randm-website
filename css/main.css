@@ -1,8 +1,6 @@
 /* main.css — single CSS entry point
- * Swiss Brutalist system: base → layout → swiss → components/hamburger
- * Page-specific sheets are added back per task and pruned in cleanup. */
+ * Swiss Brutalist system: base → layout → swiss */
 
 @import url('base.css');
 @import url('layout.css');
 @import url('swiss.css');
-@import url('components/hamburger.css');

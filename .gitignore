@@ -1,0 +1,12 @@
+# Dependencies
+node_modules/
+
+# OS noise
+.DS_Store
+
+# Agent scratch (session screenshots, plan ledgers)
+.openchamber/
+.superpowers/
+
+# Vercel CLI
+.vercel/
