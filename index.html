@@ -37,13 +37,8 @@
 
         <!-- HERO -->
         <section class="hero container">
-            <svg class="orbit-motif" viewBox="0 0 200 120" fill="none" aria-hidden="true">
-                <ellipse cx="100" cy="60" rx="92" ry="34" stroke="#17797F" stroke-width="1.5"/>
-                <ellipse cx="100" cy="60" rx="70" ry="50" stroke="#E8541E" stroke-width="1.5" transform="rotate(-18 100 60)"/>
-                <circle cx="100" cy="60" r="13" fill="#1C1A14"/>
-                <circle cx="188" cy="52" r="5" fill="#E8541E"/>
-                <circle cx="42" cy="22" r="4" fill="#17797F"/>
-            </svg>
+            <canvas class="hero-figure" id="heroFigure" width="340" height="300" role="img" aria-label="Animated Galton board: dots falling through pegs and stacking into a bell curve — the distribution of individual differences"></canvas>
+            <p class="hero-figcap">fig. 1 — individual differences, arriving one observation at a time</p>
             <p class="crumb">The Risk &amp; Decision Making Laboratory — Louisiana State University</p>
             <h1 class="hero-title">Risk &amp;<br><span class="hollow">Decision</span></h1>
             <p class="mission">The science of how people make decisions at work — studied rigorously, shared openly.</p>
@@ -320,5 +315,7 @@
     </footer>
 
     <script src="js/main.js" defer></script>
+    <script src="js/motion.js" defer></script>
+    <script src="js/hero-figure.js" defer></script>
 </body>
 </html>

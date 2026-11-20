@@ -142,17 +142,93 @@
   padding: clamp(48px, 8vw, 110px) 0 0;
 }
 
-/* Googie orbit motif (index hero; other pages may reuse) */
-.orbit-motif {
+/* Galton board — individual differences figure (index hero) */
+.hero-figure {
   position: absolute;
   right: 0;
-  top: clamp(56px, 9vw, 130px);
-  width: 190px;
+  top: clamp(48px, 7vw, 104px);
+  width: 340px;
   height: auto;
 }
 
+.hero-figcap {
+  position: absolute;
+  right: 0;
+  top: calc(clamp(48px, 7vw, 104px) + 300px);
+  width: 340px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-2);
+  line-height: 1.5;
+}
+
 @media (max-width: 880px) {
-  .orbit-motif { display: none; }
+  .hero-figure, .hero-figcap { display: none; }
+}
+
+/* ---------- Motion (only when motion is welcome) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  /* scroll reveals — tags added at runtime by motion.js (no-JS = visible) */
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* hero entrance cascade */
+  .hero > * {
+    animation: heroIn 0.55s ease-out backwards;
+  }
+  .hero > *:nth-child(1) { animation-delay: 0s; }
+  .hero > *:nth-child(2) { animation-delay: 0.06s; }
+  .hero > *:nth-child(3) { animation-delay: 0.12s; }
+  .hero > *:nth-child(4) { animation-delay: 0.18s; }
+  .hero > *:nth-child(5) { animation-delay: 0.26s; }
+  .hero > *:nth-child(6) { animation-delay: 0.34s; }
+  .hero > *:nth-child(7) { animation-delay: 0.42s; }
+
+  @keyframes heroIn {
+    from { opacity: 0; transform: translateY(14px); }
+  }
+
+  /* brand starburst — slow ambient rotation */
+  .masthead-title svg {
+    animation: gspin 16s linear infinite;
+  }
+  @keyframes gspin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* hover micro-interactions */
+  .btn,
+  .link-arrow,
+  .filter-link,
+  .program-cell,
+  .team-card {
+    transition: transform 0.18s ease-out, background-color 0.18s ease-out,
+                color 0.18s ease-out, border-color 0.18s ease-out;
+  }
+  .btn:hover,
+  .link-arrow:hover,
+  .filter-link:hover,
+  .program-cell:hover,
+  .team-card:hover {
+    transform: translateY(-2px);
+  }
+  .btn:active,
+  .link-arrow:active {
+    transform: translateY(0);
+  }
+  .program-cell:hover,
+  .team-card:hover {
+    border-color: var(--accent);
+  }
 }
 
 .hero .hollow {
