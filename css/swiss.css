@@ -21,7 +21,7 @@
   font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--ink);
+  color: var(--accent);
   display: block;
   margin-bottom: 10px;
 }
@@ -70,7 +70,7 @@
 
 .masthead-nav {
   display: flex;
-  gap: 22px;
+  gap: 14px;
 }
 
 .masthead-nav a {
@@ -80,7 +80,13 @@
   text-transform: uppercase;
   text-decoration: none;
   padding: 2px 0;
-  border-bottom: 2px solid transparent;
+}
+
+/* Googie: dot separators between nav items */
+.masthead-nav a + a::before {
+  content: ' · ';
+  color: var(--accent);
+  font-weight: 900;
 }
 
 .masthead-nav a:hover,
@@ -136,8 +142,7 @@
 }
 
 .hero .hollow {
-  color: transparent;
-  -webkit-text-stroke: 2px var(--ink);
+  color: var(--accent);
 }
 
 .hero .mission {
@@ -156,24 +161,27 @@
 /* ---------- Shared components ---------- */
 .tag-accent {
   display: inline-block;
-  background: var(--accent);
-  color: var(--ink);
+  background: transparent;
+  border: 1.5px dashed var(--accent-2);
+  border-radius: var(--radius-pill);
+  color: var(--accent-2);
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  padding: 6px 10px;
+  padding: 6px 14px;
 }
 
 .stamp {
   display: inline-block;
-  border: 2px solid var(--ink);
+  border: 1.5px dashed var(--gray-2);
+  border-radius: var(--radius-pill);
+  color: var(--gray-2);
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  padding: 4px 8px;
-  transform: rotate(-2deg);
+  padding: 5px 12px;
 }
 
 .crumb {
@@ -201,22 +209,38 @@
   text-decoration: none;
 }
 
-/* Arrow link (resources, CTAs) */
+/* Pill link (hero CTAs, section links) */
 .link-arrow {
-  font-weight: 800;
+  display: inline-block;
+  background: var(--accent);
+  color: var(--paper);
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-size: 13px;
+  letter-spacing: 0.08em;
+  font-size: 12.5px;
   text-decoration: none;
-  border-bottom: 2px solid var(--ink);
-  padding-bottom: 2px;
+  border-radius: var(--radius-pill);
+  padding: 10px 20px;
 }
-
-.link-arrow::after { content: ' →'; }
 
 .link-arrow:hover,
 .link-arrow:focus-visible {
-  background: var(--accent);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* Ghost (teal ring) pill */
+.link-arrow--ghost {
+  background: transparent;
+  border: 2px solid var(--accent-2);
+  color: var(--accent-2);
+}
+
+.link-arrow--ghost:hover,
+.link-arrow--ghost:focus-visible {
+  background: var(--accent-2);
+  border-color: var(--accent-2);
+  color: var(--paper);
 }
 
 /* ---------- Colophon footer ---------- */
@@ -264,36 +288,73 @@
   color: var(--gray-2);
 }
 
+/* Googie: pill links in the footer */
+.colophon .mono-lines a,
+.colophon-bottom a {
+  display: inline-block;
+  border: 1.5px solid var(--hairline);
+  border-radius: var(--radius-pill);
+  padding: 3px 12px;
+  margin: 2px 0;
+  text-decoration: none;
+}
+
+.colophon .mono-lines a:hover,
+.colophon .mono-lines a:focus-visible,
+.colophon-bottom a:hover,
+.colophon-bottom a:focus-visible {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
 /* ---------- Buttons ---------- */
 .btn {
   display: inline-block;
-  border: var(--rule);
-  background: transparent;
-  color: var(--ink);
+  border: 2px solid var(--accent);
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  color: var(--paper);
   font-family: var(--font-display);
-  font-weight: 800;
+  font-weight: 700;
   font-size: 13px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   text-decoration: none;
-  padding: 12px 22px;
+  padding: 11px 22px;
   cursor: pointer;
 }
 
 .btn:hover,
 .btn:focus-visible {
   background: var(--ink);
+  border-color: var(--ink);
   color: var(--paper);
 }
 
 .btn--accent {
   background: var(--accent);
+  border-color: var(--accent);
 }
 
 .btn--accent:hover,
 .btn--accent:focus-visible {
   background: var(--ink);
-  color: var(--accent);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+.btn--ghost {
+  background: transparent;
+  border: 2px solid var(--accent-2);
+  color: var(--accent-2);
+}
+
+.btn--ghost:hover,
+.btn--ghost:focus-visible {
+  background: var(--accent-2);
+  border-color: var(--accent-2);
+  color: var(--paper);
 }
 
 /* ---------- Skip link ---------- */
@@ -401,9 +462,21 @@
 }
 
 /* ---------- Section component stubs (filled by later tasks) ---------- */
-/* Task 2: index sections */
-.program-cell { border: var(--rule-thin); padding: 20px; background: var(--paper); }
-.program-cell:hover { border: var(--rule); }
+/* Task 2: index sections — Googie stat/resource cards */
+.program-cell {
+  border: 2px solid var(--ink);
+  background: var(--card);
+  padding: 20px;
+}
+.program-cell::before {
+  content: '';
+  display: block;
+  width: 12px;
+  height: 12px;
+  background: var(--accent);
+  margin-bottom: 12px;
+}
+.program-cell:hover { border-color: var(--accent); }
 .resource-entry { border-top: var(--rule-thin); padding: 24px 0; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
 .log-line { border-top: 1px solid var(--hairline); padding: 12px 0; display: flex; gap: 18px; }
 .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
@@ -415,7 +488,7 @@
 .side-index { position: sticky; top: 96px; align-self: start; font-family: var(--font-mono); font-size: 12px; }
 .side-index a { display: block; padding: 8px 10px; margin-inline: -10px; border-top: 1px solid var(--hairline); text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-2); }
 .side-index a:hover, .side-index a:focus-visible, .side-index a.active { background: var(--ink); color: var(--paper); }
-.scale-section .idx { color: var(--gray-2); }
+.scale-section .idx { color: var(--accent); }
 @media (max-width: 900px) {
   .scale-layout { grid-template-columns: 1fr; }
   .side-index { position: static; display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 28px; }
@@ -497,5 +570,5 @@
 .pub-doi { font-family: var(--font-mono); font-size: 12px; white-space: nowrap; }
 .pub-filters { margin-bottom: 8px; }
 .pub-filters button.filter-link { background: transparent; font-family: var(--font-display); cursor: pointer; }
-.filter-link { font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; text-decoration: none; border: var(--rule-thin); padding: 6px 12px; display: inline-block; margin: 0 8px 8px 0; }
+.filter-link { font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; text-decoration: none; border: 2px solid var(--ink); border-radius: var(--radius-pill); padding: 6px 14px; display: inline-block; margin: 0 8px 8px 0; }
 .filter-link:hover, .filter-link.active { background: var(--ink); color: var(--paper); }
