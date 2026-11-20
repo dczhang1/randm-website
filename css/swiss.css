@@ -425,6 +425,35 @@
 .table-scroll { overflow-x: auto; }
 .pub-table td { font-size: 13px; }
 
+/* Task 5: assessment */
+.assess-progress { border: var(--rule-thin); height: 14px; margin: 20px 0; }
+.assess-progress-fill { height: 100%; background: var(--gold); width: 0; }
+.question-item h4 { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-2); font-weight: 400; }
+.question-item p { font-size: 19px; font-weight: 600; margin: 8px 0 16px; }
+.likert-scale { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; max-width: 720px; }
+.likert-option { border: var(--rule-thin); padding: 14px 8px; text-align: center; cursor: pointer; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.5; }
+.likert-option:hover { border: var(--rule); background: var(--paper); }
+.likert-option input { position: absolute; opacity: 0; pointer-events: none; }
+.likert-option.selected { background: var(--ink); color: var(--paper); }
+.assess-submit { margin-top: 16px; }
+.assess-score { font-size: 44px; font-weight: 900; letter-spacing: -0.02em; line-height: 1.1; }
+@media (max-width: 640px) { .likert-scale { grid-template-columns: repeat(2, 1fr); } }
+/* resource cards from old tabs, flattened */
+.resource-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin: 16px 0 28px; }
+.resource-card { border: var(--rule-thin); padding: 18px; }
+.resource-card h3 { font-size: 16px; margin-bottom: 6px; }
+.resource-card p { font-size: 14px; color: var(--gray-2); margin-bottom: 12px; }
+.coming-soon { border: var(--rule-thin); padding: 18px; margin-top: 24px; }
+.coming-soon p { color: var(--gray-2); font-size: 15px; }
+/* old tab content aliases */
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-bottom: 16px; }
+.stats-box { border: var(--rule-thin); padding: 18px; }
+.stats-box__title { font-size: 14px; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; }
+.stats-box ul { list-style: none; }
+.stats-box li { border-top: 1px solid var(--hairline); padding: 7px 0; font-size: 14px; }
+.stats-box h4 { font-size: 13px; text-transform: uppercase; margin: 14px 0 6px; }
+.stats-box p { font-size: 14px; color: var(--gray-2); }
+
 /* Task 3: publications */
 .pub-year { font-size: clamp(28px, 4vw, 40px); font-weight: 900; margin: 40px 0 16px; }
 .pub-entry { border-top: var(--rule-thin); padding: 14px 0 18px 0; max-width: 90ch; }
