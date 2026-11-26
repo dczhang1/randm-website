@@ -10,14 +10,15 @@
 }
 
 :root {
-  /* Palette — the only colors on the site */
-  --paper: #F6F1E5;
-  --ink: #1C1A14;
-  --accent: #E8541E;
-  --accent-2: #17797F;
+  /* Palette — the only colors on the site (LSU-adjacent: "Regal Soft") */
+  --paper: #F7F2E9;
+  --ink: #241B36;
+  --accent: #5B3E96;
+  --accent-2: #B8912F;
+  --accent-2-deep: #8A6E1F; /* gold for text/outlines on cream — bright gold fails contrast there */
   --card: #FFFFFF;
-  --gray-2: #55524A;
-  --hairline: #DAD3C2;
+  --gray-2: #5F5871;
+  --hairline: #DDD6CB;
 
   /* Type */
   --font-display: 'Jost', Futura, 'Century Gothic', 'Trebuchet MS', sans-serif;

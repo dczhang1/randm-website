@@ -8,7 +8,7 @@
  */
 
 :root {
-  --accent: #17797F;
+  --accent: #8A6E1F;
   /* aliases so scripts that inline var(--border) / var(--text-muted) /
      var(--accent-cyan) pick up the Swiss tokens unchanged */
   --border: var(--hairline);

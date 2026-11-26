@@ -226,9 +226,9 @@
 .tag-accent {
   display: inline-block;
   background: transparent;
-  border: 1.5px dashed var(--accent-2);
+  border: 1.5px dashed var(--accent-2-deep);
   border-radius: var(--radius-pill);
-  color: var(--accent-2);
+  color: var(--accent-2-deep);
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.18em;
@@ -293,17 +293,17 @@
   color: var(--paper);
 }
 
-/* Ghost (teal ring) pill */
+/* Ghost (gold ring) pill */
 .link-arrow--ghost {
   background: transparent;
-  border: 2px solid var(--accent-2);
-  color: var(--accent-2);
+  border: 2px solid var(--accent-2-deep);
+  color: var(--accent-2-deep);
 }
 
 .link-arrow--ghost:hover,
 .link-arrow--ghost:focus-visible {
-  background: var(--accent-2);
-  border-color: var(--accent-2);
+  background: var(--accent-2-deep);
+  border-color: var(--accent-2-deep);
   color: var(--paper);
 }
 
@@ -410,14 +410,14 @@
 
 .btn--ghost {
   background: transparent;
-  border: 2px solid var(--accent-2);
-  color: var(--accent-2);
+  border: 2px solid var(--accent-2-deep);
+  color: var(--accent-2-deep);
 }
 
 .btn--ghost:hover,
 .btn--ghost:focus-visible {
-  background: var(--accent-2);
-  border-color: var(--accent-2);
+  background: var(--accent-2-deep);
+  border-color: var(--accent-2-deep);
   color: var(--paper);
 }
 
